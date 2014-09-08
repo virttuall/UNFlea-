@@ -6,8 +6,14 @@ class UrlMappings {
                 // apply constraints here
             }
         }
+		"/$lang/$controller/$action?/$id?"{
+		
+		}
+		
 
-        "/"(view:"/index")
+		"/"(controller: 'index')
         "500"(view:'/error')
+		
 	}
+	
 }
