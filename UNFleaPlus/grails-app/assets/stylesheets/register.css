@@ -1,5 +1,5 @@
 .group{
-	max-width: 650px;
+	max-width: 85%;
  	padding-left: 50px;
  	padding-right:50px;
   	margin:0 auto;
@@ -19,7 +19,4 @@
 .wrapper {	
 	margin-top: 100px;
   	margin-bottom: 100px;
-}
-.space{
-	margin-left:15px;
 }

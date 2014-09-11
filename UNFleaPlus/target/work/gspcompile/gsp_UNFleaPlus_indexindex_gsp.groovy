@@ -44,7 +44,7 @@ printHtmlPart(6)
 createTagBody(2, {->
 invokeTag('message','g',23,['code':("signUP")],-1)
 })
-invokeTag('link','g',23,['controller':("user"),'action':("viewRegister.gsp")],2)
+invokeTag('link','g',23,['controller':("user"),'action':("viewRegister")],2)
 printHtmlPart(7)
 invokeTag('message','g',24,['code':("howUse")],-1)
 printHtmlPart(8)
@@ -63,30 +63,34 @@ invokeTag('message','g',44,['code':("message")],-1)
 printHtmlPart(13)
 invokeTag('message','g',58,['code':("develomentTeam")],-1)
 printHtmlPart(14)
-createTagBody(2, {->
+invokeTag('image','asset',78,['src':("arrow-prev.png")],-1)
 printHtmlPart(15)
-invokeTag('image','asset',88,['src':("USA.png"),'alt':("UNFlea+"),'height':("90px"),'width':("90px")],-1)
+invokeTag('image','asset',84,['src':("arrow-next.png")],-1)
+printHtmlPart(16)
+createTagBody(2, {->
+printHtmlPart(17)
+invokeTag('image','asset',88,['src':("USA.png"),'alt':("UNFlea+"),'height':("40px"),'width':("40px")],-1)
 printHtmlPart(2)
 })
 invokeTag('link','g',89,['params':([lang:'en'])],2)
-printHtmlPart(16)
+printHtmlPart(18)
 createTagBody(2, {->
-printHtmlPart(15)
-invokeTag('image','asset',91,['src':("Colombia.png"),'alt':("UNFlea+"),'height':("100px"),'width':("100px")],-1)
+printHtmlPart(17)
+invokeTag('image','asset',91,['src':("Colombia.png"),'alt':("UNFlea+"),'height':("45px"),'width':("45px")],-1)
 printHtmlPart(2)
 })
 invokeTag('link','g',92,['params':([lang:'es'])],2)
-printHtmlPart(17)
+printHtmlPart(19)
 })
 invokeTag('captureBody','sitemesh',95,[:],1)
-printHtmlPart(18)
+printHtmlPart(20)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1410289403000L
+public static final long LAST_MODIFIED = 1410327529000L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'
