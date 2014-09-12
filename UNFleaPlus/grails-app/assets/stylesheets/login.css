@@ -6,6 +6,13 @@
   font-size: 17px;
   padding: 15px;
 }
+.container-color{
+	height:550px;
+	background: -webkit-radial-gradient( black,white); /* For Safari 5.1 to 6.0 */
+  	background: -o-radial-gradient( black,white); /* For Opera 11.1 to 12.0 */
+  	background: -moz-radial-gradient( black,white); /* For Firefox 3.6 to 15 */
+  	background: radial-gradient( black,white); /* Standard syntax */
+}
 
 .wrapper {	
 	margin-top: 100px;
@@ -13,14 +20,22 @@
 }
 
 .form-signin {
- 	max-width: 85%;
+ 	max-width: 380px;
+ 	
  	padding: 15px 35px 45px;
   	margin: 0 auto;
-  	background-color: #f5f5f5;
+  	background: -webkit-radial-gradient( black,white); /* For Safari 5.1 to 6.0 */
+  	background: -o-radial-gradient( black,white); /* For Opera 11.1 to 12.0 */
+  	background: -moz-radial-gradient( black,white); /* For Firefox 3.6 to 15 */
+  	background: radial-gradient( black,white); /* Standard syntax */
  	border-style: 3px inset;
- 	border-color:#f5f5f5;
- 	border-radius: 8%;
- 	box-shadow: 10px 10px 5px #888888;
+ 	border-color:white;
+ 	border-radius: 10%;
+ 	box-shadow: 10px 10px 10px white,
+ 	20px 20px 20px white,
+ 	30px 30px 30px white,
+ 	40px 40px 40px white,
+ 	50px 50px 50px white;
  	
 }
 .menu > li {
@@ -34,10 +49,36 @@
 }
 .checkbox{
 	margin-left: 20px;	
+	color: white;
+	font-size: 14px;
 }
 .box{
 	border-radius: 10%;
+	padding: -15px;
 }
+.user{
+	height: 100px;
+	width: 100px;
+	margin-top: -140px;
+	box-shadow: 5px 5px 5px white,
+ 	10px 10px 10px white,
+ 	15px 15px 15px white,
+ 	20px 20px 20px white,
+ 	25px 25px 25px white;
+ 	border-radius: 50px;
+ 	transform:rotateY(0deg);
+    transition-duration: 2s;
+   -webkit-transform:rotateY(0deg);
+   -webkit-transition-duration: 2s;
+}
+
+.user:hover{
+   transform:rotateY(360deg);
+   transition-duration: 2s;
+   -webkit-transform:rotateY(360deg);
+   -webkit-transition-duration: 2s;
+}
+
 .site-footer{
 	background-color: rgba(255, 255, 255, 0.95);
   	border-top: 1px solid #ddd;
@@ -45,4 +86,73 @@
   	font-weight: 300;
   	font-size: 17px;
  	padding: 10px;
+}
+.button{
+	-moz-box-shadow: 0px 5px 0px 0px rgb(0, 105, 202);
+    -webkit-box-shadow: 0px 5px 0px 0px rgb(0, 105, 202);
+    box-shadow: 0px 5px 0px 0px rgb(0, 105, 202);
+    transition: all 0.10s ease-in-out;
+    -webkit-transition: all 0.10s ease-in-out;
+    /*IMPORTANTE, si no posicionamos de manera relativa el elemento, al hacer click se moverá entero, sin realizar el engaño que buscamos*/
+    position:relative;
+}
+.button:active{
+	top:4px;
+    /*bajamos el tamaño de la sombra para conseguir el efecto de profundidad*/
+    -moz-box-shadow: 0px 1px 0px 0px rgb(0, 105, 202);
+    -webkit-box-shadow: 0px 1px 0px 0px rgb(0, 105, 202);
+    box-shadow: 0px 1px 0px 0px rgb(0, 105, 202);
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 970px;
+  }
+}
+
+
+/*
+ * Masthead for nav
+ */
+
+.login-masthead {
+  background-color: #F5F5F5;
+  -webkit-box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
+          box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
+}
+
+/* Nav links */
+.login-nav-item {
+  position: relative;
+  display: inline-block;
+  padding: 10px;
+  font-weight: 500;
+  color: #cdddeb;
+}
+.login-nav-item:hover,
+.login-nav-item:focus {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Active state gets a caret at the bottom */
+.login-nav .active {
+  color: #fff;
+}
+.login-nav .active:after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin-left: -5px;
+  vertical-align: middle;
+  content: " ";
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid;
+  border-left: 5px solid transparent;
+}
+
+.right{
+	float: right;
 }
