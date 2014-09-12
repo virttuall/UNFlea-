@@ -6,4 +6,10 @@ class IndexController {
 	def viewHome(){
 		render(controller:'index',view:'index')
 	}
+	def viewContactUs(){
+		render(controller:'index',view:'contactUs')
+	}
+	def viewAboutUs(){
+		render(controller:'index',view:'aboutUs')
+	}
 }

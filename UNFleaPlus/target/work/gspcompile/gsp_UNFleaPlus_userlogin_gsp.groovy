@@ -41,7 +41,7 @@ createTagBody(1, {->
 printHtmlPart(3)
 createTagBody(2, {->
 printHtmlPart(4)
-invokeTag('message','g',17,['code':("home")],-1)
+invokeTag('image','asset',17,['src':("home.png"),'alt':("UNFlea+"),'height':("25px"),'width':("50px")],-1)
 printHtmlPart(5)
 })
 invokeTag('link','g',17,['controller':("index")],2)
@@ -87,7 +87,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1410498174000L
+public static final long LAST_MODIFIED = 1410498779000L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

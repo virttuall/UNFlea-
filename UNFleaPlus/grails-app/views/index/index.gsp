@@ -36,8 +36,8 @@
           						<li class="dropdown">
             					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><g:message code="more" /> <b class="caret"></b></a>
             						<ul class="dropdown-menu" role="menu">
-              							<li><a href="#"><g:message code="contactUs" /></a></li>
-              							<li><a href="#"><g:message code="aboutUs" /></a></li>
+              							<li><g:link controller="index" action="viewContactUs"><g:message code="contactUs" /></g:link></li>
+              							<li><g:link controller="index" action="viewAboutUs"><g:message code="aboutUs" /></g:link></li>
             						</ul>
           						</li>
         					</ul>
