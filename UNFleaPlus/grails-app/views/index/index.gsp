@@ -31,7 +31,7 @@
       					<div class="navbar-collapse collapse navbar-color">
       						<ul class="nav navbar-nav">
           						<li><g:link controller="user" action="viewRegister"><g:message code="signUP" /></g:link></li>
-          						<li><a href="#"><g:message code="howUse" /></a></li><!--Un video como el que dijo el profesor-->
+          						<li><a href="#" data-toggle="modal" data-target="#normalModal"><g:message code="howUse"  /></a></li><!--Un video como el que dijo el profesor-->
           						<li><g:link controller="user" action="viewLogin"><g:message code="login" /></g:link></li>
           						<li class="dropdown">
             					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><g:message code="more" /> <b class="caret"></b></a>
@@ -101,6 +101,29 @@
 			</g:link> 
 		</center>
     </div>
+    <div class="modal fade" id="normalModal" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+  		<div class="modal-dialog modal-lg">
+    		<div class="modal-content">
+      			<div class="modal-header">
+        			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        			<div class="centering">
+        				<g:message code="tutorial" />
+        			</div>
+        			
+      			</div>
+      			<div class="modal-body">
+      				<div>
+      				     <!--Aqui va el video del tutorial-->
+          				<iframe width="100%" height="350" src="//www.youtube.com/embed/IBH97ma9YiI"></iframe>
+        			</div>
+      			</div>	
+      			
+      			
+      			
+      			
+   	 		</div>
+  		</div>
+	</div>
     
   </body>	
 </html>

@@ -66,6 +66,10 @@
  	20px 20px 20px white,
  	25px 25px 25px white;
  	border-radius: 50px;
+ 	-webkit-animation: spin 2s linear 2s 2 alternate;
+    animation: spin 2s linear 2s 2 alternate;
+    -moz-animation: spin 2s linear 2s 2 alternate;
+   
  	transform:rotateY(0deg);
     transition-duration: 2s;
    -webkit-transform:rotateY(0deg);
@@ -103,6 +107,24 @@
     -webkit-box-shadow: 0px 1px 0px 0px rgb(0, 105, 202);
     box-shadow: 0px 1px 0px 0px rgb(0, 105, 202);
 }
+.button1{
+	-moz-box-shadow: 0px 5px 0px 0px #31B404;
+    -webkit-box-shadow: 0px 5px 0px 0px #31B404;
+    box-shadow: 0px 5px 0px 0px #31B404;
+    transition: all 0.10s ease-in-out;
+    -webkit-transition: all 0.10s ease-in-out;
+    /*IMPORTANTE, si no posicionamos de manera relativa el elemento, al hacer click se moverá entero, sin realizar el engaño que buscamos*/
+    position:relative;
+}
+.button1:active{
+	top:4px;
+    /*bajamos el tamaño de la sombra para conseguir el efecto de profundidad*/
+    -moz-box-shadow: 0px 1px 0px 0px #31B404;
+    -webkit-box-shadow: 0px 1px 0px 0px #31B404;
+    box-shadow: 0px 1px 0px 0px #31B404;
+}
+
+
 
 @media (min-width: 1200px) {
   .container {
@@ -155,4 +177,18 @@
 
 .right{
 	float: right;
+}
+
+/*Animation*/
+@-moz-keyframes spin {
+    from { -moz-transform: rotateY(0deg); }
+    to { -moz-transform: rotateY(360deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotateY(0deg); }
+    to { -webkit-transform: rotateY(360deg); }
+}
+@keyframes spin {
+    from {transform:rotateY(0deg);}
+    to {transform:rotateY(360deg);}
 }

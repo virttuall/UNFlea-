@@ -15,7 +15,7 @@
         	<nav class="login-nav"> 
         		<div class="col-xs-1"></div>  		
           		<g:link controller="index" ><div class="login-nav-item col-xs-2" ><asset:image src="home.png" alt="UNFlea+" height="25px" width="50px"/></div></g:link>
-          		<g:link controller="user" action="viewRegister"><button class="login-nav-item col-xs-8 right btn btn-success " ><g:message code="signUP"/></button></g:link> 
+          		<g:link controller="user" action="viewRegister"><button class="login-nav-item col-xs-8 right btn btn-success button1 " ><g:message code="signUP"/></button></g:link> 
           		<div class="col-xs-1"></div>  	
         	</nav>
        	</div>

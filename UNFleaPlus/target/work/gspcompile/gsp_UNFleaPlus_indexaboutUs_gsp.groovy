@@ -5,8 +5,8 @@ import org.codehaus.groovy.grails.web.taglib.exceptions.GrailsTagException
 import org.springframework.web.util.*
 import grails.util.GrailsUtil
 
-class gsp_UNFleaPlus_indexcontactUs_gsp extends GroovyPage {
-public String getGroovyPageFileName() { "/WEB-INF/grails-app/views/index/contactUs.gsp" }
+class gsp_UNFleaPlus_indexaboutUs_gsp extends GroovyPage {
+public String getGroovyPageFileName() { "/WEB-INF/grails-app/views/index/aboutUs.gsp" }
 public Object run() {
 Writer out = getOut()
 Writer expressionOut = getExpressionOut()
@@ -22,7 +22,7 @@ invokeTag('captureMeta','sitemesh',6,['gsp_sm_xmlClosingForEmptyTag':(""),'name'
 printHtmlPart(1)
 createTagBody(2, {->
 createTagBody(3, {->
-invokeTag('message','g',7,['code':("contactUs")],-1)
+invokeTag('message','g',7,['code':("AboutUs")],-1)
 })
 invokeTag('captureTitle','sitemesh',7,[:],3)
 })
@@ -30,7 +30,7 @@ invokeTag('wrapTitleTag','sitemesh',7,[:],2)
 printHtmlPart(1)
 invokeTag('stylesheet','asset',8,['src':("bootstrap.css")],-1)
 printHtmlPart(1)
-invokeTag('stylesheet','asset',9,['src':("contact.css")],-1)
+invokeTag('stylesheet','asset',9,['src':("about.css")],-1)
 printHtmlPart(1)
 invokeTag('javascript','asset',10,['src':("bootstrap.js")],-1)
 printHtmlPart(2)

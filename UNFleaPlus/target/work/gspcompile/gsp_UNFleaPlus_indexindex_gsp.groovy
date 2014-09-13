@@ -55,9 +55,15 @@ invokeTag('link','g',35,['controller':("user"),'action':("viewLogin")],2)
 printHtmlPart(8)
 invokeTag('message','g',37,['code':("more")],-1)
 printHtmlPart(9)
+createTagBody(2, {->
 invokeTag('message','g',39,['code':("contactUs")],-1)
+})
+invokeTag('link','g',39,['controller':("index"),'action':("viewContactUs")],2)
 printHtmlPart(10)
+createTagBody(2, {->
 invokeTag('message','g',40,['code':("aboutUs")],-1)
+})
+invokeTag('link','g',40,['controller':("index"),'action':("viewAboutUs")],2)
 printHtmlPart(11)
 invokeTag('message','g',63,['code':("message")],-1)
 printHtmlPart(12)
@@ -86,7 +92,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1410461536000L
+public static final long LAST_MODIFIED = 1410572104000L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'
