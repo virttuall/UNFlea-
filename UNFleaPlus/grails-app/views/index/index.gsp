@@ -62,7 +62,7 @@
               		<h1 class="h1-carousel" style="position:absolute; top:150px">UNFlea+</h1>
               		<p class="p-carousel" style="position:absolute; top:250px"><g:message code="message"/></p>
             	</div>
-            	<img src="http://3.bp.blogspot.com/-Y_40ll19G5Y/UpZqkXf5QZI/AAAAAAAAD4o/rAJyx88pXxg/s1600/pulga.png" class="img-rounded col-xs-6"  width="100px" height="400px" style="position:absolute; top:100px;" >   	
+            	<img src="http://3.bp.blogspot.com/-Y_40ll19G5Y/UpZqkXf5QZI/AAAAAAAAD4o/rAJyx88pXxg/s1600/pulga.png" class="img-rounded col-xs-6"  width="100px" height="400px" style="position:relative; top:100px;" >   	
           	</div>
             
           </div>
