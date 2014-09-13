@@ -57,9 +57,68 @@
 			</div>
 		</div>
 	</div>
-	
-	<!-- Content -->
-	
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="well well-sm">
+					<form class="form-horizontal" action="" method="post">
+						<g:set var="username_input"
+							value="${g.message(code: 'usernameVar')}" scope="page" />
+						<g:set var="email_input"
+							value="${g.message(code: 'emailRegister')}" scope="page" />
+						<g:set var="comments_input"
+							value="${g.message(code: 'commentsVar')}" scope="page" />
+						<fieldset>
+							<legend class="text-center">
+								<g:message code="contactUs" />
+							</legend>
+
+							<!-- Name input-->
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="name"><g:message
+										code="usernameVar" /></label>
+								<div class="col-md-9">
+									<input id="name" name="name" type="text"
+										placeholder="${username_input }" class="form-control">
+								</div>
+							</div>
+
+							<!-- Email input-->
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="email"><g:message
+										code="emailVar" /></label>
+								<div class="col-md-9">
+									<input id="email" name="email" type="text"
+										placeholder="${email_input }" class="form-control">
+								</div>
+							</div>
+
+							<!-- Message body -->
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="message"><g:message
+										code="comments" /></label>
+								<div class="col-md-9">
+									<textarea class="form-control" id="message" name="message"
+										placeholder="${comments_input }" rows="5"></textarea>
+								</div>
+							</div>
+
+							<!-- Form actions -->
+							<div class="form-group">
+								<div class="col-md-12 text-right">
+									<button type="submit" class="btn btn-primary btn-lg">
+										<g:message code="send" />
+									</button>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<div class="footer">
 		<center>
 			<g:link params="[lang:'en']">
