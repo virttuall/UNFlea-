@@ -83,16 +83,18 @@ printHtmlPart(15)
 })
 invokeTag('link','g',101,['params':([lang:'es'])],2)
 printHtmlPart(17)
-})
-invokeTag('captureBody','sitemesh',105,[:],1)
+invokeTag('message','g',110,['code':("tutorial")],-1)
 printHtmlPart(18)
+})
+invokeTag('captureBody','sitemesh',128,[:],1)
+printHtmlPart(19)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1410572104000L
+public static final long LAST_MODIFIED = 1410807738000L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'
