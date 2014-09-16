@@ -48,6 +48,10 @@
  	30px 30px 30px black,
  	40px 40px 40px black,
  	50px 50px 50px black;
+ 	
+  	-webkit-animation: spin 2s linear 2s 2 alternate;
+    animation: spin 2s linear 2s 2 alternate;
+    -moz-animation: spin 2s linear 2s 2 alternate;
   	
 	
 }
@@ -99,4 +103,20 @@
   .container {
     width: 970px;
   }
+}
+
+/*Animation*/
+
+
+@-moz-keyframes spin {
+    from { -moz-transform: rotateY(0deg); }
+    to { -moz-transform: rotateY(360deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotateY(0deg); }
+    to { -webkit-transform: rotateY(360deg); }
+}
+@keyframes spin {
+    from {transform:rotateY(0deg);}
+    to {transform:rotateY(360deg);}
 }
