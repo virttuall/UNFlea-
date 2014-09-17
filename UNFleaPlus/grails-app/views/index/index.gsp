@@ -34,7 +34,7 @@
       						<ul class="nav navbar-nav navbar-right">
       							
           						<li><g:link controller="user" action="viewRegister"><g:message code="signUP" /></g:link></li>
-          						<li><a href="#" data-toggle="modal" data-target="#normalModal"><g:message code="howUse"  /></a></li><!--Un video como el que dijo el profesor-->
+          						<li><a href="#" data-toggle="modal" data-target="#myModal"><g:message code="howUse"  /></a></li><!--Un video como el que dijo el profesor-->
           						<li class="dropdown" >
 					            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin"><g:message code="login"/></a>
 					            <ul class="dropdown-menu drowmenu-size" role="menu" >
