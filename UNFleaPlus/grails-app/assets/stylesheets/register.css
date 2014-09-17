@@ -6,6 +6,8 @@
 	width: 250px;
 	height: 70px;
 }
+
+
 body {
   padding-bottom: 40px;
   color: #5a5a5a;
@@ -56,6 +58,10 @@ body .modal {
 .size-menu{
 	width: 100%;
 }
+
+
+
+
 
 /* RESPONSIVE CSS
 -------------------------------------------------- */
@@ -236,7 +242,6 @@ body .modal {
 .form-margin{
 	margin: 10px 30px;	
 }
-
 
 #msform{
 	width: 400px;

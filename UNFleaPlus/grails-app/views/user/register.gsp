@@ -17,7 +17,7 @@
 				<div class="margin-menu navbar-inverse navbar-static-top navbar-color" role="navigation" >
 					<div class="container">
 						<div class="navbar-header navbar-color">
-							<button type="button" class="navbar-toggle" data-toggle="collapse"  >
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                					<span class="sr-only">Toggle navigation</span>
                 				<span class="icon-bar"></span>
                 				<span class="icon-bar"></span>
@@ -40,9 +40,10 @@
 					              	
 					              	<form role="form ">	              	
 									  		<div class="form-group form-margin">
-													 
-													 	<input type="email" class="form-control" id="ejemplo_email_1"	placeholder="${foo}">
-									   				
+
+									   				<input type="email" class="form-control" id="ejemplo_email_1"
+									          		placeholder="${foo}">
+									   			
 									  		
 								  	  		</div>
 											<div class="form-group form-margin">
