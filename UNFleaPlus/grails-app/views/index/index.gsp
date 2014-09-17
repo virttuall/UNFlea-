@@ -8,6 +8,7 @@
 		<asset:stylesheet src="bootstrap.css"/>
 		<asset:stylesheet src="init.css"/>
 		<asset:javascript src="bootstrap.js"/>
+		<asset:javascript src="modal.js"/>
 		
 		
 		
@@ -138,29 +139,21 @@
 			</g:link> 
 		</center>
     </div>
-    <div class="modal fade" id="normalModal" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
-  		<div class="modal-dialog modal-lg">
-    		<div class="modal-content">
-      			<div class="modal-header">
-        			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        			<div class="centering">
-        				<g:message code="tutorial" />
-        			</div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+          	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        		<div class="centering">
+        			<h2><g:message code="tutorial" /></h2>
+        		</div>
         			
-      			</div>
-      			<div class="modal-body">
-      				<div>
-      				     <!--Aqui va el video del tutorial-->
-          				<iframe width="100%" height="350" src="//www.youtube.com/embed/IBH97ma9YiI"></iframe>
-        			</div>
-      			</div>	
-      			
-      			
-      			
-      			
-   	 		</div>
-  		</div>
-	</div>
+      	  </div>         
+          <div class="modal-body">                
+          </div>
+        </div>
+      </div>
+    </div>
     
   </body>	
 </html>
