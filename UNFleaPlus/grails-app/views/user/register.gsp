@@ -30,31 +30,46 @@
 						<li class="active"><g:message code="create" /></li>
 						<li><g:message code="personal" /></li>
 					</ul>
+					
 					<fieldset>
 						<h2 class="fs-title"><g:message code="create" /></h2>
 						
     					<g:set var="foo" value="${g.message(code: 'emailVar')}" scope="page"/>
-  						<div class="form-group ">
-    						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      							<input type="email" class="form-control" id="email"placeholder="${foo}">
+    					
+  						<div class="form-group">
+  							
+    						<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">	
+    							<div class="input-group input-group-lg">
+                					<span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                					<input type="email" class="form-control" id="email"placeholder="${foo}">
+                				</div>
     						</div>
   						</div>
   						<div class="form-group ">
   							<g:set var="foo1" value="${g.message(code: 'usernameVar')}" scope="page"/>
     						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      							<input type="text" class="form-control" id="username"placeholder="${foo1}">
+    							<div class="input-group input-group-lg">
+                					<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+      								<input type="text" class="form-control" id="username"placeholder="${foo1}">
+      							</div>
     						</div>
   						</div>
   						<div class="form-group">
   							<g:set var="foo4" value="${g.message(code: 'password')}" scope="page"/>
     						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      							<input type="password" class="form-control" id="password" placeholder="${foo4}">
+    							<div class="input-group input-group-lg">
+                					<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+      								<input type="password" class="form-control" id="password" placeholder="${foo4}">
+      							</div>
     						</div>
   						</div>
   						<div class="form-group">
   							<g:set var="foo5" value="${g.message(code: 'passwordConfirm')}" scope="page"/>
     						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      							<input type="password" class="form-control" id="password1" placeholder="${foo5}">
+    							<div class="input-group input-group-lg">
+                					<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+      								<input type="password" class="form-control" id="password1" placeholder="${foo5}">
+      							</div>
     						</div>
   						</div>
   						
@@ -68,7 +83,10 @@
   							<g:set var="foo2" value="${g.message(code: 'firstname')}" scope="page"/>
     						
     						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      							<input type="text" class="form-control" id="firstName" placeholder="${foo2}">
+    							<div class="input-group input-group-lg">
+                					<span class="input-group-addon "><span class="glyphicon glyphicon-share-alt"></span></span>
+      								<input type="text" class="form-control" id="firstName" placeholder="${foo2}">
+      							</div>
       							
     						</div>
   						</div>
@@ -77,7 +95,10 @@
   							<g:set var="foo3" value="${g.message(code: 'lastname')}" scope="page"/>
     						
     						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      							<input type="text" class="form-control" id="lastName" placeholder="${foo3}">
+    							<div class="input-group input-group-lg">
+                					<span class="input-group-addon "><span class="glyphicon glyphicon-share-alt"></span></span>
+      								<input type="text" class="form-control" id="lastName" placeholder="${foo3}">
+      							</div>
       							
     						</div>
   						</div>
