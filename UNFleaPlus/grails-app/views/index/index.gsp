@@ -13,9 +13,10 @@
 		
 	</head>
 	<body>
+		
 		<div class="navbar-wrapper">
-			<div class="container">
-				<div class="navbar navbar-inverse navbar-static-top navbar-color" role="navigation">
+			<div class="container size-menu">
+				<div class="margin-menu navbar-inverse navbar-static-top navbar-color" role="navigation" >
 					<div class="container">
 						<div class="navbar-header navbar-color">
 							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -29,62 +30,98 @@
       						</a>
       					</div>
       					<div class="navbar-collapse collapse navbar-color">
-      						<ul class="nav navbar-nav">
+      						<ul class="nav navbar-nav navbar-right">
+      							
           						<li><g:link controller="user" action="viewRegister"><g:message code="signUP" /></g:link></li>
           						<li><a href="#" data-toggle="modal" data-target="#normalModal"><g:message code="howUse"  /></a></li><!--Un video como el que dijo el profesor-->
-          						<li><g:link controller="user" action="viewLogin"><g:message code="login" /></g:link></li>
-          						<li class="dropdown">
+          						<li class="dropdown" >
+					            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin"><g:message code="login"/></a>
+					            <ul class="dropdown-menu drowmenu-size" role="menu" >
+					              <g:set var="foo" value="${g.message(code: 'email')}" scope="page"/>
+        						  <g:set var="foo1" value="${g.message(code: 'password')}" scope="page"/>
+					              	
+					              	<form role="form ">	              	
+									  		<div class="form-group form-margin">
+
+									   				<input type="email" class="form-control" id="ejemplo_email_1"
+									          		placeholder="${foo}">
+									   			
+									  		
+								  	  		</div>
+											<div class="form-group form-margin">
+											    
+											    	<input type="password" class="form-control"  id="ejemplo_password_1" 
+											          placeholder="${foo1}">
+											   
+											</div>
+											  
+											<div class="form-margin">
+											    <label>
+											      <input type="checkbox"> <g:message code="rememberMe"/>	
+											    </label>
+											</div>
+											<button type="submit" class="form-margin btn btn-default"><g:message code="login"/></button>
+											
+									</form>
+					              	
+
+					              
+					              	  
+					            </ul>
+					          </li>
+					          <li class="dropdown">
             					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><g:message code="more" /> <b class="caret"></b></a>
             						<ul class="dropdown-menu" role="menu">
               							<li><g:link controller="index" action="viewContactUs"><g:message code="contactUs" /></g:link></li>
               							<li><g:link controller="index" action="viewAboutUs"><g:message code="aboutUs" /></g:link></li>
             						</ul>
-          						</li>
+          						</li>  						
         					</ul>
+        					
+        					
 						</div>
 				
 					</div>
 				</div>
 			</div>
 		</div>
+		
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-      </ol>
-      <div class="carousel-inner">
-        <div class="item active">
+      		<!-- Indicators -->
+      		<ol class="carousel-indicators">
+        		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        		<li data-target="#myCarousel" data-slide-to="1"></li>
+      		</ol>
+      		<div class="carousel-inner">
+        		<div class="item active">
           
-          <div class="container">
-          	<div class=row>
-          		<div class="col-xs-6 ">
-              		<h1 class="h1-carousel" style="position:absolute; top:150px">UNFlea+</h1>
-              		<p class="p-carousel" style="position:absolute; top:250px"><g:message code="message"/></p>
-            	</div>
-            	<img src="http://3.bp.blogspot.com/-Y_40ll19G5Y/UpZqkXf5QZI/AAAAAAAAD4o/rAJyx88pXxg/s1600/pulga.png" class="img-rounded col-xs-6"  width="100px" height="400px" style="position:relative; top:100px;" >   	
-          	</div>
+        	 		<div class="container">
+          				<div class=row>
+          					<div class="col-xs-6 ">
+              					<h1 class="h1-carousel" style="position:absolute; top:150px">UNFlea+</h1>
+              					<p class="p-carousel" style="position:absolute; top:250px"><g:message code="message"/></p>
+            				</div>
+            				<img src="http://3.bp.blogspot.com/-Y_40ll19G5Y/UpZqkXf5QZI/AAAAAAAAD4o/rAJyx88pXxg/s1600/pulga.png" class="img-rounded col-xs-6"  width="100px" height="400px" style="position:relative; top:100px;" >   	
+          				</div>
             
-          </div>
-        </div>
-        <div class="item">
-
-          <div class="container">
-            <div class=row>
-          		<div class="col-xs-7 ">
-          			<h1 class="h1-carousel" style="position:relative; top:200px;"><g:message code="develomentTeam" /></h1>
-              		<p class="p-carousel" style="position:relative; top:200px; ">Andres Rene Gutierrez</p>
-              		<p class="p-carousel" style="position:relative; top:200px; ">Yeison David García </p>
-              		<p class="p-carousel" style="position:relative; top:200px;">Fabian David Conejo </p>
-            		<p class="p-carousel" style="position:relative; top:200px;">Samuel Antonio Cabezas</p>
-              		<p class="p-carousel" style="position:relative; top:200px;">Mateo Nieto Díaz</p>
-              		
-            	</div>
-            	<div>
-            		<img src="https://observatoriodefamilia.dnp.gov.co/portals/0/Images/Logos/logo_unal.png" class="col-xs-5"  width="100px" height="400px" style="position:absolute; top:100px;"  >
-            	</div>
-            </div>	
-          </div>
+          			</div>
+        		</div>
+        		<div class="item">
+          			<div class="container">
+           		 		<div class=row>
+          					<div class="col-xs-7 ">
+          						<h1 class="h1-carousel" style="position:relative; top:200px;"><g:message code="develomentTeam" /></h1>
+              					<p class="p-carousel" style="position:relative; top:200px; ">Andres Rene Gutierrez</p>
+              					<p class="p-carousel" style="position:relative; top:200px; ">Yeison David García </p>
+              					<p class="p-carousel" style="position:relative; top:200px;">Fabian David Conejo </p>
+            					<p class="p-carousel" style="position:relative; top:200px;">Samuel Antonio Cabezas</p>
+              					<p class="p-carousel" style="position:relative; top:200px;">Mateo Nieto Díaz</p>
+            				</div>
+            			<div>
+            			<img src="https://observatoriodefamilia.dnp.gov.co/portals/0/Images/Logos/logo_unal.png" class="col-xs-5"  width="100px" height="400px" style="position:absolute; top:100px;"  >
+            		</div>
+            	</div>	
+          	</div>
         </div>
         
       </div>
