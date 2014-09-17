@@ -7,6 +7,7 @@
 		<asset:stylesheet src="bootstrap.css"/>
 		<asset:stylesheet src="register.css"/>
 		<asset:javascript src="bootstrap.js"/>
+		<asset:javascript src="register.js"/>
 		
 
 	</head>
@@ -23,90 +24,102 @@
        				</div>
       			</div>
     		</div>
-    		<div class="container-fluid">
-    			<form class="form-horizontal form" role="form">
-    				<div class="margin-form-top"></div>
-    				<g:set var="foo" value="${g.message(code: 'emailVar')}" scope="page"/>
-  					<div class="form-group ">
-    					<label for="email" class="margin-form text col-lg-3 col-md-3 col-sm-4 col-xs-4 control-label"><g:message code="emailVar" /></label>
-    					<div class="col-lg-8 col-md-8 col-sm-7 col-xs-7">
-      						<input type="email" class="form-control" id="email"placeholder="${foo}">
-      						<span class="help-block text"><g:message code="emailRegister" /></span>
-    					</div>
+    		<div class="container-fluid">			
+    			<form class="form-horizontal" id="msform" role="form">
+    				<ul id="progressbar">
+						<li class="active"><g:message code="create" /></li>
+						<li><g:message code="personal" /></li>
+					</ul>
+					<fieldset>
+						<h2 class="fs-title"><g:message code="create" /></h2>
+						
+    					<g:set var="foo" value="${g.message(code: 'emailVar')}" scope="page"/>
+  						<div class="form-group ">
+    						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      							<input type="email" class="form-control" id="email"placeholder="${foo}">
+    						</div>
+  						</div>
+  						<div class="form-group ">
+  							<g:set var="foo1" value="${g.message(code: 'usernameVar')}" scope="page"/>
+    						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      							<input type="text" class="form-control" id="username"placeholder="${foo1}">
+    						</div>
+  						</div>
+  						<div class="form-group">
+  							<g:set var="foo4" value="${g.message(code: 'password')}" scope="page"/>
+    						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      							<input type="password" class="form-control" id="password" placeholder="${foo4}">
+    						</div>
+  						</div>
+  						<div class="form-group">
+  							<g:set var="foo5" value="${g.message(code: 'passwordConfirm')}" scope="page"/>
+    						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      							<input type="password" class="form-control" id="password1" placeholder="${foo5}">
+    						</div>
+  						</div>
+  						
+      					<button type="button" class="next btn btn-success button1"><g:message code="next" /></button>
     					
-  					</div>
-  					
-  					<div class="form-group ">
-  						<g:set var="foo1" value="${g.message(code: 'usernameVar')}" scope="page"/>
-    					<label for="username" class="margin-form text col-lg-3 col-md-3 col-sm-4 col-xs-4 control-label"><g:message code="usernameVar" /></label>
-    					<div class="col-lg-8 col-md-8 col-sm-7 col-xs-7">
-      						<input type="text" class="form-control" id="username"placeholder="${foo1}">
-      						<span class="help-block text"> <g:message code="username" /></span>
-    					</div>
-  					</div>
-  					
-  					<div class="form-group ">
-  						<g:set var="foo2" value="${g.message(code: 'firstname')}" scope="page"/>
-    					<label for="firstName" class="margin-form text col-lg-3 col-md-3 col-sm-4 col-xs-4 control-label"><g:message code="firstname" /></label>
-    					<div class="col-lg-8 col-md-8 col-sm-7 col-xs-7">
-      						<input type="text" class="form-control" id="firstName" placeholder="${foo2}">
-      						<span class="help-block text"><g:message code="firstnameVar" /></span>
-    					</div>
-  					</div>
-  					
-  					<div class="form-group ">
-  						<g:set var="foo3" value="${g.message(code: 'lastname')}" scope="page"/>
-    					<label for="lastName" class="margin-form text col-lg-3 col-md-3 col-sm-4 col-xs-4 control-label"><g:message code="lastname" /></label>
-    					<div class="col-lg-8 col-md-8 col-sm-7 col-xs-7">
-      						<input type="text" class="form-control" id="lastName" placeholder="${foo3}">
-      						<span class="help-block text"><g:message code="lastnameVar" /></span>
-    					</div>
-  					</div>
-  					
-  					<div class="form-group">
-  						<g:set var="foo4" value="${g.message(code: 'password')}" scope="page"/>
-    					<label for="password" class="margin-form text  col-lg-3 col-md-3 col-sm-4 col-xs-4 control-label"><g:message code="password" /></label>
-    					<div class="col-lg-8 col-md-8 col-sm-7 col-xs-7">
-      						<input type="password" class="form-control" id="password" placeholder="${foo4}">
-      						<span class="help-block text"><g:message code="passwordVar" /></span>
-    					</div>
-  					</div>
-  					
-  					<div class="form-group">
-  						<g:set var="foo5" value="${g.message(code: 'passwordConfirm')}" scope="page"/>
-    					<label for="password1" class="margin-form text  col-lg-3 col-md-3 col-sm-4 col-xs-4 control-label"><g:message code="passwordConfirm" /></label>
-    					<div class="col-lg-8 col-md-8 col-sm-7 col-xs-7">
-      						<input type="password" class="form-control" id="password1" placeholder="${foo5}">
-      						<span class="help-block text"><g:message code="passwordConfirmVar" /></span>
-    					</div>
-  					</div>
-  					
-  					<div class="form-group">
-  						<label for="image" class="margin-form text  col-lg-3 col-md-3 col-sm-4 col-xs-4 control-label"><g:message code="uploadImage" /></label>
-  							<div class="col-lg-8 col-md-8 col-sm-7 col-xs-7">
-  							<input type="file" id="image">
-  							<span class="help-block text"><g:message code="format" /></span>
+					</fieldset>
+    				
+    				<fieldset>
+    					<h2 class="fs-title"><g:message code="personal" /></h2>
+    					<div class="form-group ">
+  							<g:set var="foo2" value="${g.message(code: 'firstname')}" scope="page"/>
+    						
+    						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      							<input type="text" class="form-control" id="firstName" placeholder="${foo2}">
+      							
+    						</div>
   						</div>
   					
-  					</div>
-  					<div class="form-group">
-  						<div class="margin-form col-lg-3 col-md-3 col-sm-4 col-xs-4"></div> 
-  							<div class="text col-lg-8 col-md-8 col-sm-7 col-xs-7">
-  								<a href="#"><g:message code="terms" /></a>
+  						<div class="form-group ">
+  							<g:set var="foo3" value="${g.message(code: 'lastname')}" scope="page"/>
+    						
+    						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      							<input type="text" class="form-control" id="lastName" placeholder="${foo3}">
+      							
+    						</div>
+  						</div>
+  					
+  						<div class="form-group">
+  							
+  							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+  								<input type="file" id="image">
+  								<span class="help-block"><g:message code="format" /></span>
   							</div>
-  					</div>
   					
+  						</div>
   					
-  					<div class="form-group">
-  						<div class="margin-form col-lg-3 col-md-3 col-sm-4 col-xs-4"></div>
-    					<div class="col-lg-8  col-md-8  col-sm-7  col-xs-7">
-      						<button type="submit" class="btn btn-success button1"><g:message code="login" /></button>
-    					</div>
-  					</div>
+  						
+  						
+  							
+  						<div class="form-group">
+  							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+  								<input type="radio" value="None" class="pointer"  id="male" name="gender" checked/>
+  								<label for="male" ><g:message code="male" /></label>
+  							</div>
+  								
+  							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+  								<input type="radio" value="None" class="pointer" id="famale" name="gender" />
+  								<label for="female" ><g:message code="female" /></label>	
+  							</div>
+  								
+  						</div>
+  						<div class="form-group">
+  							
+  							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-left:-60px;">
+  								<a href="#" ><g:message code="terms" /></a>
+  							</div>
+  						</div>	
+      					<button type="button" class="previous btn btn-success button1"><g:message code="previous" /></button>
+      					<button type="submit" class="btn btn-success button1"><g:message code="signUP" /></button>	
+    				</fieldset>
+	
 				</form>
     		</div>
 			
-			
+			<script src="http://thecodeplayer.com/uploads/js/jquery.easing.min.js" type="text/javascript"></script>		
 		
 	</body>
 </html>

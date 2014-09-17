@@ -1,3 +1,11 @@
+body{
+	background: -webkit-radial-gradient( black,white); /* For Safari 5.1 to 6.0 */
+  	background: -o-radial-gradient( black,white); /* For Opera 11.1 to 12.0 */
+  	background: -moz-radial-gradient( black,white); /* For Firefox 3.6 to 15 */
+  	background: radial-gradient( black,white); /* Standard syntax */
+	
+}
+
 .register-masthead {
   background-color: #F5F5F5;
   -webkit-box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
@@ -34,36 +42,95 @@
   border-left: 5px solid transparent;
 }
 
-.form{
-	max-width: 600px;
-	padding: 15px 35px 45px;
-	margin: 100px auto;
-	background: -webkit-radial-gradient(red,black); /* For Safari 5.1 to 6.0 */
-  	background: -o-radial-gradient(red,black); /* For Opera 11.1 to 12.0 */
-  	background: -moz-radial-gradient(red,black); /* For Firefox 3.6 to 15 */
-  	background: radial-gradient(red,black); /* Standard syntax */
-  	border-radius: 10%;
- 	box-shadow: 10px 10px 10px black,
- 	20px 20px 20px black,
- 	30px 30px 30px black,
- 	40px 40px 40px black,
- 	50px 50px 50px black;
- 	
-  	-webkit-animation: spin 2s linear 2s 2 alternate;
-    animation: spin 2s linear 2s 2 alternate;
-    -moz-animation: spin 2s linear 2s 2 alternate;
-  	
-	
+#msform{
+	width: 400px;
+	margin: 50px auto;
+	text-align: center;
+	position: relative;
+
 }
-.text{
-	color:white;
+#msform fieldset {
+	background: white;
+	border: 0 none;
+	border-radius: 10%;
+	padding: 20px 30px;
+	box-sizing: border-box;
+	width: 80%;
+	margin: 0 10%;
+	/*stacking fieldsets above each other*/
+	position: absolute;
+	box-shadow: 10px 10px 10px white,
+ 	20px 20px 20px white,
+ 	30px 30px 30px white,
+ 	40px 40px 40px white,
+ 	50px 50px 50px white;
 }
-.margin-form{
-	margin-left: 25px;
+#msform fieldset:not(:first-of-type) {
+	display: none;
 }
-.margin-form-top{
-	margin-top:20px
+.fs-title {
+	font-size: 15px;
+	text-transform: uppercase;
+	color: #2C3E50;
+	margin-bottom: 10px;
 }
+.fs-subtitle {
+	font-weight: normal;
+	font-size: 13px;
+	color: #666;
+	margin-bottom: 20px;
+}
+
+#progressbar {
+	margin-bottom: 30px;
+	overflow: hidden;
+	/*CSS counters to number the steps*/
+	counter-reset: step;
+}
+#progressbar li {
+	list-style-type: none;
+	color: white;
+	text-transform: uppercase;
+	font-size: 9px;
+	width: 33.33%;
+	float: left;
+	position: relative;
+}
+#progressbar li:before {
+	content: counter(step);
+	counter-increment: step;
+	width: 20px;
+	line-height: 20px;
+	display: block;
+	font-size: 10px;
+	color: #333;
+	background: white;
+	border-radius: 3px;
+	margin: 0 auto 5px auto;
+}
+/*progressbar connectors*/
+#progressbar li:after {
+	content: '';
+	width: 100%;
+	height: 2px;
+	background: white;
+	position: absolute;
+	left: -50%;
+	top: 9px;
+	z-index: -1; /*put it behind the numbers*/
+}
+#progressbar li:first-child:after {
+	/*connector not needed before the first step*/
+	content: none; 
+}
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green*/
+#progressbar li.active:before,  #progressbar li.active:after{
+	background: #27AE60;
+	color: white;
+}
+
+
 
 .button{
 	-moz-box-shadow: 0px 5px 0px 0px rgb(0, 105, 202);
@@ -80,6 +147,10 @@
     -moz-box-shadow: 0px 1px 0px 0px rgb(0, 105, 202);
     -webkit-box-shadow: 0px 1px 0px 0px rgb(0, 105, 202);
     box-shadow: 0px 1px 0px 0px rgb(0, 105, 202);
+}
+.pointer{
+	cursor: pointer;
+	
 }
 
 .button1{
@@ -103,20 +174,4 @@
   .container {
     width: 970px;
   }
-}
-
-/*Animation*/
-
-
-@-moz-keyframes spin {
-    from { -moz-transform: rotateY(0deg); }
-    to { -moz-transform: rotateY(360deg); }
-}
-@-webkit-keyframes spin {
-    from { -webkit-transform: rotateY(0deg); }
-    to { -webkit-transform: rotateY(360deg); }
-}
-@keyframes spin {
-    from {transform:rotateY(0deg);}
-    to {transform:rotateY(360deg);}
 }
