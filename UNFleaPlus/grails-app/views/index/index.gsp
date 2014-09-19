@@ -17,7 +17,7 @@
 		
 		<div class="navbar-wrapper">
 			<div class="container size-menu">
-				<div class="margin-menu navbar-inverse navbar-static-top navbar-color" role="navigation" >
+				<div class="margin-menu navbar-inverse navbar-fixed-top navbar-color" role="navigation" >
 					<div class="container">
 						<div class="navbar-header navbar-color">
 							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -41,17 +41,17 @@
 					              <g:set var="foo" value="${g.message(code: 'email')}" scope="page"/>
         						  <g:set var="foo1" value="${g.message(code: 'password')}" scope="page"/>
 					              	
-					              	<form role="form ">	              	
+					              	<g:form role="form " controller="user" action="home" method="post">	              	
 									  		<div class="form-group form-margin">
 
-									   				<input type="email" class="form-control" id="ejemplo_email_1"
+									   				<input type="email" class="form-control" name="email" id="ejemplo_email_1"
 									          		placeholder="${foo}">
 									   			
 									  		
 								  	  		</div>
 											<div class="form-group form-margin">
 											    
-											    	<input type="password" class="form-control"  id="ejemplo_password_1" 
+											    	<input type="password" class="form-control" name="password"  id="ejemplo_password_1" 
 											          placeholder="${foo1}">
 											   
 											</div>
@@ -63,7 +63,7 @@
 											</div>
 											<button type="submit" class="form-margin btn btn-default"><g:message code="login"/></button>
 											
-									</form>
+									</g:form>
 					              	
 
 					              
@@ -138,6 +138,8 @@
 				<asset:image src="espana.png" alt="UNFlea+" height="55px" width="55px"/>
 			</g:link> 
 		</center>
+		
+		
     </div>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -145,7 +147,7 @@
           <div class="modal-header">
           	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         		<div class="centering">
-        			<h2><g:message code="tutorial" /></h2>
+        			<h3><g:message code="tutorial" /></h3>
         		</div>
         			
       	  </div>         

@@ -7,7 +7,7 @@ body {
   color: #5a5a5a;
 }
 body .modal {
-  width: 90%; /* desired relative width */
+  width: 100%; /* desired relative width */
   margin-top:150px;
   margin-left:auto;
   margin-right:auto; 

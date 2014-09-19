@@ -14,7 +14,7 @@
 	<body>
 			<div class="navbar-wrapper">
 			<div class="size-menu">
-				<div class="margin-menu navbar-inverse navbar-static-top navbar-color" role="navigation" >
+				<div class="margin-menu navbar-inverse navbar-fixed-top navbar-color" role="navigation" >
 					<div class="container">
 						<div class="navbar-header navbar-color">
 							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
