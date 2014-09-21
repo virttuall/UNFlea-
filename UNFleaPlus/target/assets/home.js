@@ -1,0 +1,1 @@
+$(function(){$("li img").on("click",function(){var e=$(this).attr("src");var t='<img src="'+e+'" class="img-responsive"/>';$("#myModal").modal();$("#myModal").on("shown.bs.modal",function(){$("#myModal .modal-body").html(t)});$("#myModal").on("hidden.bs.modal",function(){$("#myModal .modal-body").html("")})})})(jQuery)

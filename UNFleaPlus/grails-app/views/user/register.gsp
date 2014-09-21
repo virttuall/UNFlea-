@@ -42,20 +42,20 @@
 									  		<div class="form-group form-margin">
 
 									   				<input type="email" class="form-control" id="ejemplo_email_1"
-									          		placeholder="${foo}">
+									          		placeholder="${foo}" required>
 									   			
 									  		
 								  	  		</div>
 											<div class="form-group form-margin">
 											    
 											    	<input type="password" class="form-control"  id="ejemplo_password_1" 
-											          placeholder="${foo1}">
+											          placeholder="${foo1}" required>
 											   
 											</div>
 											  
 											<div class="form-margin">
 											    <label>
-											      <input type="checkbox"> <g:message code="rememberMe"/>	
+											      <input type="checkbox"> <g:message code="rememberMe" />	
 											    </label>
 											</div>
 											<button type="submit" class="form-margin btn btn-default"><g:message code="login"/></button>
@@ -84,7 +84,7 @@
 			</div>
 		</div>
     		<div class="container-fluid ">			
-    			<form class="form-horizontal" id="msform" role="form">
+    			<form class="form-horizontal" id="msform" role="form" controller="user" action="home" method="post" >
     				<ul id="progressbar">
 						<li class="active"><g:message code="create" /></li>
 						<li><g:message code="personal" /></li>
@@ -101,7 +101,7 @@
     							<div class="input-group input-group-lg">
     							 <g:set var="temp" value="${g.message(code: 'emailRegister')}" scope="page"/>
                 					<span class="input-group-addon" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="${temp}"><span class="glyphicon glyphicon-envelope"></span></span>
-                					<input type="email" class="form-control" id="email"placeholder="${foo}">
+                					<input type="email" class="form-control" id="email"placeholder="${foo}" required />
                 				</div>
     						</div>
   						</div>
@@ -111,7 +111,7 @@
     							<div class="input-group input-group-lg">
     							<g:set var="temp1" value="${g.message(code: 'username')}" scope="page"/>
                 					<span class="input-group-addon" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="${temp1}"><span class="glyphicon glyphicon-user"></span></span>
-      								<input type="text" class="form-control" id="username"placeholder="${foo1}">
+      								<input type="text" class="form-control" id="username"placeholder="${foo1}" required />
       							</div>
     						</div>
   						</div>
@@ -121,7 +121,7 @@
     							<div class="input-group input-group-lg">
     							<g:set var="temp2" value="${g.message(code: 'passwordVar')}" scope="page"/>
                 					<span class="input-group-addon"  data-toggle="popover" data-trigger="hover" data-placement="top" data-content="${temp2}"><span class="glyphicon glyphicon-lock"></span></span>
-      								<input type="password" class="form-control" id="password" placeholder="${foo4}">
+      								<input type="password" class="form-control" id="password" placeholder="${foo4}" required />
       							</div>
     						</div>
   						</div>
@@ -131,12 +131,12 @@
     							<div class="input-group input-group-lg">
     							<g:set var="temp3" value="${g.message(code: 'passwordConfirmVar')}" scope="page"/>
                 					<span class="input-group-addon" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="${temp3}"><span class="glyphicon glyphicon-lock"></span></span>
-      								<input type="password" class="form-control" id="password1" placeholder="${foo5}">
+      								<input type="password" class="form-control" id="password1" placeholder="${foo5}" required />
       							</div>
     						</div>
   						</div>
   						
-      					<button type="button" class="next btn btn-success button1"><g:message code="next" /></button>
+      					<button type="submit" class="next btn btn-success button1"><g:message code="next" /></button>
     					
 					</fieldset >
     				
@@ -149,7 +149,7 @@
     							<div class="input-group input-group-lg">
     							<g:set var="temp4" value="${g.message(code: 'firstnameVar')}" scope="page"/>
                 					<span class="input-group-addon " data-toggle="popover" data-trigger="hover" data-placement="top" data-content="${temp4}"><span class="glyphicon glyphicon-share-alt"></span></span>
-      								<input type="text" class="form-control" id="firstName" placeholder="${foo2}">
+      								<input type="text" class="form-control" id="firstName" placeholder="${foo2}" required />
       							</div>
       							
     						</div>
@@ -162,7 +162,7 @@
     							<div class="input-group input-group-lg">
     							<g:set var="temp5" value="${g.message(code: 'lastnameVar')}" scope="page"/>
                 					<span class="input-group-addon " data-toggle="popover" data-trigger="hover" data-placement="top" data-content="${temp5}"><span class="glyphicon glyphicon-share-alt"></span></span>
-      								<input type="text" class="form-control" id="lastName" placeholder="${foo3}">
+      								<input type="text" class="form-control" id="lastName" placeholder="${foo3}" required />
       							</div>
       							
     						</div>
@@ -195,6 +195,7 @@
   						<div class="form-group">
   							
   							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-left:-60px;">
+  								<input type="checkbox" name="terminos" required>
   								<a href="#" ><g:message code="terms" /></a>
   							</div>
   						</div>	

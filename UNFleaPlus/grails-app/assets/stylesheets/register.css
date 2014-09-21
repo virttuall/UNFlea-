@@ -283,14 +283,17 @@ body .modal {
 }
 
 #progressbar {
+	margin-top:30px;
 	margin-bottom: 30px;
 	overflow: hidden;
 	/*CSS counters to number the steps*/
 	counter-reset: step;
 }
 #progressbar li {
+	margin-top:30px;
 	list-style-type: none;
-	color: white;
+	color: black;
+	font-weight:bold;
 	text-transform: uppercase;
 	font-size: 9px;
 	width: 33.33%;

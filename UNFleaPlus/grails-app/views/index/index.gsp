@@ -45,20 +45,20 @@
 									  		<div class="form-group form-margin">
 
 									   				<input type="email" class="form-control" name="email" id="ejemplo_email_1"
-									          		placeholder="${foo}">
+									          		placeholder="${foo}" required>
 									   			
 									  		
 								  	  		</div>
 											<div class="form-group form-margin">
 											    
 											    	<input type="password" class="form-control" name="password"  id="ejemplo_password_1" 
-											          placeholder="${foo1}">
+											          placeholder="${foo1}" required>
 											   
 											</div>
 											  
 											<div class="form-margin">
 											    <label>
-											      <input type="checkbox"> <g:message code="rememberMe"/>	
+											      <input type="checkbox"> <g:message code="rememberMe" />	
 											    </label>
 											</div>
 											<button type="submit" class="form-margin btn btn-default"><g:message code="login"/></button>
