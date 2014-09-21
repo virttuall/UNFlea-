@@ -30,10 +30,10 @@
 							<a href="#">Home</a>
 						</li>
 						<li>
-							<a href="#">Profile</a>
+							<g:link controller="user" action="viewRegister">Profile</g:link>
 						</li>
 						<li>
-							<a href="#">Logout</a>
+							<g:link controller="user" action="logout">Logout</g:link>
 						</li>
 					</ul>
 				</div>
@@ -95,14 +95,5 @@
         		</div><!-- /.modal-content -->
       		</div><!-- /.modal-dialog -->
     	</div><!-- /.modal -->
-		<div class="message">
-           	<g:message code="${flash.message}" args="${flash.args}"
-    default="${flash.defaultMsg}"/>
-           	
-         </div>
-		<p>${params.email}</p>
-		<p>${params.password}</p>
-		<p>${name}</p>
-		
 	</body>
 </html>

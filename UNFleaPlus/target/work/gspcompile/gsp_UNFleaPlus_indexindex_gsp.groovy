@@ -56,61 +56,56 @@ invokeTag('set','g',41,['var':("foo"),'value':(g.message(code: 'email')),'scope'
 printHtmlPart(9)
 invokeTag('set','g',42,['var':("foo1"),'value':(g.message(code: 'password')),'scope':("page")],-1)
 printHtmlPart(10)
-createTagBody(2, {->
-printHtmlPart(11)
 expressionOut.print(foo)
-printHtmlPart(12)
+printHtmlPart(11)
 expressionOut.print(foo1)
-printHtmlPart(13)
+printHtmlPart(12)
 invokeTag('message','g',61,['code':("rememberMe")],-1)
-printHtmlPart(14)
+printHtmlPart(13)
 invokeTag('message','g',64,['code':("login")],-1)
-printHtmlPart(15)
-})
-invokeTag('form','g',66,['role':("form "),'controller':("user"),'action':("home"),'method':("post")],2)
-printHtmlPart(16)
+printHtmlPart(14)
 invokeTag('message','g',74,['code':("more")],-1)
-printHtmlPart(17)
+printHtmlPart(15)
 createTagBody(2, {->
 invokeTag('message','g',76,['code':("contactUs")],-1)
 })
 invokeTag('link','g',76,['controller':("index"),'action':("viewContactUs")],2)
-printHtmlPart(18)
+printHtmlPart(16)
 createTagBody(2, {->
 invokeTag('message','g',77,['code':("aboutUs")],-1)
 })
 invokeTag('link','g',77,['controller':("index"),'action':("viewAboutUs")],2)
-printHtmlPart(19)
+printHtmlPart(17)
 invokeTag('message','g',103,['code':("message")],-1)
-printHtmlPart(20)
+printHtmlPart(18)
 invokeTag('message','g',114,['code':("develomentTeam")],-1)
-printHtmlPart(21)
+printHtmlPart(19)
 createTagBody(2, {->
-printHtmlPart(22)
+printHtmlPart(20)
 invokeTag('image','asset',135,['src':("USA.png"),'alt':("UNFlea+"),'height':("55px"),'width':("55px")],-1)
-printHtmlPart(23)
+printHtmlPart(21)
 })
 invokeTag('link','g',136,['params':([lang:'en'])],2)
-printHtmlPart(24)
-createTagBody(2, {->
 printHtmlPart(22)
+createTagBody(2, {->
+printHtmlPart(20)
 invokeTag('image','asset',138,['src':("espana.png"),'alt':("UNFlea+"),'height':("55px"),'width':("55px")],-1)
-printHtmlPart(23)
+printHtmlPart(21)
 })
 invokeTag('link','g',139,['params':([lang:'es'])],2)
-printHtmlPart(25)
+printHtmlPart(23)
 invokeTag('message','g',150,['code':("tutorial")],-1)
-printHtmlPart(26)
+printHtmlPart(24)
 })
 invokeTag('captureBody','sitemesh',160,[:],1)
-printHtmlPart(27)
+printHtmlPart(25)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1411259262000L
+public static final long LAST_MODIFIED = 1411274246000L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

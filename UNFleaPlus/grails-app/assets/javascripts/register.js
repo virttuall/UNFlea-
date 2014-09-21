@@ -13,6 +13,7 @@ $(function() {
 			if (/[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}/.test(email)){
 				if (password==password1){
 					$("#password1").css({"background":"white" });
+					
 					if(animating) return false;
 					animating = true;
 					
@@ -58,6 +59,7 @@ $(function() {
 	$(".previous").click(function(){
 		if(animating) return false;
 		animating = true;
+		//var x=$("input[type='radio']:checked").val();
 		
 		current_fs = $(this).parent();
 		previous_fs = $(this).parent().prev();

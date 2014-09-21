@@ -4,8 +4,10 @@ class User {
 	String email
 	String userName
 	String firstName
-	String LastName
+	String lastName
 	String password
+	String passwordConfirm
+	String gender
 
     static constraints = {
 		email(blank:false,unique:true)
@@ -13,6 +15,7 @@ class User {
 		firstName(blank:false)
 		lastName(blank:false)
 		password(blank:false)
+		gender(blank:false)
     }
 	
 	String toString(){

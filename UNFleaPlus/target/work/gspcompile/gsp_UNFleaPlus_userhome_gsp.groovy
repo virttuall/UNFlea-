@@ -41,24 +41,19 @@ invokeTag('captureHead','sitemesh',12,[:],1)
 printHtmlPart(3)
 createTagBody(1, {->
 printHtmlPart(4)
-invokeTag('message','g',94,['code':(flash.message),'args':(flash.args),'default':(flash.defaultMsg)],-1)
-printHtmlPart(5)
-expressionOut.print(params.email)
+createClosureForHtmlPart(5, 2)
+invokeTag('link','g',36,['controller':("user"),'action':("logout")],2)
 printHtmlPart(6)
-expressionOut.print(params.password)
-printHtmlPart(6)
-expressionOut.print(name)
-printHtmlPart(7)
 })
-invokeTag('captureBody','sitemesh',101,[:],1)
-printHtmlPart(8)
+invokeTag('captureBody','sitemesh',98,[:],1)
+printHtmlPart(7)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1411098480000L
+public static final long LAST_MODIFIED = 1411272239000L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

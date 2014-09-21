@@ -27,7 +27,9 @@
                 				<span class="icon-bar"></span>
               				</button>
               				<a href="#" class="logo-icon navbar-color">
+              					<g:link controller="index" action="viewHome">
       							<asset:image src="REARU.png" alt="UNFlea+" height="50px" width="150px"/>
+      							</g:link>
       						</a>
       					</div>
       					<div class="navbar-collapse collapse navbar-color">
@@ -41,7 +43,7 @@
 					              <g:set var="foo" value="${g.message(code: 'email')}" scope="page"/>
         						  <g:set var="foo1" value="${g.message(code: 'password')}" scope="page"/>
 					              	
-					              	<g:form role="form " controller="user" action="home" method="post">	              	
+					              	<g:form role="form" controller="user" action="home" method="post">	       	
 									  		<div class="form-group form-margin">
 
 									   				<input type="email" class="form-control" name="email" id="ejemplo_email_1"
