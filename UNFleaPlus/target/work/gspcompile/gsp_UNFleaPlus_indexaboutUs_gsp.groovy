@@ -37,51 +37,16 @@ printHtmlPart(2)
 })
 invokeTag('captureHead','sitemesh',14,[:],1)
 printHtmlPart(3)
-createTagBody(1, {->
-printHtmlPart(4)
-createTagBody(2, {->
+createClosureForHtmlPart(4, 1)
+invokeTag('captureBody','sitemesh',17,[:],1)
 printHtmlPart(5)
-invokeTag('image','asset',21,['src':("home.png"),'alt':("UNFlea+"),'height':("25px"),'width':("30px")],-1)
-printHtmlPart(6)
-})
-invokeTag('link','g',21,['controller':("index")],2)
-printHtmlPart(7)
-createTagBody(2, {->
-printHtmlPart(8)
-invokeTag('message','g',23,['code':("signUP")],-1)
-printHtmlPart(9)
-})
-invokeTag('link','g',23,['controller':("user"),'action':("viewRegister")],2)
-printHtmlPart(10)
-createTagBody(2, {->
-printHtmlPart(8)
-invokeTag('message','g',25,['code':("login")],-1)
-printHtmlPart(9)
-})
-invokeTag('link','g',25,['controller':("user"),'action':("viewLogin")],2)
-printHtmlPart(11)
-invokeTag('message','g',33,['code':("meetTheTeam")],-1)
-printHtmlPart(12)
-invokeTag('message','g',37,['code':("andresCharge")],-1)
-printHtmlPart(13)
-invokeTag('message','g',41,['code':("samuelCharge")],-1)
-printHtmlPart(14)
-invokeTag('message','g',45,['code':("fabianCharge")],-1)
-printHtmlPart(15)
-invokeTag('message','g',51,['code':("mateoCharge")],-1)
-printHtmlPart(16)
-invokeTag('message','g',55,['code':("yeisonCharge")],-1)
-printHtmlPart(17)
-})
-invokeTag('captureBody','sitemesh',60,[:],1)
-printHtmlPart(18)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1410807756000L
+public static final long LAST_MODIFIED = 1411143443000L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

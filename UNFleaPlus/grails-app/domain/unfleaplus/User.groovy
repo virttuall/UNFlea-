@@ -2,23 +2,22 @@ package unfleaplus
 
 class User {
 	String email
-	String userName
+	String username
 	String firstName
 	String lastName
-	String password
-	String passwordConfirm
+	String passwordHash
 	String gender
-
+	static hasMany = [ roles: Role, permissions: String ]
     static constraints = {
-		email(blank:false,unique:true)
-		userName(blank:false,unique:true)
-		firstName(blank:false)
-		lastName(blank:false)
-		password(blank:false)
-		gender(blank:false)
+		email(nullable: false,blank:false,unique:true)
+		username(nullable: false,blank:false,unique:true)
+		firstName(nullable: false,blank:false)
+		lastName(nullable: false,blank:false)
+		passwordHash(nullable: false,blank:false)
+		gender(nullable: false,blank:false)
     }
 	
 	String toString(){
-		"$userName"
+		"$username"
 	}
 }

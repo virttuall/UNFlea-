@@ -11,7 +11,8 @@ $(function() {
 		
 		if (email!="" && username!="" && password!="" && password1!=""){
 			if (/[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}/.test(email)){
-				if (password==password1){
+				var n = password.length;
+				if (password==password1 && n>=4){
 					$("#password1").css({"background":"white" });
 					
 					if(animating) return false;

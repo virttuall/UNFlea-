@@ -22,7 +22,7 @@
 						<span class="icon-bar"></span>
 						
 					</button>
-					<a class="font-menu" href="#">Usuario</a>
+					<a class="font-menu" href="#">${params.name}</a>
 				</div>
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav navbar-right">
@@ -30,7 +30,7 @@
 							<a href="#">Home</a>
 						</li>
 						<li>
-							<g:link controller="user" action="viewRegister">Profile</g:link>
+							<a href="#">Profile</a>
 						</li>
 						<li>
 							<g:link controller="user" action="logout">Logout</g:link>
@@ -95,5 +95,6 @@
         		</div><!-- /.modal-content -->
       		</div><!-- /.modal-dialog -->
     	</div><!-- /.modal -->
+    	
 	</body>
 </html>

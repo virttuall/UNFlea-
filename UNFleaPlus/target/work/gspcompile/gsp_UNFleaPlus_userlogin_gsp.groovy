@@ -63,23 +63,23 @@ expressionOut.print(foo)
 printHtmlPart(13)
 expressionOut.print(foo1)
 printHtmlPart(14)
-invokeTag('message','g',42,['code':("rememberMe")],-1)
+invokeTag('message','g',48,['code':("rememberMe")],-1)
 printHtmlPart(15)
-invokeTag('message','g',50,['code':("login")],-1)
+invokeTag('message','g',58,['code':("login")],-1)
 printHtmlPart(16)
-invokeTag('message','g',53,['code':("reset")],-1)
+invokeTag('message','g',63,['code':("reset")],-1)
 printHtmlPart(17)
-invokeTag('message','g',62,['code':("register")],-1)
+invokeTag('message','g',71,['code':("register")],-1)
 printHtmlPart(18)
 createTagBody(2, {->
-invokeTag('message','g',62,['code':("registered")],-1)
+invokeTag('message','g',71,['code':("registered")],-1)
 })
-invokeTag('link','g',62,['controller':("user"),'action':("viewRegister")],2)
+invokeTag('link','g',71,['controller':("user"),'action':("viewRegister")],2)
 printHtmlPart(19)
-invokeTag('image','asset',83,['src':("REARU.png"),'alt':("UNFlea+"),'height':("40px"),'width':("40px"),'border-radius':("100%")],-1)
+invokeTag('image','asset',94,['src':("REARU.png"),'alt':("UNFlea+"),'height':("40px"),'width':("40px"),'border-radius':("100%")],-1)
 printHtmlPart(20)
 })
-invokeTag('captureBody','sitemesh',98,[:],1)
+invokeTag('captureBody','sitemesh',109,[:],1)
 printHtmlPart(21)
 }
 public static final Map JSP_TAGS = new HashMap()
@@ -87,7 +87,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1410664153000L
+public static final long LAST_MODIFIED = 1411143442000L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

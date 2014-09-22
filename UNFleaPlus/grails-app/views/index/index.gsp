@@ -43,7 +43,7 @@
 					              <g:set var="foo" value="${g.message(code: 'email')}" scope="page"/>
         						  <g:set var="foo1" value="${g.message(code: 'password')}" scope="page"/>
 					              	
-					              	<g:form role="form" controller="user" action="home" method="post">	       	
+					              	<g:form role="form" controller="user" action="login" method="post">	       	
 									  		<div class="form-group form-margin">
 
 									   				<input type="email" class="form-control" name="email" id="ejemplo_email_1"
@@ -60,7 +60,7 @@
 											  
 											<div class="form-margin">
 											    <label>
-											      <input type="checkbox"> <g:message code="rememberMe" />	
+											      <input type="checkbox" name="rememberMe"> <g:message code="rememberMe" />	
 											    </label>
 											</div>
 											<button type="submit" class="form-margin btn btn-default"><g:message code="login"/></button>

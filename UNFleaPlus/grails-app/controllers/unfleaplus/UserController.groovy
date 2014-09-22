@@ -1,77 +1,108 @@
 package unfleaplus
+import org.apache.shiro.SecurityUtils
+import org.apache.shiro.authc.AuthenticationException
+import org.apache.shiro.authc.UsernamePasswordToken
+import org.apache.shiro.web.util.SavedRequest
+import org.apache.shiro.web.util.WebUtils
 //TODO 
 //Mejorar la logica del chat
 //Redireccionar correctamente cuando una sesion se encuetre abierta(Casi terminado)
 class UserController {
+	def shiroSecurityService
 	def user
-    def index() { 
-		if (session["user"]){
-			render(controller:'user',view:'home')
-		}	
+	def user1
+    def index() {
+		render(controller:'user',view:'home')
 	}
-	def viewLogin(){
-		if (session["user"]){
-			render(controller:'user',view:'home')
-		}else{
-			render(controller:'user',view:'login')
-		}
-	}
+	
 	def viewRegister(){
-		if (session["user"]){
-			render(controller:'user',view:'home')
-		}else{
-			render(controller:'user',view:'register')
-		}	
+		
+		render(controller:'user',view:'register')
+		
 	}
-	def home(){
-		if (session["user"]){
-			render(controller:'user',view:'home')
+	def viewHome(){
+		render(controller:'user',view:'home')
+	}
+	def login(){
+		user=User.findByEmail(params.email)
+		def authToken
+		if (user){
+			authToken = new UsernamePasswordToken(user.username, params.password as String)
 		}else{
-			user=User.findByEmailAndPassword(params.email,params.password)
-			if (user){
-				session["user"] = "John"
-				render("Login")
-			}else{
-				render("No login")
-			}
+			authToken = new UsernamePasswordToken(params.email, params.password as String)
 		}
-//		flash.message = "user.saved.message"
-//		flash.args = [params.email, params.password]
-//		flash.defaultMsg = "User Saved"
-//			
-//		render(controller:'user',view:'home',model:[name: params.email] )
+		
+		if (params.rememberMe) {
+			authToken.rememberMe = true
+		}
+		
+		try{
+			// Perform the actual login. An AuthenticationException
+			// will be thrown if the username is unrecognised or the
+			// password is incorrect.
+			SecurityUtils.subject.login(authToken)
+
+			session["user"]=user.username
+			println(session.user)
+			redirect(controller:'user',action:'viewHome', params: [name: user.username] )
+		}
+		catch (AuthenticationException ex){
+			// Authentication failed, so display the appropriate message
+			// on the login page.
+			flash.message = message(code: "login.failed")
+
+			// Keep the username and "remember me" setting so that the
+			// user doesn't have to enter them again.
+			def m = [ username: params.username ]
+			if (params.rememberMe) {
+				m["rememberMe"] = true
+			}
+
+
+			// Now redirect back to the login page.
+			redirect(controller:'index',action:'viewHome')
+		}
+		
+		
 		
 		
 	}
 	def register(){
-		if (session["user"]){
-			render(controller:'user',view:'home')
+		user=User.findByEmail(params.email)
+		user1 =User.findByUsername(params.username)
+		if(user){ //El usuario ya existe
+			flash.message = "User already exists with the email '${params.email}'"
+			//TODO
+			//Arreglar este render 
+			render("${flash.message}")
+		} 
+		if(user1){ //El usuario ya existe
+			flash.message = "User already exists with the username '${params.username}'"
+			//TODO
+			//Arreglar este render
+			render("${flash.message}")
 		}
-		def parameters=[email:params.email,userName:params.username,firstName:params.firstname,lastName:params.lastname,
-			password:params.password,passwordConfirm:params.password1,gender:params.gender]
-		user = User.findByEmail(params.email)
-		if (user){
-			flash.message = "Usuario ya existe"
-			render("Usuario ya existe")
-		}else{
-			user = new User(parameters)
-			
-			if (user.save()){
-				session["user"] = "John"
-				render("Usuario registrado")
-			}else{
-				flash.message = "Problema al guardar el usuario"
-				render("Error")
-			}
+		else{//Nuevo Usario
+			def parameters =[email:params.email,username:params.username,firstName:params.firstname,lastName:params.lastname
+				,gender:params.gender,passwordHash:shiroSecurityService.encodePassword(params.password)]
+			user= new User(parameters)
+			if(user.save()){
+				
+				// Login user
+				def authToken = new UsernamePasswordToken(user.username, params.password)
+				SecurityUtils.subject.login(authToken)
+				session["user"]=user.username
+				redirect(controller:'user',action:'viewHome', params: [name: user.username] )
+			} 
 		}
 		
-			
 	}
 	def logout(){
-		if (session["user"]){
-			 session.invalidate()
-			
-		}
-		render("Logout")
+		SecurityUtils.subject?.logout()
+		webRequest.getCurrentRequest().session = null
+		session["user"]=null
+		// For now, redirect back to the home page.
+		
+		redirect(controller:'index',action:'viewHome')
 	}
 }
