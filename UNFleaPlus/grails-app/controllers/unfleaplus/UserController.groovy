@@ -16,9 +16,7 @@ class UserController {
 	}
 	
 	def viewRegister(){
-		
 		render(controller:'user',view:'register')
-		
 	}
 	def viewHome(){
 		render(controller:'user',view:'home')
@@ -74,13 +72,13 @@ class UserController {
 			flash.message = "User already exists with the email '${params.email}'"
 			//TODO
 			//Arreglar este render 
-			render("${flash.message}")
+			redirect(controller:'user',action:'viewRegister')
 		} 
-		if(user1){ //El usuario ya existe
+		else if(user1){ //El usuario ya existe
 			flash.message = "User already exists with the username '${params.username}'"
 			//TODO
 			//Arreglar este render
-			render("${flash.message}")
+			redirect(controller:'user',action:'viewRegister')
 		}
 		else{//Nuevo Usario
 			def parameters =[email:params.email,username:params.username,firstName:params.firstname,lastName:params.lastname

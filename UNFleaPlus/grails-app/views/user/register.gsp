@@ -85,6 +85,7 @@
 				</div>
 			</div>
 		</div>
+		
     		<div class="container-fluid ">			
     			<form class="form-horizontal" id="msform" role="form" controller="user" action="register" method="post" >
     				<ul id="progressbar">
@@ -206,8 +207,11 @@
     				</fieldset>
 	
 				</form>
+				
     		</div>
-			
+			<g:if test="${flash.message}">
+  					<div class="info">${flash.message}</div>	
+			</g:if>
 			<script src="http://thecodeplayer.com/uploads/js/jquery.easing.min.js" type="text/javascript"></script>		
 		
 	</body>

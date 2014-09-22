@@ -42,7 +42,7 @@
 		<div class="container margin-menu"> 
 			<div class="row">
 				<div class="col-xs-12 ">
-					<h1 class="page-header">Thumbnail Gallery</h1>
+					<h1 class="page-header"><g:message code="myProducts" /></h1>
 				</div>
 			</div>
 			
