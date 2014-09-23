@@ -144,7 +144,8 @@
 										code="comments" /></label>
 								<div class="col-md-9">
 									<textarea class="form-control" id="message" name="message"
-										placeholder="${comments_input }" rows="5" maxlength="200" required></textarea>
+										placeholder="${comments_input }" rows="5" maxlength="200"
+										required></textarea>
 								</div>
 							</div>
 
@@ -158,7 +159,7 @@
 							</div>
 						</fieldset>
 					</form>
-				</div>		
+				</div>
 			</div>
 		</div>
 	</div>
