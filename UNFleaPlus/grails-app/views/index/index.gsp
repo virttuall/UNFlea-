@@ -131,17 +131,26 @@
       <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
       <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
     </div><!-- /.carousel -->
-    <div class="footer">
-    	<center> 
-			<g:link  params="[lang:'en']"> 
-				<asset:image src="USA.png" alt="UNFlea+" height="55px" width="55px"/>
-			</g:link> 
-			<g:link  params="[lang:'es']"> 
-				<asset:image src="espana.png" alt="UNFlea+" height="55px" width="55px"/>
-			</g:link> 
-		</center>
-		
-		
+    <div id="footer">
+		<div class="container">
+			<ul>
+				<p>
+					<g:link params="[lang:'en']">
+						<asset:image src="USA.png" alt="UNFlea+" height="40px"
+							width="40px" />
+					</g:link>
+					<g:link params="[lang:'es']">
+						<asset:image src="espana.png" alt="UNFlea+" height="40px"
+							width="40px" />
+					</g:link>
+				</p>
+				<p>
+					&copy; 2014 UN Flea+.  <a href="#">Privacy </a> &amp;<a
+						href="#"> Terms</a>
+				</p>
+			</ul>
+		</div>
+	</div>
     </div>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
