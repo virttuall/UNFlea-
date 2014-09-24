@@ -4,13 +4,12 @@ import org.apache.shiro.authc.AuthenticationException
 import org.apache.shiro.authc.UsernamePasswordToken
 import org.apache.shiro.web.util.SavedRequest
 import org.apache.shiro.web.util.WebUtils
-//TODO 
-//Mejorar la logica del chat
-//Redireccionar correctamente cuando una sesion se encuetre abierta(Casi terminado)
+import grails.plugin.email.*
 class UserController {
 	def shiroSecurityService
 	def user
 	def user1
+	def mailService
     def index() {
 		render(controller:'user',view:'home')
 	}
@@ -87,6 +86,11 @@ class UserController {
 			if(user.save()){
 				user.addToRoles(Role.findByName('ROLE_USER'))
 				// Login user
+				mailService.sendMail {
+					to "${user.email}"
+					subject "Hello Fred"
+					body 'How are you?'
+				}
 				def authToken = new UsernamePasswordToken(user.username, params.password)
 				SecurityUtils.subject.login(authToken)
 				session["user"]=user.username

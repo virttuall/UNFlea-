@@ -58,6 +58,18 @@ grails {
         // filteringCodecForContentType.'text/html' = 'html'
     }
 }
+grails {
+	mail {
+	host = "smtp.gmail.com"
+	port = 465
+	username = "agutierrezt930410@gmail.com"
+	password = "gutierrez2011"
+	props = ["mail.smtp.auth":"true",
+	"mail.smtp.socketFactory.port":"465",
+	"mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
+	"mail.smtp.socketFactory.fallback":"false"]
+	} 
+}
 
 
 grails.converters.encoding = "UTF-8"
