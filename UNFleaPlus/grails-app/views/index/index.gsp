@@ -166,6 +166,11 @@
 	<div id="footer">
 		<div class="container">
 			<ul>
+				<g:if test="${flash.message}">
+						<div class="info">
+							${flash.message}
+						</div>
+				</g:if>
 				<p>
 					<g:link params="[lang:'en']">
 						<asset:image src="USA.png" alt="UNFlea+" height="40px"
@@ -180,10 +185,12 @@
 					&copy; 2014 UN Flea+. <a href="#">Privacy </a> &amp;<a href="#">
 						Terms</a>
 				</p>
+				
+	
 			</ul>
 		</div>
 	</div>
-	</div>
+	
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">

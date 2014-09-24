@@ -24,7 +24,13 @@ class UserController {
 		user=User.findByEmail(params.email)
 		def authToken
 		if (user){
-			authToken = new UsernamePasswordToken(user.username, params.password as String)
+			if(user.active){
+				authToken = new UsernamePasswordToken(user.username, params.password as String)
+			}else{
+				authToken = new UsernamePasswordToken(user.username, "" as String)
+				flash.message = message(code: "active")
+			}
+			
 		}else{
 			authToken = new UsernamePasswordToken(params.email, params.password as String)
 		}
@@ -46,7 +52,9 @@ class UserController {
 		catch (AuthenticationException ex){
 			// Authentication failed, so display the appropriate message
 			// on the login page.
-			flash.message = message(code: "login.failed")
+			if(!flash.message){ 
+				flash.message = message(code: "login.failed")
+			}
 
 			// Keep the username and "remember me" setting so that the
 			// user doesn't have to enter them again.
@@ -81,9 +89,9 @@ class UserController {
 		}
 		else{//Nuevo Usario
 			def parameters =[email:params.email,username:params.username,firstName:params.firstname,lastName:params.lastname
-				,gender:params.gender,passwordHash:shiroSecurityService.encodePassword(params.password)]
+				,gender:params.gender,passwordHash:shiroSecurityService.encodePassword(params.password),active:false]
 			user= new User(parameters)
-			if(user.save()){
+			if(user.save(flush: true)){
 				user.addToRoles(Role.findByName('ROLE_USER'))
 				// Login user
 				mailService.sendMail {
@@ -91,18 +99,16 @@ class UserController {
 					subject "Confirmar email"
 					html    g.render(template:'/email/registrationConfirmation', model:[user:user,password:params.password])
 				}
-				def authToken = new UsernamePasswordToken(user.username, params.password)
-				SecurityUtils.subject.login(authToken)
-				session["user"]=user.username
-				redirect(controller:'user',action:'viewHome', params: [name: user.username] )
+				redirect(controller:'index', action:'viewHome')
 			} 
 		}
 		
 	}
 	def confirmEmail(){
-		println(params.user)
-		println(params.user)
-		redirect(controller:'index',action:'viewHome' )
+		user=User.findByEmail(params.email)
+		user.active=true
+		user.save(flush: true)
+		redirect(controller:'index', action:'viewHome')
 	}
 	def logout(){
 		SecurityUtils.subject?.logout()

@@ -7,6 +7,7 @@ class User {
 	String lastName
 	String passwordHash
 	String gender
+	boolean active
 	static hasMany = [ roles: Role, permissions: String ]
     static constraints = {
 		email(nullable: false,blank:false,unique:true)
@@ -20,4 +21,6 @@ class User {
 	String toString(){
 		"$username"
 	}
+	
+
 }

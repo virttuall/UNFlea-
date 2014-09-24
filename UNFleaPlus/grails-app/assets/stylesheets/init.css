@@ -297,5 +297,18 @@ body .modal {
 .form-margin{
 	margin: 10px 30px;	
 }
-
+.info{
+	
+	border: 1px solid;
+	
+	margin: 10px 0px;
+	padding:15px 10px 15px 50px;
+	background-repeat: no-repeat;
+	background-position: 10px center;
+	text-align:center;
+	color: #00529B;
+	background-size: 50px 50px;
+	background-color: #BDE5F8;
+	background-image: url(http://etc-mysitemyway.s3.amazonaws.com/icons/legacy-previews/icons-256/3d-transparent-glass-icons-alphanumeric/068021-3d-transparent-glass-icon-alphanumeric-information2-ps.png);
+}
 
