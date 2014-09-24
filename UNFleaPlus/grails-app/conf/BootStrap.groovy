@@ -12,11 +12,11 @@ class BootStrap {
 		userRole.addToPermissions("*:*")
 		userRole.save()
 		
-        def user = new User(email:"agutierrezt@unal.edu.co",firstName:"Andres",lastName:"Gutierrez",username: "agutierrezt", 
+		def user = new User(email:"andres2005@hotmail.com",firstName:"Andres",lastName:"Gutierrez",username: "andres930410",
 			passwordHash: new Sha256Hash("gutierrez2011").toHex(),gender:"Male")
 		user.addToRoles(adminRole)
-        user.addToPermissions("*:*")
-        user.save()
+		user.addToPermissions("*:*")
+		user.save()
     }
 
     def destroy = {

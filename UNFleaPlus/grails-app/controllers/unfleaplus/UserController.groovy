@@ -88,8 +88,8 @@ class UserController {
 				// Login user
 				mailService.sendMail {
 					to "${user.email}"
-					subject "Hello Fred"
-					body 'How are you?'
+					subject "Confirmar email"
+					html    g.render(template:'/email/registrationConfirmation', model:[user:user,password:params.password])
 				}
 				def authToken = new UsernamePasswordToken(user.username, params.password)
 				SecurityUtils.subject.login(authToken)
@@ -98,6 +98,11 @@ class UserController {
 			} 
 		}
 		
+	}
+	def confirmEmail(){
+		println(params.user)
+		println(params.user)
+		redirect(controller:'index',action:'viewHome' )
 	}
 	def logout(){
 		SecurityUtils.subject?.logout()
