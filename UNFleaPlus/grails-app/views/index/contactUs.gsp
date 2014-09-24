@@ -8,6 +8,7 @@
 <asset:stylesheet src="bootstrap.css" />
 <asset:stylesheet src="contact.css" />
 <asset:javascript src="bootstrap.js" />
+<asset:javascript src="modal.js" />
 
 
 
@@ -164,7 +165,7 @@
 		</div>
 	</div>
 
-	    <div id="footer">
+	<div id="footer">
 		<div class="container">
 			<ul>
 				<p>
@@ -178,10 +179,28 @@
 					</g:link>
 				</p>
 				<p>
-					&copy; 2014 UN Flea+.  <a href="#">Privacy </a> &amp;<a
-						href="#"> Terms</a>
+					&copy; 2014 UN Flea+. <a href="#">Privacy </a> &amp;<a href="#">
+						Terms</a>
 				</p>
 			</ul>
+		</div>
+	</div>
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<div class="centering">
+						<h3>
+							<g:message code="tutorial" />
+						</h3>
+					</div>
+
+				</div>
+				<div class="modal-body"></div>
+			</div>
 		</div>
 	</div>
 

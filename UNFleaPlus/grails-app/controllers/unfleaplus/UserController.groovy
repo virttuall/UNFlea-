@@ -85,7 +85,7 @@ class UserController {
 				,gender:params.gender,passwordHash:shiroSecurityService.encodePassword(params.password)]
 			user= new User(parameters)
 			if(user.save()){
-				
+				user.addToRoles(Role.findByName('ROLE_USER'))
 				// Login user
 				def authToken = new UsernamePasswordToken(user.username, params.password)
 				SecurityUtils.subject.login(authToken)
