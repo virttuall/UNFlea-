@@ -1,7 +1,6 @@
 <center>
-	<h1>Hello ${user.firstName}<p>Welcome to UNFLE+.</p></h1>
-	<p>Username: ${user.username}</p>
-	<p>password: ${password}</p>
-	<g:createLink controller="user" action="confirmEmail" base="http://localhost:8080/UNFleaPlus" params="[email: user.email, password:password]" />
-								
+	<h1><g:message code="greeting" /> ${user.firstName}<p><g:message code="welcome" /></p></h1>
+	<p><g:message code="usernameVar" />: ${user.username}</p>
+	<p><g:message code="password" />: ${password}</p>
+	<g:createLink controller="user" action="confirmEmail" base="http://localhost:8080/UNFleaPlus" params="[email: user.email, password:password]" />								
 </center>
