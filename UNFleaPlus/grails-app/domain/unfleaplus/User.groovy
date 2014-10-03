@@ -8,7 +8,8 @@ class User {
 	String passwordHash
 	String gender
 	boolean active
-	static hasMany = [ roles: Role, permissions: String ]
+	static hasMany = [ roles: Role, permissions: String,products:Product ]
+	static belongsTo = City
     static constraints = {
 		email(nullable: false,blank:false,unique:true)
 		username(nullable: false,blank:false,unique:true)

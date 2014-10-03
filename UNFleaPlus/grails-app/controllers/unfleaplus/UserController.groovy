@@ -15,6 +15,9 @@ class UserController {
 	}
 	
 	def viewRegister(){
+		if(session.user){
+			redirect(controller:'user',action:'viewHome', params: [name: session.user])
+		}
 		render(controller:'user',view:'register')
 	}
 	def viewHome(){
