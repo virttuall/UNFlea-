@@ -5,6 +5,6 @@ class City {
 	static hasMany=[user:User]
 	static belongsTo = Country
     static constraints = {
-		name(nullable:false,blank:false)
+		name(nullable:false,blank:false) 
     }
 }
