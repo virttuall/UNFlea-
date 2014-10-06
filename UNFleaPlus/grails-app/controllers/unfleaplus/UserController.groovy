@@ -4,7 +4,9 @@ import org.apache.shiro.authc.AuthenticationException
 import org.apache.shiro.authc.UsernamePasswordToken
 import org.apache.shiro.web.util.SavedRequest
 import org.apache.shiro.web.util.WebUtils
+
 import grails.plugin.email.*
+import grails.transaction.Transactional;
 class UserController {
 	def shiroSecurityService
 	def user
@@ -20,9 +22,11 @@ class UserController {
 	def viewHome(){
 		render(controller:'user',view:'home')
 	}
+	@Transactional
 	def login(){
-		user=User.findByEmail(params.email)
 		def authToken
+		user=User.findByEmail(params.email)
+		
 		if (user){
 			if(user.active){
 				authToken = new UsernamePasswordToken(user.username, params.password as String)
@@ -35,9 +39,6 @@ class UserController {
 			authToken = new UsernamePasswordToken(params.email, params.password as String)
 		}
 		
-		if (params.rememberMe) {
-			authToken.rememberMe = true
-		}
 		
 		try{
 			// Perform the actual login. An AuthenticationException
@@ -47,6 +48,8 @@ class UserController {
 
 			session["user"]=user.username
 			println(session.user)
+		
+			
 			redirect(controller:'user',action:'viewHome', params: [name: user.username] )
 		}
 		catch (AuthenticationException ex){
@@ -56,22 +59,20 @@ class UserController {
 				flash.message = message(code: "login.failed")
 			}
 
-			// Keep the username and "remember me" setting so that the
-			// user doesn't have to enter them again.
-			def m = [ username: params.username ]
-			if (params.rememberMe) {
-				m["rememberMe"] = true
-			}
+			
 
 
 			// Now redirect back to the login page.
 			redirect(controller:'index',action:'viewHome')
 		}
+		// Keep the username and "remember me" setting so that the
+		// user doesn't have to enter them again.
 		
 		
 		
 		
 	}
+	@Transactional
 	def register(){
 		user=User.findByEmail(params.email)
 		user1 =User.findByUsername(params.username)
@@ -91,25 +92,28 @@ class UserController {
 			def parameters =[email:params.email,username:params.username,firstName:params.firstname,lastName:params.lastname
 				,gender:params.gender,passwordHash:shiroSecurityService.encodePassword(params.password),active:false]
 			user= new User(parameters)
+			mailService.sendMail {
+				to "${user.email}"
+				subject "Confirmar email"
+				html    g.render(template:'/email/registrationConfirmation', model:[user:user,password:params.password])
+			}
 			if(user.save(flush: true)){
 				user.addToRoles(Role.findByName('ROLE_USER'))
 				// Login user
-				mailService.sendMail {
-					to "${user.email}"
-					subject "Confirmar email"
-					html    g.render(template:'/email/registrationConfirmation', model:[user:user,password:params.password])
-				}
+				
 				redirect(controller:'index', action:'viewHome')
 			} 
 		}
 		
 	}
+	@Transactional
 	def confirmEmail(){
 		user=User.findByEmail(params.email)
 		user.active=true
 		user.save(flush: true)
 		redirect(controller:'index', action:'viewHome')
 	}
+	@Transactional
 	def logout(){
 		SecurityUtils.subject?.logout()
 		webRequest.getCurrentRequest().session = null

@@ -1,4 +1,5 @@
 dataSource {
+	dialect = unfleaplus.ImprovedH2Dialect
     pooled = true
     jmxExport = true
     driverClassName = "org.h2.Driver"
