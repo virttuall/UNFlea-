@@ -9,6 +9,7 @@
 <asset:javascript src="bootstrap.js" />
 <asset:javascript src="register.js" />
 <asset:javascript src="modal.js" />
+<asset:javascript src="CountryState.js"/>
 
 
 </head>
@@ -107,6 +108,7 @@
 			<ul id="progressbar">
 				<li class="active"><g:message code="create" /></li>
 				<li><g:message code="personal" /></li>
+				<li><g:message code="personal2"/></li>
 			</ul>
 
 			<fieldset class="well">
@@ -201,7 +203,7 @@
 								data-trigger="hover" data-placement="top"
 								data-content="${temp4}"><span
 								class="glyphicon glyphicon-share-alt"></span></span> <input type="text"
-								class="form-control" id="firstName" name="firstname"
+								class="form-control" id="firstname" name="firstname"
 								placeholder="${foo2}" required />
 						</div>
 
@@ -220,23 +222,12 @@
 								data-trigger="hover" data-placement="top"
 								data-content="${temp5}"><span
 								class="glyphicon glyphicon-share-alt"></span></span> <input type="text"
-								class="form-control" id="lastName" name="lastname"
+								class="form-control" id="lastname" name="lastname"
 								placeholder="${foo3}" required />
 						</div>
 
 					</div>
 				</div>
-
-				<div class="form-group">
-
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<input type="file" id="image"> <span class="help-block"><g:message
-								code="format" /></span>
-					</div>
-
-				</div>
-
-
 
 
 				<div class="form-group">
@@ -250,6 +241,41 @@
 						<input type="radio" value="female" class="pointer" id="female"
 							name="gender" /> <label for="female"><g:message
 								code="female" /></label>
+					</div>
+
+				</div>
+				
+				<button type="button" class="previous btn btn-success button1">
+					<g:message code="previous" />
+				</button>
+				<button type="submit" class="next1 btn btn-success button1">
+					<g:message code="next" />
+				</button>
+				
+			</fieldset>
+			<fieldset class="well">
+				<h2 class="fs-title">
+					<g:message code="personal2" />
+				</h2>
+				<div class="form-group">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<span class="form-margin-selected"><g:message
+								code="country" /></span> <select class="country" id="country"
+							name="country" required></select>
+					</div>
+				</div>
+				<div class="form-group" id="selected-state">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<span class="form-margin-selected"><g:message code="state" /></span>
+						<select class="state" id="state" name="state" required></select>
+					</div>
+				</div>
+
+				<div class="form-group">
+
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+						<input type="file" id="image"> <span class="help-block" style="margin-left: 60px;"><g:message
+								code="format" /></span>
 					</div>
 
 				</div>
@@ -267,6 +293,8 @@
 				<button type="submit" class="btn btn-success button1">
 					<g:message code="signUP" />
 				</button>
+
+
 			</fieldset>
 
 		</form>

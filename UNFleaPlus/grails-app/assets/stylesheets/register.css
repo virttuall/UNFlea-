@@ -244,7 +244,7 @@ body .modal {
 }
 
 #msform{
-	width: 400px;
+	width: 450px;
 	margin: 50px auto;
 	text-align: center;
 	position: relative;
@@ -397,4 +397,16 @@ body .modal {
   .container {
     width: 970px;
   }
+}
+#selected-state{
+	display:none;
+}
+.form-margin-selected{
+	margin: 5px 5px;
+	font-family: sans-serif;
+	font-size: 18px;	
+}
+select {
+	font-family: sans-serif;
+    font-size: 20px;
 }
