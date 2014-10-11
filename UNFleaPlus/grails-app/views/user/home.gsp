@@ -44,7 +44,9 @@
 				</h1>
 			</div>
 		</div>
-		
+		<g:link controller="product" action="viewAddProduct">
+			<g:message code="addProduct" />
+		</g:link>
 		<ul class="row">
 			<div class="col-xs-2">
 			
