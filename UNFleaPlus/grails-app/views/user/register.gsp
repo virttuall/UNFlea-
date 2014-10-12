@@ -102,16 +102,16 @@
 		</div>
 	</div>
 
-	<div class="container-fluid ">
+	<div class="container ">
 		<form class="form-horizontal" id="msform" role="form"
 			controller="user" action="register" method="post">
-			<ul id="progressbar">
-				<li class="active"><g:message code="create" /></li>
-				<li><g:message code="personal" /></li>
-				<li><g:message code="personal2"/></li>
-			</ul>
 
-			<fieldset class="well">
+			<ul id="progressbar">
+				<li class="container active"><g:message code="create" /></li>
+				<li class="container"><g:message code="personal" /></li>
+				<li class="container"><g:message code="personal2"/></li>
+			</ul>
+			<fieldset class="well a">
 				<h2 class="fs-title">
 					<g:message code="create" />
 				</h2>
@@ -244,14 +244,14 @@
 					</div>
 
 				</div>
-				
+
 				<button type="button" class="previous btn btn-success button1">
 					<g:message code="previous" />
 				</button>
 				<button type="submit" class="next1 btn btn-success button1">
 					<g:message code="next" />
 				</button>
-				
+
 			</fieldset>
 			<fieldset class="well">
 				<h2 class="fs-title">

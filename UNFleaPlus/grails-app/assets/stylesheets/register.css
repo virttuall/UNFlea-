@@ -11,6 +11,7 @@
 body {
   padding-bottom: 40px;
   color: #5a5a5a;
+  text-align:center;
 }
 body .modal {
   width: 90%; /* desired relative width */
@@ -244,28 +245,33 @@ body .modal {
 }
 
 #msform{
-	width: 450px;
-	margin: 50px auto;
 	text-align: center;
 	position: relative;
+	margin:25px auto 25px auto; 
+	width:350px;
 
 }
+
 #msform fieldset {
 	
 	border: 0 none;
 	border-radius: 10%;
 	padding: 20px 30px;
 	box-sizing: border-box;
-	width: 80%;
-	margin: 0 10%;
+	min-width: 350px;
+	max-width: 400px;
+	
 	/*stacking fieldsets above each other*/
 	position: absolute;
+	margin:10px auto 10px auto; 
+	
 	box-shadow: 5px 5px 5px gray,
  	10px 10px 10px gray,
  	15px 15px 15px gray,
  	20px 20px 20px gray,
  	25px 25px 25px gray;
 }
+
 #msform fieldset:not(:first-of-type) {
 	display: none;
 }
