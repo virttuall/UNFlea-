@@ -172,11 +172,11 @@
 						</div>
 				</g:if>
 				<p>
-					<g:link params="[lang:'en']">
+					<g:link base="http://localhost:8080/UNFleaPlus" params="[lang:'en']">
 						<asset:image src="USA.png" alt="UNFlea+" height="40px"
 							width="40px" />
 					</g:link>
-					<g:link params="[lang:'es']">
+					<g:link base="http://localhost:8080/UNFleaPlus" params="[lang:'es']">
 						<asset:image src="espana.png" alt="UNFlea+" height="40px"
 							width="40px" />
 					</g:link>

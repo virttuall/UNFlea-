@@ -20,13 +20,13 @@ body .modal {
   margin-right:auto; 
 }
 
-.footer{
-	clear: both;
-	margin-top: -40px;
-}
-.centering{
-	text-align: center;
-}
+.footer {  
+  margin-top: 400px; 
+  height: 120px;
+  width:100%;
+  padding-top:20px;
+} 
+
 
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
@@ -247,7 +247,7 @@ body .modal {
 #msform{
 	text-align: center;
 	position: relative;
-	margin:25px auto 25px auto; 
+	margin:60px auto 45px auto; 
 	width:350px;
 
 }
@@ -365,10 +365,6 @@ body .modal {
 	
 }
 .info{
-	position:absolute;
-	width: 65%;
-	top:550px;
-	left:20%;
 	border: 1px solid;
 	
 	margin: 10px 0px;

@@ -101,7 +101,6 @@
 			</div>
 		</div>
 	</div>
-
 	<div class="container ">
 		<form class="form-horizontal" id="msform" role="form"
 			controller="user" action="register" method="post">
@@ -293,19 +292,37 @@
 				<button type="submit" class="btn btn-success button1">
 					<g:message code="signUP" />
 				</button>
-
-
+				
 			</fieldset>
-
 		</form>
 
 	</div>
-
-	<g:if test="${flash.message}">
-		<div class="info">
-			${flash.message}
+	<div class="footer" >
+		<div class="container">
+			<ul>
+				<g:if test="${flash.message}">
+					<div class="info">
+						${flash.message}
+					</div>
+				</g:if>
+				<p>
+					<g:link  url="http://localhost:8080/UNFleaPlus/user/viewRegister/?lang=en" >
+						<asset:image src="USA.png" alt="UNFlea+" height="40px"
+							width="40px" />
+					</g:link>
+					<g:link url="http://localhost:8080/UNFleaPlus/user/viewRegister/?lang=es">
+						<asset:image src="espana.png" alt="UNFlea+" height="40px"
+							width="40px" />
+					</g:link>
+				</p>
+				<p>
+					&copy; 2014 UN Flea+. <a href="#">Privacy </a> &amp;<a href="#">
+						Terms</a>
+				</p>
+			</ul>
 		</div>
-	</g:if>
+	</div>
+	
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
