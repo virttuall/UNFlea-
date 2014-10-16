@@ -6,26 +6,10 @@ class Product {
 	boolean state
 	static hasMany=[image:Image,category:Category,request:Request]
 	static belongsTo= User
-	
-}
-class ProductToDonation extends Product{
-	Date openingDate
-	Date closingDate
-	static constraints = {
-		table = 'ProductToDonation'
-		openingDate(nullable:false,blank:false)
-		closingDate(nullable:false,blank:false)
+	static constraints ={
+		tablePerHierarchy : false
+		name(nullable:false,blank:false)
+		description(nullable:false,blank:false)
 	}
-}
-class ProductToAuction extends Product{
-	float currentPrice
-	Date openingDate
-	Date closingDate
 	
-	static constraints = {
-		table = 'ProductToAuction'
-		openingDate(nullable:false,blank:false)
-		closingDate(nullable:false,blank:false)
-		currentPrice(nullable:false,blank:false)
-	}
 }
