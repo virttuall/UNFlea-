@@ -7,6 +7,8 @@
 <asset:stylesheet src="bootstrap.css" />
 <asset:stylesheet src="addProduct.css" />
 <asset:javascript src="bootstrap.js" />
+<asset:javascript src="dropzone.js" />
+<asset:stylesheet src="dropzone.css" />
 </head>
 <body>
 
@@ -38,6 +40,7 @@
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
 				<div class="well well-sm">
+					
 					<form class="form-horizontal" action="" method="post">
 						<g:set var="name_input" value="${g.message(code: 'nameVar')}"
 							scope="page" />
@@ -70,16 +73,6 @@
 										rows="5" maxlength="200" required></textarea>
 								</div>
 							</div>
-
-							<!-- Images input-->
-							<div class="form-group">
-								<label class="col-md-3 control-label" for="name"><g:message
-										code="imagesVar" /></label>
-								<div class="col-md-9">
-									<input name="file" type="file" multiple required />
-								</div>
-							</div>
-
 							<!-- State selection -->
 
 							<div class="form-group">
@@ -93,17 +86,29 @@
 									</select>
 								</div>
 							</div>
-
+							
 							<!-- Form actions -->
-							<div class="form-group">
-								<div class="col-md-12 text-right">
-									<button type="submit" class="btn btn-primary btn-lg">
-										<g:message code="send" />
-									</button>
-								</div>
-							</div>
+							
+
 						</fieldset>
+						
 					</form>
+					<fieldset>
+					<div id="dropzone">
+						<form controller="product" action="addProduct" class="dropzone dz-clickable"  method="post" enctype="multipart/form-data" >	
+								
+						</form>
+						<div class="form-group" style="margin-top: 10px">
+							<div class="col-md-12 text-right">
+								<button type="submit" class="btn btn-primary btn-lg"
+										id="submit-all">
+									<g:message code="send" />
+								</button>
+							</div>
+						</div>
+					</div>
+					</fieldset>
+					
 				</div>
 
 			</div>
