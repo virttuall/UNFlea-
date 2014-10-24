@@ -17,10 +17,11 @@ class UserController {
 	}
 	
 	def viewRegister(){
-		render(controller:'user',view:'register')
+	
+		render(controller:'user',view:'register' )
 	}
 	def viewHome(){
-		render(controller:'user',view:'home')
+		render(controller:'user',view:'home', model:[user:user])
 	}
 	@Transactional
 	def login(){
@@ -50,7 +51,7 @@ class UserController {
 			println(session.user)
 		
 			
-			redirect(controller:'user',action:'viewHome', params: [name: user.username] )
+			redirect(controller:'user',action:'viewHome')
 		}
 		catch (AuthenticationException ex){
 			// Authentication failed, so display the appropriate message
@@ -63,7 +64,7 @@ class UserController {
 
 
 			// Now redirect back to the login page.
-			redirect(controller:'index',action:'viewHome')
+			redirect(controller:'index',action:'viewHome',params: [email:user.email])
 		}
 		// Keep the username and "remember me" setting so that the
 		// user doesn't have to enter them again.
@@ -89,8 +90,9 @@ class UserController {
 			redirect(controller:'user',action:'viewRegister')
 		}
 		else{//Nuevo Usario
+			def f = request.getFile("avatar")
 			def parameters =[email:params.email,username:params.username,firstName:params.firstname,lastName:params.lastname
-				,gender:params.gender,passwordHash:shiroSecurityService.encodePassword(params.password),active:false]
+				,gender:params.gender,passwordHash:shiroSecurityService.encodePassword(params.password),active:false,avatar:f.getBytes()]
 			user= new User(parameters)
 			mailService.sendMail {
 				to "${user.email}"
@@ -104,6 +106,13 @@ class UserController {
 				redirect(controller:'index', action:'viewHome')
 			} 
 		}
+		
+	}
+	def avatar_image(){
+		user = User.get(params.id)
+		OutputStream out = response.outputStream
+		out.write(user.avatar)
+		out.close()
 		
 	}
 	@Transactional

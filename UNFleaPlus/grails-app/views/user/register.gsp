@@ -103,7 +103,7 @@
 	</div>
 	<div class="container ">
 		<form class="form-horizontal" id="msform" role="form"
-			controller="user" action="register" method="post">
+			controller="user" action="register" method="post" enctype="multipart/form-data">
 
 			<ul id="progressbar">
 				<li class="container active"><g:message code="create" /></li>
@@ -273,7 +273,7 @@
 				<div class="form-group">
 
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
-						<input type="file" id="image"> <span class="help-block" style="margin-left: 60px;"><g:message
+						<input type="file" id="avatar" name="avatar"> <span class="help-block" style="margin-left: 60px;"><g:message
 								code="format" /></span>
 					</div>
 

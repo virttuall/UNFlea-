@@ -22,9 +22,13 @@
 						class="icon-bar"></span>
 
 				</button>
+				<g:if test="${user.avatar}">
+  					<img class="avatar" src="${createLink(controller:'user', action:'avatar_image', id:user.ident())}" />
+				</g:if>
 				<a class="font-menu" href="#">
-					${params.name}
+					${user.username}
 				</a>
+				
 			</div>
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav navbar-right">
@@ -44,7 +48,7 @@
 				</h1>
 			</div>
 		</div>
-
+		
 		<ul class="row">
 			<div class="margin-gallery col-lg-3 col-md-3 col-sm-4 col-xs-6">
 				<li class="thumbnail"><img class="img-responsive"
