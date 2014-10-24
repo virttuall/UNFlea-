@@ -6,6 +6,7 @@
 <title><g:message code="addProduct" /></title>
 <asset:stylesheet src="bootstrap.css" />
 <asset:stylesheet src="addProduct.css" />
+<asset:javascript src="addProduct.js" />
 <asset:javascript src="bootstrap.js" />
 <asset:javascript src="dropzone.js" />
 <asset:stylesheet src="dropzone.css" />
@@ -40,8 +41,9 @@
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
 				<div class="well well-sm">
-					
-					<form class="form-horizontal" action="" method="post">
+
+					<form class="form-horizontal" controller="user" action="index"
+						method="post" name="genDesc">
 						<g:set var="name_input" value="${g.message(code: 'nameVar')}"
 							scope="page" />
 						<g:set var="description_input"
@@ -58,8 +60,9 @@
 								<label class="col-md-3 control-label" for="name"><g:message
 										code="nameVar" /></label>
 								<div class="col-md-9">
-									<input id="name" name="name" type="text"
-										placeholder="${name_input }" class="form-control" required>
+									<input id="myName" name="myName" type="text"
+										onchange="onChangeName()" placeholder="${name_input }"
+										class="form-control" required>
 								</div>
 							</div>
 
@@ -68,9 +71,10 @@
 								<label class="col-md-3 control-label" for="message"><g:message
 										code="descriptionVar" /></label>
 								<div class="col-md-9">
-									<textarea class="form-control" id="description"
-										name="description" placeholder="${description_input }"
-										rows="5" maxlength="200" required></textarea>
+									<textarea class="form-control" id="myDescription"
+										onchange="onChangeDescription()" name="myDescription"
+										placeholder="${description_input }" rows="5" maxlength="200"
+										required></textarea>
 								</div>
 							</div>
 							<!-- State selection -->
@@ -79,36 +83,43 @@
 								<label class="col-md-3 control-label" for="state"><g:message
 										code="stateVar" /></label>
 								<div class="col-md-9">
-									<select class="form-control" required>
+									<select class="form-control" id="myState"
+										onchange="onChangeState()">
 										<option><g:message code="normalVar" /></option>
 										<option><g:message code="auctionVar" /></option>
 										<option><g:message code="donateVar" /></option>
 									</select>
 								</div>
 							</div>
-							
+
 							<!-- Form actions -->
-							
+
 
 						</fieldset>
-						
+
 					</form>
 					<fieldset>
-					<div id="dropzone">
-						<form controller="product" action="addProduct" class="dropzone dz-clickable"  method="post" enctype="multipart/form-data" >	
-								
-						</form>
-						<div class="form-group" style="margin-top: 10px">
-							<div class="col-md-12 text-right">
-								<button type="submit" class="btn btn-primary btn-lg"
-										id="submit-all">
-									<g:message code="send" />
-								</button>
+						<div id="dropzone">
+							<form controller="product" action="addProduct"
+								class="dropzone dz-clickable" method="post"
+								enctype="multipart/form-data" name="files">
+								<g:set var="normal_input"
+									value="${g.message(code: 'normalVar')}" scope="page" />
+								<input id="name" name="name" type="hidden" /> <input
+									id="description" name="description" type="hidden" /> <input
+									id="state" name="state" type="hidden" value="${normal_input }" />
+							</form>
+							<div class="form-group" style="margin-top: 10px">
+								<div class="col-md-12 text-right">
+									<button type="submit" class="btn btn-primary btn-lg"
+										id="submit-all" onclick="submitForms">
+										<g:message code="send" />
+									</button>
+								</div>
 							</div>
 						</div>
-					</div>
 					</fieldset>
-					
+
 				</div>
 
 			</div>
