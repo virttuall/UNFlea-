@@ -13,15 +13,19 @@ class UserController {
 	def user1
 	def mailService
     def index() {
-		render(controller:'user',view:'home')
+		redirect(controller:'user',action:'list')
 	}
 	
 	def viewRegister(){
-	
-		render(controller:'user',view:'register' )
+
+		if(session.user){
+			redirect(controller:'user',action:'viewHome')
+		}
+		render(controller:'user',view:'register')
 	}
 	def viewHome(){
-		render(controller:'user',view:'home', model:[user:user])
+
+		redirect(controller:'user',action:'list')
 	}
 	@Transactional
 	def login(){
@@ -64,7 +68,7 @@ class UserController {
 
 
 			// Now redirect back to the login page.
-			redirect(controller:'index',action:'viewHome',params: [email:user.email])
+			redirect(controller:'index',action:'viewHome')
 		}
 		// Keep the username and "remember me" setting so that the
 		// user doesn't have to enter them again.
@@ -130,5 +134,24 @@ class UserController {
 		// For now, redirect back to the home page.
 		
 		redirect(controller:'index',action:'viewHome')
+	}
+	def list(){
+		print Product.count()
+		if(session.user){
+			user= User.findByUsername(session.user)
+			render(controller:'user',view:'home',model:[products:Product.list(params), totalProduct:Product.count(),user:user])
+		}else{
+			redirect(controller:'index',action:'viewHome')
+		}
+		
+	}
+	def product_image(){
+		
+		def temp = Image.get(params.id)
+		
+		OutputStream out = response.outputStream
+		out.write(temp.image)
+		out.close()
+					
 	}
 }

@@ -16,7 +16,9 @@ class SecurityFilters {
 	static authenticatedActions=[
 		[controller: 'user', action: 'viewHome', roles: ['ROLE_ADMIN', 'ROLE_USER']],
 		[controller: 'user', roles: ['ROLE_ADMIN', 'ROLE_USER']],
-		[controller: 'user',  action:'index',roles: ['ROLE_ADMIN', 'ROLE_USER']]
+		[controller: 'user',  action:'index',roles: ['ROLE_ADMIN', 'ROLE_USER']],
+		[controller: 'product',  action:'viewAddProduct',roles: ['ROLE_ADMIN', 'ROLE_USER']]
+		
 		
 	]
 	

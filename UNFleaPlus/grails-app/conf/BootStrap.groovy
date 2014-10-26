@@ -13,7 +13,7 @@ class BootStrap {
 		userRole.save()
 		
 		def user = new User(email:"andresrene2005@hotmail.com",firstName:"Andres",lastName:"Gutierrez",username: "andres930410",
-			passwordHash: new Sha256Hash("gutierrez2011").toHex(),gender:"Male",active:true)
+			passwordHash: new Sha256Hash("gutierrez2011").toHex(),gender:"Male",active:true,avatar:null)
 		user.addToRoles(adminRole)
 		user.addToPermissions("*:*")
 		user.save()
