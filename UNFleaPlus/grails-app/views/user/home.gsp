@@ -8,6 +8,7 @@
 <asset:stylesheet src="home.css" />
 <asset:javascript src="bootstrap.js" />
 <asset:javascript src="home.js" />
+<asset:stylesheet src="main.css" />
 
 </head>
 <body>
@@ -42,26 +43,24 @@
 	
 	<div class="container margin-menu">
 		<div class="row">
-			<div class="col-xs-10 col-xs-offset-2 ">
+			<div class="col-xs-9 col-xs-offset-3 ">
 				<h1 class="page-header">
 					<g:message code="myProducts" />
 				</h1>
 			</div>
 		</div>
-		<g:link controller="product" action="viewAddProduct">
-			<g:message code="addProduct" />
-		</g:link>
+		
 		
 		
 		<ul class="row">
 			<div class="col-xs-2">
-				<div class="col-xs-10">
-					Hacer una barra como la de facebook
-				</div>
-				
+					<g:link controller="product" action="viewAddProduct">
+						<g:message code="addProduct" />
+					</g:link>
+					<p>Hacer una barra como la de facebook</p>	
 			</div>
 
-			<div class="col-xs-10">
+			<div class="col-xs-offset-1 col-xs-9">
 							
 						<g:each var="product" in="${products}">
 							<p>name:${product.name}</p>
@@ -78,7 +77,7 @@
 							</g:each>
 							</div>
 						</g:each>
-					<div class="pagination-lg">
+					<div class="pagination">
 							<g:paginate controller="user" action="list" max="10"
 								total="${totalProduct?:0}" />
 					</div>	
