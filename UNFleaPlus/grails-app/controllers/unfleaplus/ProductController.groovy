@@ -14,6 +14,7 @@ class ProductController {
 	}
 
 	def addProduct(){
+		def user = User.findByUsername(session.user)
 		def name = params.name
 		def description = params.description
 		def state = params.state
@@ -23,13 +24,23 @@ class ProductController {
 		println("state product "+state)
 		def allImages =request.getFileNames()
 		for(image in allImages){
-			product.addToImage(image:image.getBytes())
-			//			println("${var}")
-			//			println("${request.getFile(var).getBytes()}")
+			def imageTemp = new Image(image:request.getFile(image).getBytes())
+			
+			product.addToImage(imageTemp)
+			imageTemp.save(flush:true)
+			
 
 		}
-		//		product.addToUser()
-		product.save()
-		println("Bucar" + name+" "+Product.findByName(name).description)
+		user.addToProducts(product)
+		product.save(flush:true)
+		def list=user.products//Asi se recuperan los productos que tiene un usuario asociado
+		list.each {def listImage =it.image
+			print listImage
+		}
+		
+		
+		//println("Bucar" + name+" "+Product.findByName(name).description)
+		
 	}
+	
 }

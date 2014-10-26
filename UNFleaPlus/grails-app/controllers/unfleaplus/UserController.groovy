@@ -11,17 +11,17 @@ class UserController {
 	def user1
 	def mailService
     def index() {
-		render(controller:'user',view:'home')
+		redirect(controller:'user',action:'list')
 	}
 	
 	def viewRegister(){
 		if(session.user){
-			redirect(controller:'user',action:'viewHome', params: [name: session.user])
+			redirect(controller:'user',action:'viewHome')
 		}
 		render(controller:'user',view:'register')
 	}
 	def viewHome(){
-		render(controller:'user',view:'home')
+		redirect(controller:'user',action:'list')
 	}
 	def login(){
 		user=User.findByEmail(params.email)
@@ -120,5 +120,21 @@ class UserController {
 		// For now, redirect back to the home page.
 		
 		redirect(controller:'index',action:'viewHome')
+	}
+	def list(){
+		print Product.count()
+		render(controller:'user',view:'home',model:[products:Product.list(params), totalProduct:Product.count(),name:session.user])
+		
+	}
+	def product_image(){
+		
+		def temp = Image.get(params.id)
+		
+		OutputStream out = response.outputStream
+		out.write(temp.image)
+		out.close()
+		
+
+				
 	}
 }

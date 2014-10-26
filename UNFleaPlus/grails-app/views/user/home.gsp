@@ -23,7 +23,7 @@
 
 				</button>
 				<a class="font-menu" href="#">
-					${params.name}
+					${name}
 				</a>
 			</div>
 			<div class="collapse navbar-collapse">
@@ -36,6 +36,10 @@
 			</div>
 		</div>
 	</nav>
+	
+	
+	
+	
 	<div class="container margin-menu">
 		<div class="row">
 			<div class="col-xs-10 col-xs-offset-2 ">
@@ -47,9 +51,10 @@
 		<g:link controller="product" action="viewAddProduct">
 			<g:message code="addProduct" />
 		</g:link>
+		
+		
 		<ul class="row">
 			<div class="col-xs-2">
-			
 				<div class="col-xs-10">
 					Hacer una barra como la de facebook
 				</div>
@@ -57,56 +62,30 @@
 			</div>
 
 			<div class="col-xs-10">
-					<div class="margin-gallery  col-lg-3 col-md-3 col-sm-4 col-xs-6">
-						<li class="thumbnail"><img class="img-responsive"
-							src="http://placehold.it/400x300" alt=""></li>
-					</div>
-					<div class="margin-gallery col-lg-3 col-md-3 col-sm-4 col-xs-6">
-						<li class="thumbnail"><img class="img-responsive"
-							src="http://placehold.it/400x300" alt=""></li>
-					</div>
-					<div class="margin-gallery  col-lg-3 col-md-3 col-sm-4 col-xs-6">
-						<li class="thumbnail"><img class="img-responsive"
-							src="http://placehold.it/400x300" alt=""></li>
-					</div>
-					<div class="margin-gallery  col-lg-3 col-md-3 col-sm-4 col-xs-6">
-						<li class="thumbnail"><img class="img-responsive"
-							src="http://placehold.it/400x300" alt=""></li>
-					</div>
-					<div class="margin-gallery col-lg-3 col-md-3 col-sm-4 col-xs-6">
-						<li class="thumbnail"><img class="img-responsive"
-							src="http://placehold.it/400x300" alt=""></li>
-					</div>
-					<div class="margin-gallery col-lg-3 col-md-3 col-sm-4 col-xs-6">
-						<li class="thumbnail"><img class="img-responsive"
-							src="http://placehold.it/400x300" alt=""></li>
-					</div>
-					<div class="margin-gallery col-lg-3 col-md-3 col-sm-4 col-xs-6">
-						<li class="thumbnail"><img class="img-responsive"
-							src="http://placehold.it/400x300" alt=""></li>
-					</div>
-					<div class="margin-gallery col-lg-3 col-md-3 col-sm-4 col-xs-6">
-						<li class="thumbnail"><img class="img-responsive"
-							src="http://placehold.it/400x300" alt=""></li>
-					</div>
-					<div class="margin-gallery col-lg-3 col-md-3 col-sm-4 col-xs-6">
-						<li class="thumbnail"><img class="img-responsive"
-							src="http://placehold.it/400x300" alt=""></li>
-					</div>
-					<div class="margin-gallery col-lg-3 col-md-3 col-sm-4 col-xs-6">
-						<li class="thumbnail"><img class="img-responsive"
-							src="http://placehold.it/400x300" alt=""></li>
-					</div>
-					<div class="margin-gallery col-lg-3 col-md-3 col-sm-4 col-xs-6">
-						<li class="thumbnail"><img class="img-responsive"
-							src="http://placehold.it/400x300" alt=""></li>
-					</div>
-					<div class="margin-gallery col-lg-3 col-md-3 col-sm-4 col-xs-6">
-						<li class="thumbnail"><img class="img-responsive"
-							src="http://placehold.it/400x300" alt=""></li>
-					</div>
+							
+						<g:each var="product" in="${products}">
+							<p>name:${product.name}</p>
+							<div class="row">
+							<g:each var="images" in="${product.image}">
+								<g:each var="image" in="${images}">
+								<div class="margin-gallery  col-lg-3 col-md-3 col-sm-4 col-xs-6">
+									<li class="thumbnail">	
+										<img class="img-responsive"
+											src="${createLink(controller:'user', action:'product_image', id:image.getId())}">
+									</li>
+								</div>
+								</g:each>
+							</g:each>
+							</div>
+						</g:each>
+					<div class="pagination-lg">
+							<g:paginate controller="user" action="list" max="10"
+								total="${totalProduct?:0}" />
+					</div>	
+					
 				</div>
-			
+				
+								
 		</ul>
 	</div>
 
@@ -121,6 +100,8 @@
 		<!-- /.modal-dialog -->
 	</div>
 	<!-- /.modal -->
+	
+	
 
 </body>
 </html>

@@ -42,8 +42,8 @@
 			<div class="col-md-6 col-md-offset-3">
 				<div class="well well-sm">
 
-					<form class="form-horizontal" controller="user" action="index"
-						method="post" name="genDesc">
+					<form class="form-horizontal" 
+						name="genDesc">
 						<g:set var="name_input" value="${g.message(code: 'nameVar')}"
 							scope="page" />
 						<g:set var="description_input"
