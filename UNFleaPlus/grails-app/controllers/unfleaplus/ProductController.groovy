@@ -22,7 +22,7 @@ class ProductController {
 				createAlias("user", "c")
 				eq("c.id", user.getId())
 			}
-			render(controller:'product',view:'deleteProduct',model:[products:results,totalProduct:results.size()])
+			render(controller:'product',view:'deleteProduct',model:[products:results,totalProduct:Product.count])
 		}else{
 			redirect(controller:'index',action:'viewHome')
 		}
