@@ -135,6 +135,7 @@ class UserController {
 		
 		redirect(controller:'index',action:'viewHome')
 	}
+	
 	def list(){
 		user= User.findByUsername(session.user)
 		def c = Product.createCriteria()
@@ -144,7 +145,7 @@ class UserController {
 		}
 		if(session.user){
 			user= User.findByUsername(session.user)
-			render(controller:'user',view:'home',model:[products:results, totalProduct:Product.count(),user:user])
+			render(controller:'user',view:'home',model:[products:results, totalProduct:Product.count,user:user])
 		}else{
 			redirect(controller:'index',action:'viewHome')
 		}
