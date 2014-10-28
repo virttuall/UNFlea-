@@ -56,10 +56,13 @@
 
 		<ul class="row">
 			<div class="col-xs-2">
-					<g:link controller="product" action="viewAddProduct">
+					<p><g:link controller="product" action="viewAddProduct">
 						<g:message code="addProduct" />
-					</g:link>
-					<p>Hacer una barra como la de facebook</p>	
+					</g:link></p>
+					
+					<p><g:link controller="product" action="viewDeleteProduct">
+						<g:message code="deleteProduct"/>
+					</g:link></p>
 			</div>
 
 			<div class="col-xs-offset-1 col-xs-9">
