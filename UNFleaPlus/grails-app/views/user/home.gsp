@@ -24,12 +24,12 @@
 
 				</button>
 				<g:if test="${user.avatar}">
-  					<img class="avatar" src="${createLink(controller:'user', action:'avatar_image', id:user.ident())}" />
+					<img class="avatar"
+						src="${createLink(controller:'user', action:'avatar_image', id:user.ident())}" />
 				</g:if>
-				<a class="font-menu" href="#">
-					${user.username}
+				<a class="font-menu" href="#"> ${user.username}
 				</a>
-				
+
 			</div>
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav navbar-right">
@@ -41,10 +41,10 @@
 			</div>
 		</div>
 	</nav>
-	
-	
-	
-	
+
+
+
+
 	<div class="container margin-menu">
 		<div class="row">
 			<div class="col-xs-9 col-xs-offset-3 ">
@@ -56,37 +56,45 @@
 
 		<ul class="row">
 			<div class="col-xs-2">
-					<g:link controller="product" action="viewAddProduct">
-						<g:message code="addProduct" />
-					</g:link>
-					<p>Hacer una barra como la de facebook</p>	
+				<p>Hacer una barra como la de facebook</p>
 			</div>
 
 			<div class="col-xs-offset-1 col-xs-9">
-							
-						<g:each var="product" in="${products}">
-							<p>name:${product.name}</p>
-							<div class="row">
-							<g:each var="images" in="${product.image}">
-								<g:each var="image" in="${images}">
+				<div class="row">
+					<g:link controller="product" action="viewAddProduct">
+						<h3>
+							<g:message code="addProduct" />
+						</h3>
+						<div class="margin-gallery  col-lg-3 col-md-3 col-sm-4 col-xs-6">
+							<li class="thumbnail"><asset:image src="addProduct.png" /></li>
+						</div>
+					</g:link>
+				</div>
+				<g:each var="product" in="${products}">
+					<g:link>
+						<h3>
+								name:${product.name}
+						</h3>
+					</g:link>
+					<div class="row">
+						<g:each var="images" in="${product.image}">
+							<g:each var="image" in="${images}">
 								<div class="margin-gallery  col-lg-3 col-md-3 col-sm-4 col-xs-6">
-									<li class="thumbnail">	
-										<img class="img-responsive"
-											src="${createLink(controller:'user', action:'product_image', id:image.getId())}">
+									<li class="thumbnail"><img class="img-responsive"
+										src="${createLink(controller:'user', action:'product_image', id:image.getId())}">
 									</li>
 								</div>
-								</g:each>
 							</g:each>
-							</div>
 						</g:each>
-					<div class="pagination">
-							<g:paginate controller="user" action="list" max="10"
-								total="${totalProduct?:0}" />
-					</div>	
-					
+					</div>
+				</g:each>
+				<div class="pagination">
+					<g:paginate controller="user" action="list" max="10"
+						total="${totalProduct?:0}" />
 				</div>
-				
-								
+			</div>
+
+
 		</ul>
 	</div>
 
@@ -101,8 +109,8 @@
 		<!-- /.modal-dialog -->
 	</div>
 	<!-- /.modal -->
-	
-	
+
+
 
 </body>
 </html>
