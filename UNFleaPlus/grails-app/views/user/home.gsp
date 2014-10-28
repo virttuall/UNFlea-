@@ -72,12 +72,17 @@
 							<div class="row">
 							<g:each var="images" in="${product.image}">
 								<g:each var="image" in="${images}">
+								
 								<div class="margin-gallery  col-lg-3 col-md-3 col-sm-4 col-xs-6">
+								
 									<li class="thumbnail">	
-										<img class="img-responsive"
+										<div class="avatarProduct">
+										<img class="avatarProduct"
 											src="${createLink(controller:'user', action:'product_image', id:image.getId())}">
+										</div>
 									</li>
 								</div>
+								
 								</g:each>
 							</g:each>
 							</div>
