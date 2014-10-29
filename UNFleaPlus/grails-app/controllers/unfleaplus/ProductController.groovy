@@ -101,5 +101,52 @@ class ProductController {
 		}
 		redirect(controller:'user',action:'viewHome')
 	}
-	
+	def updateData(){
+		if (session.user){
+			def temp = Product.get(params.product)
+			temp.name=params.myName
+			temp.description=params.myDescription
+			temp.save(flush:true)
+			redirect(controller:'user',action:'viewHome')
+		}else{
+			redirect(controller:'user',action:'viewHome')
+		}
+	}
+	def addImage(){
+		def temp = Product.get(params.product)
+		def allImages =request.getFileNames()
+		for(image in allImages){
+			def imageTemp = new Image(image:request.getFile(image).getBytes())
+			
+			temp.addToImage(imageTemp)
+			imageTemp.save(flush:true)
+			
+
+		}
+		
+		temp.save(flush:true)
+		redirect(controller:'user',action:'viewHome')
+		
+	}
+	def deleteImage(){
+		def a = Product.get(params.product)
+		def l = []
+		l += a.image
+		def keys = params.keySet()
+		
+		l.each { image ->
+			for (Object key : keys) {
+				if (!key.equals("action") && !key.equals("controller") && !key.equals("format")) {
+					
+					if(image.getId()==Integer.parseInt(params.get(key))){ 
+						
+						a.removeFromImage(image)
+						image.delete(flush:true)
+					}
+				}
+			}
+			
+		}	
+		redirect(controller:'user',action:'viewHome')
+	}
 }

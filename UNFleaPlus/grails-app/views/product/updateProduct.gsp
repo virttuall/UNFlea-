@@ -79,7 +79,7 @@
 
 				</div>
 				<div class="modal-body">
-					<form class="form-horizontal" id="update">
+					<form class="form-horizontal" id="update" action="http://localhost:8080/UNFleaPlus/product/updateData" method="post" >
 						<g:set var="name_input" value="${g.message(code: 'nameVar')}"
 							scope="page" />
 						<g:set var="description_input"
@@ -87,6 +87,7 @@
 						<g:set var="state_input" value="${g.message(code: 'stateVar')}"
 							scope="page" />
 						<fieldset>
+							<input id="product" name="product" type="hidden" value="${product.getId()}" />
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="name"><g:message
 										code="nameVar" /></label>
@@ -148,9 +149,10 @@
 				<div class="modal-body">
 					<fieldset>
 						<div id="dropzone">
-							<form controller="product" action="addProduct"
-								class="dropzone dz-clickable" method="post"
-								enctype="multipart/form-data" id="updateImage" name="files">
+							<form action="http://localhost:8080/UNFleaPlus/product/addImage" method="post"
+								class="dropzone dz-clickable" 
+								enctype="multipart/form-data" id="updateImage" name="files" >
+								<input id="product" name="product" type="hidden" value="${product.getId()}" />
 							</form>
 							<div class="form-group" style="margin-top: 10px">
 								<div class="col-md-12 text-right">
@@ -182,15 +184,22 @@
 				</div>
 				<div class="modal-body">
 				
-					<form id="deleteImage">
+					<form id="deleteImage" name="deleteImage" action="http://localhost:8080/UNFleaPlus/product/deleteImage" method="post" >
 					<fieldset>
+						<input id="product" name="product" type="hidden" value="${product.getId()}" />
+						<div class="row">
 						<g:each var="images" in="${product.image}">
 							<g:each var="image" in="${images}">
-								<input type ="radio">
-								<img class="deleteImage"
-										src="${createLink(controller:'user', action:'product_image', id:image.getId())}"><br><br>
+								
+									<div class="col-xs-4">
+									<input type="radio" name="${image.getId()}" id="${image.getId()}" value="${image.getId()}" class="radio1" />
+										<img class="deleteImage"
+										src="${createLink(controller:'user', action:'product_image', id:image.getId())}">
+									</div>
+								
 							</g:each>
 						</g:each>
+						</div>
 						<button type="submit" class="btn btn-primary btn-lg" style="float:right;">
 											<g:message code="updateSend"/>
 						</button>

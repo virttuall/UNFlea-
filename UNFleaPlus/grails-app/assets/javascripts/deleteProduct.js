@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-	$('.radio').on('click',  function() {
+	$('.radio1').on('click',  function() {
 	    if (this.getAttribute('checked')) { 
 	        $(this).removeAttr('checked'); 
 	    } else {

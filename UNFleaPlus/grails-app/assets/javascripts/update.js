@@ -5,5 +5,12 @@ $(document).ready(function() {
 	$('#myModal2').on('hidden.bs.modal', function(){
 		document.getElementById("deleteImage").reset();
     });
+	$('.radio1').on('click',  function() {
+	    if (this.getAttribute('checked')) { 
+	        $(this).removeAttr('checked'); 
+	    } else {
+	        $(this).attr('checked', true); 
+	    }
+	});
 	
 })(jQuery);
