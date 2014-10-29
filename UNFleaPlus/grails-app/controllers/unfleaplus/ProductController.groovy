@@ -16,15 +16,10 @@ class ProductController {
 	}
 	
 	def viewUpdateProduct(){
-		def keys = params.keySet()
+		def valor = Product.get(params.id)
+		print valor
 		if (session.user){
-			def user= User.findByUsername(session.user)
-			def c = Product.createCriteria()
-			def results = c.list(params){
-				createAlias("user", "c")
-				eq("c.id", user.getId())
-			}
-			render(controller:'product',view:'updateProduct',model:[product:results.get(0)])
+			render(controller:'product',view:'updateProduct',model:[product:valor])
 		}else{
 			redirect(controller:'index',action:'viewHome')
 		}

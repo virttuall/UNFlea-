@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title><g:message code="updateProduct" /></title>
 <asset:stylesheet src="bootstrap.css" />
-<asset:stylesheet src="addProduct.css" />
+<asset:stylesheet src="updateProduct.css" />
 <asset:javascript src="updateProduct.js" />
 <asset:javascript src="bootstrap.js" />
 <asset:javascript src="dropzone.js" />
@@ -23,7 +23,7 @@
 						class="icon-bar"></span>
 
 				</button>
-				<a class="font-menu" href="#"> ${params.name}
+				<a class="font-menu" href="#"> 
 				</a>
 			</div>
 			<div class="collapse navbar-collapse">
@@ -37,92 +37,83 @@
 		</div>
 	</nav>
 
-	<div class="margin-menu container">
-		<div class="row">
-			<div class="col-md-6 col-md-offset-3">
-				<div class="well well-sm">
-
-					<form class="form-horizontal" name="genDesc">
-						<g:set var="name_input" value="${g.message(code: 'nameVar')}"
-							scope="page" />
-						<g:set var="description_input"
-							value="${g.message(code: 'descriptionVar')}" scope="page" />
-						<g:set var="state_input" value="${g.message(code: 'stateVar')}"
-							scope="page" />
-						<fieldset>
-							<legend class="text-center">
-								<g:message code="updateProduct" />
-							</legend>
-
-							<!-- Name input-->
-							<div class="form-group">
-								<label class="col-md-3 control-label" for="name"><g:message
-										code="nameVar" /></label>
-								<div class="col-md-9">
-									<input id="myName" name="myName" type="text"
-										onchange="onChangeName()" placeholder="${name_input }"
-										class="form-control" value="${product.name}" required>
-								</div>
-							</div>
-
-							<!-- Description body -->
-							<div class="form-group">
-								<label class="col-md-3 control-label" for="message"><g:message
-										code="descriptionVar" /></label>
-								<div class="col-md-9">
-									<textarea class="form-control" id="myDescription"
-										onchange="onChangeDescription()" name="myDescription"
-										placeholder="${description_input }" rows="5" maxlength="200"
-										required>${product.description}</textarea>
-								</div>
-							</div>
-							<!-- State selection -->
-
-							<div class="form-group">
-								<label class="col-md-3 control-label" for="state"><g:message
-										code="stateVar" /></label>
-								<div class="col-md-9">
-									<select class="form-control" id="myState"
-										onchange="onChangeState()">
-										<option><g:message code="normalVar" /></option>
-										<option><g:message code="auctionVar" /></option>
-										<option><g:message code="donateVar" /></option>
-									</select>
-								</div>
-							</div>
-
-							<!-- Form actions -->
-
-
-						</fieldset>
-
-					</form>
-					<fieldset>
-						<div id="dropzone">
-							<g:form controller="product" action="updateProduct"
-								class="dropzone dz-clickable" method="post"
-								enctype="multipart/form-data" name="files">
-								<g:set var="normal_input"
-									value="${g.message(code: 'normalVar')}" scope="page" />
-								<input id="prevName" name="prevName" type="hidden"
-									value="${product.name }" /><input id="name" name="name"
-									type="hidden" /> <input id="description" name="description"
-									type="hidden" /> <input id="state" name="state" type="hidden"
-									value="${normal_input }" />
-							</g:form>
-							<div class="form-group" style="margin-top: 10px">
-								<div class="col-md-12 text-right">
-									<button type="submit" class="btn btn-primary btn-lg"
-										id="submit-all" onclick="submitForms()">
-										<g:message code="send" />
-									</button>
-								</div>
-							</div>
-						</div>
-					</fieldset>
+	<div class="margin-top">
+		<div class="container">
+			<div class="row"> 
+				<div class="col-xs-offset-5 col-xs-6 col-lg-6 col-sm-6">
+					<a href="#" data-toggle="modal" data-target="#myModal">
+						<asset:image class="avatarProduct" src="update.png" />
+					</a>
+					
+				</div>
+				
+			</div>
+			<div class="row">
+				<div class="col-xs-offset-3 col-xs-3 col-lg-3 col-sm-3">
+					<a href="#" data-toggle="modal" data-target="#myModal1">
+						<asset:image class="avatarProduct" src="addImage.png" />
+					</a>
+				</div>
+				<div class="col-xs-offset-1 col-xs-3 col-lg-3 col-sm-3">
+					<a href="#" data-toggle="modal" data-target="#myModal2">
+						<asset:image class="avatarProduct" src="deleteImage.png" />
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<div class="centering">
+						<h3>
+							<g:message  code="update"/>
+						</h3>
+					</div>
 
 				</div>
+				<div class="modal-body"></div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<div class="centering">
+						<h3>
+							<g:message  code="addImage"/>
+						</h3>
+					</div>
 
+				</div>
+				<div class="modal-body"></div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="myModal2" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<div class="centering">
+						<h3>
+							<g:message  code="deleteImage"/>
+						</h3>
+					</div>
+
+				</div>
+				<div class="modal-body"></div>
 			</div>
 		</div>
 	</div>

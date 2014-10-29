@@ -71,7 +71,13 @@
 
 				<p>
 					<g:link controller="product" action="viewDeleteProduct">
+						<h3>
 						<g:message code="deleteProduct" />
+						</h3>
+						<div
+							class="margin-gallery  col-lg-10 col-md-10 col-sm-10 col-xs-10">
+							<asset:image class="avatarProduct" src="Delete_Icon.png" />
+						</div>	
 					</g:link>
 				</p>
 
@@ -82,7 +88,7 @@
 
 				<g:each var="product" in="${products}">
 					<g:link controller="product" action="viewUpdateProduct"
-						id="${product.name}">
+						params="[id:product.getId()]">
 						<h3>
 							name:${product.name}
 						</h3>
