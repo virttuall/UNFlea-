@@ -14,6 +14,22 @@ class ProductController {
 			redirect(controller:'index',action:'viewHome')
 		}
 	}
+	
+	def viewUpdateProduct(){
+		def keys = params.keySet()
+		if (session.user){
+			def user= User.findByUsername(session.user)
+			def c = Product.createCriteria()
+			def results = c.list(params){
+				createAlias("user", "c")
+				eq("c.id", user.getId())
+			}
+			render(controller:'product',view:'updateProduct',model:[product:results.get(0)])
+		}else{
+			redirect(controller:'index',action:'viewHome')
+		}
+	}
+	
 	def viewDeleteProduct(){
 		if (session.user){
 			def user= User.findByUsername(session.user)
@@ -58,7 +74,29 @@ class ProductController {
 		//println("Bucar" + name+" "+Product.findByName(name).description)
 		
 	}
+	
+	def updateProduct(){
+		def user = User.findByUsername(session.user)
+		def prevName = params.prevName
+		def name = params.name
+		def description = params.description
+		def state = params.state
+		def c = Product.createCriteria()
+		def results = c.list(params){
+			createAlias("user", "c")
+			eq("c.id", user.getId())
+		}
+		def theProduct = (Product)results.get(0)
+		theProduct.name = name
+		theProduct.description = description
+		theProduct.save(flush:true)
+		user.save(flush:true)
+		redirect(controller:'user',action:'viewHome')
+	}
+
+	
 	def deleteProduct(){
+		println "Delete"
 		def keys = params.keySet()
 		for (Object key : keys) {
 			if (!key.equals("action") && !key.equals("controller") && !key.equals("format")) {

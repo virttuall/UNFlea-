@@ -57,38 +57,41 @@
 		<ul class="row">
 			<div class="col-xs-2">
 
-					<div class="row">
+				<div class="row">
 					<g:link controller="product" action="viewAddProduct">
 						<h3>
 							<g:message code="addProduct" />
 						</h3>
-						<div class="margin-gallery  col-lg-10 col-md-10 col-sm-10 col-xs-10">
+						<div
+							class="margin-gallery  col-lg-10 col-md-10 col-sm-10 col-xs-10">
 							<asset:image class="avatarProduct" src="addProduct.png" />
 						</div>
 					</g:link>
 				</div>
-					
-					<p><g:link controller="product" action="viewDeleteProduct">
-						<g:message code="deleteProduct"/>
-					</g:link></p>
+
+				<p>
+					<g:link controller="product" action="viewDeleteProduct">
+						<g:message code="deleteProduct" />
+					</g:link>
+				</p>
 
 			</div>
 
 			<div class="col-xs-offset-1 col-xs-9">
 
-				
-	
-							<g:each var="product" in="${products}">
-					<g:link>
+
+				<g:each var="product" in="${products}">
+					<g:link controller="product" action="viewUpdateProduct"
+						id="${product.name}">
 						<h3>
-								name:${product.name}
+							name:${product.name}
 						</h3>
 					</g:link>
 					<div class="row">
 						<g:each var="images" in="${product.image}">
 							<g:each var="image" in="${images}">
-						
-								
+
+
 
 								<div class="margin-gallery  col-lg-3 col-md-3 col-sm-4 col-xs-6">
 									<li class="thumbnail"><img class="img-responsive"
@@ -97,11 +100,11 @@
 								</div>
 
 
-								
-								</g:each>
 
 							</g:each>
-					
+
+						</g:each>
+
 					</div>
 				</g:each>
 				<div class="pagination">
