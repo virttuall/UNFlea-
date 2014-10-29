@@ -6,3 +6,11 @@
 	height: 9em;
 	width: 9em;
 }
+textarea {
+	resize: none;
+}
+.deleteImage{
+	margin-left:20px;
+	height: 5em;
+	width: 8em;
+}
