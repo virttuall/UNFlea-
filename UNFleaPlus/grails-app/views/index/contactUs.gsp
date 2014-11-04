@@ -107,13 +107,14 @@
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
 				<div class="well well-sm">
-					<form class="form-horizontal" action="" method="post">
+					
+					<g:form class="form-horizontal" controller = "user" action="sendEmail" method="post">
 						<g:set var="username_input"
-							value="${g.message(code: 'usernameVar')}" scope="page" />
+						value="${g.message(code: 'usernameVar')}" scope="page" />
 						<g:set var="email_input"
-							value="${g.message(code: 'emailRegister')}" scope="page" />
+						value="${g.message(code: 'emailRegister')}" scope="page" />
 						<g:set var="comments_input"
-							value="${g.message(code: 'commentsVar')}" scope="page" />
+						value="${g.message(code: 'commentsVar')}" scope="page" />
 						<fieldset>
 							<legend class="text-center">
 								<g:message code="contactUs" />
@@ -159,7 +160,7 @@
 								</div>
 							</div>
 						</fieldset>
-					</form>
+					</g:form>
 				</div>
 			</div>
 		</div>

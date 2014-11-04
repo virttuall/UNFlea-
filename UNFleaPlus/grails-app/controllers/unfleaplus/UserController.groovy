@@ -27,6 +27,15 @@ class UserController {
 
 		redirect(controller:'user',action:'list')
 	}
+	def sendEmail()
+	{
+		mailService.sendMail {
+			to "unfleaplus@gmail.com"
+			subject "comentario"
+			body "esto es un comentario"
+		}
+		redirect(controller:'index' ,action:'index')
+	}
 	@Transactional
 	def login(){
 		def authToken
