@@ -48,24 +48,32 @@
 										scope="page" />
 									<g:set var="foo1" value="${g.message(code: 'password')}"
 										scope="page" />
-									<form role="form ">
+									<g:form role="form" controller="user" action="login"
+										method="post">
 										<div class="form-group form-margin">
-											<input type="email" class="form-control" id="ejemplo_email_1"
-												placeholder="${foo}">
+
+											<input type="email" name="email" class="form-control"
+												id="ejemplo_email_1" placeholder="${foo}" required>
+
+
 										</div>
 										<div class="form-group form-margin">
-											<input type="password" class="form-control"
-												id="ejemplo_password_1" placeholder="${foo1}">
+
+											<input type="password" name="password" class="form-control"
+												id="ejemplo_password_1" placeholder="${foo1}" required>
+
 										</div>
+
 										<div class="form-margin">
-											<label> <input type="checkbox"> <g:message
-													code="rememberMe" />
+											<label> <input type="checkbox" name="rememberMe">
+												<g:message code="rememberMe" />
 											</label>
 										</div>
 										<button type="submit" class="form-margin btn btn-default">
 											<g:message code="login" />
 										</button>
-									</form>
+
+									</g:form>
 								</ul></li>
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown"><g:message code="more" /> <b
@@ -164,11 +172,11 @@
 		<div class="container">
 			<ul>
 				<p>
-					<g:link base="http://localhost:8080/UNFleaPlus/index/viewAboutUs" params="[lang:'en']">
+					<g:link  controlle="index" action="viewAboutUs" params="[lang:'en']">
 						<asset:image src="USA.png" alt="UNFlea+" height="40px"
 							width="40px" />
 					</g:link>
-					<g:link base="http://localhost:8080/UNFleaPlus/index/viewAboutUs" params="[lang:'es']">
+					<g:link  controlle="index" action="viewAboutUs" params="[lang:'es']">
 						<asset:image src="espana.png" alt="UNFlea+" height="40px"
 							width="40px" />
 					</g:link>

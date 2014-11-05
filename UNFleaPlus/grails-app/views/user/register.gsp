@@ -306,11 +306,11 @@
 					</div>
 				</g:if>
 				<p>
-					<g:link  url="http://localhost:8080/UNFleaPlus/user/viewRegister/?lang=en" >
+					<g:link action='viewRegister',controller="user" params="[lang:'en']">
 						<asset:image src="USA.png" alt="UNFlea+" height="40px"
 							width="40px" />
 					</g:link>
-					<g:link url="http://localhost:8080/UNFleaPlus/user/viewRegister/?lang=es">
+					<g:link  action='viewRegister',controller="user" params="[lang:'es']">
 						<asset:image src="espana.png" alt="UNFlea+" height="40px"
 							width="40px" />
 					</g:link>
