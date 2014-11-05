@@ -146,13 +146,14 @@ class UserController {
 	}
 	
 	def list(){
-		user= User.findByUsername(session.user)
-		def c = Product.createCriteria()
-		def results = c.list(params){
-			createAlias("user", "c")
-			eq("c.id", user.getId())
-		}
+		
 		if(session.user){
+			user= User.findByUsername(session.user)
+			def c = Product.createCriteria()
+			def results = c.list(params){
+				createAlias("user", "c")
+				eq("c.id", user.getId())
+			}
 			user= User.findByUsername(session.user)
 			render(controller:'user',view:'home',model:[products:results, totalProduct:Product.count,user:user])
 		}else{

@@ -134,14 +134,14 @@ class ProductController {
 		l += a.image
 		def keys = params.keySet()
 		
-		l.each { image ->
+		l.each { it ->
 			for (Object key : keys) {
 				if (!key.equals("action") && !key.equals("controller") && !key.equals("format")) {
 					
-					if(image.getId()==Integer.parseInt(params.get(key))){ 
+					if(it.getId()==Integer.parseInt(params.get(key))){ 
 						
-						a.removeFromImage(image)
-						image.delete(flush:true)
+						a.removeFromImage(it)
+						it.delete(flush:true)
 					}
 				}
 			}
