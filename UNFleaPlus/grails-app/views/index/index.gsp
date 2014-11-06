@@ -186,7 +186,6 @@
 						Terms</a>
 				</p>
 				
-	
 			</ul>
 		</div>
 	</div>

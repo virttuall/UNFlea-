@@ -161,6 +161,7 @@ class UserController {
 		}
 		
 	}
+	
 	def product_image(){
 		
 		def temp = Image.get(params.id)

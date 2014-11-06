@@ -132,14 +132,16 @@ class ProductController {
 		def a = Product.get(params.product)
 		def l = []
 		l += a.image
+		
 		def keys = params.keySet()
+		print l
+		print keys
 		
 		l.each { it ->
 			for (Object key : keys) {
-				if (!key.equals("action") && !key.equals("controller") && !key.equals("format")) {
+				if (!key.equals("action") && !key.equals("controller") && !key.equals("format") && !key.equals("product")) {
 					
-					if(it.getId()==Integer.parseInt(params.get(key))){ 
-						
+					if(it.getId()==Integer.parseInt(key)){
 						a.removeFromImage(it)
 						it.delete(flush:true)
 					}
@@ -148,5 +150,8 @@ class ProductController {
 			
 		}	
 		redirect(controller:'user',action:'viewHome')
+	}
+	def algo(){
+		print "hosdafadsf"
 	}
 }
