@@ -31,8 +31,8 @@ class UserController {
 	{
 		mailService.sendMail {
 			to "unfleaplus@gmail.com"
-			subject "comentario"
-			body "esto es un comentario"
+			subject params.name + " comment (" + params.email + ")"
+			body params.message
 		}
 		redirect(controller:'index' ,action:'index')
 	}
