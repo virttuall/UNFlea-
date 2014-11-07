@@ -8,7 +8,7 @@
 <asset:stylesheet src="addProduct.css" />
 <asset:javascript src="addProduct.js" />
 <asset:javascript src="bootstrap.js" />
-<asset:javascript src="dropzone.js" />
+<asset:javascript src="dropzoneAddProduct.js" />
 <asset:stylesheet src="dropzone.css" />
 </head>
 <body>
@@ -95,22 +95,23 @@
 								</div>
 							</div>
 							<div class="myAuctionOptions" id="myAuctionOptions">
+								<g:set var="date_now" value="${dateNow = new Date()}" />
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="state"><g:message
 											code="dateStartVar" /></label>
 									<div class="col-md-9">
-										<g:datePicker name="dateStart" value="${new Date()}"
-											precision="day"
-											years="${(new Date()).getAt(Calendar.YEAR)..(new Date()).getAt(Calendar.YEAR)+2}" />
+										<g:datePicker name="myDateStart" id="myDateStart"
+											value="${dateNow}" precision="minute"
+											years="${date_now.getAt(Calendar.YEAR)..date_now.getAt(Calendar.YEAR)+2}" />
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="state"><g:message
 											code="dateEndVar" /></label>
 									<div class="col-md-9">
-										<g:datePicker name="dateEnd" value="${new Date()}"
-											precision="day"
-											years="${(new Date()).getAt(Calendar.YEAR)..(new Date()).getAt(Calendar.YEAR)+2}" />
+										<g:datePicker name="myDateEnd" id="myDateEnd"
+											value="${dateNow}" precision="minute"
+											years="${date_now.getAt(Calendar.YEAR)..date_now.getAt(Calendar.YEAR)+2}" />
 									</div>
 								</div>
 							</div>
@@ -134,7 +135,7 @@
 							<div class="form-group" style="margin-top: 10px">
 								<div class="col-md-12 text-right">
 									<button class="btn btn-primary btn-lg" id="submit-all"
-										onclick="submitForms">
+										onclick="submitForms()">
 										<g:message code="send" />
 									</button>
 								</div>
