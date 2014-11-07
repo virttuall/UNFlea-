@@ -42,8 +42,7 @@
 			<div class="col-md-6 col-md-offset-3">
 				<div class="well well-sm">
 
-					<form class="form-horizontal" 
-						name="genDesc">
+					<form class="form-horizontal" name="genDesc">
 						<g:set var="name_input" value="${g.message(code: 'nameVar')}"
 							scope="page" />
 						<g:set var="description_input"
@@ -83,14 +82,39 @@
 								<label class="col-md-3 control-label" for="state"><g:message
 										code="stateVar" /></label>
 								<div class="col-md-9">
-									<select class="form-control" id="myState"
-										onchange="onChangeState()">
-										<option><g:message code="normalVar" /></option>
-										<option><g:message code="auctionVar" /></option>
-										<option><g:message code="donateVar" /></option>
-									</select>
+									<label class="radio-inline"> <input type="radio"
+										name="myState" id="myNormalState" onchange="onChangeState()"
+										checked> <g:message code="normalVar" />
+									</label> <label class="radio-inline"> <input type="radio"
+										name="myState" id="myAuctionState" onchange="onChangeState()">
+										<g:message code="auctionVar" />
+									</label> <label class="radio-inline"> <input type="radio"
+										name="myState" id="myDonateState" onchange="onChangeState()">
+										<g:message code="donateVar" />
+									</label>
 								</div>
 							</div>
+							<div class="myAuctionOptions" id="myAuctionOptions">
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="state"><g:message
+											code="dateStartVar" /></label>
+									<div class="col-md-9">
+										<g:datePicker name="dateStart" value="${new Date()}"
+											precision="day"
+											years="${(new Date()).getAt(Calendar.YEAR)..(new Date()).getAt(Calendar.YEAR)+2}" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="state"><g:message
+											code="dateEndVar" /></label>
+									<div class="col-md-9">
+										<g:datePicker name="dateEnd" value="${new Date()}"
+											precision="day"
+											years="${(new Date()).getAt(Calendar.YEAR)..(new Date()).getAt(Calendar.YEAR)+2}" />
+									</div>
+								</div>
+							</div>
+
 
 							<!-- Form actions -->
 
@@ -103,16 +127,14 @@
 							<form controller="product" action="addProduct"
 								class="dropzone dz-clickable" method="post"
 								enctype="multipart/form-data" name="files">
-								<g:set var="normal_input"
-									value="${g.message(code: 'normalVar')}" scope="page" />
 								<input id="name" name="name" type="hidden" /> <input
 									id="description" name="description" type="hidden" /> <input
-									id="state" name="state" type="hidden" value="${normal_input }" />
+									id="state" name="state" type="hidden" value="0" />
 							</form>
 							<div class="form-group" style="margin-top: 10px">
 								<div class="col-md-12 text-right">
-									<button type="submit" class="btn btn-primary btn-lg"
-										id="submit-all" onclick="submitForms">
+									<button class="btn btn-primary btn-lg" id="submit-all"
+										onclick="submitForms">
 										<g:message code="send" />
 									</button>
 								</div>

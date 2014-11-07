@@ -14,7 +14,7 @@ class ProductController {
 			redirect(controller:'index',action:'viewHome')
 		}
 	}
-	
+
 	def viewUpdateProduct(){
 		def valor = Product.get(params.id)
 		print valor
@@ -24,7 +24,7 @@ class ProductController {
 			redirect(controller:'index',action:'viewHome')
 		}
 	}
-	
+
 	def viewDeleteProduct(){
 		if (session.user){
 			def user= User.findByUsername(session.user)
@@ -43,33 +43,42 @@ class ProductController {
 		def user = User.findByUsername(session.user)
 		def name = params.name
 		def description = params.description
-		def state = params.state
-		def product = new Product(name:name,description:description,state:false)
+		def state = (params.state).toInteger()
+		def product
+		if(state == 0){
+//			Normal state
+			product = new Product(name:name,description:description,state:false)
+		}else if(state==1){
+//			Auction state
+			product = new ProductToAuction(name:name,description:description,state:false)
+		}else{
+//			Donate state
+			product = new ProductToDonation(name:name,description:description,state:false)
+		}
 		println("name product "+name)
 		println("description product "+description)
 		println("state product "+state)
 		def allImages =request.getFileNames()
 		for(image in allImages){
 			def imageTemp = new Image(image:request.getFile(image).getBytes())
-			
+
 			product.addToImage(imageTemp)
 			imageTemp.save(flush:true)
-			
-
 		}
 		user.addToProducts(product)
 		product.save(flush:true)
 		user.save(flush:true)
 		def list=user.products//Asi se recuperan los productos que tiene un usuario asociado
-		list.each {def listImage =it.image
+		list.each {
+			def listImage =it.image
 			print listImage
 		}
-		
-		
+
+
 		//println("Bucar" + name+" "+Product.findByName(name).description)
-		
+
 	}
-	
+
 	def updateProduct(){
 		def user = User.findByUsername(session.user)
 		def prevName = params.prevName
@@ -89,7 +98,7 @@ class ProductController {
 		redirect(controller:'user',action:'viewHome')
 	}
 
-	
+
 	def deleteProduct(){
 		println "Delete"
 		def keys = params.keySet()
@@ -117,36 +126,36 @@ class ProductController {
 		def allImages =request.getFileNames()
 		for(image in allImages){
 			def imageTemp = new Image(image:request.getFile(image).getBytes())
-			
+
 			temp.addToImage(imageTemp)
 			imageTemp.save(flush:true)
-			
+
 
 		}
-		
+
 		temp.save(flush:true)
 		redirect(controller:'user',action:'viewHome')
-		
+
 	}
 	def deleteImage(){
 		def a = Product.get(params.product)
 		def l = []
 		l += a.image
 		def keys = params.keySet()
-		
+
 		l.each { it ->
 			for (Object key : keys) {
 				if (!key.equals("action") && !key.equals("controller") && !key.equals("format")) {
-					
-					if(it.getId()==Integer.parseInt(params.get(key))){ 
-						
+
+					if(it.getId()==Integer.parseInt(params.get(key))){
+
 						a.removeFromImage(it)
 						it.delete(flush:true)
 					}
 				}
 			}
-			
-		}	
+
+		}
 		redirect(controller:'user',action:'viewHome')
 	}
 }

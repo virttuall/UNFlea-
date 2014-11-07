@@ -764,6 +764,7 @@ require.register("dropzone/lib/dropzone.js", function (exports, module) {
         return function(file) {
           if (_this.getUploadingFiles().length === 0 && _this.getQueuedFiles().length === 0) {
             return setTimeout((function() {
+            	window.location.replace("/UNFleaPlus/user");
               return _this.emit("queuecomplete");
             }), 0);
           }
