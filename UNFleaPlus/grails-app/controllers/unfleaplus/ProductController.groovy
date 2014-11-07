@@ -44,15 +44,33 @@ class ProductController {
 		def name = params.name
 		def description = params.description
 		def state = (params.state).toInteger()
+
+		def startDay = (params.dateStart_day).toInteger()
+		def startMonth = (params.dateStart_month).toInteger()-1
+		def startYear = (params.dateStart_year).toInteger()
+		def startHour = (params.dateStart_hour).toInteger()
+		def startMinute = (params.dateStart_minute).toInteger()
+		def startDate = new Date().copyWith(year: startYear,month: startMonth,	dayOfMonth: startDay,hourOfDay: startHour,minute: startMinute,second: 0)
+
+		def endDay = (params.dateEnd_day).toInteger()
+		def endMonth = (params.dateEnd_month).toInteger()-1
+		def endYear = (params.dateEnd_year).toInteger()
+		def endHour = (params.dateEnd_hour).toInteger()
+		def endMinute = (params.dateEnd_minute).toInteger()
+		def endDate = new Date().copyWith(year: endYear,month: endMonth,dayOfMonth: endDay,hourOfDay: endHour,minute: endMinute,second: 0)
+
+		println("start date " + startDate)
+		println("end date " +endDate)
+
 		def product
 		if(state == 0){
-//			Normal state
+			//			Normal state
 			product = new Product(name:name,description:description,state:false)
 		}else if(state==1){
-//			Auction state
-			product = new ProductToAuction(name:name,description:description,state:false)
+			//			Auction state
+			product = new ProductToAuction(name:name,description:description,state:false,openingDate:startDate,closingDate:endDate)
 		}else{
-//			Donate state
+			//			Donate state
 			product = new ProductToDonation(name:name,description:description,state:false)
 		}
 		println("name product "+name)
@@ -73,7 +91,6 @@ class ProductController {
 			def listImage =it.image
 			print listImage
 		}
-
 
 		//println("Bucar" + name+" "+Product.findByName(name).description)
 

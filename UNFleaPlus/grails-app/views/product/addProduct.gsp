@@ -131,6 +131,15 @@
 								<input id="name" name="name" type="hidden" /> <input
 									id="description" name="description" type="hidden" /> <input
 									id="state" name="state" type="hidden" value="0" />
+								<div id="datesAuction">
+									<g:datePicker name="dateStart" id="dateStart"
+										value="${dateNow}" precision="minute"
+										years="${date_now.getAt(Calendar.YEAR)..date_now.getAt(Calendar.YEAR)+2}" />
+									<p>
+										<g:datePicker name="dateEnd" id="dateEnd" value="${dateNow}"
+											precision="minute"
+											years="${date_now.getAt(Calendar.YEAR)..date_now.getAt(Calendar.YEAR)+2}" />
+								</div>
 							</form>
 							<div class="form-group" style="margin-top: 10px">
 								<div class="col-md-12 text-right">
