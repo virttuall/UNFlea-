@@ -10,6 +10,8 @@
 <asset:javascript src="bootstrap.js" />
 <asset:javascript src="modal.js" />
 <asset:javascript src="bootstrap-typeahead.js" />
+<asset:javascript src="search.js" />
+
 </head>
 
 <!-- NAVBAR
@@ -33,14 +35,14 @@
 						</a>
 					</div>
 					<div class="navbar-collapse collapse navbar-color">
-					<form class="navbar-form navbar-left" role="search">
+					<g:form class="navbar-form navbar-left" role="search" controller="index" action="searchProduct">
 								<div class="form-group">
-									<input type="text" data-provide="typeahead" class="form-control" placeholder=" " data-items="5" data-source="[&quot;Alabama&quot;,&quot;Alaska&quot;,&quot;Arizona&quot;,&quot;Arkansas&quot;,&quot;California&quot;,&quot;Colorado&quot;,&quot;Connecticut&quot;,&quot;Delaware&quot;,&quot;Florida&quot;,&quot;Georgia&quot;,&quot;Hawaii&quot;,&quot;Idaho&quot;,&quot;Illinois&quot;,&quot;Indiana&quot;,&quot;Iowa&quot;,&quot;Kansas&quot;,&quot;Kentucky&quot;,&quot;Louisiana&quot;,&quot;Maine&quot;,&quot;Maryland&quot;,&quot;Massachusetts&quot;,&quot;Michigan&quot;,&quot;Minnesota&quot;,&quot;Mississippi&quot;,&quot;Missouri&quot;,&quot;Montana&quot;,&quot;Nebraska&quot;,&quot;Nevada&quot;,&quot;New Hampshire&quot;,&quot;New Jersey&quot;,&quot;New Mexico&quot;,&quot;New York&quot;,&quot;North Dakota&quot;,&quot;North Carolina&quot;,&quot;Ohio&quot;,&quot;Oklahoma&quot;,&quot;Oregon&quot;,&quot;Pennsylvania&quot;,&quot;Rhode Island&quot;,&quot;South Carolina&quot;,&quot;South Dakota&quot;,&quot;Tennessee&quot;,&quot;Texas&quot;,&quot;Utah&quot;,&quot;Vermont&quot;,&quot;Virginia&quot;,&quot;Washington&quot;,&quot;West Virginia&quot;,&quot;Wisconsin&quot;,&quot;Wyoming&quot;]">
+									<input class="typeahead form-control" type="text" placeholder="States of USA">
 									
         							<button type="submit" class="btn btn-default" type="button"><g:message code="searchText" /></button>
 								</div>					
 							
-						</form>
+						</g:form>
 						<ul class="nav navbar-nav navbar-right">
 							<li><g:link controller="user" action="viewRegister">
 									<g:message code="signUP" />
@@ -213,6 +215,7 @@
 			</div>
 		</div>
 	</div>
+	<div id ="search" style="display: none;">${search}</div>
 	<script>
 		!function(d, s, id) {
 			var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/

@@ -151,7 +151,5 @@ class ProductController {
 		}	
 		redirect(controller:'user',action:'viewHome')
 	}
-	def algo(){
-		print "hosdafadsf"
-	}
+	
 }

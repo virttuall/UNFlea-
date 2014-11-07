@@ -21,7 +21,9 @@ class UserController {
 		if(session.user){
 			redirect(controller:'user',action:'viewHome')
 		}
-		render(controller:'user',view:'register')
+		def products = IndexController.recoveryProduct()
+		print products
+		render(controller:'user',view:'register',model:[search:products])
 	}
 	def viewHome(){
 
@@ -146,7 +148,6 @@ class UserController {
 	}
 	
 	def list(){
-		
 		if(session.user){
 			user= User.findByUsername(session.user)
 			def c = Product.createCriteria()
@@ -171,4 +172,5 @@ class UserController {
 		out.close()
 					
 	}
+	
 }
