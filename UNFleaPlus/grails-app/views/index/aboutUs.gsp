@@ -100,16 +100,130 @@
 		</div>
 	</div>
 
+<!DOCTYPE html>
+<html>
+<head>
+<g:javascript library="jquery" plugin="jquery" />
+<meta name="layout" content="main" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title><g:message code="AboutUs" /></title>
+<asset:stylesheet src="bootstrap.css" />
+<asset:stylesheet src="about.css" />
+<asset:javascript src="bootstrap.js" />
+<asset:javascript src="modal.js" />
+<asset:javascript src="bootstrap-typeahead.js" />
+</head>
+
+<!-- NAVBAR
+================================================== -->
+<body>
+	<div class="navbar-wrapper">
+		<div class="container size-menu">
+			<div class="margin-menu navbar-inverse navbar-color navbar-fixed-top"
+				role="navigation">
+				<div class="container">
+					<div class="navbar-header navbar-color">
+						<button type="button" class="navbar-toggle" data-toggle="collapse"
+							data-target=".navbar-collapse">
+							<span class="sr-only">Toggle navigation</span> 
+							<span class="icon-bar"></span> 
+							<span class="icon-bar"></span> 
+							<span class="icon-bar"></span>
+						</button>
+						<a href="/UNFleaPlus/index/viewHome" class="navbar-brand">UN Flea+
+							<g:link controller = "index" action="viewHome"></g:link>
+						</a>
+					</div>
+					<div class="navbar-collapse collapse navbar-color">
+					<form class="navbar-form navbar-left" role="search">
+								<div class="form-group">
+									<input type="text" data-provide="typeahead" class="form-control" placeholder=" " data-items="5" data-source="[&quot;Alabama&quot;,&quot;Alaska&quot;,&quot;Arizona&quot;,&quot;Arkansas&quot;,&quot;California&quot;,&quot;Colorado&quot;,&quot;Connecticut&quot;,&quot;Delaware&quot;,&quot;Florida&quot;,&quot;Georgia&quot;,&quot;Hawaii&quot;,&quot;Idaho&quot;,&quot;Illinois&quot;,&quot;Indiana&quot;,&quot;Iowa&quot;,&quot;Kansas&quot;,&quot;Kentucky&quot;,&quot;Louisiana&quot;,&quot;Maine&quot;,&quot;Maryland&quot;,&quot;Massachusetts&quot;,&quot;Michigan&quot;,&quot;Minnesota&quot;,&quot;Mississippi&quot;,&quot;Missouri&quot;,&quot;Montana&quot;,&quot;Nebraska&quot;,&quot;Nevada&quot;,&quot;New Hampshire&quot;,&quot;New Jersey&quot;,&quot;New Mexico&quot;,&quot;New York&quot;,&quot;North Dakota&quot;,&quot;North Carolina&quot;,&quot;Ohio&quot;,&quot;Oklahoma&quot;,&quot;Oregon&quot;,&quot;Pennsylvania&quot;,&quot;Rhode Island&quot;,&quot;South Carolina&quot;,&quot;South Dakota&quot;,&quot;Tennessee&quot;,&quot;Texas&quot;,&quot;Utah&quot;,&quot;Vermont&quot;,&quot;Virginia&quot;,&quot;Washington&quot;,&quot;West Virginia&quot;,&quot;Wisconsin&quot;,&quot;Wyoming&quot;]">
+									
+        							<button type="submit" class="btn btn-default" type="button"><g:message code="searchText" /></button>
+								</div>					
+							
+						</form>
+						<ul class="nav navbar-nav navbar-right">
+							<li><g:link controller="user" action="viewRegister">
+									<g:message code="signUP" />
+								</g:link></li>
+							<li><a href="#" data-toggle="modal" data-target="#myModal"><g:message
+										code="howUse" /></a></li>
+							<!--Un video como el que dijo el profesor-->
+							<li class="dropdown"><a class="dropdown-toggle" href="#"
+								data-toggle="dropdown" id="navLogin"><g:message code="login" /></a>
+								<ul class="dropdown-menu drowmenu-size" role="menu">
+									<g:set var="foo" value="${g.message(code: 'email')}"
+										scope="page" />
+									<g:set var="foo1" value="${g.message(code: 'password')}"
+										scope="page" />
+									<g:form role="form" controller="user" action="login"
+										method="post">
+										<div class="form-group form-margin">
+
+											<input type="email" name="email" class="form-control"
+												id="ejemplo_email_1" placeholder="${foo}" required>
+
+
+										</div>
+										<div class="form-group form-margin">
+
+											<input type="password" name="password" class="form-control"
+												id="ejemplo_password_1" placeholder="${foo1}" required>
+
+										</div>
+
+										<div class="form-margin">
+											<label> <input type="checkbox" name="rememberMe">
+												<g:message code="rememberMe" />
+											</label>
+										</div>
+										<button type="submit" class="form-margin btn btn-default">
+											<g:message code="login" />
+										</button>
+
+									</g:form>
+								</ul></li>
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown"><g:message code="more" /> <b
+									class="caret"></b></a>
+								<ul class="dropdown-menu" role="menu">
+									<li><g:link controller="index" action="viewContactUs">
+											<g:message code="contactUs" />
+										</g:link></li>
+									<li><g:link controller="index" action="viewAboutUs">
+											<g:message code="aboutUs" />
+										</g:link></li>
+								</ul></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 	<div class="container marketing">
 		<h1>Team Members</h1>
 		<div class="row">
 			<div class="col-lg-4">
+				<asset:image class="img-circle" src="UNFlea.png"
+					alt="Generic placeholder imag" height="140px" width="140px" />
+				<h3>UN Flea+</h3>
+				<a href="https://twitter.com/unfleaplus"
+					class="twitter-follow-button" data-show-count="true"
+					data-size="large">Follow</a>
+
+				<p>
+					<g:message code="unfleaDescription" />
+				</p>
+			</div>
+			<div class="col-lg-4">
 				<asset:image class="img-circle" src="FabianConejo.png"
 					alt="Generic placeholder imag" height="140px" width="140px" />
 				<h3>Fabian Conejo</h3>
 				<a href="https://twitter.com/FabianConP"
-					class="twitter-follow-button" data-show-count="false"
+					class="twitter-follow-button" data-show-count="true"
 					data-size="large" data-dnt="true">Follow</a>
 
 				<p>
@@ -122,7 +236,7 @@
 					alt="Generic placeholder imag" height="140px" width="140px" />
 				<h3>Andres Gutierrez</h3>
 				<a href="https://twitter.com/agutierrezt9410"
-					class="twitter-follow-button" data-show-count="false"
+					class="twitter-follow-button" data-show-count="true"
 					data-size="large" data-dnt="true">Follow</a>
 
 				<p>
@@ -130,29 +244,31 @@
 				</p>
 			</div>
 			<!-- /.col-lg-4 -->
-			<div class="col-lg-4">
-				<asset:image class="img-circle" src="SamuelCabezas.png"
-					alt="Generic placeholder imag" height="140px" width="140px" />
-				<h3>Samuel Cabezas</h3>
-				<a href="https://twitter.com/9406samuel"
-					class="twitter-follow-button" data-show-count="false"
-					data-size="large">Follow</a>
 
-				<p>
-					<g:message code="samuelDescription" />
-				</p>
-			</div>
 			<!-- /.col-lg-4 -->
 		</div>
 
 		<!-- Three columns of text below the carousel -->
 		<div class="row">
 			<div class="col-lg-4">
+				<asset:image class="img-circle" src="SamuelCabezas.png"
+					alt="Generic placeholder imag" height="140px" width="140px" />
+				<h3>Samuel Cabezas</h3>
+				<a href="https://twitter.com/9406samuel"
+					class="twitter-follow-button" data-show-count="true"
+					data-size="large">Follow</a>
+
+				<p>
+					<g:message code="samuelDescription" />
+				</p>
+			</div>
+			<div class="col-lg-4">
 				<asset:image class="img-circle" src="YeisonGarcia.png"
 					alt="Generic placeholder imag" height="140px" width="140px" />
 				<h3>Yeison Garcia</h3>
-				<a href="https://twitter.com/yeisongg" class="twitter-follow-button"
-					data-show-count="false" data-size="large">Follow</a>
+				<a href="https://twitter.com/yeisongg" 
+					class="twitter-follow-button" data-show-count="true" 
+					data-size="large">Follow</a>
 
 				<p>
 					<g:message code="yeisonDescription" />
@@ -165,7 +281,7 @@
 					alt="Generic placeholder imag" height="140px" width="140px" />
 				<h3>Mateo Nieto</h3>
 				<a href="https://twitter.com/mateonietod"
-					class="twitter-follow-button" data-show-count="false"
+					class="twitter-follow-button" data-show-count="true"
 					data-size="large" data-dnt="true">Follow</a>
 
 				<p>
@@ -174,6 +290,59 @@
 			</div>
 		</div>
 	</div>
+
+	<div id="footer">
+		<div class="container">
+			<ul>
+				<p>
+					<g:link  controlle="index" action="viewAboutUs" params="[lang:'en']">
+						<asset:image src="USA.png" alt="UNFlea+" height="40px"
+							width="40px" />
+					</g:link>
+					<g:link  controlle="index" action="viewAboutUs" params="[lang:'es']">
+						<asset:image src="espana.png" alt="UNFlea+" height="40px"
+							width="40px" />
+					</g:link>
+				</p>
+				<p>
+					&copy; 2014 UN Flea+. <a href="#">Privacy </a> &amp;<a href="#">
+						Terms</a>
+				</p>
+			</ul>
+		</div>
+	</div>
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<div class="centering">
+						<h3>
+							<g:message code="tutorial" />
+						</h3>
+					</div>
+
+				</div>
+				<div class="modal-body"></div>
+			</div>
+		</div>
+	</div>
+	<script>
+		!function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/
+					.test(d.location) ? 'http' : 'https';
+			if (!d.getElementById(id)) {
+				js = d.createElement(s);
+				js.id = id;
+				js.src = p + '://platform.twitter.com/widgets.js';
+				fjs.parentNode.insertBefore(js, fjs);
+			}
+		}(document, 'script', 'twitter-wjs');
+	</script>
+</body>
+</html>
 
 	<div id="footer">
 		<div class="container">
