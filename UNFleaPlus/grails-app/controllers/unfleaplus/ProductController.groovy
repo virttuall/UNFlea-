@@ -44,6 +44,8 @@ class ProductController {
 		def name = params.name
 		def description = params.description
 		def state = (params.state).toInteger()
+		
+		def minimumCost = (params.minimumCost).toFloat()
 
 		def startDay = (params.dateStart_day).toInteger()
 		def startMonth = (params.dateStart_month).toInteger()
@@ -68,7 +70,7 @@ class ProductController {
 			product = new Product(name:name,description:description,state:false)
 		}else if(state==1){
 			//			Auction state
-			product = new ProductToAuction(name:name,description:description,state:false,openingDate:startDate,closingDate:endDate,currentPrice:0.0d)
+			product = new ProductToAuction(name:name,description:description,state:false,openingDate:startDate,closingDate:endDate,currentPrice:minimumCost)
 		}else{
 			//			Donate state
 			product = new ProductToDonation(name:name,description:description,state:false,openingDate:startDate,closingDate:endDate)

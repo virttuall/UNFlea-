@@ -80,12 +80,27 @@ function onChangeDescription() {
 
 function onChangeState() {
 	var auctionState = document.getElementById('myAuctionState').checked;
-	var donationState = document.getElementById('myDonationState').checked;
+	var donateState = document.getElementById('myDonateState').checked;
 	document.getElementById('state').value = getState();
-	if (auctionState || donationState)
-		$("#myAuctionOptions").show("fast");
-	else
-		$("#myAuctionOptions").hide("fast");
+	if (auctionState || donateState){
+		$("#myAditionalOptions").show("fast");
+		if(auctionState)
+			$("#myOptionMinimumCost").show("fast");
+		else
+			$("#myOptionMinimumCost").hide();
+	}else{
+		$("#myAditionalOptions").hide("fast");
+		$("#myOptionMinimumCost").hide("fast");
+	}
+}
+
+function onChangeMinimumCost(){
+	var minCost = document.getElementById('myMinimumCost').value;
+	minCost = minCost.replace("^[.0-9]","");
+	if(minCost.length==0)
+		minCost = "0";
+	document.getElementById('minimumCost').value = minCost;
+	document.getElementById('myMinimumCost').value = minCost;
 }
 
 function updateDates() {
@@ -115,7 +130,8 @@ function updateDates() {
 
 $(document).ready(
 				function() {
-					$("#myAuctionOptions").hide();
+					$("#myAditionalOptions").hide();
+					$("#myOptionMinimumCost").hide();
 
 					$("select[id ^= myDate]").addClass("fail_data");
 					$("#datesAuction").hide();

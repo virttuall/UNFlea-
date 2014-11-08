@@ -94,8 +94,19 @@
 									</label>
 								</div>
 							</div>
-							<div class="myAuctionOptions" id="myAuctionOptions">
+							<div class="myAditionalOptions" id="myAditionalOptions">
 								<g:set var="date_now" value="${dateNow = new Date()}" />
+								<div class="form-group" id="myOptionMinimumCost">
+									<label class="col-md-3 control-label" for="state"><g:message
+											code="minimumCostVar" /></label>
+									<div class="col-md-9">
+										<div class="input-group">
+											<span class="input-group-addon">$</span> <input type="number"
+												class="form-control" id="myMinimumCost" name="myMinimumCost"
+												min="0.01" max="1000000" step="0.01" onkeyup="onChangeMinimumCost()">
+										</div>
+									</div>
+								</div>
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="state"><g:message
 											code="dateStartVar" /></label>
@@ -130,7 +141,8 @@
 								enctype="multipart/form-data" name="files" id="files">
 								<input id="name" name="name" type="hidden" /> <input
 									id="description" name="description" type="hidden" /> <input
-									id="state" name="state" type="hidden" value="0" />
+									id="state" name="state" type="hidden" value="0" /> <input
+									id="minimumCost" name="minimumCost" type="hidden" value="0" />
 								<div id="datesAuction">
 									<g:datePicker name="dateStart" id="dateStart"
 										value="${dateNow}" precision="minute"
