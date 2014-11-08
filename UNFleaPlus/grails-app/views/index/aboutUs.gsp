@@ -102,16 +102,27 @@
 		</div>
 	</div>
 
-
-	<div class="container marketing">
+<div class="container marketing">
 		<h1>Team Members</h1>
 		<div class="row">
+			<div class="col-lg-4">
+				<asset:image class="img-circle" src="UNFlea.png"
+					alt="Generic placeholder imag" height="140px" width="140px" />
+				<h3>UN Flea+</h3>
+				<a href="https://twitter.com/unfleaplus"
+					class="twitter-follow-button" data-show-count="true"
+					data-size="large">Follow</a>
+
+				<p>
+					<g:message code="unfleaDescription" />
+				</p>
+			</div>
 			<div class="col-lg-4">
 				<asset:image class="img-circle" src="FabianConejo.png"
 					alt="Generic placeholder imag" height="140px" width="140px" />
 				<h3>Fabian Conejo</h3>
 				<a href="https://twitter.com/FabianConP"
-					class="twitter-follow-button" data-show-count="false"
+					class="twitter-follow-button" data-show-count="true"
 					data-size="large" data-dnt="true">Follow</a>
 
 				<p>
@@ -124,7 +135,7 @@
 					alt="Generic placeholder imag" height="140px" width="140px" />
 				<h3>Andres Gutierrez</h3>
 				<a href="https://twitter.com/agutierrezt9410"
-					class="twitter-follow-button" data-show-count="false"
+					class="twitter-follow-button" data-show-count="true"
 					data-size="large" data-dnt="true">Follow</a>
 
 				<p>
@@ -132,29 +143,31 @@
 				</p>
 			</div>
 			<!-- /.col-lg-4 -->
-			<div class="col-lg-4">
-				<asset:image class="img-circle" src="SamuelCabezas.png"
-					alt="Generic placeholder imag" height="140px" width="140px" />
-				<h3>Samuel Cabezas</h3>
-				<a href="https://twitter.com/9406samuel"
-					class="twitter-follow-button" data-show-count="false"
-					data-size="large">Follow</a>
 
-				<p>
-					<g:message code="samuelDescription" />
-				</p>
-			</div>
 			<!-- /.col-lg-4 -->
 		</div>
 
 		<!-- Three columns of text below the carousel -->
 		<div class="row">
 			<div class="col-lg-4">
+				<asset:image class="img-circle" src="SamuelCabezas.png"
+					alt="Generic placeholder imag" height="140px" width="140px" />
+				<h3>Samuel Cabezas</h3>
+				<a href="https://twitter.com/9406samuel"
+					class="twitter-follow-button" data-show-count="true"
+					data-size="large">Follow</a>
+
+				<p>
+					<g:message code="samuelDescription" />
+				</p>
+			</div>
+			<div class="col-lg-4">
 				<asset:image class="img-circle" src="YeisonGarcia.png"
 					alt="Generic placeholder imag" height="140px" width="140px" />
 				<h3>Yeison Garcia</h3>
-				<a href="https://twitter.com/yeisongg" class="twitter-follow-button"
-					data-show-count="false" data-size="large">Follow</a>
+				<a href="https://twitter.com/yeisongg" 
+					class="twitter-follow-button" data-show-count="true" 
+					data-size="large">Follow</a>
 
 				<p>
 					<g:message code="yeisonDescription" />
@@ -167,7 +180,7 @@
 					alt="Generic placeholder imag" height="140px" width="140px" />
 				<h3>Mateo Nieto</h3>
 				<a href="https://twitter.com/mateonietod"
-					class="twitter-follow-button" data-show-count="false"
+					class="twitter-follow-button" data-show-count="true"
 					data-size="large" data-dnt="true">Follow</a>
 
 				<p>
@@ -176,6 +189,7 @@
 			</div>
 		</div>
 	</div>
+	
 
 	<div id="footer">
 		<div class="container">
