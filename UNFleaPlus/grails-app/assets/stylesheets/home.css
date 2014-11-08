@@ -10,6 +10,10 @@ ul li img {
 .img-responsive{
 	width: 100%;	
 }
+.img{
+	height: 15em;
+	width: 15em;
+}
 .avatarProduct{
 	height: 10em;
 	width: 10em;

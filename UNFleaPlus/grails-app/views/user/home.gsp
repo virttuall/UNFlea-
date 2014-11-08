@@ -100,9 +100,11 @@
 
 
 								<div class="margin-gallery  col-lg-3 col-md-3 col-sm-4 col-xs-6">
-									<li class="thumbnail"><img class="img-responsive"
+								
+									<img class="thumbnail img"
 										src="${createLink(controller:'user', action:'product_image', id:image.getId())}">
-									</li>
+								
+									
 								</div>
 
 

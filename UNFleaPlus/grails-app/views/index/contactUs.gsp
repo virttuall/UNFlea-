@@ -34,9 +34,9 @@
 						</a>
 					</div>
 					<div class="navbar-collapse collapse navbar-color">
-					<g:form class="navbar-form navbar-left" role="search" controller="index" action="searchProduct">
+					<g:form class="navbar-form navbar-left" role="search" controller="product" action="searchProduct">
 								<div class="form-group">
-									<input class="typeahead form-control" type="text" placeholder="States of USA">
+									<input class="typeahead form-control" type="text" placeholder="States of USA" name="search" autocomplete="off">
 									
         							<button type="submit" class="btn btn-default" type="button"><g:message code="searchText" /></button>
 								</div>					

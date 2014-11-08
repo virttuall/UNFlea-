@@ -3,7 +3,7 @@ package unfleaplus
 class IndexController {
 	public def static recoveryProduct(){
 		def products = Product.all
-		def lista =[]
+		def lista =[] as Set
 		products.each {it->
 			lista.add(it.getName())
 		}
@@ -34,7 +34,5 @@ class IndexController {
 		def products = recoveryProduct()
 		render(controller:'index',view:'aboutUs',model:[search:products])
 	}
-	def searchProduct(){
-		render "por implementar"
-	}
+	
 }

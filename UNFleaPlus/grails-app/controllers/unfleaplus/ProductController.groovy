@@ -1,7 +1,7 @@
 package unfleaplus
 
 class ProductController {
-
+	def temp
 	def index() {
 		redirect(controller:'product',action:'viewAddProduct')
 	}
@@ -151,5 +151,16 @@ class ProductController {
 		}	
 		redirect(controller:'user',action:'viewHome')
 	}
+	def searchProduct(){
+		def max1=params.max?:10
+		def offset1=params.offset?:0
+		if (params.search!=null){
+			temp= params.search	
+		}
+		def results = Product.findAll("from Product as b where b.name=?",[temp.trim()], [max:max1, offset: offset1])
+		def results1 =Product.findAllWhere(name: temp.trim())
+		render(controller:'product',view:'showProduct',model:[products:results,totalProduct:results1.size()])
+	}
+	
 	
 }
