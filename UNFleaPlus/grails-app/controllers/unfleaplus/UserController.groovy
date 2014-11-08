@@ -106,9 +106,15 @@ class UserController {
 		}
 		else{//Nuevo Usario
 			def f = request.getFile("avatar")
+			def country = new Country(name:params.country)
+			def city = new City(name:params.state)
+			
+			
 			def parameters =[email:params.email,username:params.username,firstName:params.firstname,lastName:params.lastname
 				,gender:params.gender,passwordHash:shiroSecurityService.encodePassword(params.password),active:false,avatar:f.getBytes()]
 			user= new User(parameters)
+			city.addToUser(user)
+			country.addToCity(city)
 			mailService.sendMail {
 				to "${user.email}"
 				subject "Confirmar email"

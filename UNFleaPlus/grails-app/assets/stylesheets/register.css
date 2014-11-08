@@ -101,38 +101,20 @@ body .modal {
   .featurette-heading {
     font-size: 50px;
   }
-  
-  .navbar-form .form-control {
-	width: 140px;
-	}
-}
-
-@media (min-width: 1200px) {
-  .featurette-heading {
-    margin-top: 120px;
-  }
-  .form-control{
-  	padding-right: 0px;
-  }
-  .navbar-form .form-control {
-	width: 560px;
-	}
 }
 
 @media (min-width: 992px) {
   .featurette-heading {
     margin-top: 120px;
   }
-  .navbar-form .form-control {
-	width: 360px;
-	}
 }
 
 .navbar-right {float: right !important;}
 
 @media(max-width:767px)
 {
-     .navbar-header:after 
+    
+    .navbar-header:after 
     {
     	clear: none;
     }
@@ -140,23 +122,8 @@ body .modal {
 	.drowmenu-size{
 		min-width: 700px  !important;
 	}
-	.form-control{
-		width: 560px  !important;
-		display:initial !important;
-	}
-	.navbar-brand{
-		float:none;
-		line-height: 50px;
-	}
-	.navbar-form{
-		margin-top:0px;
-		margin-bottom: 0px;
-	}
-	.navbar-fixed-top .navbar-collapse {
-		max-height: 500px;
-	}
-}
 
+}
 @media(max-width:700px)
 {
     
@@ -167,14 +134,6 @@ body .modal {
     .navbar-right {float: left !important;}
 	.drowmenu-size{
 		min-width: 650px  !important;
-	}
-	.form-control{
-		width: 500px  !important;
-		display:initial !important;
-	}
-	.navbar-brand{
-		float:none;
-		line-height: 50px;
 	}
 
 }
@@ -189,14 +148,6 @@ body .modal {
 	.drowmenu-size{
 		min-width: 600px  !important;
 	}
-	.form-control{
-		width: 450px  !important;
-		display:initial !important;
-	}
-	.navbar-brand{
-		float:none;
-		line-height: 50px;
-	}
 
 }
 @media(max-width:600px)
@@ -209,14 +160,6 @@ body .modal {
     .navbar-right {float: left !important;}
 	.drowmenu-size{
 		min-width: 500px  !important;
-	}
-	.form-control{
-		width: 400px  !important;
-		display:initial !important;
-	}
-	.navbar-brand{
-		float:none;
-		line-height: 50px;
 	}
 
 }
@@ -231,14 +174,6 @@ body .modal {
 	.drowmenu-size{
 		min-width: 450px  !important;
 	}
-	.form-control{
-		width: 300px  !important;
-		display:initial !important;
-	}
-	.navbar-brand{
-		float:none;
-		line-height: 50px;
-	}
 
 }
 @media(max-width:450px)
@@ -251,14 +186,6 @@ body .modal {
     .navbar-right {float: left !important;}
 	.drowmenu-size{
 		min-width: 400px  !important;
-	}
-	.form-control{
-		width: 250px  !important;
-		display:initial !important;
-	}
-	.navbar-brand{
-		float:none;
-		line-height: 50px;
 	}
 
 }
@@ -273,14 +200,6 @@ body .modal {
 	.drowmenu-size{
 		min-width: 350px  !important;
 	}
-	.form-control{
-		width: 250px  !important;
-		display:initial !important;
-	}
-	.navbar-brand{
-		float:none;
-		line-height: 50px;
-	}
 
 }
 @media(max-width:350px)
@@ -293,14 +212,6 @@ body .modal {
     .navbar-right {float: left !important;}
 	.drowmenu-size{
 		min-width: 300px  !important;
-	}
-	.form-control{
-		width: 200px  !important;
-		display:initial !important;
-	}
-	.navbar-brand{
-		float:none;
-		line-height: 50px;
 	}
 
 }
@@ -315,14 +226,6 @@ body .modal {
 	.drowmenu-size{
 		min-width: 250px  !important;
 	}
-	.form-control{
-		width: 100px  !important;
-		display:initial !important;
-	}
-	.navbar-brand{
-		float:none;
-		line-height: 50px;
-	}
 
 }
 @media(max-width:250px)
@@ -335,14 +238,6 @@ body .modal {
     .navbar-right {float: left !important;}
 	.drowmenu-size{
 		min-width: 200px  !important;
-	}
-	.form-control{
-		width: 150px  !important;
-		display:block !important;
-	}
-	.navbar-brand{
-		float:none;
-		line-height: 50px;
 	}
 
 }
