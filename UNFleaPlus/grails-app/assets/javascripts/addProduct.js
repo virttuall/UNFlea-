@@ -17,9 +17,9 @@ function checkDates() {
 		var endDate = getEndDate();
 
 		var curDate = new get;
-		
-		alert(startDate.getTime() +" vs "+ curDate.getTime());
-		
+
+		alert(startDate.getTime() + " vs " + curDate.getTime());
+
 		return endDate.getTime() > startDate.getTime()
 				&& startDate.getTime() > curDate.getTime();
 	} else
@@ -29,17 +29,17 @@ function checkDates() {
 
 function getStartDate() {
 	var dayStart = document.getElementById('myDateStart_day').value;
-	var monthStart = document.getElementById('myDateStart_month').value;
+	var monthStart = document.getElementById('myDateStart_month').value - 1;
 	var yearStart = document.getElementById('myDateStart_year').value;
 	var hourStart = document.getElementById('myDateStart_hour').value;
 	var minuteStart = document.getElementById('myDateStart_minute').value;
-	return new Date(yearStart, monthStart, dayStart, hourStart, minuteStart,
-			0, 0);
+	return new Date(yearStart, monthStart, dayStart, hourStart, minuteStart, 0,
+			0);
 }
 
 function getEndDate() {
 	var dayEnd = document.getElementById('myDateEnd_day').value;
-	var monthEnd = document.getElementById('myDateEnd_month').value;
+	var monthEnd = document.getElementById('myDateEnd_month').value - 1;
 	var yearEnd = document.getElementById('myDateEnd_year').value;
 	var hourEnd = document.getElementById('myDateEnd_hour').value;
 	var minuteEnd = document.getElementById('myDateEnd_minute').value;
@@ -62,50 +62,73 @@ function getState() {
 function onChangeName() {
 	var name = document.getElementById('myName').value;
 	document.getElementById('name').value = name;
+	if(name.length>5){
+		$("#myDescription").removeProp('disabled');
+	}else{
+		$("#myDescription").attr("disabled","disabled");
+	}
 }
 
 function onChangeDescription() {
 	var desc = document.getElementById('myDescription').value;
 	document.getElementById('description').value = desc;
+	if(desc.length>5)
+		$("input[type = radio]").removeProp('disabled');
+	else
+		$("input[type = radio]").attr("disabled","disabled");
 }
 
 function onChangeState() {
 	var auctionState = document.getElementById('myAuctionState').checked;
+	var donationState = document.getElementById('myDonationState').checked;
 	document.getElementById('state').value = getState();
-	if (auctionState)
+	if (auctionState || donationState)
 		$("#myAuctionOptions").show("fast");
 	else
 		$("#myAuctionOptions").hide("fast");
 }
 
-function updateDates(){
-	document.getElementById('dateStart_day').value = document.getElementById('myDateStart_day').value;
-	document.getElementById('dateStart_month').value = document.getElementById('myDateStart_month').value;
-	document.getElementById('dateStart_year').value = document.getElementById('myDateStart_year').value;
-	document.getElementById('dateStart_hour').value = document.getElementById('myDateStart_hour').value;
-	document.getElementById('dateStart_minute').value = document.getElementById('myDateStart_minute').value;
+function updateDates() {
+	document.getElementById('dateStart_day').value = document
+			.getElementById('myDateStart_day').value;
+	document.getElementById('dateStart_month').value = document
+			.getElementById('myDateStart_month').value;
+	document.getElementById('dateStart_year').value = document
+			.getElementById('myDateStart_year').value;
+	document.getElementById('dateStart_hour').value = document
+			.getElementById('myDateStart_hour').value;
+	document.getElementById('dateStart_minute').value = document
+			.getElementById('myDateStart_minute').value;
 
-	document.getElementById('dateEnd_day').value = document.getElementById('myDateEnd_day').value;
-	document.getElementById('dateEnd_month').value = document.getElementById('myDateEnd_month').value;
-	document.getElementById('dateEnd_year').value = document.getElementById('myDateEnd_year').value;
-	document.getElementById('dateEnd_hour').value = document.getElementById('myDateEnd_hour').value;
-	document.getElementById('dateEnd_minute').value = document.getElementById('myDateEnd_minute').value;
-	
+	document.getElementById('dateEnd_day').value = document
+			.getElementById('myDateEnd_day').value;
+	document.getElementById('dateEnd_month').value = document
+			.getElementById('myDateEnd_month').value;
+	document.getElementById('dateEnd_year').value = document
+			.getElementById('myDateEnd_year').value;
+	document.getElementById('dateEnd_hour').value = document
+			.getElementById('myDateEnd_hour').value;
+	document.getElementById('dateEnd_minute').value = document
+			.getElementById('myDateEnd_minute').value;
+
 }
 
-$(document).ready(function() {
-	$("#myAuctionOptions").hide();
+$(document).ready(
+				function() {
+					$("#myAuctionOptions").hide();
 
-	$("select[id ^= myDate]").addClass("fail_data");
-	$("#datesAuction").hide();
-	
-	$("select[id ^= myDate]").change(function() {
-		updateDates();
-		if (!checkDates()){
-			$("select[id ^= myDate]").addClass("fail_data");
-			alert("Start date must be greater than actual date and end date must be greater than start date");
-		}else{
-			$("select[id ^= myDate]").removeClass("fail_data");
-		}
-	});
-});
+					$("select[id ^= myDate]").addClass("fail_data");
+					$("#datesAuction").hide();
+
+					$("select[id ^= myDate]").change(function() {
+										updateDates();
+										if (!checkDates()) {
+											$("select[id ^= myDate]").addClass(
+													"fail_data");
+											alert("Start date must be greater than actual date and end date must be greater than start date");
+										} else {
+											$("select[id ^= myDate]")
+													.removeClass("fail_data");
+										}
+									});
+				});

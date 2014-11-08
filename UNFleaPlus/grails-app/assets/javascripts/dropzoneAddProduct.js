@@ -384,7 +384,11 @@
 
 										submitButton.addEventListener("click",
 												function() {
-													myDropzone.processQueue(); // Tell
+													if(checkInput())
+														myDropzone.processQueue(); // Tell
+													else
+														alert("Some inputs are incorrect");
+//													myDropzone.processQueue(); // Tell
 																				// Dropzone
 																				// to
 																				// process
@@ -397,6 +401,7 @@
 										// button only when
 										// files are dropped here:
 										this.on("addedfile", function() {
+											$("#submit-all").removeClass("disabled");
 											// Show submit button here and/or
 											// inform user to click it.
 										});
@@ -1562,6 +1567,7 @@
 									this.files = without(this.files, file);
 									this.emit("removedfile", file);
 									if (this.files.length === 0) {
+										$("#submit-all").addClass("disabled");
 										return this.emit("reset");
 									}
 								};
@@ -2418,9 +2424,18 @@ function checkDates() {
 	}
 }
 
+function checkInput(){
+	var name = document.getElementById('myName').value;
+	var desc = document.getElementById('myDescription').value;
+	if(name.length>5 && desc.length>5 && checkDates())
+		return true;
+	else
+		return false;
+}
+
 function getStartDate() {
 	var dayStart = document.getElementById('myDateStart_day').value;
-	var monthStart = document.getElementById('myDateStart_month').value;
+	var monthStart = document.getElementById('myDateStart_month').value-1;
 	var yearStart = document.getElementById('myDateStart_year').value;
 	var hourStart = document.getElementById('myDateStart_hour').value;
 	var minuteStart = document.getElementById('myDateStart_minute').value;
@@ -2430,7 +2445,7 @@ function getStartDate() {
 
 function getEndDate() {
 	var dayEnd = document.getElementById('myDateEnd_day').value;
-	var monthEnd = document.getElementById('myDateEnd_month').value;
+	var monthEnd = document.getElementById('myDateEnd_month').value-1;
 	var yearEnd = document.getElementById('myDateEnd_year').value;
 	var hourEnd = document.getElementById('myDateEnd_hour').value;
 	var minuteEnd = document.getElementById('myDateEnd_minute').value;

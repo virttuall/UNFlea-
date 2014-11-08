@@ -60,7 +60,7 @@
 										code="nameVar" /></label>
 								<div class="col-md-9">
 									<input id="myName" name="myName" type="text"
-										onchange="onChangeName()" placeholder="${name_input }"
+										onkeyup="onChangeName()" placeholder="${name_input }"
 										class="form-control" required>
 								</div>
 							</div>
@@ -71,9 +71,9 @@
 										code="descriptionVar" /></label>
 								<div class="col-md-9">
 									<textarea class="form-control" id="myDescription"
-										onchange="onChangeDescription()" name="myDescription"
+										onkeyup="onChangeDescription()" name="myDescription"
 										placeholder="${description_input }" rows="5" maxlength="200"
-										required></textarea>
+										disabled required></textarea>
 								</div>
 							</div>
 							<!-- State selection -->
@@ -81,16 +81,16 @@
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="state"><g:message
 										code="stateVar" /></label>
-								<div class="col-md-9">
+								<div class="col-md-9 disabled" id="myTypeState">
 									<label class="radio-inline"> <input type="radio"
 										name="myState" id="myNormalState" onchange="onChangeState()"
-										checked> <g:message code="normalVar" />
+										checked disabled> <g:message code="normalVar" />
 									</label> <label class="radio-inline"> <input type="radio"
-										name="myState" id="myAuctionState" onchange="onChangeState()">
-										<g:message code="auctionVar" />
+										name="myState" id="myAuctionState" onchange="onChangeState()"
+										disabled> <g:message code="auctionVar" />
 									</label> <label class="radio-inline"> <input type="radio"
-										name="myState" id="myDonateState" onchange="onChangeState()">
-										<g:message code="donateVar" />
+										name="myState" id="myDonateState" onchange="onChangeState()"
+										disabled> <g:message code="donateVar" />
 									</label>
 								</div>
 							</div>
@@ -127,7 +127,7 @@
 						<div id="dropzone">
 							<form controller="product" action="addProduct"
 								class="dropzone dz-clickable" method="post"
-								enctype="multipart/form-data" name="files">
+								enctype="multipart/form-data" name="files" id="files">
 								<input id="name" name="name" type="hidden" /> <input
 									id="description" name="description" type="hidden" /> <input
 									id="state" name="state" type="hidden" value="0" />
@@ -143,7 +143,7 @@
 							</form>
 							<div class="form-group" style="margin-top: 10px">
 								<div class="col-md-12 text-right">
-									<button class="btn btn-primary btn-lg" id="submit-all"
+									<button class="btn btn-primary btn-lg disabled" id="submit-all"
 										onclick="submitForms()">
 										<g:message code="send" />
 									</button>
