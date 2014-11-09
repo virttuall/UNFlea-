@@ -3,7 +3,9 @@ package unfleaplus
 
 class ProductController {
 	def temp
-	
+	def normal
+	def subasta
+	def donacion
 	def index() {
 		redirect(controller:'product',action:'viewAddProduct')
 	}
@@ -154,20 +156,66 @@ class ProductController {
 		redirect(controller:'user',action:'viewHome')
 	}
 	def searchProduct(){
+		/*Todavia no se pueden implementar los filtros de de precio y tipo
+		 * ya que se estan haciendo cambios a la base de datos.
+		 */
+		print params
+		
+		def country=params.country?:null
+		def state= params.state?:null
 		def products = IndexController.recoveryProduct()
 		def max1=params.max?:10
 		def offset1=params.offset?:0
+		def price= params.price?:null
+		def priceMin
+		def priceMax
+		if(price!=null){
+			price= price.split(",")
+			priceMin = price[0]
+			priceMax = price[1]
+		}else{
+			priceMin = null
+			priceMax = null
+		}
+		print priceMin
+		print priceMax
+		print params.subasta
+		if(subasta!=null && params.subasta.equals("-1")){
+			subasta=null
+		}else if(!params.subsata.equals("-1")) {
+			subasta=params.subasta
+		}  
+		if(donacion!=null && params.donacion.equals("-1")){
+			donacion=null
+		}else if(!params.donacion.equals("-1")) {
+			donacion=params.donacion
+		}
+		if(normal!=null && params.normal.equals("-1")){
+			normal=null
+		}else if(!params.normal.equals("-1")) {
+			normal=params.normal
+		}
+		
 		if (params.search!=null){
 			temp= params.search	
 		}
 		if (temp!=null){
 			def results = Product.findAll("from Product as b where b.name=?",[temp.trim()], [max:max1, offset: offset1])
 			def results1 =Product.findAllWhere(name: temp.trim())
+			if(params.country!=null && params.state!=null && !params.state.equals("")){
+				print params.state
+				results =Product.findAll("from Product as b where b.name=? AND b.user.userCountry=? AND b.user.userCity=?",[temp.trim(),params.country.trim(),params.state], [max:max1, offset: offset1])
+				print results
+			}
+			else if(params.country!=null && !params.country.equals("")) {
+				results =Product.findAll("from Product as b where b.name=? AND b.user.userCountry=?",[temp.trim(),params.country.trim()], [max:max1, offset: offset1])
+				print results
+			}
 			
-			render(controller:'product',view:'showProduct',model:[products:results,totalProduct:results1.size(),search:products])
+			render(controller:'product',view:'showProduct',model:[products:results,totalProduct:results1.size(),search:products,subasta:subasta,normal:normal,donacion:donacion,country:country,state:state,priceMin:priceMin,priceMax:priceMax])
 		}else{
 			def results = Product.findAll("from Product as b where b.name=?",[""], [max:max1, offset: offset1])
-			render(controller:'product',view:'showProduct',model:[products:results,totalProduct:0,search:products])
+			render(controller:'product',view:'showProduct',model:[products:results,totalProduct:0,search:products,subasta:subasta,normal:normal,donacion:donacion,country:country,state:state,priceMin:priceMin,priceMax:priceMax])
 		}
 		
 		

@@ -12,10 +12,13 @@
 <asset:javascript src="toogleMenu.js" />
 <asset:javascript src="CountryState.js" />
 <asset:javascript src="search.js" />
-
+<asset:javascript src="bootstrap-slider.js" />
+<asset:javascript src="slider.js" />
+<asset:stylesheet src="slider.css" />
 
 </head>
 <body>
+	
 	<div class="navbar-wrapper">
 		<div class="container size-menu">
 			<div class="margin-menu navbar-inverse navbar-fixed-top navbar-color"
@@ -36,7 +39,7 @@
 						<g:form class="navbar-form navbar-left" role="search" controller="product" action="searchProduct">
 								<div class="form-group">
 									<g:set var="search1" value="${g.message(code:'myProducts')}" scope="page"/>
-									<input class="typeahead form-control" type="text" placeholder="${search1}" name="search" autocomplete="off">
+									<input class="typeahead form-control" type="search" placeholder="${search1}" name="search" autocomplete="off">
 									
         							<button type="submit" class="btn btn-default" type="button"><g:message code="searchText" /></button>
 								</div>					
@@ -109,55 +112,80 @@
 			</div>
 		</div>
 	</div>
+	<div class="country" >${country}</div>
+	<div class="state" >${state}</div>
 	<div class="container form-margin1">
+		
 		<div class="row row-offcanvas row-offcanvas-left">
 			<div class="col-xs-12 col-sm-12">
 				<p class="pull-left visible-xs">
 					<button type="button" class="btn btn-primary btn-xs"
-						data-toggle="offcanvas">Toggle nav</button>
+						data-toggle="offcanvas"><g:message code="filterMenu"/></button>
 				</p>
 
 
 				<div class=" col-xs-5 col-sm-4  sidebar-offcanvas" id="sidebar"
 					role="navigation">
-					<g:form controller="product" action="searchProduct" id="filtros">
+					<g:form controller="product" action="searchProduct" name="filtros"  method="get">
 					<div class="sidebar-module well well-sm">
-						<h4>Acerca de filtros avanzados</h4>
-						<p>Aca escribimos un pequeño texto acerca de lo que harian un
-							filtro avanzaddo</p>
+						<h4><g:message code="filter"/></h4>
+						<p><g:message code="aboutFilter"/></p>
 					</div>
 					
+					
 					<div class="sidebar-module">
-						<h4>Pais</h4>
+						<h4><g:message code="type"/></h4>
 						<div class="form-group">
-						<select class="country" id="country" name="country"></select>
+								<g:if test="${normal}">
+									<input type="radio"  name="normal"  value="1" onclick="submitForm(this);this.form.submit();" checked>  <g:message code="sale"/><br>
+								</g:if>
+								<g:else>
+									<input type="radio"  name="normal" value="1" onclick="this.form.submit();">  <g:message code="sale"/><br>	
+								</g:else>
+								<g:if test="${subasta}">
+									<input type="radio"  name="subasta" value="2" onclick="submitForm(this);this.form.submit();" checked>  <g:message code="auctionVar"/><br>
+								</g:if>
+								<g:else>
+									<input type="radio"  name="subasta" value="2" onclick="this.form.submit();">  <g:message code="auctionVar"/><br>
+								</g:else>
+								<g:if  test="${donacion}">
+									<input type="radio" name="donacion" value="3" onclick="submitForm(this);this.form.submit();" checked>  <g:message code="donateVar"/><br>
+								</g:if>
+								<g:else>
+									<input type="radio" name="donacion" value="3" onclick="this.form.submit();" >  <g:message code="donateVar"/><br>
+								</g:else>
+								
+						</div>
+					</div>
+					<div class="sidebar-module">
+						<h4><g:message code="price"/></h4>
+						<div class="form-group">
+							<g:if test="${priceMin}">
+								<g:if test="${priceMax}">
+									<g:message code="interval"/>: <b>€ 10</b> <input id="ex2" type="text" name="price" class="span2"  data-slider-min="10" data-slider-max="1000" data-slider-step="5" data-slider-value="[${priceMin},${priceMax}]"/> <b>€ 1000</b>			
+								</g:if>
+							</g:if>
+							<g:else>
+								<g:message code="interval"/>: <b>€ 10</b> <input id="ex2" type="text" name="price" class="span2"  data-slider-min="10" data-slider-max="1000" data-slider-step="5" data-slider-value="[10,1000]"/> <b>€ 1000</b>				
+							</g:else>
+						</div>
+					</div>
+					<div class="sidebar-module">
+						<h4><g:message code="country"/></h4>
+						<div class="form-group">
+						<select class="country" id="country" name="country" onchange="this.form.submit();"></select>
 						</div>
 						
 					</div>
 					<div class="sidebar-module">
-						<h4>Ciudades</h4>
+						<h4><g:message code="state"/></h4>
 						<div id="selected-state">
 							<div class="form-group">
-							<select class="state" id="state" name="state" ></select>
+							<select class="state" id="state" name="state" onchange="this.form.submit();"></select>
 							</div>
 							
 						</div>
 
-					</div>
-					<div class="sidebar-module">
-						<h4>Tipo</h4>
-						<div class="form-group">
-								<input type="radio" name="normal" value="1"   onchange="this.form.submit();">  Venta-Intercambio<br>
-								<input type="radio"  name="subasta" value="2" onchange="this.form.submit();">  Subasta<br>
-								<input type="radio" name="donacion" value="3" onchange="this.form.submit();">  Donacion<br>
-						</div>
-					</div>
-					<div class="sidebar-module">
-						<h4>Precio</h4>
-						<div class="form-group">
-							<input type="text" name="precioInicial"  class="form-control1">  
-							<input type="text" name="precioFinal"  class="form-control1">
-						</div>
 					</div>
 					</g:form>
 					
@@ -171,14 +199,20 @@
 										src="${createLink(controller:'user', action:'product_image', id:product.image[0].getId())}">
 								</g:if>
 								<p>
+									
 									${product.user.username}
+								</p>
+								<p>
+									${product.user.userCountry}
+								</p>
+								<p>
+									${product.user.userCity}
 								</p>
 								<p>
 									${product.description}
 								</p>
 								<p>
-									<a class="btn btn-default" href="#" role="button">View
-										details &raquo;</a>
+									<a class="btn btn-default" href="#" role="button"><g:message code="details" /> &raquo;</a>
 								</p>
 							</div>
 							
