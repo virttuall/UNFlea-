@@ -13,18 +13,12 @@ class BootStrap {
 		def userRole = new Role(name: "ROLE_USER")
 		userRole.addToPermissions("*:*")
 		userRole.save()
-		def city = new City(name:"Bogota")
-		def country = new Country(name:"Colombia")
 		
 		def user = new User(email:"andresrene2005@hotmail.com",firstName:"Andres",lastName:"Gutierrez",username: "andres930410",
-			passwordHash: new Sha256Hash("gutierrez2011").toHex(),gender:"Male",active:true,avatar:null)
+			passwordHash: new Sha256Hash("gutierrez2011").toHex(),gender:"Male",active:true,avatar:null,userCity:'Boyaca',userCountry:'Colombia')
 		user.addToRoles(adminRole)
 		user.addToPermissions("*:*")
-		city.addToUser(user)
-		country.addToCity(city)
 		user.save()
-		country.save()
-		city.save()
 				
     }
 

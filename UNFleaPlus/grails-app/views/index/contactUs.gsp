@@ -36,7 +36,8 @@
 					<div class="navbar-collapse collapse navbar-color">
 					<g:form class="navbar-form navbar-left" role="search" controller="product" action="searchProduct">
 								<div class="form-group">
-									<input class="typeahead form-control" type="text" placeholder="States of USA" name="search" autocomplete="off">
+									<g:set var="search1" value="${g.message(code:'myProducts')}" scope="page"/>
+									<input class="typeahead form-control" type="text" placeholder="${search1}" name="search" autocomplete="off">
 									
         							<button type="submit" class="btn btn-default" type="button"><g:message code="searchText" /></button>
 								</div>					

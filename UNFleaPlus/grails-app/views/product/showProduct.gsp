@@ -33,17 +33,14 @@
 						</a>
 					</div>
 					<div class="navbar-collapse collapse navbar-color">
-						<g:form class="navbar-form navbar-left" role="search"
-							controller="product" action="searchProduct">
-							<div class="form-group">
-								<input class="typeahead form-control" type="text"
-									placeholder="States of USA">
-
-								<button type="submit" class="btn btn-default" type="button">
-									<g:message code="searchText" />
-								</button>
-							</div>
-
+						<g:form class="navbar-form navbar-left" role="search" controller="product" action="searchProduct">
+								<div class="form-group">
+									<g:set var="search1" value="${g.message(code:'myProducts')}" scope="page"/>
+									<input class="typeahead form-control" type="text" placeholder="${search1}" name="search" autocomplete="off">
+									
+        							<button type="submit" class="btn btn-default" type="button"><g:message code="searchText" /></button>
+								</div>					
+							
 						</g:form>
 						<ul class="nav navbar-nav navbar-right">
 
@@ -123,31 +120,47 @@
 
 				<div class=" col-xs-5 col-sm-4  sidebar-offcanvas" id="sidebar"
 					role="navigation">
-
+					<g:form controller="product" action="searchProduct" id="filtros">
 					<div class="sidebar-module well well-sm">
 						<h4>Acerca de filtros avanzados</h4>
 						<p>Aca escribimos un pequeño texto acerca de lo que harian un
 							filtro avanzaddo</p>
 					</div>
+					
 					<div class="sidebar-module">
 						<h4>Pais</h4>
+						<div class="form-group">
 						<select class="country" id="country" name="country"></select>
+						</div>
+						
 					</div>
 					<div class="sidebar-module">
 						<h4>Ciudades</h4>
 						<div id="selected-state">
-							<select class="state" id="state" name="state"></select>
+							<div class="form-group">
+							<select class="state" id="state" name="state" ></select>
+							</div>
+							
 						</div>
 
 					</div>
-
+					<div class="sidebar-module">
+						<h4>Tipo</h4>
+						<div class="form-group">
+								<input type="radio" name="normal" value="1"   onchange="this.form.submit();">  Venta-Intercambio<br>
+								<input type="radio"  name="subasta" value="2" onchange="this.form.submit();">  Subasta<br>
+								<input type="radio" name="donacion" value="3" onchange="this.form.submit();">  Donacion<br>
+						</div>
+					</div>
 					<div class="sidebar-module">
 						<h4>Precio</h4>
 						<div class="form-group">
-							<input type="text" class="form-control1">  
-							<input type="text" class="form-control1">
+							<input type="text" name="precioInicial"  class="form-control1">  
+							<input type="text" name="precioFinal"  class="form-control1">
 						</div>
 					</div>
+					</g:form>
+					
 				</div>
 				<div class="col-xs-offset-1 col-xs-6  col-sm-7 col-sm-offset-1 ">
 					<div class="row">
@@ -168,6 +181,7 @@
 										details &raquo;</a>
 								</p>
 							</div>
+							
 
 						</g:each>
 					</div>
@@ -183,15 +197,7 @@
 			</div>
 		</div>
 	</div>
+	<div id ="search" style="display: none;">${search}</div>
 	
-	
-
-
-
-
-
-
-
-
 </body>
 </html>

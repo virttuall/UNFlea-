@@ -61,7 +61,6 @@ class UserController {
 			// will be thrown if the username is unrecognised or the
 			// password is incorrect.
 			SecurityUtils.subject.login(authToken)
-
 			session["user"]=user.username
 			println(session.user)
 		
@@ -106,24 +105,21 @@ class UserController {
 		}
 		else{//Nuevo Usario
 			def f = request.getFile("avatar")
-			def country = new Country(name:params.country)
-			def city = new City(name:params.state)
-			
+			print params.country
+			print params.state
 			
 			def parameters =[email:params.email,username:params.username,firstName:params.firstname,lastName:params.lastname
-				,gender:params.gender,passwordHash:shiroSecurityService.encodePassword(params.password),active:false,avatar:f.getBytes()]
+				,gender:params.gender,passwordHash:shiroSecurityService.encodePassword(params.password),active:false,avatar:f.getBytes()
+				,userCity:params.state,userCountry:params.country]
 			user= new User(parameters)
-			city.addToUser(user)
-			country.addToCity(city)
 			mailService.sendMail {
 				to "${user.email}"
 				subject "Confirmar email"
 				html    g.render(template:'/email/registrationConfirmation', model:[user:user,password:params.password])
 			}
 			if(user.save(flush: true)){
-				user.addToRoles(Role.findByName('ROLE_USER'))
-				// Login user
-				
+				user.addToRoles(Role.findByName("ROLE_USER"))
+				user.addToPermissions("*:*")
 				redirect(controller:'index', action:'viewHome')
 			} 
 		}
