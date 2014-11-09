@@ -11,7 +11,7 @@
 <asset:javascript src="modal.js" />
 <asset:javascript src="bootstrap-typeahead.js" />
 <asset:javascript src="search.js" />
-
+<asset:javascript src="carousel.js" />
 
 </head>
 <body>
@@ -119,48 +119,24 @@
 		</ol>
 		<div class="carousel-inner">
 			<div class="item active">
-
-				<div class="container">
-					<div class=row>
-						<div class="col-xs-6 ">
-							<h1 class="h1-carousel" style="position: absolute; top: 150px">UNFlea+</h1>
-							<p class="p-carousel" style="position: absolute; top: 250px">
-								<g:message code="message" />
-							</p>
-						</div>
-						<img
-							src="http://3.bp.blogspot.com/-Y_40ll19G5Y/UpZqkXf5QZI/AAAAAAAAD4o/rAJyx88pXxg/s1600/pulga.png"
-							class="img-rounded col-xs-6" width="100px" height="400px"
-							style="position: relative; top: 100px;">
-					</div>
-
+				<img src="https://lh4.googleusercontent.com/-Jeotk5sB7ko/VCsdHYUwpzI/AAAAAAAAUMo/l-fN4hmYqXs/w1591-h895-no/IMG_20140930_130155695_HDR.jpg" alt>
+				<div class="carousel-caption">
+					<h3>UNFlea+</h3>
+					<p>
+						<g:message code="message" />
+					</p>
 				</div>
 			</div>
+			
 			<div class="item">
-				<div class="container">
-					<div class=row>
-						<div class="col-xs-7 ">
-							<h1 class="h1-carousel" style="position: relative; top: 200px;">
-								<g:message code="develomentTeam" />
-							</h1>
-							<p class="p-carousel" style="position: relative; top: 200px;">Andres
-								Rene Gutierrez</p>
-							<p class="p-carousel" style="position: relative; top: 200px;">Yeison
-								David García</p>
-							<p class="p-carousel" style="position: relative; top: 200px;">Fabian
-								David Conejo</p>
-							<p class="p-carousel" style="position: relative; top: 200px;">Samuel
-								Antonio Cabezas</p>
-							<p class="p-carousel" style="position: relative; top: 200px;">Mateo
-								Nieto Díaz</p>
-						</div>
-						<div>
-							<img
-								src="https://observatoriodefamilia.dnp.gov.co/portals/0/Images/Logos/logo_unal.png"
-								class="col-xs-5" width="100px" height="400px"
-								style="position: absolute; top: 100px;">
-						</div>
-					</div>
+				<img src="https://lh3.googleusercontent.com/-erEm0c_PvZk/U-Ff6DgHmuI/AAAAAAAATzc/hDS0-XezvUs/w1187-h668-no/IMG_20140805_175021360_HDR.jpg" alt>
+				<div class="carousel-caption">
+					<h3><g:message code="develomentTeam" /></h3>
+					<p>Andres Rene Gutierrez</p>
+					<p>Yeison David García</p>
+					<p>Fabian David Conejo</p>
+					<p>Samuel Antonio Cabezas</p>
+					<p>Mateo Nieto Díaz</p>
 				</div>
 			</div>
 
