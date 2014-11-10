@@ -6,6 +6,10 @@ class ProductController {
 	def normal
 	def subasta
 	def donacion
+	def usernameOrder
+	def countryOrder
+	def cityOrder
+	def priceOrder
 	def index() {
 		redirect(controller:'product',action:'viewAddProduct')
 	}
@@ -160,15 +164,19 @@ class ProductController {
 		 * ya que se estan haciendo cambios a la base de datos.
 		 */
 		print params
-		
-		def country=params.country?:null
-		def state= params.state?:null
+		def nuevaBusqueda=false
+		def country
+		def state
 		def products = IndexController.recoveryProduct()
 		def max1=params.max?:10
 		def offset1=params.offset?:0
 		def price= params.price?:null
 		def priceMin
 		def priceMax
+		def order1=""
+		def order="" //Utilizado para odernar
+		def where=""//Utilizado para la condicion
+		def listWhere=[]
 		if(price!=null){
 			price= price.split(",")
 			priceMin = price[0]
@@ -176,46 +184,105 @@ class ProductController {
 		}else{
 			priceMin = null
 			priceMax = null
+		} 
+		if (params.search!=null){
+			
+			nuevaBusqueda=true 
+			temp= params.search
+		}else{
+			nuevaBusqueda=false
 		}
-		print priceMin
-		print priceMax
-		print params.subasta
-		if(subasta!=null && params.subasta.equals("-1")){
-			subasta=null
-		}else if(!params.subsata.equals("-1")) {
-			subasta=params.subasta
-		}  
-		if(donacion!=null && params.donacion.equals("-1")){
-			donacion=null
-		}else if(!params.donacion.equals("-1")) {
-			donacion=params.donacion
-		}
-		if(normal!=null && params.normal.equals("-1")){
+		if(nuevaBusqueda){
 			normal=null
-		}else if(!params.normal.equals("-1")) {
-			normal=params.normal
+			subasta=null
+			donacion=null
+			usernameOrder=null
+			countryOrder=null
+			cityOrder=null
+			priceOrder=null
+			if(temp!=null){
+				where="b.name=? AND "
+				listWhere.add(temp.trim())
+			}
+		}else{
+			if(params.country!=null && !params.country.equals("")){
+				where+="b.user.userCountry=? AND "
+				listWhere.add(params.country.trim())
+				country= params.country
+			}
+			if(params.country!=null && !params.country.equals("") && params.state!=null  && !params.state.equals("")){
+				where+="b.user.userCity=? AND "
+				listWhere.add(params.state.trim())
+				state=params.state
+			}
+			if(subasta!=null && params.subasta.equals("-1")){
+				subasta=null
+			}else if(!params.subsata.equals("-1") && params.subasta!=null) {
+				subasta=params.subasta
+			}
+			if(donacion!=null && params.donacion.equals("-1")){
+				donacion=null
+			}else if(!params.donacion.equals("-1") && params.donacion!=null) {
+				donacion=params.donacion
+			}
+			if(normal!=null && params.normal.equals("-1")){
+				normal=null
+			}else if(!params.normal.equals("-1") && params.normal!=null) {
+				normal=params.normal
+			}
+			if(usernameOrder!=null && params.usernameOrder.equals("-1")){
+				usernameOrder=null
+			}else if(!params.usernameOrder.equals("-1") && params.usernameOrder!=null){
+				usernameOrder=params.usernameOrder
+				order="b.user.username,"
+			}
+			if(countryOrder!=null && params.countryOrder.equals("-1")){
+				countryOrder=null
+			}else if(!params.countryOrder.equals("-1") && params.countryOrder!=null){
+				print "hola"
+				countryOrder=params.countryOrder
+				order+="b.user.userCountry,"
+			}
+			if(cityOrder!=null && params.cityOrder.equals("-1")){
+				cityOrder=null
+				
+			}else if(!params.cityOrder.equals("-1") && params.cityOrder!=null){
+				print "hola1"
+				cityOrder=params.cityOrder
+				order+="b.user.userCity,"
+			}
+			if(priceOrder!=null && params.priceOrder.equals("-1")){
+				priceOrder=null
+			}else if(!params.priceOrder.equals("-1") && params.precioOrder!=null){
+				priceOrder=params.priceOrder
+				//order+=priceOrder+","
+			}
 		}
 		
-		if (params.search!=null){
-			temp= params.search	
+		
+		if(order.length()>0){
+			order=order.substring(0,order.length()-1)
+			order1=" order by "
 		}
-		if (temp!=null){
-			def results = Product.findAll("from Product as b where b.name=?",[temp.trim()], [max:max1, offset: offset1])
-			def results1 =Product.findAllWhere(name: temp.trim())
-			if(params.country!=null && params.state!=null && !params.state.equals("")){
-				print params.state
-				results =Product.findAll("from Product as b where b.name=? AND b.user.userCountry=? AND b.user.userCity=?",[temp.trim(),params.country.trim(),params.state], [max:max1, offset: offset1])
-				print results
-			}
-			else if(params.country!=null && !params.country.equals("")) {
-				results =Product.findAll("from Product as b where b.name=? AND b.user.userCountry=?",[temp.trim(),params.country.trim()], [max:max1, offset: offset1])
-				print results
-			}
+		if(where.length()>0){
 			
-			render(controller:'product',view:'showProduct',model:[products:results,totalProduct:results1.size(),search:products,subasta:subasta,normal:normal,donacion:donacion,country:country,state:state,priceMin:priceMin,priceMax:priceMax])
+			where="where "+where.substring(0,where.length()-4)
+		} 
+		print order
+		print where
+		
+		
+		
+		if (temp!=null){
+			
+			def results = Product.findAll("from Product as b " + where+order1+" "+order,listWhere, [max:max1, offset: offset1])
+			def results1 = Product.findAll("from Product as b " + where+order1+" "+order,listWhere)
+			//No esta implementada la de pricee
+			
+			render(controller:'product',view:'showProduct',model:[products:results,totalProduct:results1.size(),search:products,subasta:subasta,normal:normal,donacion:donacion,country:country,state:state,priceMin:priceMin,priceMax:priceMax,usernameOrder:usernameOrder,countryOrder:countryOrder,cityOrder:cityOrder,priceOrder:priceOrder])
 		}else{
 			def results = Product.findAll("from Product as b where b.name=?",[""], [max:max1, offset: offset1])
-			render(controller:'product',view:'showProduct',model:[products:results,totalProduct:0,search:products,subasta:subasta,normal:normal,donacion:donacion,country:country,state:state,priceMin:priceMin,priceMax:priceMax])
+			render(controller:'product',view:'showProduct',model:[products:results,totalProduct:0,search:products,subasta:subasta,normal:normal,donacion:donacion,country:country,state:state,priceMin:priceMin,priceMax:priceMax,usernameOrder:usernameOrder,countryOrder:countryOrder,cityOrder:cityOrder,priceOrder:priceOrder])
 		}
 		
 		

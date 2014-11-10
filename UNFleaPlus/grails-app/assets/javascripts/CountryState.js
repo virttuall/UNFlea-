@@ -19,6 +19,7 @@ $(document).ready(function() {
 	
 	$('#country').ready(function(){
 		var a= $('.country').text();
+		a = a.trim();
 		var option_str = document.getElementById('country');
 		option_str.length=0;
 	    option_str.options[0] = new Option('----------','');
@@ -36,6 +37,7 @@ $(document).ready(function() {
 		
 		if(selected!=0){
 			var b= $('.state').text();
+			b=b.trim();
 			$("#selected-state").css("display","block");
 			var option_state= document.getElementById('state');
 			option_state.length=0;
@@ -52,7 +54,9 @@ $(document).ready(function() {
 			
 			}
 		}else{
+			option_state.selectedIndex = 0;
 			$("#selected-state").css("display","none");
+			
 		}
 	   
 		

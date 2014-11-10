@@ -4,7 +4,7 @@ function submitForm(button){
 
 $(document).ready(function() {
 	var text = $('#search').text();
-	
+	text=text.trim();
 	var products = text.substring(1, text.length-1).split(",");
 	$('.typeahead').typeahead({
         name: 'products',

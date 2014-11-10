@@ -18,7 +18,7 @@
 
 </head>
 <body>
-	
+
 	<div class="navbar-wrapper">
 		<div class="container size-menu">
 			<div class="margin-menu navbar-inverse navbar-fixed-top navbar-color"
@@ -36,14 +36,19 @@
 						</a>
 					</div>
 					<div class="navbar-collapse collapse navbar-color">
-						<g:form class="navbar-form navbar-left" role="search" controller="product" action="searchProduct">
-								<div class="form-group">
-									<g:set var="search1" value="${g.message(code:'myProducts')}" scope="page"/>
-									<input class="typeahead form-control" type="search" placeholder="${search1}" name="search" autocomplete="off">
-									
-        							<button type="submit" class="btn btn-default" type="button"><g:message code="searchText" /></button>
-								</div>					
-							
+						<g:form class="navbar-form navbar-left" role="search"
+							controller="product" action="searchProduct">
+							<div class="form-group">
+								<g:set var="search1" value="${g.message(code:'myProducts')}"
+									scope="page" />
+								<input class="typeahead form-control" type="search"
+									placeholder="${search1}" name="search" autocomplete="off">
+
+								<button type="submit" class="btn btn-default" type="button">
+									<g:message code="searchText" />
+								</button>
+							</div>
+
 						</g:form>
 						<ul class="nav navbar-nav navbar-right">
 
@@ -112,83 +117,171 @@
 			</div>
 		</div>
 	</div>
-	<div class="country" >${country}</div>
-	<div class="state" >${state}</div>
+	
 	<div class="container form-margin1">
-		
+		<div class="country" style="display: none;">
+			${country}
+		</div>
+		<div class="state" style="display: none;">
+			${state}
+		</div>
 		<div class="row row-offcanvas row-offcanvas-left">
 			<div class="col-xs-12 col-sm-12">
 				<p class="pull-left visible-xs">
 					<button type="button" class="btn btn-primary btn-xs"
-						data-toggle="offcanvas"><g:message code="filterMenu"/></button>
+						data-toggle="offcanvas">
+						<g:message code="filterMenu" />
+					</button>
 				</p>
 
-
-				<div class=" col-xs-5 col-sm-4  sidebar-offcanvas" id="sidebar"
+				<div class="col-xs-5 col-sm-4  sidebar-offcanvas" id="sidebar"
 					role="navigation">
-					<g:form controller="product" action="searchProduct" name="filtros"  method="get">
 					<div class="sidebar-module well well-sm">
-						<h4><g:message code="filter"/></h4>
-						<p><g:message code="aboutFilter"/></p>
+						<h4>
+							<g:message code="filter" />
+						</h4>
+						<p>
+							<g:message code="aboutFilter" />
+						</p>
 					</div>
-					
-					
-					<div class="sidebar-module">
-						<h4><g:message code="type"/></h4>
-						<div class="form-group">
-								<g:if test="${normal}">
-									<input type="radio"  name="normal"  value="1" onclick="submitForm(this);this.form.submit();" checked>  <g:message code="sale"/><br>
+					<g:form controller="product" action="searchProduct" name="filtros"
+						method="get">
+						<div class="col-xs-12 col-sm-12">
+
+							<div class="sidebar-module">
+								<h4><g:message code="order"/></h4>
+								<g:if test="${usernameOrder}">
+									<input type="radio" name="usernameOrder" value="username" onclick="submitForm(this);this.form.submit();" checked> <g:message code="usernameVar"/><br> 
 								</g:if>
 								<g:else>
-									<input type="radio"  name="normal" value="1" onclick="this.form.submit();">  <g:message code="sale"/><br>	
+									<input type="radio" name="usernameOrder" value="username" onclick="this.form.submit();"> <g:message code="usernameVar"/><br> 
 								</g:else>
-								<g:if test="${subasta}">
-									<input type="radio"  name="subasta" value="2" onclick="submitForm(this);this.form.submit();" checked>  <g:message code="auctionVar"/><br>
+								<g:if test="${countryOrder}">
+									<input type="radio" name="countryOrder" value="country" onclick="submitForm(this);this.form.submit();" checked>
+									<g:message code="country" />
+								<br>
 								</g:if>
 								<g:else>
-									<input type="radio"  name="subasta" value="2" onclick="this.form.submit();">  <g:message code="auctionVar"/><br>
+									<input type="radio" name="countryOrder" value="country" onclick="this.form.submit();">
+								<g:message code="country" /><br>
 								</g:else>
-								<g:if  test="${donacion}">
-									<input type="radio" name="donacion" value="3" onclick="submitForm(this);this.form.submit();" checked>  <g:message code="donateVar"/><br>
+								<g:if test="${cityOrder}">
+									<input type="radio" name="cityOrder"
+									value="city" onclick="submitForm(this);this.form.submit();" checked> <g:message code="state" /><br> 
 								</g:if>
 								<g:else>
-									<input type="radio" name="donacion" value="3" onclick="this.form.submit();" >  <g:message code="donateVar"/><br>
+									<input type="radio" name="cityOrder"
+									value="city" onclick="this.form.submit();"> <g:message code="state" /><br> 
 								</g:else>
-								
-						</div>
-					</div>
-					<div class="sidebar-module">
-						<h4><g:message code="price"/></h4>
-						<div class="form-group">
-							<g:if test="${priceMin}">
-								<g:if test="${priceMax}">
-									<g:message code="interval"/>: <b>€ 10</b> <input id="ex2" type="text" name="price" class="span2"  data-slider-min="10" data-slider-max="1000" data-slider-step="5" data-slider-value="[${priceMin},${priceMax}]"/> <b>€ 1000</b>			
+								<g:if test="${priceOrder}"> 
+								 	<input type="radio" name="priceOrder" value="price" onclick="submitForm(this);this.form.submit();" checked> <g:message code="price" />
 								</g:if>
-							</g:if>
-							<g:else>
-								<g:message code="interval"/>: <b>€ 10</b> <input id="ex2" type="text" name="price" class="span2"  data-slider-min="10" data-slider-max="1000" data-slider-step="5" data-slider-value="[10,1000]"/> <b>€ 1000</b>				
-							</g:else>
-						</div>
-					</div>
-					<div class="sidebar-module">
-						<h4><g:message code="country"/></h4>
-						<div class="form-group">
-						<select class="country" id="country" name="country" onchange="this.form.submit();"></select>
-						</div>
-						
-					</div>
-					<div class="sidebar-module">
-						<h4><g:message code="state"/></h4>
-						<div id="selected-state">
-							<div class="form-group">
-							<select class="state" id="state" name="state" onchange="this.form.submit();"></select>
+								<g:else>
+									<input type="radio" name="priceOrder" value="price" onclick="this.form.submit();"> <g:message code="price" />
+									
+								</g:else>
+
 							</div>
-							
+							<div class="sidebar-module">
+								<h4>
+									<g:message code="type" />
+								</h4>
+								<div class="form-group">
+									<g:if test="${normal}">
+										<input type="radio" name="normal" value="1"
+											onclick="submitForm(this);this.form.submit();" checked>
+										<g:message code="sale" />
+										<br>
+									</g:if>
+									<g:else>
+										<input type="radio" name="normal" value="1"
+											onclick="this.form.submit();">
+										<g:message code="sale" />
+										<br>
+									</g:else>
+									<g:if test="${subasta}">
+										<input type="radio" name="subasta" value="2"
+											onclick="submitForm(this);this.form.submit();" checked>
+										<g:message code="auctionVar" />
+										<br>
+									</g:if>
+									<g:else>
+										<input type="radio" name="subasta" value="2"
+											onclick="this.form.submit();">
+										<g:message code="auctionVar" />
+										<br>
+									</g:else>
+									<g:if test="${donacion}">
+										<input type="radio" name="donacion" value="3"
+											onclick="submitForm(this);this.form.submit();" checked>
+										<g:message code="donateVar" />
+									</g:if>
+									<g:else>
+										<input type="radio" name="donacion" value="3"
+											onclick="this.form.submit();">
+										<g:message code="donateVar" />
+									</g:else>
+
+								</div>
+							</div>
+							<div class="sidebar-module">
+								<h4>
+									<g:message code="price" />
+								</h4>
+								<div class="form-group">
+									<g:if test="${priceMin}">
+										<g:if test="${priceMax}">
+											<g:message code="interval" />:<br>
+											<b>€ 10</b>
+											<br>
+											<input id="ex2" type="text" size="10" name="price"
+												class="span2" data-slider-min="10" data-slider-max="1000"
+												data-slider-step="20"
+												data-slider-value="[${priceMin},${priceMax}]" />
+											<br>
+											<b>€ 1000</b>
+										</g:if>
+									</g:if>
+									<g:else>
+										<g:message code="interval" />:<br>
+										<b>€ 10</b>
+										<br>
+										<input id="ex2" type="text" size="10" name="price"
+											class="span2" data-slider-min="10" data-slider-max="1000"
+											data-slider-step="20" data-slider-value="[10,1000]" />
+										<br>
+										<b>€ 1000</b>
+									</g:else>
+								</div>
+							</div>
+							<div class="sidebar-module">
+								<h4>
+									<g:message code="country" />
+								</h4>
+								<div class="form-group">
+									<select class="country" id="country" name="country"
+										onchange="this.form.submit();"></select>
+								</div>
+
+							</div>
+							<div class="sidebar-module">
+								<h4>
+									<g:message code="state" />
+								</h4>
+								<div id="selected-state">
+									<div class="form-group">
+										<select class="state" id="state" name="state"
+											onchange="this.form.submit();"></select>
+									</div>
+
+								</div>
+
+							</div>
+
+
 						</div>
 
-					</div>
 					</g:form>
-					
 				</div>
 				<div class="col-xs-offset-1 col-xs-6  col-sm-7 col-sm-offset-1 ">
 					<div class="row">
@@ -199,7 +292,7 @@
 										src="${createLink(controller:'user', action:'product_image', id:product.image[0].getId())}">
 								</g:if>
 								<p>
-									
+
 									${product.user.username}
 								</p>
 								<p>
@@ -212,10 +305,11 @@
 									${product.description}
 								</p>
 								<p>
-									<a class="btn btn-default" href="#" role="button"><g:message code="details" /> &raquo;</a>
+									<a class="btn btn-default" href="#" role="button"><g:message
+											code="details" /> &raquo;</a>
 								</p>
 							</div>
-							
+
 
 						</g:each>
 					</div>
@@ -231,7 +325,9 @@
 			</div>
 		</div>
 	</div>
-	<div id ="search" style="display: none;">${search}</div>
-	
+	<div id="search" style="display: none;">
+		${search}
+	</div>
+
 </body>
 </html>
