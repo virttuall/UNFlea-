@@ -25,6 +25,11 @@ class ProductController {
 		}
 	}
 
+	def theviewUpdateProduct(){
+		def product = Product.get(params.id)
+		product.delete(flush:true)
+	}
+
 	def viewDeleteProduct(){
 		if (session.user){
 			def user= User.findByUsername(session.user)
@@ -44,7 +49,7 @@ class ProductController {
 		def name = params.name
 		def description = params.description
 		def state = (params.state).toInteger()
-		
+
 		def minimumCost = (params.minimumCost).toFloat()
 
 		def startDay = (params.dateStart_day).toInteger()
@@ -156,24 +161,18 @@ class ProductController {
 		redirect(controller:'user',action:'viewHome')
 
 	}
+
 	def deleteImage(){
-		def a = Product.get(params.product)
-		def l = []
-		l += a.image
-		def keys = params.keySet()
-
-		l.each { it ->
-			for (Object key : keys) {
-				if (!key.equals("action") && !key.equals("controller") && !key.equals("format")) {
-
-					if(it.getId()==Integer.parseInt(params.get(key))){
-
-						a.removeFromImage(it)
-						it.delete(flush:true)
-					}
+		def product = Product.get(params.idProduct)
+		def images = []
+		images += product.image
+		if(images.size > 1){
+			images.each {
+				if(it.getId() == params.idImage.toInteger()){
+					product.removeFromImage(it)
+					it.delete(flush:true)
 				}
 			}
-
 		}
 		redirect(controller:'user',action:'viewHome')
 	}

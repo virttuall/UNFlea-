@@ -3,10 +3,6 @@ $(function() {
 		var src = $(this).attr('src');
         var img = '<img src="' + src + '" class="img-responsive"/>';
 
-       
-       
-        
-
         $('#myModal').modal();
         $('#myModal').on('shown.bs.modal', function(){
             $('#myModal .modal-body').html(img);
@@ -16,5 +12,9 @@ $(function() {
             $('#myModal .modal-body').html('');
         });
    });
-   	
-})(jQuery);
+	
+	$("#updateInformation").click(
+			function(){
+//				$("infoIdProduct").val = 
+			})
+});
