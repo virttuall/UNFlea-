@@ -119,7 +119,7 @@
 								<div class="margin-gallery col-lg-3 col-md-3 col-sm-4 col-xs-6">
 									<li class="thumbnail"><g:link
 											params="[idProduct:product.getId(),idImage:image.getId()]"
-											controller="product" action="theDeleteImage">
+											controller="product" action="deleteImage">
 											<span
 												class='remove-product glyphicon glyphicon-remove pull-right'></span>
 										</g:link><img class="img-responsive"
