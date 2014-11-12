@@ -10,6 +10,7 @@ class ProductController {
 	def countryOrder
 	def cityOrder
 	def priceOrder
+	def nameOrder
 	def index() {
 		redirect(controller:'product',action:'viewAddProduct')
 	}
@@ -200,9 +201,9 @@ class ProductController {
 			countryOrder=null
 			cityOrder=null
 			priceOrder=null
-			if(temp!=null){
-				where="b.name=? AND "
-				listWhere.add(temp.trim())
+			nameOrder=null
+			if(temp==null){
+				temp=""
 			}
 		}else{
 			if(params.country!=null && !params.country.equals("")){
@@ -229,6 +230,12 @@ class ProductController {
 				normal=null
 			}else if(!params.normal.equals("-1") && params.normal!=null) {
 				normal=params.normal
+			}
+			if(nameOrder!=null && params.nameOrder.equals("-1")){
+				nameOrder=null
+			}else if(!params.nameOrder.equals("-1") && params.nameOrder!=null){
+				nameOrder=params.nameOrder
+				order="b.name,"
 			}
 			if(usernameOrder!=null && params.usernameOrder.equals("-1")){
 				usernameOrder=null
@@ -266,27 +273,24 @@ class ProductController {
 		}
 		if(where.length()>0){
 			
-			where="where "+where.substring(0,where.length()-4)
+			where="AND "+where.substring(0,where.length()-4)
 		} 
 		print order
 		print where
 		
 		
 		
-		if (temp!=null){
-			
-			def results = Product.findAll("from Product as b " + where+order1+" "+order,listWhere, [max:max1, offset: offset1])
-			def results1 = Product.findAll("from Product as b " + where+order1+" "+order,listWhere)
+		//if (temp!=null){
+		def results = Product.findAll("from Product as b " + "where b.name like '%"+temp.trim()+"%' "+where+order1+" "+order,listWhere, [max:max1, offset: offset1])
+		def results1 = Product.findAll("from Product as b " + "where b.name like '%"+temp.trim()+"%' "+where+order1+" "+order,listWhere)
 			//No esta implementada la de pricee
 			
-			render(controller:'product',view:'showProduct',model:[products:results,totalProduct:results1.size(),search:products,subasta:subasta,normal:normal,donacion:donacion,country:country,state:state,priceMin:priceMin,priceMax:priceMax,usernameOrder:usernameOrder,countryOrder:countryOrder,cityOrder:cityOrder,priceOrder:priceOrder])
-		}else{
-			def results = Product.findAll("from Product as b where b.name=?",[""], [max:max1, offset: offset1])
-			render(controller:'product',view:'showProduct',model:[products:results,totalProduct:0,search:products,subasta:subasta,normal:normal,donacion:donacion,country:country,state:state,priceMin:priceMin,priceMax:priceMax,usernameOrder:usernameOrder,countryOrder:countryOrder,cityOrder:cityOrder,priceOrder:priceOrder])
-		}
+		render(controller:'product',view:'showProduct',model:[products:results,totalProduct:results1.size(),search:products,subasta:subasta,normal:normal,donacion:donacion,country:country,state:state,priceMin:priceMin,priceMax:priceMax,usernameOrder:usernameOrder,countryOrder:countryOrder,cityOrder:cityOrder,priceOrder:priceOrder,nameOrder:nameOrder])
+		//}
 		
 		
 	}
+	
 	
 	
 	

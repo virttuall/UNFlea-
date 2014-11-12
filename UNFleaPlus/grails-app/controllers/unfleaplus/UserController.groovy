@@ -158,7 +158,8 @@ class UserController {
 				eq("c.id", user.getId())
 			}
 			user= User.findByUsername(session.user)
-			render(controller:'user',view:'home',model:[products:results, totalProduct:Product.count,user:user])
+			def total = Product.findAll ("from Product as b where b.user.username=? ",[session.user])
+			render(controller:'user',view:'home',model:[products:results, totalProduct:total.size(),user:user])
 		}else{
 			redirect(controller:'index',action:'viewHome')
 		}

@@ -15,6 +15,7 @@
 <asset:javascript src="bootstrap-slider.js" />
 <asset:javascript src="slider.js" />
 <asset:stylesheet src="slider.css" />
+<asset:javascript src="modal.js" />
 
 </head>
 <body>
@@ -150,6 +151,12 @@
 
 							<div class="sidebar-module">
 								<h4><g:message code="order"/></h4>
+								<g:if test="${nameOrder}">
+									<input type="radio" name="nameOrder" value="name" onclick="submitForm(this);this.form.submit();" checked> <g:message code="nameVar"/><br> 
+								</g:if>
+								<g:else>
+									<input type="radio" name="nameOrder" value="name" onclick="this.form.submit();"> <g:message code="nameVar"/><br> 
+								</g:else>
 								<g:if test="${usernameOrder}">
 									<input type="radio" name="usernameOrder" value="username" onclick="submitForm(this);this.form.submit();" checked> <g:message code="usernameVar"/><br> 
 								</g:if>
@@ -287,9 +294,11 @@
 					<div class="row">
 						<g:each var="product" in="${products}">
 							<div class="col-xs-12 col-sm-6 col-md-4 ">
+								<div class="thumbnail">
 								<g:if test="${product.image}">
-									<img class="product"
-										src="${createLink(controller:'user', action:'product_image', id:product.image[0].getId())}">
+										<img class="product" style="width: 10em; height: 10em;"
+											src="${createLink(controller:'user', action:'product_image', id:product.image[0].getId())}">
+									
 								</g:if>
 								<p>
 
@@ -302,24 +311,44 @@
 									${product.user.userCity}
 								</p>
 								<p>
-									${product.description}
+									${product.name}
 								</p>
 								<p>
-									<a class="btn btn-default" href="#" role="button"><g:message
-											code="details" /> &raquo;</a>
+									${product.description}
 								</p>
+								
+								<a class="openDetails btn btn-default" data-toggle="modal" data-target="#myModalRequest" data-id="${product.getId()}" > <g:message
+											code="details" /> &raquo;</a>
+									
+								</div>
+								<br>
+								<br>
 							</div>
-
+							
+								
 
 						</g:each>
 					</div>
-					<div class="row">
-						<div class="pagination">
-							<g:paginate controller="product" action="searchProduct" max="10"
+					<g:if test="${totalProduct<10}">
+						<div class="row" style="display: none">
+							<div class="pagination">
+								<g:paginate controller="product" action="searchProduct" max="10"
 								total="${totalProduct?:0}" />
-
+							
+							</div>
+						
 						</div>
-					</div>
+					</g:if>
+					<g:else>
+						<div class="row">
+							<div class="pagination">
+								<g:paginate controller="product" action="searchProduct" max="10"
+								total="${totalProduct?:0}" />
+							
+							</div>
+						
+						</div>
+					</g:else>
 
 				</div>
 			</div>
@@ -327,6 +356,46 @@
 	</div>
 	<div id="search" style="display: none;">
 		${search}
+	</div>
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<div class="centering">
+						<h3>
+							<g:message code="tutorial" />
+						</h3>
+					</div>
+
+				</div>
+				<div class="modal-body">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="myModalRequest" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<div class="centering">
+						<h3>
+							<g:message code="details" />
+						</h3>
+					</div>
+
+				</div>
+				<div class="modal-body">
+					
+				</div>
+			</div>
+		</div>
 	</div>
 
 </body>
