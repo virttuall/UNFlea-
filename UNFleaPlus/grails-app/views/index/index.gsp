@@ -165,7 +165,7 @@
 	<!-- /.carousel -->
 	<div id="footer">
 		<div class="container">
-			<ul>
+			<ol>
 				<g:if test="${flash.message}">
 						<div class="info">
 							${flash.message}
@@ -186,7 +186,7 @@
 						Terms</a>
 				</p>
 				
-			</ul>
+			</ol>
 		</div>
 	</div>
 	

@@ -170,7 +170,7 @@
 
 	<div id="footer">
 		<div class="container">
-			<ul>
+			<ol>
 				<p>
 					<g:link  controlle="index" action="viewAboutUs" params="[lang:'en']">
 						<asset:image src="USA.png" alt="UNFlea+" height="40px"
@@ -185,7 +185,7 @@
 					&copy; 2014 UN Flea+. <a href="#">Privacy </a> &amp;<a href="#">
 						Terms</a>
 				</p>
-			</ul>
+			</ol>
 		</div>
 	</div>
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
