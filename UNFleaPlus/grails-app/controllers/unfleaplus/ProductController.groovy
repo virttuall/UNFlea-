@@ -15,21 +15,6 @@ class ProductController {
 		}
 	}
 
-	def viewUpdateProduct(){
-		def valor = Product.get(params.id)
-		print valor
-		if (session.user){
-			render(controller:'product',view:'updateProduct',model:[product:valor])
-		}else{
-			redirect(controller:'index',action:'viewHome')
-		}
-	}
-
-	def theviewUpdateProduct(){
-		def product = Product.get(params.id)
-		product.delete(flush:true)
-	}
-
 	def viewDeleteProduct(){
 		if (session.user){
 			def user= User.findByUsername(session.user)
@@ -115,8 +100,8 @@ class ProductController {
 			eq("c.id", user.getId())
 		}
 		def theProduct = (Product)results.get(0)
-		theProduct.name = name
-		theProduct.description = description
+		theProduct.name = myName
+		theProduct.description = myDescription
 		theProduct.save(flush:true)
 		user.save(flush:true)
 		redirect(controller:'user',action:'viewHome')
@@ -125,42 +110,35 @@ class ProductController {
 
 	def deleteProduct(){
 		println "Delete"
-		def keys = params.keySet()
-		for (Object key : keys) {
-			if (!key.equals("action") && !key.equals("controller") && !key.equals("format")) {
-				def product = Product.get(params.get(key))
-				product.delete(flush:true)
-			}
-		}
+		def product = Product.get(params.id)
+		product.delete(flush:true)
 		redirect(controller:'user',action:'viewHome')
 	}
-	def updateData(){
-		if (session.user){
-			def temp = Product.get(params.product)
-			temp.name=params.myName
-			temp.description=params.myDescription
-			temp.save(flush:true)
-			redirect(controller:'user',action:'viewHome')
-		}else{
-			redirect(controller:'user',action:'viewHome')
-		}
-	}
-	def addImage(){
-		def temp = Product.get(params.product)
-		def allImages =request.getFileNames()
-		for(image in allImages){
-			def imageTemp = new Image(image:request.getFile(image).getBytes())
-
-			temp.addToImage(imageTemp)
-			imageTemp.save(flush:true)
-
-
-		}
-
-		temp.save(flush:true)
-		redirect(controller:'user',action:'viewHome')
-
-	}
+	//	def updateData(){
+	//		if (session.user){
+	//			def product = Product.get(params.infoIdProduct)
+	//			product.name=params.myName
+	//			product.description=params.myDescription
+	//			product.save(flush:true)
+	//			redirect(controller:'user',action:'viewHome')
+	//		}else{
+	//			redirect(controller:'user',action:'viewHome')
+	//		}
+	//	}
+	//	def addImage(){
+	//		def temp = Product.get(params.imagesIdProduct)
+	//		def allImages =request.getFileNames()
+	//		for(image in allImages){
+	//			def imageTemp = new Image(image:request.getFile(image).getBytes())
+	//
+	//			temp.addToImage(imageTemp)
+	//			imageTemp.save(flush:true)
+	//		}
+	//
+	//		temp.save(flush:true)
+	//		redirect(controller:'user',action:'viewHome')
+	//
+	//	}
 
 	def deleteImage(){
 		def product = Product.get(params.idProduct)

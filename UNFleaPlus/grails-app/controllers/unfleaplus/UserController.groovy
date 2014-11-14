@@ -12,10 +12,10 @@ class UserController {
 	def user
 	def user1
 	def mailService
-    def index() {
+	def index() {
 		redirect(controller:'user',action:'list')
 	}
-	
+
 	def viewRegister(){
 
 		if(session.user){
@@ -27,8 +27,7 @@ class UserController {
 
 		redirect(controller:'user',action:'list')
 	}
-	def sendEmail()
-	{
+	def sendEmail() {
 		mailService.sendMail {
 			to "unfleaplus@gmail.com"
 			subject "comentario"
@@ -40,7 +39,7 @@ class UserController {
 	def login(){
 		def authToken
 		user=User.findByEmail(params.email)
-		
+
 		if (user){
 			if(user.active){
 				authToken = new UsernamePasswordToken(user.username, params.password as String)
@@ -48,12 +47,11 @@ class UserController {
 				authToken = new UsernamePasswordToken(user.username, "" as String)
 				flash.message = message(code: "active")
 			}
-			
 		}else{
 			authToken = new UsernamePasswordToken(params.email, params.password as String)
 		}
-		
-		
+
+
 		try{
 			// Perform the actual login. An AuthenticationException
 			// will be thrown if the username is unrecognised or the
@@ -62,18 +60,18 @@ class UserController {
 
 			session["user"]=user.username
 			println(session.user)
-		
-			
+
+
 			redirect(controller:'user',action:'viewHome')
 		}
 		catch (AuthenticationException ex){
 			// Authentication failed, so display the appropriate message
 			// on the login page.
-			if(!flash.message){ 
+			if(!flash.message){
 				flash.message = message(code: "login.failed")
 			}
 
-			
+
 
 
 			// Now redirect back to the login page.
@@ -81,10 +79,10 @@ class UserController {
 		}
 		// Keep the username and "remember me" setting so that the
 		// user doesn't have to enter them again.
-		
-		
-		
-		
+
+
+
+
 	}
 	@Transactional
 	def register(){
@@ -93,9 +91,9 @@ class UserController {
 		if(user){ //El usuario ya existe
 			flash.message = "User already exists with the email '${params.email}'"
 			//TODO
-			//Arreglar este render 
+			//Arreglar este render
 			redirect(controller:'user',action:'viewRegister')
-		} 
+		}
 		else if(user1){ //El usuario ya existe
 			flash.message = "User already exists with the username '${params.username}'"
 			//TODO
@@ -115,18 +113,18 @@ class UserController {
 			if(user.save(flush: true)){
 				user.addToRoles(Role.findByName('ROLE_USER'))
 				// Login user
-				
+
 				redirect(controller:'index', action:'viewHome')
-			} 
+			}
 		}
-		
+
 	}
 	def avatar_image(){
 		user = User.get(params.id)
 		OutputStream out = response.outputStream
 		out.write(user.avatar)
 		out.close()
-		
+
 	}
 	@Transactional
 	def confirmEmail(){
@@ -141,12 +139,12 @@ class UserController {
 		webRequest.getCurrentRequest().session = null
 		session["user"]=null
 		// For now, redirect back to the home page.
-		
+
 		redirect(controller:'index',action:'viewHome')
 	}
-	
+
 	def list(){
-		
+
 		if(session.user){
 			user= User.findByUsername(session.user)
 			def c = Product.createCriteria()
@@ -159,15 +157,44 @@ class UserController {
 		}else{
 			redirect(controller:'index',action:'viewHome')
 		}
-		
+
 	}
 	def product_image(){
-		
+
 		def temp = Image.get(params.id)
-		
+
 		OutputStream out = response.outputStream
 		out.write(temp.image)
 		out.close()
-					
+
+	}
+
+	def updateData(){
+		if (session.user){
+			def product = Product.get(params.infoIdProduct)
+			product.name=params.myName
+			product.description=params.myDescription
+			product.save(flush:true)
+			redirect(controller:'user',action:'viewHome')
+		}else{
+			redirect(controller:'user',action:'viewHome')
+		}
+	}
+
+	def addImage(){
+		def temp = Product.get(params.imagesIdProduct)
+		def allImages =request.getFileNames()
+		for(image in allImages){
+			def imageTemp = new Image(image:request.getFile(image).getBytes())
+
+			temp.addToImage(imageTemp)
+			imageTemp.save(flush:true)
+
+
+		}
+
+		temp.save(flush:true)
+		redirect(controller:'user',action:'viewHome')
 	}
 }
+

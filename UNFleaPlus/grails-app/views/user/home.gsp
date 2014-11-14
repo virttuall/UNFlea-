@@ -8,7 +8,7 @@
 <asset:stylesheet src="home.css" />
 <asset:javascript src="bootstrap.js" />
 <asset:javascript src="home.js" />
-<asset:javascript src="dropzone.js" />
+<asset:javascript src="dropzoneUpdateProduct.js" />
 <asset:stylesheet src="main.css" />
 <asset:stylesheet src="dropzone.css" />
 
@@ -88,29 +88,26 @@
 			<div class="col-xs-offset-1 col-xs-9">
 				<g:each var="product" in="${products}">
 					<div class="headerProduct">
-						<g:link controller="product" action="viewUpdateProduct"
-							params="[id:product.getId()]" class="linkEditProduct">
-							<h3 style="display: inline">
-								${product.name}
-							</h3>
-
-						</g:link>
+						<h3 style="display: inline">
+							${product.name}
+						</h3>
 						<g:link controller="product" action="deleteProduct"
 							params="[id:product.getId()]">
 							<button type="button" class="btn btn-default btn-sm pull-right">
 								<span class='glyphicon glyphicon-trash'> </span>
 							</button>
 						</g:link>
-						<button type="button" class="btn btn-default btn-sm pull-right"
+						<a class="openUpdateImages btn btn-default btn-sm pull-right"
 							data-toggle="modal" data-target="#modalUpdateImages"
-							id="updateImages">
-							<span class='glyphicon glyphicon-plus-sign'> </span>
-						</button>
-						<button type="button" class="btn btn-default btn-sm pull-right"
+							data-id="${product.getId()}"
+							data-nimages="${product.image.size()}" id="updateImages"> <span
+							class='glyphicon glyphicon-plus-sign'> </span>
+						</a> <a class="openUpdateInfo btn btn-default btn-sm pull-right"
 							data-toggle="modal" data-target="#modalUpdateInformation"
-							id="updateInformation">
+							data-id="${product.getId()}" data-name="${product.getName()}"
+							data-desc="${product.getDescription() }" id="updateInformation">
 							<span class='glyphicon glyphicon-pencil'> </span>
-						</button>
+						</a>
 					</div>
 					<div class="row">
 						<g:each var="images" in="${product.image}">
@@ -172,105 +169,51 @@
 					</h4>
 				</div>
 				<div class="modal-body">
-					<form class="form-horizontal" name="genDesc" controller="product"
-						action="addProduct">
-						<g:set var="name_input" value="${g.message(code: 'nameVar')}"
-							scope="page" />
-						<g:set var="description_input"
-							value="${g.message(code: 'descriptionVar')}" scope="page" />
-						<g:set var="state_input" value="${g.message(code: 'stateVar')}"
-							scope="page" />
-						<input type="hidden" id="infoIdProduct">
-						<fieldset>
-							<!-- Name input-->
-							<div class="form-group">
-								<label class="col-md-3 control-label" for="name"><g:message
-										code="nameVar" /></label>
-								<div class="col-md-9">
-									<input id="myName" name="myName" type="text"
-										onkeyup="onChangeName()" placeholder="${name_input }"
-										class="form-control" required>
-								</div>
-							</div>
-
-							<!-- Description body -->
-							<div class="form-group">
-								<label class="col-md-3 control-label" for="message"><g:message
-										code="descriptionVar" /></label>
-								<div class="col-md-9">
-									<textarea class="form-control" id="myDescription"
-										onkeyup="onChangeDescription()" name="myDescription"
-										placeholder="${description_input }" rows="5" maxlength="200"
-										required></textarea>
-								</div>
-							</div>
-							<!-- State selection -->
-
-							<div class="form-group">
-								<label class="col-md-3 control-label" for="state"><g:message
-										code="stateVar" /></label>
-								<div class="col-md-9 disabled" id="myTypeState">
-									<label class="radio-inline"> <input type="radio"
-										name="myState" id="myNormalState" onchange="onChangeState()"
-										checked disabled> <g:message code="normalVar" />
-									</label> <label class="radio-inline"> <input type="radio"
-										name="myState" id="myAuctionState" onchange="onChangeState()"
-										disabled> <g:message code="auctionVar" />
-									</label> <label class="radio-inline"> <input type="radio"
-										name="myState" id="myDonateState" onchange="onChangeState()"
-										disabled> <g:message code="donateVar" />
-									</label>
-								</div>
-							</div>
-							<div class="myAditionalOptions" id="myAditionalOptions">
-								<g:set var="date_now" value="${dateNow = new Date()}" />
-								<div class="form-group" id="myOptionMinimumCost">
-									<label class="col-md-3 control-label" for="state"><g:message
-											code="minimumCostVar" /></label>
-									<div class="col-md-9">
-										<div class="input-group">
-											<span class="input-group-addon">$</span> <input type="number"
-												class="form-control" id="myMinimumCost" name="myMinimumCost"
-												min="0.01" max="1000000" step="0.01"
-												onkeyup="onChangeMinimumCost()">
-										</div>
-									</div>
-								</div>
+					<div class="modal-body">
+						<form class="form-horizontal" id="update" controller="product"
+							action="updateData" method="post">
+							<g:set var="name_input" value="${g.message(code: 'nameVar')}"
+								scope="page" />
+							<g:set var="description_input"
+								value="${g.message(code: 'descriptionVar')}" scope="page" />
+							<g:set var="state_input" value="${g.message(code: 'stateVar')}"
+								scope="page" />
+							<fieldset>
+								<input type="hidden" id="infoIdProduct" name="infoIdProduct">
+								<!-- Name input-->
 								<div class="form-group">
-									<label class="col-md-3 control-label" for="state"><g:message
-											code="dateStartVar" /></label>
+									<label class="col-md-3 control-label" for="name"><g:message
+											code="nameVar" /></label>
 									<div class="col-md-9">
-										<g:datePicker name="myDateStart" id="myDateStart"
-											value="${dateNow}" precision="minute"
-											years="${date_now.getAt(Calendar.YEAR)..date_now.getAt(Calendar.YEAR)+2}" />
+										<input id="myName" name="myName" type="text"
+											onkeyup="onChangeName()" placeholder="${name_input }"
+											class="form-control" required>
 									</div>
 								</div>
+
+								<!-- Description body -->
 								<div class="form-group">
-									<label class="col-md-3 control-label" for="state"><g:message
-											code="dateEndVar" /></label>
+									<label class="col-md-3 control-label" for="message"><g:message
+											code="descriptionVar" /></label>
 									<div class="col-md-9">
-										<g:datePicker name="myDateEnd" id="myDateEnd"
-											value="${dateNow}" precision="minute"
-											years="${date_now.getAt(Calendar.YEAR)..date_now.getAt(Calendar.YEAR)+2}" />
+										<textarea class="form-control" id="myDescription"
+											onkeyup="onChangeDescription()" name="myDescription"
+											placeholder="${description_input }" rows="5" maxlength="200"
+											required></textarea>
 									</div>
 								</div>
-							</div>
-
-
-							<!-- Form actions -->
-
-
-						</fieldset>
-
-					</form>
+								<button type="submit" class="btn btn-primary btn-lg"
+									style="float: right;">
+									<g:message code="updateSend" />
+								</button>
+							</fieldset>
+						</form>
+					</div>
 
 				</div>
-				<div class="modal-footer">
-					<button type="submit" class="btn btn-primary btn-lg"
-						style="float: right;">
-						<g:message code="updateSend" />
-					</button>
+				<%--<div class="modal-footer">
 				</div>
+			--%>
 			</div>
 		</div>
 	</div>
@@ -289,15 +232,13 @@
 					</h4>
 				</div>
 				<div class="modal-body">
+					<input type="hidden" id="imagesNImages" value="0">
 					<fieldset>
 						<div id="dropzone">
-							<form action="http://localhost:8080/UNFleaPlus/product/addImage"
-								method="post" class="dropzone dz-clickable"
-								enctype="multipart/form-data" id="updateImage" name="files">
-								<%--
-								<input id="product" name="product" type="hidden"
-									value="${product.getId()}" />
-								--%>
+							<form action="addImage" controller="product" method="post"
+								class="dropzone dz-clickable" enctype="multipart/form-data"
+								id="updateImage" name="files">
+								<input type="hidden" id="imagesIdProduct" name="imagesIdProduct">
 							</form>
 						</div>
 					</fieldset>
