@@ -108,12 +108,12 @@ class ProductController {
 	}
 
 
-	def deleteProduct(){
-		println "Delete"
-		def product = Product.get(params.id)
-		product.delete(flush:true)
-		redirect(controller:'user',action:'viewHome')
-	}
+//	def deleteProduct(){
+//		println "Delete"
+//		def product = Product.get(params.id)
+//		product.delete(flush:true)
+//		redirect(controller:'user',action:'viewHome')
+//	}
 	//	def updateData(){
 	//		if (session.user){
 	//			def product = Product.get(params.infoIdProduct)
@@ -140,18 +140,18 @@ class ProductController {
 	//
 	//	}
 
-	def deleteImage(){
-		def product = Product.get(params.idProduct)
-		def images = []
-		images += product.image
-		if(images.size > 1){
-			images.each {
-				if(it.getId() == params.idImage.toInteger()){
-					product.removeFromImage(it)
-					it.delete(flush:true)
-				}
-			}
-		}
-		redirect(controller:'user',action:'viewHome')
-	}
+//	def deleteImage(){
+//		def product = Product.get(params.idProduct)
+//		def images = []
+//		images += product.image
+//		if(images.size > 1){
+//			images.each {
+//				if(it.getId() == params.idImage.toInteger()){
+//					product.removeFromImage(it)
+//					it.delete(flush:true)
+//				}
+//			}
+//		}
+//		redirect(controller:'user',action:'viewHome')
+//	}
 }

@@ -91,13 +91,11 @@
 						<h3 style="display: inline">
 							${product.name}
 						</h3>
-						<g:link controller="product" action="deleteProduct"
-							params="[id:product.getId()]">
-							<button type="button" class="btn btn-default btn-sm pull-right">
-								<span class='glyphicon glyphicon-trash'> </span>
-							</button>
-						</g:link>
-						<a class="openUpdateImages btn btn-default btn-sm pull-right"
+						<a class="openDeleteProduct btn btn-default btn-sm pull-right"
+							data-toggle="modal" data-target="#modalConfirmDeleteProduct"
+							data-id="${product.getId()}"> <span
+							class='glyphicon glyphicon-trash'> </span>
+						</a> <a class="openUpdateImages btn btn-default btn-sm pull-right"
 							data-toggle="modal" data-target="#modalUpdateImages"
 							data-id="${product.getId()}"
 							data-nimages="${product.image.size()}" id="updateImages"> <span
@@ -114,12 +112,11 @@
 							<g:each var="image" in="${images}">
 
 								<div class="margin-gallery col-lg-3 col-md-3 col-sm-4 col-xs-6">
-									<li class="thumbnail"><g:link
-											params="[idProduct:product.getId(),idImage:image.getId()]"
-											controller="product" action="deleteImage">
-											<span
-												class='remove-product glyphicon glyphicon-remove pull-right'></span>
-										</g:link><img class="img-responsive"
+									<li class="thumbnail"><a class="openDeleteImage" data-toggle="modal"
+										data-target="#modalConfirmDeleteImage" data-id="${product.getId()}"
+										data-idimage="${image.getId()}"> <span
+											class='remove-product glyphicon glyphicon-remove pull-right'></span>
+									</a><img class="img-responsive"
 										src="${createLink(controller:'user', action:'product_image', id:image.getId())}">
 									</li>
 								</div>
@@ -253,7 +250,76 @@
 		</div>
 	</div>
 
+	<!-- Modal Confirm Delete Product-->
+	<div class="modal fade" id="modalConfirmDeleteProduct" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">
+						<g:message code="confirmDeleteVar" />
+					</h4>
+				</div>
+				<div class="modal-body">
+					<p>
+						<g:message code="deleteProductMessageVar" />
+					</p>
+					<form id="formDeleteProduct" controller="product"
+						action="deleteProduct" method="post">
+						<input type="hidden" id="deleteProductId" name="id" value="0">
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						<g:message code="cancelVar" />
+					</button>
+					<button type="submit" class="btn btn-danger pull-right"
+						onclick="sendDeleteProductForm()">
+						<g:message code="delete" />
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
+	<!-- Modal Confirm Delete Image-->
+	<div class="modal fade" id="modalConfirmDeleteImage" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">
+						<g:message code="confirmDeleteVar" />
+					</h4>
+				</div>
+				<div class="modal-body">
+					<p>
+						<g:message code="deleteImageMessageVar" />
+					</p>
+					<form id="formDeleteImage" controller="product"
+						action="deleteImage" method="post">
+						<input type="hidden" id="deleteProductId" name="idProduct" value="0">
+						<input type="hidden" id="deleteImageId" name="idImage" value="0">
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						<g:message code="cancelVar" />
+					</button>
+					<button type="submit" class="btn btn-danger pull-right"
+						onclick="sendDeleteImageForm()">
+						<g:message code="delete" />
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 </body>

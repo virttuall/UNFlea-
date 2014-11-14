@@ -31,3 +31,23 @@ $(document).on("click", ".openUpdateImages", function () {
     $(".modal-body #imagesIdProduct").val( myIdProduct );
     $(".modal-body #imagesNImages").val( (10-intMyNImages).toString() );
 });
+
+$(document).on("click", ".openDeleteProduct", function () {
+    var myIdProduct = $(this).data('id');
+    $(".modal-body #deleteProductId").val( myIdProduct );
+});
+
+function sendDeleteProductForm(){
+	$("#formDeleteProduct").submit();
+}
+
+$(document).on("click", ".openDeleteImage", function () {
+    var myIdProduct = $(this).data('id');
+    var myIdImage = $(this).data('idimage');
+    $(".modal-body #deleteProductId").val( myIdProduct );
+    $(".modal-body #deleteImageId").val( myIdImage );
+});
+
+function sendDeleteImageForm(){
+	$("#formDeleteImage").submit();
+}
