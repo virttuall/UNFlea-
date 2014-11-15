@@ -17,6 +17,7 @@
 <asset:stylesheet src="slider.css" />
 <asset:javascript src="modal.js" />
 
+
 </head>
 <body>
 
@@ -316,10 +317,10 @@
 								<p>
 									${product.description}
 								</p>
-								
-								<a class="openDetails btn btn-default" data-toggle="modal" data-target="#myModalRequest" data-id="${product.getId()}" > <g:message
-											code="details" /> &raquo;</a>
-									
+								<g:form controller="product" action="request">
+									<button class="openDetails btn btn-default" name="product" value="${product.getId()}" > <g:message
+											code="details" /> &raquo;</button>
+								</g:form>
 								</div>
 								<br>
 								<br>
@@ -377,26 +378,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="modal fade" id="myModalRequest" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">&times;</button>
-					<div class="centering">
-						<h3>
-							<g:message code="details" />
-						</h3>
-					</div>
-
-				</div>
-				<div class="modal-body">
-					
-				</div>
-			</div>
-		</div>
-	</div>
+	
 
 </body>
 </html>

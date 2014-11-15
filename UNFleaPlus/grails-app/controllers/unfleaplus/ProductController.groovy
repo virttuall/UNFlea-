@@ -290,6 +290,12 @@ class ProductController {
 		
 		
 	}
+	def request(){
+		def product = Product.get(params.product)
+		def products = IndexController.recoveryProduct()
+		//print product
+		render(controller:'prodcut',view:'showRequest',model:[product:product,search:products])
+	}
 	
 	
 	
