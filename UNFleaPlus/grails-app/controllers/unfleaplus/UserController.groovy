@@ -169,54 +169,6 @@ class UserController {
 
 	}
 
-	def updateData(){
-		if (session.user){
-			def product = Product.get(params.infoIdProduct)
-			product.name=params.myName
-			product.description=params.myDescription
-			product.save(flush:true)
-			redirect(controller:'user',action:'viewHome')
-		}else{
-			redirect(controller:'user',action:'viewHome')
-		}
-	}
-
-	def addImage(){
-		def temp = Product.get(params.imagesIdProduct)
-		def allImages =request.getFileNames()
-		for(image in allImages){
-			def imageTemp = new Image(image:request.getFile(image).getBytes())
-
-			temp.addToImage(imageTemp)
-			imageTemp.save(flush:true)
-
-
-		}
-
-		temp.save(flush:true)
-		redirect(controller:'user',action:'viewHome')
-	}
 	
-	def deleteProduct(){
-		println "Delete"
-		def product = Product.get(params.id)
-		product.delete(flush:true)
-		redirect(controller:'user',action:'viewHome')
-	}
-	
-	def deleteImage(){
-		def product = Product.get(params.idProduct)
-		def images = []
-		images += product.image
-		if(images.size > 1){
-			images.each {
-				if(it.getId() == params.idImage.toInteger()){
-					product.removeFromImage(it)
-					it.delete(flush:true)
-				}
-			}
-		}
-		redirect(controller:'user',action:'viewHome')
-	}
 }
 

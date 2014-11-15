@@ -167,8 +167,7 @@
 				</div>
 				<div class="modal-body">
 					<div class="modal-body">
-						<form class="form-horizontal" id="update" controller="product"
-							action="updateData" method="post">
+						<g:form class="form-horizontal" id="update" url="[action:'product',controller:'updateData']" method="post">
 							<g:set var="name_input" value="${g.message(code: 'nameVar')}"
 								scope="page" />
 							<g:set var="description_input"
@@ -204,7 +203,7 @@
 									<g:message code="updateSend" />
 								</button>
 							</fieldset>
-						</form>
+						</g:form>
 					</div>
 
 				</div>
@@ -232,11 +231,12 @@
 					<input type="hidden" id="imagesNImages" value="0">
 					<fieldset>
 						<div id="dropzone">
-							<form action="addImage" controller="product" method="post"
+							<g:form  url="[action:'addImage',controller:'product']"
+							 method="post"
 								class="dropzone dz-clickable" enctype="multipart/form-data"
 								id="updateImage" name="files">
 								<input type="hidden" id="imagesIdProduct" name="imagesIdProduct">
-							</form>
+							</g:form>
 						</div>
 					</fieldset>
 				</div>
@@ -267,10 +267,9 @@
 					<p>
 						<g:message code="deleteProductMessageVar" />
 					</p>
-					<form id="formDeleteProduct" controller="product"
-						action="deleteProduct" method="post">
+					<g:form id="formDeleteProduct" url="[action:'deleteProduct',controller:'product']"  method="post">
 						<input type="hidden" id="deleteProductId" name="id" value="0">
-					</form>
+					</g:form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">
@@ -302,11 +301,10 @@
 					<p>
 						<g:message code="deleteImageMessageVar" />
 					</p>
-					<form id="formDeleteImage" controller="product"
-						action="deleteImage" method="post">
+					<g:form id="formDeleteImage" url="[action:'deleteImage',controller:'product']"  method="post">
 						<input type="hidden" id="deleteProductId" name="idProduct" value="0">
 						<input type="hidden" id="deleteImageId" name="idImage" value="0">
-					</form>
+					</g:form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">

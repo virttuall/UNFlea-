@@ -88,70 +88,69 @@ class ProductController {
 
 	}
 
-	def updateProduct(){
-		def user = User.findByUsername(session.user)
-		def prevName = params.prevName
-		def name = params.name
-		def description = params.description
-		def state = params.state
-		def c = Product.createCriteria()
-		def results = c.list(params){
-			createAlias("user", "c")
-			eq("c.id", user.getId())
-		}
-		def theProduct = (Product)results.get(0)
-		theProduct.name = myName
-		theProduct.description = myDescription
-		theProduct.save(flush:true)
-		user.save(flush:true)
+	def deleteProduct(){
+		println "Delete"
+		def product = Product.get(params.id)
+		product.delete(flush:true)
 		redirect(controller:'user',action:'viewHome')
 	}
+	def deleteProduct1(){
+		println "Delete"
+		def keys = params.keySet()
+		for (Object key : keys) {
+			if (!key.equals("action") && !key.equals("controller") && !key.equals("format")) {
+				def product = Product.get(params.get(key))
+				product.delete(flush:true)
+			}
+		}
+		redirect(controller:'user',action:'viewHome')
+	}
+	def updateData(){
+		if (session.user){
+			def product = Product.get(params.infoIdProduct)
+			product.name=params.myName
+			product.description=params.myDescription
+			product.save(flush:true)
+			redirect(controller:'user',action:'viewHome')
+		}else{
+			redirect(controller:'user',action:'viewHome')
+		}
+	}
+
+	def addImage(){
+		def temp = Product.get(params.imagesIdProduct)
+		def allImages =request.getFileNames()
+		for(image in allImages){
+			def imageTemp = new Image(image:request.getFile(image).getBytes())
+
+			temp.addToImage(imageTemp)
+			imageTemp.save(flush:true)
 
 
-//	def deleteProduct(){
-//		println "Delete"
-//		def product = Product.get(params.id)
-//		product.delete(flush:true)
-//		redirect(controller:'user',action:'viewHome')
-//	}
-	//	def updateData(){
-	//		if (session.user){
-	//			def product = Product.get(params.infoIdProduct)
-	//			product.name=params.myName
-	//			product.description=params.myDescription
-	//			product.save(flush:true)
-	//			redirect(controller:'user',action:'viewHome')
-	//		}else{
-	//			redirect(controller:'user',action:'viewHome')
-	//		}
-	//	}
-	//	def addImage(){
-	//		def temp = Product.get(params.imagesIdProduct)
-	//		def allImages =request.getFileNames()
-	//		for(image in allImages){
-	//			def imageTemp = new Image(image:request.getFile(image).getBytes())
-	//
-	//			temp.addToImage(imageTemp)
-	//			imageTemp.save(flush:true)
-	//		}
-	//
-	//		temp.save(flush:true)
-	//		redirect(controller:'user',action:'viewHome')
-	//
-	//	}
+		}
 
-//	def deleteImage(){
-//		def product = Product.get(params.idProduct)
-//		def images = []
-//		images += product.image
-//		if(images.size > 1){
-//			images.each {
-//				if(it.getId() == params.idImage.toInteger()){
-//					product.removeFromImage(it)
-//					it.delete(flush:true)
-//				}
-//			}
-//		}
-//		redirect(controller:'user',action:'viewHome')
-//	}
+		temp.save(flush:true)
+		redirect(controller:'user',action:'viewHome')
+	}
+	
+	
+	
+	def deleteImage(){
+		def product = Product.get(params.idProduct)
+		def images = []
+		def tempImages=[]
+		print params
+		print product
+		images += product.image
+		print params.idProduct
+		if(images.size() > 1){
+			images.each { it ->
+				if(it.getId() == params.idImage.toInteger()){
+					product.removeFromImage(it)
+					it.delete(flush:true)
+				}
+			}
+		}
+		redirect(controller:'user',action:'viewHome')
+	}
 }

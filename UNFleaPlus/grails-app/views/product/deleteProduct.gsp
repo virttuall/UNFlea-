@@ -38,7 +38,7 @@
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
 				<div class="well well-sm">
-					<form class="form-horizontal" controller="product" action="deleteProduct" method="post" name="myForm">
+					<g:form class="form-horizontal" controller="product" action="deleteProduct1" method="post" name="myForm">
 						<fieldset>
 							<g:each var="product" in="${products}">
 								<input type="radio" name="${product.name}" id="${product.getId()}" value="${product.getId()}" class="radio1" /><label class="text" for="${product.name}">${product.name}</label><br />
@@ -48,7 +48,7 @@
 							</button>
 						</fieldset>
 						
-					</form>
+					</g:form>
 					
 				</div>
 				<div class=pagination>
