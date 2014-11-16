@@ -1,6 +1,14 @@
 package unfleaplus
 
 
+import javax.swing.ImageIcon
+import javax.imageio.ImageIO;
+import java.awt.Graphics2D
+import java.awt.image.BufferedImage
+import java.util.zip.Deflater;
+
+
+
 class ProductController {
 	def temp
 	def normal
@@ -96,6 +104,69 @@ class ProductController {
 		theProduct.save(flush:true)
 		user.save(flush:true)
 		redirect(controller:'user',action:'viewHome')
+	}
+	def small_image(){
+		byte [] buffer
+		def temp = Image.get(params.id)
+		ImageIcon a = new ImageIcon(temp.image)
+		a= new ImageIcon(a.getImage().getScaledInstance(150, 150, java.awt.Image.SCALE_DEFAULT))
+		BufferedImage bi = new BufferedImage(a.getImage().getWidth(null)
+		,a.getImage().getWidth(null)
+		, BufferedImage.BITMASK)
+		Graphics2D g2 = bi.createGraphics();
+		g2.drawImage(a.getImage(), 0, 0, null);
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		try {
+			ImageIO.write(bi, "PNG", baos);
+		} catch (IOException ex) {}
+		buffer = baos.toByteArray()
+		
+		OutputStream out = response.outputStream
+		out.write(buffer)
+		out.close()
+		
+	}
+	def large_image(){
+		byte [] buffer
+		def temp = Image.get(params.id)
+		ImageIcon a = new ImageIcon(temp.image)
+		a= new ImageIcon(a.getImage().getScaledInstance(1000, 1000, java.awt.Image.SCALE_DEFAULT))
+		BufferedImage bi = new BufferedImage(a.getImage().getWidth(null)
+		,a.getImage().getWidth(null)
+		, BufferedImage.BITMASK)
+		Graphics2D g2 = bi.createGraphics();
+		g2.drawImage(a.getImage(), 0, 0, null);
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		try {
+			ImageIO.write(bi, "PNG", baos);
+		} catch (IOException ex) {}
+		buffer = baos.toByteArray()
+		
+		OutputStream out = response.outputStream
+		out.write(buffer)
+		out.close()
+					
+	}
+	def normal_image(){
+		byte [] buffer
+		def temp = Image.get(params.id)
+		ImageIcon a = new ImageIcon(temp.image)
+		a= new ImageIcon(a.getImage().getScaledInstance(300, 300, java.awt.Image.SCALE_DEFAULT))
+		BufferedImage bi = new BufferedImage(a.getImage().getWidth(null)
+		,a.getImage().getWidth(null)
+		, BufferedImage.BITMASK)
+		Graphics2D g2 = bi.createGraphics();
+		g2.drawImage(a.getImage(), 0, 0, null);
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		try {
+			ImageIO.write(bi, "PNG", baos);
+		} catch (IOException ex) {}
+		buffer = baos.toByteArray()
+		
+		OutputStream out = response.outputStream
+		out.write(buffer)
+		out.close()
+					
 	}
 
 	

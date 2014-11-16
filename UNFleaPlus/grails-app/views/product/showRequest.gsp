@@ -11,6 +11,10 @@
 <asset:javascript src="search.js" />
 <asset:javascript src="modal.js" />
 <asset:stylesheet src="search.css" />
+<asset:stylesheet src="jquery.fancybox.css" />
+<asset:javascript src="jquery.elevatezoom.js" />
+<asset:javascript src="jquery.fancybox.js" />
+<asset:javascript src="request.js" />
 
 </head>
 
@@ -120,24 +124,40 @@
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<h2>${product.name}</h2>
 			</div>
-			<g:each var="images" in="${product.image}">
-				<g:each var="image" in="${images}">
+			<div class="row">
+				<div class="col-xs-6">
+					<g:if test="${product.image}">
+					<img id="img_01"  class="fancybox"
+					src="${createLink(controller:'product', action:'normal_image', id:product.image[0].getId())}" data-zoom-image="${createLink(controller:'product', action:'large_image', id:product.image[0].getId())}" />
+									
+					</g:if>
+				</div>
+				
+			</div>
+			
+			<div id="gallery_01">
+				<div class="row">
+					<g:each var="images" in="${product.image}">
+					<g:each var="image" in="${images}">
 
 
 						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="margin-bottom: 20px;">
-								
-						
-							<img 
-							src="${createLink(controller:'user', action:'product_image', id:image.getId())}" style="width: 15em; height: 15em;">
-						
+							<a href="#" data-image="${createLink(controller:'product', action:'normal_image', id:image.getId())}"  data-zoom-image="${createLink(controller:'product', action:'large_image', id:image.getId())}" > 
+								<img id="img_01" class="fancybox"  src="${createLink(controller:'product', action:'small_image', id:image.getId())}"  /> 
+							</a> 
+							
 						</div>
 					
 
 
 
-				</g:each>
+					</g:each>
 
-			</g:each>
+				</g:each>
+				</div>
+				
+			</div>
+			
 			<div class="row">
 				<div class="col-xs-12"> 
 					<g:form>
@@ -153,6 +173,9 @@
 	<div id="search" style="display: none;">
 		${search}
 	</div>
+	<script>
+
+</script>
 </body>
 
 </html>
