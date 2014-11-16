@@ -11,10 +11,11 @@
 <asset:javascript src="search.js" />
 <asset:javascript src="modal.js" />
 <asset:stylesheet src="search.css" />
-<asset:stylesheet src="jquery.fancybox.css" />
 <asset:javascript src="jquery.elevatezoom.js" />
-<asset:javascript src="jquery.fancybox.js" />
 <asset:javascript src="request.js" />
+<asset:javascript src="lightbox.js" />
+<asset:stylesheet src="lightbox.css" />
+
 
 </head>
 
@@ -127,9 +128,12 @@
 			<div class="row">
 				<div class="col-xs-6">
 					<g:if test="${product.image}">
-					<img id="img_01"  class="fancybox"
-					src="${createLink(controller:'product', action:'normal_image', id:product.image[0].getId())}" data-zoom-image="${createLink(controller:'product', action:'large_image', id:product.image[0].getId())}" />
-									
+						<a  href="${createLink(controller:'product', action:'large_image', id:product.image[0].getId())}" data-lightbox="example-set">
+							<img id="img_01"  
+						src="${createLink(controller:'product', action:'normal_image', id:product.image[0].getId())}" data-zoom-image="${createLink(controller:'product', action:'large_image', id:product.image[0].getId())}" />
+							
+						</a>
+							
 					</g:if>
 				</div>
 				
@@ -142,9 +146,17 @@
 
 
 						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="margin-bottom: 20px;">
-							<a href="#" data-image="${createLink(controller:'product', action:'normal_image', id:image.getId())}"  data-zoom-image="${createLink(controller:'product', action:'large_image', id:image.getId())}" > 
-								<img id="img_01" class="fancybox"  src="${createLink(controller:'product', action:'small_image', id:image.getId())}"  /> 
-							</a> 
+							<g:if test="${product.image[0].getId()==images.getId()}">
+								<a href="${createLink(controller:'product', action:'large_image', id:image.getId())}"  data-image="${createLink(controller:'product', action:'normal_image', id:image.getId())}"  data-zoom-image="${createLink(controller:'product', action:'large_image', id:image.getId())}" > 
+									<img id="img_01"   src="${createLink(controller:'product', action:'small_image', id:image.getId())}"  /> 
+								</a>
+							</g:if>
+							<g:else>
+								<a href="${createLink(controller:'product', action:'large_image', id:image.getId())}" data-lightbox="example-set" data-image="${createLink(controller:'product', action:'normal_image', id:image.getId())}"  data-zoom-image="${createLink(controller:'product', action:'large_image', id:image.getId())}" > 
+									<img id="img_01"   src="${createLink(controller:'product', action:'small_image', id:image.getId())}"  /> 
+								</a>
+							</g:else>
+							 
 							
 						</div>
 					
