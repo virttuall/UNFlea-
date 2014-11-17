@@ -975,7 +975,8 @@
 																			.getQueuedFiles().length === 0) {
 																return setTimeout(
 																		(function() {
-																			if (checkDates()) {
+																			if (checkInput()) 
+																			{ 
 																				window.location
 																						.replace("/UNFleaPlus/user");
 																				return _this
@@ -2409,25 +2410,12 @@
 //
 // }
 
-function checkDates() {
-	if (document.getElementById('myAuctionState').checked) {
-		var startDate = getStartDate();
 
-		var endDate = getEndDate();
-
-		var curDate = new Date();
-		
-		return endDate.getTime() > startDate.getTime()
-				&& startDate.getTime() > curDate.getTime();
-	} else {
-		return true;
-	}
-}
 
 function checkInput(){
 	var name = document.getElementById('myName').value;
 	var desc = document.getElementById('myDescription').value;
-	if(name.length>5 && desc.length>5 && checkDates())
+	if(name.length>5 && desc.length>5 && getEndDate().getTime()>=getStartDate().getTime())
 		return true;
 	else
 		return false;

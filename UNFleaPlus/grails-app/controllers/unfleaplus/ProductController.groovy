@@ -237,6 +237,7 @@ class ProductController {
 		 * ya que se estan haciendo cambios a la base de datos.
 		 */
 		print params
+		def type=""
 		def nuevaBusqueda=false
 		def country
 		def state
@@ -322,30 +323,32 @@ class ProductController {
 				priceOrder=params.priceOrder
 				//order+=priceOrder+","
 			}
+			
 			if(subasta!=null && params.subasta.equals("-1")){
 				subasta=null
 			}else if(!params.subsata.equals("-1") && params.subasta!=null) {
-				where+="b.type=? OR "
+				type+="b.type=? OR "
 				listWhere.add("AUCTION")
 				subasta="AUCTION"
 			}
 			if(donacion!=null && params.donacion.equals("-1")){
 				donacion=null
 			}else if(!params.donacion.equals("-1") && params.donacion!=null) {
-				where+="b.type=? OR "
+				type+="b.type=? OR "
 				listWhere.add("DONATE")
 				donacion="DONATE"
 			}
 			if(normal!=null && params.normal.equals("-1")){
 				normal=null
 			}else if(!params.normal.equals("-1") && params.normal!=null) {
-				where+="b.type=? OR "
+				type+="b.type=? 0R "
 				listWhere.add("NORMAL")
 				normal="NORMAL"
 			}
+			
 		}
 
-
+		
 		if(order.length()>0){
 			order=order.substring(0,order.length()-1)
 			order1=" order by "
@@ -354,8 +357,14 @@ class ProductController {
 
 			where="AND "+where.substring(0,where.length()-4)
 		}
+		if(type.length()>0){
+			type = type.substring(0,type.length()-3)
+			where+=" AND ( "+type+" )"
+		}
+		
 		print order
 		print where
+		print listWhere
 
 
 

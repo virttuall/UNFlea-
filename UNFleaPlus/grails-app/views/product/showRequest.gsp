@@ -127,7 +127,17 @@
 
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<h1>
-					${product.name}
+					${product.name}  <g:if test="${product.type == 'NORMAL' }">
+								        <span class="label label-primary center-vertical"><g:message code="normalVar"/></span>
+									</g:if>
+									<g:else>
+										<g:if test="${product.type == 'AUCTION'}">
+		    								<span class="label label-success center-vertical"><g:message code="auctionVar"/></span>
+										</g:if>
+										<g:else>
+		     								<span class="label label-warning center-vertical"><g:message code="donateVar"/></span>
+		     							</g:else>
+		     						</g:else>
 				</h1>
 			</div>
 			<div class="row">
@@ -189,6 +199,16 @@
 				<div class="col-lg-9 col-sm-8 col-md-8  col-xs-5">
 					<h3><g:message code="descriptionVar"/></h3>
 				 	${product.description}
+				 	<g:if test="${product.type == 'AUCTION'}">
+				 		<h4><g:message code="dateStartVar"/>  </h4> ${product.openingDate}
+				 		<h4><g:message code="dateEndVar"/> </h4> ${product.closingDate}
+				 		<h4><g:message code="curPriceVar"/>  </h4> ${product.currentPrice}
+				 	
+				 	</g:if>
+				 	<g:elseif test="${product.type == 'DONATE'}">
+				 		<h4><g:message code="dateStartVar"/>  </h4> ${product.openingDate}
+				 		<h4><g:message code="dateEndVar"/> </h4> ${product.closingDate}
+				 	</g:elseif>
 				</div>
 				
 				
