@@ -119,7 +119,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="container form-margin1">
 		<div class="country" style="display: none;">
 			${country}
@@ -151,42 +151,67 @@
 						<div class="col-xs-12 col-sm-12">
 
 							<div class="sidebar-module">
-								<h4><g:message code="order"/></h4>
+								<h4>
+									<g:message code="order" />
+								</h4>
 								<g:if test="${nameOrder}">
-									<input type="radio" name="nameOrder" value="name" onclick="submitForm(this);this.form.submit();" checked> <g:message code="nameVar"/><br> 
+									<input type="radio" name="nameOrder" value="name"
+										onclick="submitForm(this);this.form.submit();" checked>
+									<g:message code="nameVar" />
+									<br>
 								</g:if>
 								<g:else>
-									<input type="radio" name="nameOrder" value="name" onclick="this.form.submit();"> <g:message code="nameVar"/><br> 
+									<input type="radio" name="nameOrder" value="name"
+										onclick="this.form.submit();">
+									<g:message code="nameVar" />
+									<br>
 								</g:else>
 								<g:if test="${usernameOrder}">
-									<input type="radio" name="usernameOrder" value="username" onclick="submitForm(this);this.form.submit();" checked> <g:message code="usernameVar"/><br> 
+									<input type="radio" name="usernameOrder" value="username"
+										onclick="submitForm(this);this.form.submit();" checked>
+									<g:message code="usernameVar" />
+									<br>
 								</g:if>
 								<g:else>
-									<input type="radio" name="usernameOrder" value="username" onclick="this.form.submit();"> <g:message code="usernameVar"/><br> 
+									<input type="radio" name="usernameOrder" value="username"
+										onclick="this.form.submit();">
+									<g:message code="usernameVar" />
+									<br>
 								</g:else>
 								<g:if test="${countryOrder}">
-									<input type="radio" name="countryOrder" value="country" onclick="submitForm(this);this.form.submit();" checked>
+									<input type="radio" name="countryOrder" value="country"
+										onclick="submitForm(this);this.form.submit();" checked>
 									<g:message code="country" />
-								<br>
+									<br>
 								</g:if>
 								<g:else>
-									<input type="radio" name="countryOrder" value="country" onclick="this.form.submit();">
-								<g:message code="country" /><br>
+									<input type="radio" name="countryOrder" value="country"
+										onclick="this.form.submit();">
+									<g:message code="country" />
+									<br>
 								</g:else>
 								<g:if test="${cityOrder}">
-									<input type="radio" name="cityOrder"
-									value="city" onclick="submitForm(this);this.form.submit();" checked> <g:message code="state" /><br> 
+									<input type="radio" name="cityOrder" value="city"
+										onclick="submitForm(this);this.form.submit();" checked>
+									<g:message code="state" />
+									<br>
 								</g:if>
 								<g:else>
-									<input type="radio" name="cityOrder"
-									value="city" onclick="this.form.submit();"> <g:message code="state" /><br> 
+									<input type="radio" name="cityOrder" value="city"
+										onclick="this.form.submit();">
+									<g:message code="state" />
+									<br>
 								</g:else>
-								<g:if test="${priceOrder}"> 
-								 	<input type="radio" name="priceOrder" value="price" onclick="submitForm(this);this.form.submit();" checked> <g:message code="price" />
+								<g:if test="${priceOrder}">
+									<input type="radio" name="priceOrder" value="price"
+										onclick="submitForm(this);this.form.submit();" checked>
+									<g:message code="price" />
 								</g:if>
 								<g:else>
-									<input type="radio" name="priceOrder" value="price" onclick="this.form.submit();"> <g:message code="price" />
-									
+									<input type="radio" name="priceOrder" value="price"
+										onclick="this.form.submit();">
+									<g:message code="price" />
+
 								</g:else>
 
 							</div>
@@ -290,41 +315,65 @@
 						</div>
 
 					</g:form>
+					<div id="footer">
+						
+							<ul>
+								<p>
+									<g:link controller="product" action="searchProduct"
+										params="[lang:'en']">
+										<asset:image src="USA.png" alt="UNFlea+" height="40px"
+											width="40px" />
+									</g:link>
+									<g:link controller="product" action="searchProduct"
+										params="[lang:'es']">
+										<asset:image src="espana.png" alt="UNFlea+" height="40px"
+											width="40px" />
+									</g:link>
+								</p>
+								<p>
+									&copy; 2014 UN Flea+. <a href="#">Privacy </a> &amp;<a href="#">
+										Terms</a>
+								</p>
+							</ul>
+						
+					</div>
 				</div>
 				<div class="col-xs-offset-1 col-xs-6  col-sm-7 col-sm-offset-1 ">
 					<div class="row">
 						<g:each var="product" in="${products}">
 							<div class="col-xs-12 col-sm-6 col-md-4 ">
 								<div class="thumbnail">
-								<g:if test="${product.image}">
+									<g:if test="${product.image}">
 										<img class="product" style="width: 10em; height: 10em;"
 											src="${createLink(controller:'user', action:'product_image', id:product.image[0].getId())}">
-									
-								</g:if>
-								<p>
 
-									${product.user.username}
-								</p>
-								<p>
-									${product.user.userCountry}
-								</p>
-								<p>
-									${product.user.userCity}
-								</p>
-								<p>
-									${product.name}
-								</p>
-								
-								<g:form controller="product" action="request">
-									<button class="openDetails btn btn-default" name="product" value="${product.getId()}" > <g:message
-											code="details" /> &raquo;</button>
-								</g:form>
+									</g:if>
+									<p>
+
+										${product.user.username}
+									</p>
+									<p>
+										${product.user.userCountry}
+									</p>
+									<p>
+										${product.user.userCity}
+									</p>
+									<p>
+										${product.name}
+									</p>
+
+									<g:form controller="product" action="request">
+										<button class="openDetails btn btn-default" name="product"
+											value="${product.getId()}">
+											<g:message code="details" />
+											&raquo;
+										</button>
+									</g:form>
 								</div>
-								<br>
-								<br>
+								<br> <br>
 							</div>
-							
-								
+
+
 
 						</g:each>
 					</div>
@@ -332,20 +381,20 @@
 						<div class="row" style="display: none">
 							<div class="pagination">
 								<g:paginate controller="product" action="searchProduct" max="10"
-								total="${totalProduct?:0}" />
-							
+									total="${totalProduct?:0}" />
+
 							</div>
-						
+
 						</div>
 					</g:if>
 					<g:else>
 						<div class="row">
 							<div class="pagination">
 								<g:paginate controller="product" action="searchProduct" max="10"
-								total="${totalProduct?:0}" />
-							
+									total="${totalProduct?:0}" />
+
 							</div>
-						
+
 						</div>
 					</g:else>
 
@@ -356,26 +405,7 @@
 	<div id="search" style="display: none;">
 		${search}
 	</div>
-	<div id="footer">
-		<div class="container">
-			<ul>
-				<p>
-					<g:link controller="product" action="searchProduct" params="[lang:'en']">
-						<asset:image src="USA.png" alt="UNFlea+" height="40px"
-							width="40px" />
-					</g:link>
-					<g:link  controller="product" action="searchProduct" params="[lang:'es']">
-						<asset:image src="espana.png" alt="UNFlea+" height="40px"
-							width="40px" />
-					</g:link>
-				</p>
-				<p>
-					&copy; 2014 UN Flea+. <a href="#">Privacy </a> &amp;<a href="#">
-						Terms</a>
-				</p>
-			</ul>
-		</div>
-	</div>
+
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -390,13 +420,11 @@
 					</div>
 
 				</div>
-				<div class="modal-body">
-					
-				</div>
+				<div class="modal-body"></div>
 			</div>
 		</div>
 	</div>
-	
+
 
 </body>
 </html>
