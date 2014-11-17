@@ -1,4 +1,5 @@
 $(function() {
+	
 	$('img').on('click',function(){
 		var src = $(this).attr('src');
         var img = '<img src="' + src + '" class="img-responsive"/>';
@@ -11,6 +12,21 @@ $(function() {
             $('#myModal .modal-body').html('');
         });
    });
+	
+	$('input:checkbox').change(function () {
+        if($('#filterNormal').is(':checked'))
+        	$('.NORMAL_TYPE').show("fast");
+        else
+        	$('.NORMAL_TYPE').hide("fast");
+        if($('#filterAuction').is(':checked'))
+        	$('.AUCTION_TYPE').show("fast");
+        else
+        	$('.AUCTION_TYPE').hide("fast");
+        if($('#filterDonate').is(':checked'))
+        	$('.DONATE_TYPE').show("fast");
+        else
+        	$('.DONATE_TYPE').hide("fast");
+    });
 	
 });
 
@@ -29,6 +45,20 @@ $(document).on("click", ".openUpdateImages", function () {
     var intMyNImages = parseInt($(this).data('nimages'));
     $(".modal-body #imagesIdProduct").val( myIdProduct );
     $(".modal-body #imagesNImages").val( (10-intMyNImages).toString() );
+});
+
+$(document).on("click", ".openAdditionalInfo", function () {
+    var type = $(this).data('type');
+    var curPrice = $(this).data('cur-price');
+    if( type != "AUCTION")
+    	$(".sectionCurPrice").hide();
+    else
+    	$(".sectionCurPrice").show();
+    var openDate = $(this).data('open-date');
+    var closeDate = $(this).data('close-date');
+    $('#lblCurPrice').text('$ ' + curPrice);
+    $('#lblOpenDate').text(openDate);
+    $('#lblEndDate').text(closeDate);
 });
 
 $(document).on("click", ".openDeleteProduct", function () {

@@ -4,6 +4,10 @@ class Product {
 	String name
 	String description
 	boolean state
+	String type
+	float currentPrice
+	Date openingDate
+	Date closingDate
 	static hasMany=[image:Image,category:Category,requests:Request]
 	static belongsTo= [user:User]
 	static constraints ={

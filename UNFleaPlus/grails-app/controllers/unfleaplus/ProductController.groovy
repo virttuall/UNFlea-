@@ -3,8 +3,10 @@ package unfleaplus
 
 import javax.swing.ImageIcon
 import javax.imageio.ImageIO;
+
 import java.awt.Graphics2D
 import java.awt.image.BufferedImage
+import java.lang.Thread.State;
 
 
 class ProductController {
@@ -51,6 +53,8 @@ class ProductController {
 		def description = params.description
 		def state = (params.state).toInteger()
 
+		def typeProduct = state == 0?"NORMAL":state==1?"AUCTION":"DONATE";
+
 		def minimumCost = (params.minimumCost).toFloat()
 
 		def startDay = (params.dateStart_day).toInteger()
@@ -67,23 +71,20 @@ class ProductController {
 		def endMinute = (params.dateEnd_minute).toInteger()
 		def endDate = new Date().copyWith(year: endYear,month: endMonth,dayOfMonth: endDay,hourOfDay: endHour,minute: endMinute,second: 0)
 
-		println("start date " + startDate)
-		println("end date " +endDate)
+		
 
 		def product
-		if(state == 0){
-			//			Normal state
-			product = new Product(name:name,description:description,state:false)
-		}else if(state==1){
-			//			Auction state
-			product = new ProductToAuction(name:name,description:description,state:false,openingDate:startDate,closingDate:endDate,currentPrice:minimumCost)
-		}else{
-			//			Donate state
-			product = new ProductToDonation(name:name,description:description,state:false,openingDate:startDate,closingDate:endDate)
-		}
+
+		product = new Product(name:name,description:description,state:false,type:typeProduct,openingDate:startDate,closingDate:endDate,currentPrice:minimumCost)
+		
 		println("name product "+name)
 		println("description product "+description)
 		println("state product "+state)
+		println("type product "+typeProduct)
+		println("minimum cost " +minimumCost)
+		println("start date " + startDate)
+		println("end date " +endDate)
+		
 		def allImages =request.getFileNames()
 		for(image in allImages){
 			def imageTemp = new Image(image:request.getFile(image).getBytes())
@@ -100,7 +101,6 @@ class ProductController {
 			print listImage
 		}
 
-		//println("Bucar" + name+" "+Product.findByName(name).description)
 
 	}
 	def small_image(){
@@ -109,8 +109,8 @@ class ProductController {
 		ImageIcon a = new ImageIcon(temp.image)
 		a= new ImageIcon(a.getImage().getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH))
 		BufferedImage bi = new BufferedImage(a.getImage().getWidth(null)
-		,a.getImage().getWidth(null)
-		, BufferedImage.BITMASK)
+				,a.getImage().getWidth(null)
+				, BufferedImage.BITMASK)
 		Graphics2D g2 = bi.createGraphics();
 		g2.drawImage(a.getImage(), 0, 0, null);
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -118,11 +118,11 @@ class ProductController {
 			ImageIO.write(bi, "PNG", baos);
 		} catch (IOException ex) {}
 		buffer = baos.toByteArray()
-		
+
 		OutputStream out = response.outputStream
 		out.write(buffer)
 		out.close()
-		
+
 	}
 	def large_image(){
 		byte [] buffer
@@ -130,8 +130,8 @@ class ProductController {
 		ImageIcon a = new ImageIcon(temp.image)
 		a= new ImageIcon(a.getImage().getScaledInstance(1000, 1000, java.awt.Image.SCALE_SMOOTH))
 		BufferedImage bi = new BufferedImage(a.getImage().getWidth(null)
-		,a.getImage().getWidth(null)
-		, BufferedImage.BITMASK)
+				,a.getImage().getWidth(null)
+				, BufferedImage.BITMASK)
 		Graphics2D g2 = bi.createGraphics();
 		g2.drawImage(a.getImage(), 0, 0, null);
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -139,11 +139,11 @@ class ProductController {
 			ImageIO.write(bi, "PNG", baos);
 		} catch (IOException ex) {}
 		buffer = baos.toByteArray()
-		
+
 		OutputStream out = response.outputStream
 		out.write(buffer)
 		out.close()
-					
+
 	}
 	def normal_image(){
 		byte [] buffer
@@ -151,8 +151,8 @@ class ProductController {
 		ImageIcon a = new ImageIcon(temp.image)
 		a= new ImageIcon(a.getImage().getScaledInstance(225, 225, java.awt.Image.SCALE_SMOOTH))
 		BufferedImage bi = new BufferedImage(a.getImage().getWidth(null)
-		,a.getImage().getWidth(null)
-		, BufferedImage.BITMASK)
+				,a.getImage().getWidth(null)
+				, BufferedImage.BITMASK)
 		Graphics2D g2 = bi.createGraphics();
 		g2.drawImage(a.getImage(), 0, 0, null);
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -160,11 +160,11 @@ class ProductController {
 			ImageIO.write(bi, "PNG", baos);
 		} catch (IOException ex) {}
 		buffer = baos.toByteArray()
-		
+
 		OutputStream out = response.outputStream
 		out.write(buffer)
 		out.close()
-					
+
 	}
 
 	def deleteProduct(){
@@ -211,9 +211,9 @@ class ProductController {
 		temp.save(flush:true)
 		redirect(controller:'user',action:'viewHome')
 	}
-	
-	
-	
+
+
+
 	def deleteImage(){
 
 		def product = Product.get(params.idProduct)
@@ -257,10 +257,10 @@ class ProductController {
 		}else{
 			priceMin = null
 			priceMax = null
-		} 
+		}
 		if (params.search!=null){
-			
-			nuevaBusqueda=true 
+
+			nuevaBusqueda=true
 			temp= params.search
 		}else{
 			nuevaBusqueda=false
@@ -324,7 +324,7 @@ class ProductController {
 			}
 			if(cityOrder!=null && params.cityOrder.equals("-1")){
 				cityOrder=null
-				
+
 			}else if(!params.cityOrder.equals("-1") && params.cityOrder!=null){
 				print "hola1"
 				cityOrder=params.cityOrder
@@ -337,30 +337,30 @@ class ProductController {
 				//order+=priceOrder+","
 			}
 		}
-		
-		
+
+
 		if(order.length()>0){
 			order=order.substring(0,order.length()-1)
 			order1=" order by "
 		}
 		if(where.length()>0){
-			
+
 			where="AND "+where.substring(0,where.length()-4)
-		} 
+		}
 		print order
 		print where
-		
-		
-		
+
+
+
 		//if (temp!=null){
 		def results = Product.findAll("from Product as b " + "where b.name like '%"+temp.trim()+"%' "+where+order1+" "+order,listWhere, [max:max1, offset: offset1])
 		def results1 = Product.findAll("from Product as b " + "where b.name like '%"+temp.trim()+"%' "+where+order1+" "+order,listWhere)
-			//No esta implementada la de pricee
-			
+		//No esta implementada la de pricee
+
 		render(controller:'product',view:'showProduct',model:[products:results,totalProduct:results1.size(),search:products,subasta:subasta,normal:normal,donacion:donacion,country:country,state:state,priceMin:priceMin,priceMax:priceMax,usernameOrder:usernameOrder,countryOrder:countryOrder,cityOrder:cityOrder,priceOrder:priceOrder,nameOrder:nameOrder])
 		//}
-		
-		
+
+
 	}
 	def request(){
 		def product = Product.get(params.product)
@@ -371,8 +371,8 @@ class ProductController {
 		//print product
 		render(controller:'prodcut',view:'showRequest',model:[product:productRequest,search:products])
 	}
-	
-	
-	
-	
+
+
+
+
 }

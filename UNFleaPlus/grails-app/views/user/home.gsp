@@ -104,12 +104,46 @@
 					</div>
 
 				</div>
-				<div class="col-xs-offset-2 col-xs-7 col-lg-offset-1 col-lg-8 ">
+				<div class="col-xs-offset-2 col-xs-7 col-lg-offset-1 col-lg-8">
+					<div id="filterMyProducts">
+					<g:message code="type"/>
+					<div class="checkbox-inline">
+			          <label><input type="checkbox" id="filterNormal" checked><g:message code="normalVar"/></label>
+			        </div>
+			        <div class="checkbox-inline">
+			          <label><input type="checkbox" id="filterAuction" checked><g:message code="auctionVar"/></label>
+			        </div>
+			        <div class="checkbox-inline">
+			          <label><input type="checkbox" id="filterDonate" checked><g:message code="donateVar"/></label>
+					</div>
 					<g:each var="product" in="${products}">
+					<div class="${product.type+'_TYPE' }">
 					<div class="headerProduct">
 						<h3 style="display: inline">
 							${product.name}
 						</h3>
+						<h4 style="display: inline;">
+							<g:if test="${product.type == 'NORMAL' }">
+								<span class="label label-primary center-vertical"><g:message code="normalVar"/></span>
+							</g:if>
+							<g:else>
+								<g:if test="${product.type == 'AUCTION'}">
+		    						<span class="label label-success center-vertical"><g:message code="auctionVar"/></span>
+								</g:if>
+								<g:else>
+		     						<span class="label label-warning center-vertical"><g:message code="donateVar"/></span>
+		     					</g:else>
+		     					<a class="openAdditionalInfo"
+									data-toggle="modal" data-target="#modalAdditionalInformation"
+									data-type="${product.type }"
+									data-cur-price="${product.currentPrice }"
+									data-open-date="${product.openingDate.format('M-d-yyyy h:mm a')}"
+									data-close-date="${product.closingDate.format('M-d-yyyy h:mm a')}"
+									id="additionalInfo">
+		     						<span class="glyphicon glyphicon-time"></span>
+		     					</a>
+							</g:else>
+						</h4>
 						<a class="openDeleteProduct btn btn-default btn-sm pull-right"
 							data-toggle="modal" data-target="#modalConfirmDeleteProduct"
 							data-id="${product.getId()}"> <span
@@ -142,6 +176,7 @@
 
 							</g:each>
 						</g:each>
+						</div>
 					</div>
 				</g:each>
 					<g:if test="${totalProduct<10}">
@@ -271,6 +306,48 @@
 						id="submit-all" onclick="submitForms">
 						<g:message code="updateSend" />
 					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal Aditional Information-->
+	<div class="modal fade" id="modalAdditionalInformation" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">
+						<g:message code="additionalInfoVar" />
+					</h4>
+				</div>
+				<div class="modal-body">
+				<form class="form-horizontal">
+					<div class="form-group sectionCurPrice">
+						<label class="col-md-3 control-label" for="name"><g:message
+								code="curPriceVar" /></label>
+						<div class="col-md-9">
+							<label id="lblCurPrice"></label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label" for="name"><g:message
+								code="dateStartVar" /></label>
+						<div class="col-md-9">
+							<label id="lblOpenDate"></label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label" for="name"><g:message
+								code="dateEndVar" /></label>
+						<div class="col-md-9">
+							<label id="lblEndDate"></label>
+						</div>
+					</div>
+					</form>
 				</div>
 			</div>
 		</div>
