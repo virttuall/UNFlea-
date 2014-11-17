@@ -8,7 +8,7 @@
 <asset:stylesheet src="addProduct.css" />
 <asset:javascript src="addProduct.js" />
 <asset:javascript src="bootstrap.js" />
-<asset:javascript src="dropzone.js" />
+<asset:javascript src="dropzoneAddProduct.js" />
 <asset:stylesheet src="dropzone.css" />
 </head>
 <body>
@@ -42,8 +42,7 @@
 			<div class="col-md-6 col-md-offset-3">
 				<div class="well well-sm">
 
-					<form class="form-horizontal" 
-						name="genDesc">
+					<form class="form-horizontal" name="genDesc">
 						<g:set var="name_input" value="${g.message(code: 'nameVar')}"
 							scope="page" />
 						<g:set var="description_input"
@@ -61,7 +60,7 @@
 										code="nameVar" /></label>
 								<div class="col-md-9">
 									<input id="myName" name="myName" type="text"
-										onchange="onChangeName()" placeholder="${name_input }"
+										onkeyup="onChangeName()" placeholder="${name_input }"
 										class="form-control" required>
 								</div>
 							</div>
@@ -72,9 +71,9 @@
 										code="descriptionVar" /></label>
 								<div class="col-md-9">
 									<textarea class="form-control" id="myDescription"
-										onchange="onChangeDescription()" name="myDescription"
+										onkeyup="onChangeDescription()" name="myDescription"
 										placeholder="${description_input }" rows="5" maxlength="200"
-										required></textarea>
+										disabled required></textarea>
 								</div>
 							</div>
 							<!-- State selection -->
@@ -82,15 +81,52 @@
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="state"><g:message
 										code="stateVar" /></label>
-								<div class="col-md-9">
-									<select class="form-control" id="myState"
-										onchange="onChangeState()">
-										<option><g:message code="normalVar" /></option>
-										<option><g:message code="auctionVar" /></option>
-										<option><g:message code="donateVar" /></option>
-									</select>
+								<div class="col-md-9 disabled" id="myTypeState">
+									<label class="radio-inline"> <input type="radio"
+										name="myState" id="myNormalState" onchange="onChangeState()"
+										checked disabled> <g:message code="normalVar" />
+									</label> <label class="radio-inline"> <input type="radio"
+										name="myState" id="myAuctionState" onchange="onChangeState()"
+										disabled> <g:message code="auctionVar" />
+									</label> <label class="radio-inline"> <input type="radio"
+										name="myState" id="myDonateState" onchange="onChangeState()"
+										disabled> <g:message code="donateVar" />
+									</label>
 								</div>
 							</div>
+							<div class="myAditionalOptions" id="myAditionalOptions">
+								<g:set var="date_now" value="${dateNow = new Date()}" />
+								<div class="form-group" id="myOptionMinimumCost">
+									<label class="col-md-3 control-label" for="state"><g:message
+											code="minimumCostVar" /></label>
+									<div class="col-md-9">
+										<div class="input-group">
+											<span class="input-group-addon">$</span> <input type="number"
+												class="form-control" id="myMinimumCost" name="myMinimumCost"
+												min="0.01" max="1000000" step="0.01" onkeyup="onChangeMinimumCost()">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="state"><g:message
+											code="dateStartVar" /></label>
+									<div class="col-md-9">
+										<g:datePicker name="myDateStart" id="myDateStart"
+											value="${dateNow}" precision="minute"
+											years="${date_now.getAt(Calendar.YEAR)..date_now.getAt(Calendar.YEAR)+2}" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="state"><g:message
+											code="dateEndVar" /></label>
+									<div class="col-md-9">
+										<g:datePicker name="myDateEnd" id="myDateEnd"
+											value="${dateNow}" precision="minute"
+											years="${date_now.getAt(Calendar.YEAR)..date_now.getAt(Calendar.YEAR)+2}" />
+									</div>
+								</div>
+							</div>
+
 
 							<!-- Form actions -->
 
@@ -102,17 +138,25 @@
 						<div id="dropzone">
 							<form controller="product" action="addProduct"
 								class="dropzone dz-clickable" method="post"
-								enctype="multipart/form-data" name="files">
-								<g:set var="normal_input"
-									value="${g.message(code: 'normalVar')}" scope="page" />
+								enctype="multipart/form-data" name="files" id="files">
 								<input id="name" name="name" type="hidden" /> <input
 									id="description" name="description" type="hidden" /> <input
-									id="state" name="state" type="hidden" value="${normal_input }" />
+									id="state" name="state" type="hidden" value="0" /> <input
+									id="minimumCost" name="minimumCost" type="hidden" value="0" />
+								<div id="datesAuction">
+									<g:datePicker name="dateStart" id="dateStart"
+										value="${dateNow}" precision="minute"
+										years="${date_now.getAt(Calendar.YEAR)..date_now.getAt(Calendar.YEAR)+2}" />
+									<p>
+										<g:datePicker name="dateEnd" id="dateEnd" value="${dateNow}"
+											precision="minute"
+											years="${date_now.getAt(Calendar.YEAR)..date_now.getAt(Calendar.YEAR)+2}" />
+								</div>
 							</form>
 							<div class="form-group" style="margin-top: 10px">
 								<div class="col-md-12 text-right">
-									<button type="submit" class="btn btn-primary btn-lg"
-										id="submit-all" onclick="submitForms">
+									<button class="btn btn-primary btn-lg disabled" id="submit-all"
+										onclick="submitForms()">
 										<g:message code="send" />
 									</button>
 								</div>

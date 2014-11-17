@@ -1,6 +1,4 @@
 import org.apache.shiro.crypto.hash.Sha256Hash
-import unfleaplus.City
-import unfleaplus.Country
 import unfleaplus.User
 import unfleaplus.Role
 class BootStrap {

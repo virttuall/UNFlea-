@@ -299,6 +299,7 @@ require.register("dropzone/lib/dropzone.js", function (exports, module) {
       maxThumbnailFilesize: 10,
       thumbnailWidth: 80,
       thumbnailHeight: 80,
+//      maxFiles: 10 - parseInt(document.getElementById('imagesNImages').value),
       maxFiles: 10,
       params: {},
       clickable: true,
@@ -1005,8 +1006,12 @@ require.register("dropzone/lib/dropzone.js", function (exports, module) {
     };
 
     Dropzone.prototype._updateMaxFilesReachedClass = function() {
-      if ((this.options.maxFiles != null) && this.getAcceptedFiles().length >= this.options.maxFiles) {
-        if (this.getAcceptedFiles().length === this.options.maxFiles) {
+    	var myMaxFiles = parseInt(document.getElementById('imagesNImages').value);
+//      if ((this.options.maxFiles != null) && this.getAcceptedFiles().length >= this.options.maxFiles) {
+      if ((this.options.maxFiles != null) && this.getAcceptedFiles().length > myMaxFiles) {
+//        if (this.getAcceptedFiles().length === this.options.maxFiles) {
+        if (this.getAcceptedFiles().length > myMaxFiles) {
+          alert("Sobre paso");
           this.emit('maxfilesreached', this.files);
         }
         return this.element.classList.add("dz-max-files-reached");
@@ -1108,12 +1113,14 @@ require.register("dropzone/lib/dropzone.js", function (exports, module) {
     };
 
     Dropzone.prototype.accept = function(file, done) {
+      var myMaxFiles = parseInt(document.getElementById('imagesNImages').value);
       if (file.size > this.options.maxFilesize * 1024 * 1024) {
         return done(this.options.dictFileTooBig.replace("{{filesize}}", Math.round(file.size / 1024 / 10.24) / 100).replace("{{maxFilesize}}", this.options.maxFilesize));
       } else if (!Dropzone.isValidFile(file, this.options.acceptedFiles)) {
         return done(this.options.dictInvalidFileType);
-      } else if ((this.options.maxFiles != null) && this.getAcceptedFiles().length >= this.options.maxFiles) {
-        done(this.options.dictMaxFilesExceeded.replace("{{maxFiles}}", this.options.maxFiles));
+//      } else if ((this.options.maxFiles != null) && this.getAcceptedFiles().length >= this.options.maxFiles) {
+      } else if ((this.options.maxFiles != null) && this.getAcceptedFiles().length >= myMaxFiles) {
+        done(this.options.dictMaxFilesExceeded.replace("{{maxFiles}}", myMaxFiles));
         return this.emit("maxfilesexceeded", file);
       } else {
         return this.options.accept.call(this, file, done);
@@ -1925,3 +1932,4 @@ if (typeof exports == "object") {
 //  }
 //
 //}
+

@@ -1,20 +1,25 @@
-
-.margin-menu{
-	margin-top:100px;
+.margin-menu {
+	margin-top: 100px;
 }
-.navbar-right {float: right !important;}
 
-@media(max-width:767px)
-{
-    
-    .navbar-header:after 
-    {
-    	clear: none;
-    }
-    .navbar-right {float: left !important;}
-	
+.navbar-right {
+	float: right !important;
+}
+
+@media ( max-width :767px) {
+	.navbar-header:after {
+		clear: none;
+	}
+	.navbar-right {
+		float: left !important;
+	}
 }
 
 textarea {
 	resize: none;
+}
+
+.fail_data {
+	border-style: solid;
+	border-color: #ff0000;
 }
