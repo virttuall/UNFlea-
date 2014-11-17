@@ -6,26 +6,27 @@ ul li img {
   	height: 4.5em;
   	
 }
-
 .img-responsive{
 	width: 100%;	
 }
 .avatarProduct{
-	height: 10em;
-	width: 10em;
+	height: 15em;
+	width: 15em;
 }
-.thumbnail {
-	display: block;
-	padding: 4px;
-	margin-bottom: 20px;
-	line-height: 1.42857143;
-	background-color: #fff;
-	border: 1px solid #ddd;
-	border-radius: 4px;
-	-webkit-transition: all .2s ease-in-out;
-	-o-transition: all .2s ease-in-out;
-	transition: all .2s ease-in-out;
-}
+.img-thumbnail {  
+  display: inline-block;  
+  height: auto;  
+  max-width: 100%;  
+  padding: 4px;  
+  line-height: 1.428571429;  
+  background-color: #ffffff;  
+  border: 1px solid #dddddd;  
+  border-radius: 4px;  
+  -webkit-transition: all 0.2s ease-in-out;  
+          transition: all 0.2s ease-in-out;  
+} 
+
+
 
 body .modal {
   width: 100%; /* desired relative width */
@@ -33,9 +34,7 @@ body .modal {
   margin-left:auto;
   margin-right:auto; 
 }
-.margin-gallery{
-	margin-bottom: 10px;
-}
+
 .font-menu{
 	font-size: 35px;
 	color: white;
@@ -59,7 +58,10 @@ body .modal {
     {
     	clear: none;
     }
+  	.avatarProduct{
+		height: 8em;
+		width: 8em;
+	}
     .navbar-right {float: left !important;}
 	
 }
-

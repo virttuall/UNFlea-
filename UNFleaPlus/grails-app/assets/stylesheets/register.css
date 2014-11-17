@@ -11,7 +11,6 @@
 body {
   padding-bottom: 40px;
   color: #5a5a5a;
-  text-align:center;
 }
 body .modal {
   width: 90%; /* desired relative width */
@@ -42,6 +41,11 @@ body .modal {
 
 .navbar-color{
 	background-color: black;
+}
+
+
+.navbar-brand{
+	font-size:25px;
 }
 
 /* Flip around the padding for proper display in narrow viewports */

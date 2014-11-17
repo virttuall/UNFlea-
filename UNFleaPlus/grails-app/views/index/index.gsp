@@ -9,8 +9,9 @@
 <asset:stylesheet src="init.css" />
 <asset:javascript src="bootstrap.js" />
 <asset:javascript src="modal.js" />
-
-
+<asset:javascript src="bootstrap-typeahead.js" />
+<asset:javascript src="search.js" />
+<asset:javascript src="carousel.js" />
 
 </head>
 <body>
@@ -23,18 +24,25 @@
 					<div class="navbar-header navbar-color">
 						<button type="button" class="navbar-toggle" data-toggle="collapse"
 							data-target=".navbar-collapse">
-							<span class="sr-only">Toggle navigation</span> <span
-								class="icon-bar"></span> <span class="icon-bar"></span> <span
-								class="icon-bar"></span>
+							<span class="sr-only">Toggle navigation</span> 
+							<span class="icon-bar"></span> 
+							<span class="icon-bar"></span> 
+							<span class="icon-bar"></span>
 						</button>
-						<a href="#" class="logo-icon navbar-color"> <g:link
-								controller="index" action="viewHome">
-								<asset:image src="REARU.png" alt="UNFlea+" height="50px"
-									width="150px" />
-							</g:link>
+						<a href="/UNFleaPlus/index/viewHome" class="navbar-brand">UN Flea+
+							<g:link controller = "index" action="viewHome"></g:link>
 						</a>
 					</div>
 					<div class="navbar-collapse collapse navbar-color">
+					<g:form class="navbar-form navbar-left" role="search" controller="product" action="searchProduct">
+								<div class="form-group">
+									<g:set var="search1" value="${g.message(code:'myProducts')}" scope="page"/>
+									<input class="typeahead form-control" type="search" placeholder="${search1}" name="search" autocomplete="off">
+									
+        							<button type="submit" class="btn btn-default" type="button"><g:message code="searchText" /></button>
+								</div>					
+							
+						</g:form>
 						<ul class="nav navbar-nav navbar-right">
 
 							<li><g:link controller="user" action="viewRegister">
@@ -111,48 +119,24 @@
 		</ol>
 		<div class="carousel-inner">
 			<div class="item active">
-
-				<div class="container">
-					<div class=row>
-						<div class="col-xs-6 ">
-							<h1 class="h1-carousel" style="position: absolute; top: 150px">UNFlea+</h1>
-							<p class="p-carousel" style="position: absolute; top: 250px">
-								<g:message code="message" />
-							</p>
-						</div>
-						<img
-							src="http://3.bp.blogspot.com/-Y_40ll19G5Y/UpZqkXf5QZI/AAAAAAAAD4o/rAJyx88pXxg/s1600/pulga.png"
-							class="img-rounded col-xs-6" width="100px" height="400px"
-							style="position: relative; top: 100px;">
-					</div>
-
+				<img src="https://lh4.googleusercontent.com/-Jeotk5sB7ko/VCsdHYUwpzI/AAAAAAAAUMo/l-fN4hmYqXs/w1591-h895-no/IMG_20140930_130155695_HDR.jpg" alt>
+				<div class="carousel-caption">
+					<h3>UNFlea+</h3>
+					<p>
+						<g:message code="message" />
+					</p>
 				</div>
 			</div>
+			
 			<div class="item">
-				<div class="container">
-					<div class=row>
-						<div class="col-xs-7 ">
-							<h1 class="h1-carousel" style="position: relative; top: 200px;">
-								<g:message code="develomentTeam" />
-							</h1>
-							<p class="p-carousel" style="position: relative; top: 200px;">Andres
-								Rene Gutierrez</p>
-							<p class="p-carousel" style="position: relative; top: 200px;">Yeison
-								David García</p>
-							<p class="p-carousel" style="position: relative; top: 200px;">Fabian
-								David Conejo</p>
-							<p class="p-carousel" style="position: relative; top: 200px;">Samuel
-								Antonio Cabezas</p>
-							<p class="p-carousel" style="position: relative; top: 200px;">Mateo
-								Nieto Díaz</p>
-						</div>
-						<div>
-							<img
-								src="https://observatoriodefamilia.dnp.gov.co/portals/0/Images/Logos/logo_unal.png"
-								class="col-xs-5" width="100px" height="400px"
-								style="position: absolute; top: 100px;">
-						</div>
-					</div>
+				<img src="https://lh3.googleusercontent.com/-erEm0c_PvZk/U-Ff6DgHmuI/AAAAAAAATzc/hDS0-XezvUs/w1187-h668-no/IMG_20140805_175021360_HDR.jpg" alt>
+				<div class="carousel-caption">
+					<h3><g:message code="develomentTeam" /></h3>
+					<p>Andres Rene Gutierrez</p>
+					<p>Yeison David García</p>
+					<p>Fabian David Conejo</p>
+					<p>Samuel Antonio Cabezas</p>
+					<p>Mateo Nieto Díaz</p>
 				</div>
 			</div>
 
@@ -172,16 +156,17 @@
 						</div>
 				</g:if>
 				<p>
-					<g:link  controlle="index" action="viewHome" params="[lang:'en']">
+					<g:link  controller="index" action="viewHome" params="[lang:'en']">
 						<asset:image src="USA.png" alt="UNFlea+" height="40px"
 							width="40px" />
 					</g:link>
-					<g:link controlle="index" action="viewHome" params="[lang:'es']">
+					<g:link controller="index" action="viewHome" params="[lang:'es']">
 						<asset:image src="espana.png" alt="UNFlea+" height="40px"
 							width="40px" />
 					</g:link>
 				</p>
 				<p>
+					
 					&copy; 2014 UN Flea+. <a href="#">Privacy </a> &amp;<a href="#">
 						Terms</a>
 				</p>
@@ -189,7 +174,7 @@
 			</ol>
 		</div>
 	</div>
-	
+	<div id ="search" style="display: none;">${search}</div>
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">

@@ -10,6 +10,8 @@
 <asset:javascript src="register.js" />
 <asset:javascript src="modal.js" />
 <asset:javascript src="CountryState.js"/>
+<asset:javascript src="bootstrap-typeahead.js" />
+<asset:javascript src="search.js" />
 
 
 </head>
@@ -22,18 +24,17 @@
 					<div class="navbar-header navbar-color">
 						<button type="button" class="navbar-toggle" data-toggle="collapse"
 							data-target=".navbar-collapse">
-							<span class="sr-only">Toggle navigation</span> <span
-								class="icon-bar"></span> <span class="icon-bar"></span> <span
-								class="icon-bar"></span>
+							<span class="sr-only">Toggle navigation</span> 
+							<span class="icon-bar"></span> 
+							<span class="icon-bar"></span> 
+							<span class="icon-bar"></span>
 						</button>
-						<a href="#" class="logo-icon navbar-color"> <g:link
-								controller="index" action="viewHome">
-								<asset:image src="REARU.png" alt="UNFlea+" height="50px"
-									width="150px" />
-							</g:link>
+						<a href="/UNFleaPlus/index/viewHome" class="navbar-brand">UN Flea+
+							<g:link controller = "index" action="viewHome"></g:link>
 						</a>
 					</div>
 					<div class="navbar-collapse collapse navbar-color">
+					
 						<ul class="nav navbar-nav navbar-right">
 
 							<li><g:link controller="user" action="viewRegister">
@@ -306,11 +307,11 @@
 					</div>
 				</g:if>
 				<p>
-					<g:link action='viewRegister',controller="user" params="[lang:'en']">
+					<g:link action='viewRegister' controller="user" params="[lang:'en']">
 						<asset:image src="USA.png" alt="UNFlea+" height="40px"
 							width="40px" />
 					</g:link>
-					<g:link  action='viewRegister',controller="user" params="[lang:'es']">
+					<g:link  action='viewRegister' controller="user" params="[lang:'es']">
 						<asset:image src="espana.png" alt="UNFlea+" height="40px"
 							width="40px" />
 					</g:link>
@@ -322,7 +323,7 @@
 			</ul>
 		</div>
 	</div>
-	
+	<div id ="search" style="display: none;">${search}</div>
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">

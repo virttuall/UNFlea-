@@ -18,19 +18,26 @@ $(document).ready(function() {
 	
 	
 	$('#country').ready(function(){
+		var a= $('.country').text();
+		a = a.trim();
 		var option_str = document.getElementById('country');
 		option_str.length=0;
 	    option_str.options[0] = new Option('----------','');
 	    option_str.selectedIndex = 0;
 	    for (var i=0; i<country_arr.length; i++) {
+	    	
 	    	option_str.options[option_str.length] = new Option(country_arr[i],country_arr[i]);
+	    	if(a==country_arr[i]){
+	    		option_str.selectedIndex = i+1;
+	    			
+	    	}
+	    	
 	    }
-		
-	});
-	$('#country').change(function(){
-		var selected=document.getElementById('country').selectedIndex;
+	    var selected=document.getElementById('country').selectedIndex;
 		
 		if(selected!=0){
+			var b= $('.state').text();
+			b=b.trim();
 			$("#selected-state").css("display","block");
 			var option_state= document.getElementById('state');
 			option_state.length=0;
@@ -39,6 +46,38 @@ $(document).ready(function() {
 			var state_arr= state[selected].split("|");
 			for (var i =0; i<state_arr.length; i++){
 				option_state.options[option_state.length]=new Option(state_arr[i],state_arr[i]);
+				if(b==state_arr[i]){
+					option_state.selectedIndex = i+1;
+		    			
+		    	}
+
+			
+			}
+		}else{
+			option_state.selectedIndex = 0;
+			$("#selected-state").css("display","none");
+			
+		}
+	   
+		
+	});
+	$('#country').change(function(){
+		var selected=document.getElementById('country').selectedIndex;
+		
+		if(selected!=0){
+			var b= $('.state').text();
+			$("#selected-state").css("display","block");
+			var option_state= document.getElementById('state');
+			option_state.length=0;
+			option_state.options[0]=new Option("----------",'');
+			option_state.selectedIndex = 0;
+			var state_arr= state[selected].split("|");
+			for (var i =0; i<state_arr.length; i++){
+				option_state.options[option_state.length]=new Option(state_arr[i],state_arr[i]);
+				if(b==state_arr[i]){
+					option_state.selectedIndex = i+1;
+		    			
+		    	}
 			
 			}
 		}else{

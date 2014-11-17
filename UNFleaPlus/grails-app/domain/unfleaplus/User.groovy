@@ -9,8 +9,9 @@ class User {
 	String passwordHash
 	String gender
 	boolean active
+	String userCity
+	String userCountry
 	static hasMany = [ roles: Role, permissions: String,products:Product,requests:Request ]
-	static belongsTo = City
     static constraints = {
 		avatar(nullable:true,maxSize: 10024 * 10024)
 		email(nullable: false,blank:false,unique:true)
@@ -19,6 +20,8 @@ class User {
 		lastName(nullable: false,blank:false)
 		passwordHash(nullable: false,blank:false)
 		gender(nullable: false,blank:false)
+		userCity(nullable:false,blank:false)
+		userCountry(nullable:false,blank:false)
     }
 	
 	String toString(){

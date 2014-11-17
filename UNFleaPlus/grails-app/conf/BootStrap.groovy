@@ -1,4 +1,6 @@
 import org.apache.shiro.crypto.hash.Sha256Hash
+import unfleaplus.City
+import unfleaplus.Country
 import unfleaplus.User
 import unfleaplus.Role
 class BootStrap {
@@ -13,10 +15,11 @@ class BootStrap {
 		userRole.save()
 		
 		def user = new User(email:"andresrene2005@hotmail.com",firstName:"Andres",lastName:"Gutierrez",username: "andres930410",
-			passwordHash: new Sha256Hash("gutierrez2011").toHex(),gender:"Male",active:true,avatar:null)
+			passwordHash: new Sha256Hash("gutierrez2011").toHex(),gender:"Male",active:true,avatar:null,userCity:'Boyaca',userCountry:'Colombia')
 		user.addToRoles(adminRole)
 		user.addToPermissions("*:*")
 		user.save()
+				
     }
 
     def destroy = {

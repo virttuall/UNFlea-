@@ -1,0 +1,11 @@
+#gallery_01 img{border:2px solid white;}  
+.active img{border:2px solid #333 !important;} 
+#slider3 {
+   		position:relative;
+        margin-top:40px;
+        width:190px;
+        height:90px;
+        border-left:1px solid #aaa;
+        border-right:1px solid #aaa;
+        margin-bottom:20px;
+}

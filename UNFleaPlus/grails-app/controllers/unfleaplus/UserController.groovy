@@ -21,7 +21,9 @@ class UserController {
 		if(session.user){
 			redirect(controller:'user',action:'viewHome')
 		}
-		render(controller:'user',view:'register')
+		def products = IndexController.recoveryProduct()
+		print products
+		render(controller:'user',view:'register',model:[search:products])
 	}
 	def viewHome(){
 
@@ -59,7 +61,6 @@ class UserController {
 			// will be thrown if the username is unrecognised or the
 			// password is incorrect.
 			SecurityUtils.subject.login(authToken)
-
 			session["user"]=user.username
 			println(session.user)
 		
@@ -104,8 +105,12 @@ class UserController {
 		}
 		else{//Nuevo Usario
 			def f = request.getFile("avatar")
+			print params.country
+			print params.state
+			
 			def parameters =[email:params.email,username:params.username,firstName:params.firstname,lastName:params.lastname
-				,gender:params.gender,passwordHash:shiroSecurityService.encodePassword(params.password),active:false,avatar:f.getBytes()]
+				,gender:params.gender,passwordHash:shiroSecurityService.encodePassword(params.password),active:false,avatar:f.getBytes()
+				,userCity:params.state,userCountry:params.country]
 			user= new User(parameters)
 			mailService.sendMail {
 				to "${user.email}"
@@ -113,9 +118,8 @@ class UserController {
 				html    g.render(template:'/email/registrationConfirmation', model:[user:user,password:params.password])
 			}
 			if(user.save(flush: true)){
-				user.addToRoles(Role.findByName('ROLE_USER'))
-				// Login user
-				
+				user.addToRoles(Role.findByName("ROLE_USER"))
+				user.addToPermissions("*:*")
 				redirect(controller:'index', action:'viewHome')
 			} 
 		}
@@ -146,7 +150,6 @@ class UserController {
 	}
 	
 	def list(){
-		
 		if(session.user){
 			user= User.findByUsername(session.user)
 			def c = Product.createCriteria()
@@ -155,7 +158,8 @@ class UserController {
 				eq("c.id", user.getId())
 			}
 			user= User.findByUsername(session.user)
-			render(controller:'user',view:'home',model:[products:results, totalProduct:Product.count,user:user])
+			def total = Product.findAll ("from Product as b where b.user.username=? ",[session.user])
+			render(controller:'user',view:'home',model:[products:results, totalProduct:total.size(),user:user])
 		}else{
 			redirect(controller:'index',action:'viewHome')
 		}
@@ -171,4 +175,5 @@ class UserController {
 		out.close()
 					
 	}
+	
 }

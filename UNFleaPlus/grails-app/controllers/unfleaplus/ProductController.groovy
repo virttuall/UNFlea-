@@ -1,7 +1,25 @@
 package unfleaplus
 
-class ProductController {
 
+import javax.swing.ImageIcon
+import javax.imageio.ImageIO;
+import java.awt.Graphics2D
+import java.awt.image.BufferedImage
+import java.util.zip.Deflater;
+
+
+
+class ProductController {
+	def productRequest
+	def temp
+	def normal
+	def subasta
+	def donacion
+	def usernameOrder
+	def countryOrder
+	def cityOrder
+	def priceOrder
+	def nameOrder
 	def index() {
 		redirect(controller:'product',action:'viewAddProduct')
 	}
@@ -88,6 +106,69 @@ class ProductController {
 		user.save(flush:true)
 		redirect(controller:'user',action:'viewHome')
 	}
+	def small_image(){
+		byte [] buffer
+		def temp = Image.get(params.id)
+		ImageIcon a = new ImageIcon(temp.image)
+		a= new ImageIcon(a.getImage().getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH))
+		BufferedImage bi = new BufferedImage(a.getImage().getWidth(null)
+		,a.getImage().getWidth(null)
+		, BufferedImage.BITMASK)
+		Graphics2D g2 = bi.createGraphics();
+		g2.drawImage(a.getImage(), 0, 0, null);
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		try {
+			ImageIO.write(bi, "PNG", baos);
+		} catch (IOException ex) {}
+		buffer = baos.toByteArray()
+		
+		OutputStream out = response.outputStream
+		out.write(buffer)
+		out.close()
+		
+	}
+	def large_image(){
+		byte [] buffer
+		def temp = Image.get(params.id)
+		ImageIcon a = new ImageIcon(temp.image)
+		a= new ImageIcon(a.getImage().getScaledInstance(1000, 1000, java.awt.Image.SCALE_SMOOTH))
+		BufferedImage bi = new BufferedImage(a.getImage().getWidth(null)
+		,a.getImage().getWidth(null)
+		, BufferedImage.BITMASK)
+		Graphics2D g2 = bi.createGraphics();
+		g2.drawImage(a.getImage(), 0, 0, null);
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		try {
+			ImageIO.write(bi, "PNG", baos);
+		} catch (IOException ex) {}
+		buffer = baos.toByteArray()
+		
+		OutputStream out = response.outputStream
+		out.write(buffer)
+		out.close()
+					
+	}
+	def normal_image(){
+		byte [] buffer
+		def temp = Image.get(params.id)
+		ImageIcon a = new ImageIcon(temp.image)
+		a= new ImageIcon(a.getImage().getScaledInstance(225, 225, java.awt.Image.SCALE_SMOOTH))
+		BufferedImage bi = new BufferedImage(a.getImage().getWidth(null)
+		,a.getImage().getWidth(null)
+		, BufferedImage.BITMASK)
+		Graphics2D g2 = bi.createGraphics();
+		g2.drawImage(a.getImage(), 0, 0, null);
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		try {
+			ImageIO.write(bi, "PNG", baos);
+		} catch (IOException ex) {}
+		buffer = baos.toByteArray()
+		
+		OutputStream out = response.outputStream
+		out.write(buffer)
+		out.close()
+					
+	}
 
 	
 	def deleteProduct(){
@@ -151,7 +232,147 @@ class ProductController {
 		}	
 		redirect(controller:'user',action:'viewHome')
 	}
-	def algo(){
-		print "hosdafadsf"
+	def searchProduct(){
+		/*Todavia no se pueden implementar los filtros de de precio y tipo
+		 * ya que se estan haciendo cambios a la base de datos.
+		 */
+		print params
+		def nuevaBusqueda=false
+		def country
+		def state
+		def products = IndexController.recoveryProduct()
+		def max1=params.max?:10
+		def offset1=params.offset?:0
+		def price= params.price?:null
+		def priceMin
+		def priceMax
+		def order1=""
+		def order="" //Utilizado para odernar
+		def where=""//Utilizado para la condicion
+		def listWhere=[]
+		if(price!=null){
+			price= price.split(",")
+			priceMin = price[0]
+			priceMax = price[1]
+		}else{
+			priceMin = null
+			priceMax = null
+		} 
+		if (params.search!=null){
+			
+			nuevaBusqueda=true 
+			temp= params.search
+		}else{
+			nuevaBusqueda=false
+		}
+		if(nuevaBusqueda){
+			normal=null
+			subasta=null
+			donacion=null
+			usernameOrder=null
+			countryOrder=null
+			cityOrder=null
+			priceOrder=null
+			nameOrder=null
+			if(temp==null){
+				temp=""
+			}
+		}else{
+			if(params.country!=null && !params.country.equals("")){
+				where+="b.user.userCountry=? AND "
+				listWhere.add(params.country.trim())
+				country= params.country
+			}
+			if(params.country!=null && !params.country.equals("") && params.state!=null  && !params.state.equals("")){
+				where+="b.user.userCity=? AND "
+				listWhere.add(params.state.trim())
+				state=params.state
+			}
+			if(subasta!=null && params.subasta.equals("-1")){
+				subasta=null
+			}else if(!params.subsata.equals("-1") && params.subasta!=null) {
+				subasta=params.subasta
+			}
+			if(donacion!=null && params.donacion.equals("-1")){
+				donacion=null
+			}else if(!params.donacion.equals("-1") && params.donacion!=null) {
+				donacion=params.donacion
+			}
+			if(normal!=null && params.normal.equals("-1")){
+				normal=null
+			}else if(!params.normal.equals("-1") && params.normal!=null) {
+				normal=params.normal
+			}
+			if(nameOrder!=null && params.nameOrder.equals("-1")){
+				nameOrder=null
+			}else if(!params.nameOrder.equals("-1") && params.nameOrder!=null){
+				nameOrder=params.nameOrder
+				order="b.name,"
+			}
+			if(usernameOrder!=null && params.usernameOrder.equals("-1")){
+				usernameOrder=null
+			}else if(!params.usernameOrder.equals("-1") && params.usernameOrder!=null){
+				usernameOrder=params.usernameOrder
+				order="b.user.username,"
+			}
+			if(countryOrder!=null && params.countryOrder.equals("-1")){
+				countryOrder=null
+			}else if(!params.countryOrder.equals("-1") && params.countryOrder!=null){
+				print "hola"
+				countryOrder=params.countryOrder
+				order+="b.user.userCountry,"
+			}
+			if(cityOrder!=null && params.cityOrder.equals("-1")){
+				cityOrder=null
+				
+			}else if(!params.cityOrder.equals("-1") && params.cityOrder!=null){
+				print "hola1"
+				cityOrder=params.cityOrder
+				order+="b.user.userCity,"
+			}
+			if(priceOrder!=null && params.priceOrder.equals("-1")){
+				priceOrder=null
+			}else if(!params.priceOrder.equals("-1") && params.precioOrder!=null){
+				priceOrder=params.priceOrder
+				//order+=priceOrder+","
+			}
+		}
+		
+		
+		if(order.length()>0){
+			order=order.substring(0,order.length()-1)
+			order1=" order by "
+		}
+		if(where.length()>0){
+			
+			where="AND "+where.substring(0,where.length()-4)
+		} 
+		print order
+		print where
+		
+		
+		
+		//if (temp!=null){
+		def results = Product.findAll("from Product as b " + "where b.name like '%"+temp.trim()+"%' "+where+order1+" "+order,listWhere, [max:max1, offset: offset1])
+		def results1 = Product.findAll("from Product as b " + "where b.name like '%"+temp.trim()+"%' "+where+order1+" "+order,listWhere)
+			//No esta implementada la de pricee
+			
+		render(controller:'product',view:'showProduct',model:[products:results,totalProduct:results1.size(),search:products,subasta:subasta,normal:normal,donacion:donacion,country:country,state:state,priceMin:priceMin,priceMax:priceMax,usernameOrder:usernameOrder,countryOrder:countryOrder,cityOrder:cityOrder,priceOrder:priceOrder,nameOrder:nameOrder])
+		//}
+		
+		
 	}
+	def request(){
+		def product = Product.get(params.product)
+		if(product!=null){
+			productRequest=product
+		}
+		def products = IndexController.recoveryProduct()
+		//print product
+		render(controller:'prodcut',view:'showRequest',model:[product:productRequest,search:products])
+	}
+	
+	
+	
+	
 }

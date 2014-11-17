@@ -9,6 +9,9 @@
 <asset:stylesheet src="about.css" />
 <asset:javascript src="bootstrap.js" />
 <asset:javascript src="modal.js" />
+<asset:javascript src="bootstrap-typeahead.js" />
+<asset:javascript src="search.js" />
+
 </head>
 
 <!-- NAVBAR
@@ -22,18 +25,25 @@
 					<div class="navbar-header navbar-color">
 						<button type="button" class="navbar-toggle" data-toggle="collapse"
 							data-target=".navbar-collapse">
-							<span class="sr-only">Toggle navigation</span> <span
-								class="icon-bar"></span> <span class="icon-bar"></span> <span
-								class="icon-bar"></span>
+							<span class="sr-only">Toggle navigation</span> 
+							<span class="icon-bar"></span> 
+							<span class="icon-bar"></span> 
+							<span class="icon-bar"></span>
 						</button>
-						<div class="logo-icon navbar-color">
-							<g:link controller="index" action="viewHome">
-								<asset:image src="REARU.png" alt="UNFlea+" height="50px"
-									width="150px" />
-							</g:link>
-						</div>
+						<a href="/UNFleaPlus/index/viewHome" class="navbar-brand">UN Flea+
+							<g:link controller = "index" action="viewHome"></g:link>
+						</a>
 					</div>
 					<div class="navbar-collapse collapse navbar-color">
+					<g:form class="navbar-form navbar-left" role="search" controller="product" action="searchProduct">
+								<div class="form-group">
+									<g:set var="search1" value="${g.message(code:'myProducts')}" scope="page"/>
+									<input class="typeahead form-control" type="search" placeholder="${search1}" name="search" autocomplete="off">
+									
+        							<button type="submit" class="btn btn-default" type="button"><g:message code="searchText" /></button>
+								</div>					
+							
+						</g:form>
 						<ul class="nav navbar-nav navbar-right">
 							<li><g:link controller="user" action="viewRegister">
 									<g:message code="signUP" />
@@ -93,16 +103,27 @@
 		</div>
 	</div>
 
-
-	<div class="container marketing">
+<div class="container marketing">
 		<h1>Team Members</h1>
 		<div class="row">
+			<div class="col-lg-4">
+				<asset:image class="img-circle" src="UNFlea.png"
+					alt="Generic placeholder imag" height="140px" width="140px" />
+				<h3>UN Flea+</h3>
+				<a href="https://twitter.com/unfleaplus"
+					class="twitter-follow-button" data-show-count="true"
+					data-size="large">Follow</a>
+
+				<p>
+					<g:message code="unfleaDescription" />
+				</p>
+			</div>
 			<div class="col-lg-4">
 				<asset:image class="img-circle" src="FabianConejo.png"
 					alt="Generic placeholder imag" height="140px" width="140px" />
 				<h3>Fabian Conejo</h3>
 				<a href="https://twitter.com/FabianConP"
-					class="twitter-follow-button" data-show-count="false"
+					class="twitter-follow-button" data-show-count="true"
 					data-size="large" data-dnt="true">Follow</a>
 
 				<p>
@@ -115,7 +136,7 @@
 					alt="Generic placeholder imag" height="140px" width="140px" />
 				<h3>Andres Gutierrez</h3>
 				<a href="https://twitter.com/agutierrezt9410"
-					class="twitter-follow-button" data-show-count="false"
+					class="twitter-follow-button" data-show-count="true"
 					data-size="large" data-dnt="true">Follow</a>
 
 				<p>
@@ -123,29 +144,31 @@
 				</p>
 			</div>
 			<!-- /.col-lg-4 -->
-			<div class="col-lg-4">
-				<asset:image class="img-circle" src="SamuelCabezas.png"
-					alt="Generic placeholder imag" height="140px" width="140px" />
-				<h3>Samuel Cabezas</h3>
-				<a href="https://twitter.com/9406samuel"
-					class="twitter-follow-button" data-show-count="false"
-					data-size="large">Follow</a>
 
-				<p>
-					<g:message code="samuelDescription" />
-				</p>
-			</div>
 			<!-- /.col-lg-4 -->
 		</div>
 
 		<!-- Three columns of text below the carousel -->
 		<div class="row">
 			<div class="col-lg-4">
+				<asset:image class="img-circle" src="SamuelCabezas.png"
+					alt="Generic placeholder imag" height="140px" width="140px" />
+				<h3>Samuel Cabezas</h3>
+				<a href="https://twitter.com/9406samuel"
+					class="twitter-follow-button" data-show-count="true"
+					data-size="large">Follow</a>
+
+				<p>
+					<g:message code="samuelDescription" />
+				</p>
+			</div>
+			<div class="col-lg-4">
 				<asset:image class="img-circle" src="YeisonGarcia.png"
 					alt="Generic placeholder imag" height="140px" width="140px" />
 				<h3>Yeison Garcia</h3>
-				<a href="https://twitter.com/yeisongg" class="twitter-follow-button"
-					data-show-count="false" data-size="large">Follow</a>
+				<a href="https://twitter.com/yeisongg" 
+					class="twitter-follow-button" data-show-count="true" 
+					data-size="large">Follow</a>
 
 				<p>
 					<g:message code="yeisonDescription" />
@@ -158,7 +181,7 @@
 					alt="Generic placeholder imag" height="140px" width="140px" />
 				<h3>Mateo Nieto</h3>
 				<a href="https://twitter.com/mateonietod"
-					class="twitter-follow-button" data-show-count="false"
+					class="twitter-follow-button" data-show-count="true"
 					data-size="large" data-dnt="true">Follow</a>
 
 				<p>
@@ -167,16 +190,17 @@
 			</div>
 		</div>
 	</div>
+	
 
 	<div id="footer">
 		<div class="container">
 			<ol>
 				<p>
-					<g:link  controlle="index" action="viewAboutUs" params="[lang:'en']">
+					<g:link  controller="index" action="viewAboutUs" params="[lang:'en']">
 						<asset:image src="USA.png" alt="UNFlea+" height="40px"
 							width="40px" />
 					</g:link>
-					<g:link  controlle="index" action="viewAboutUs" params="[lang:'es']">
+					<g:link  controller="index" action="viewAboutUs" params="[lang:'es']">
 						<asset:image src="espana.png" alt="UNFlea+" height="40px"
 							width="40px" />
 					</g:link>
@@ -206,6 +230,7 @@
 			</div>
 		</div>
 	</div>
+	<div id ="search" style="display: none;">${search}</div>
 	<script>
 		!function(d, s, id) {
 			var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/

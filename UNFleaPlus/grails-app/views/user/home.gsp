@@ -47,7 +47,7 @@
 
 	<div class="container margin-menu">
 		<div class="row">
-			<div class="col-xs-9 col-xs-offset-3 ">
+			<div class="col-xs-9 col-xs-offset-4">
 				<h1 class="page-header">
 					<g:message code="myProducts" />
 				</h1>
@@ -55,7 +55,7 @@
 		</div>
 
 		<ul class="row">
-			<div class="col-xs-2">
+			<div class="col-xs-3 ">
 
 				<div class="row">
 					<g:link controller="product" action="viewAddProduct">
@@ -72,18 +72,18 @@
 				<p>
 					<g:link controller="product" action="viewDeleteProduct">
 						<h3>
-						<g:message code="deleteProduct" />
+							<g:message code="deleteProduct" />
 						</h3>
 						<div
 							class="margin-gallery  col-lg-10 col-md-10 col-sm-10 col-xs-10">
 							<asset:image class="avatarProduct" src="Delete_Icon.png" />
-						</div>	
+						</div>
 					</g:link>
 				</p>
 
 			</div>
 
-			<div class="col-xs-offset-1 col-xs-9">
+			<div class="col-xs-offset-1 col-xs-8 ">
 
 
 				<g:each var="product" in="${products}">
@@ -99,8 +99,9 @@
 
 
 
-								<div class="margin-gallery  col-lg-3 col-md-3 col-sm-4 col-xs-6">
-									<li class="thumbnail"><img class="img-responsive"
+								<div class="margin-gallery  col-lg-3 col-md-4 col-sm-6 col-xs-12">
+									
+									<li class="img-thumbnail"><img class="img-responsive " style="width: 10em; height: 10em;"
 										src="${createLink(controller:'user', action:'product_image', id:image.getId())}">
 									</li>
 								</div>
@@ -112,11 +113,20 @@
 						</g:each>
 
 					</div>
+
 				</g:each>
-				<div class="pagination">
-					<g:paginate controller="user" action="list" max="10"
+				<g:if test="${totalProduct<10}">
+					<div class="pagination" style="display: none">
+						<g:paginate controller="user" action="list" max="10"
 						total="${totalProduct?:0}" />
-				</div>
+					</div>
+				</g:if>
+				<g:else>
+					<div class="pagination">
+						<g:paginate controller="user" action="list" max="10"
+						total="${totalProduct?:0}" />
+					</div>
+				</g:else>
 			</div>
 
 

@@ -33,6 +33,10 @@ body .modal {
 
 }
 
+.navbar-brand{
+	font-size:25px;
+}
+
 .navbar-color{
 	background-color: black;
 }
@@ -53,6 +57,9 @@ body .modal {
 	width: 100%;
 }
 
+.form-control {
+	background-color: white;
+}
 
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
@@ -80,41 +87,34 @@ body .modal {
   height: 600px;
 }
 
-
-.h1-carousel {
-  color: white;  
-  
-  font-family: 'Oswald', sans-serif;
-  font-weight: 400;
-  
-  font-size: 40px;
-  margin-top:10px;
-  margin-bottom:10px;
-  color: white;
-  
+.carousel-caption {
+	padding-bottom: 230px;
 }
 
-.h2-carousel {
-  color: white;
-  font-family: 'Oswald', sans-serif;
-  font-weight: 400;
-  font-size: 30px;
-  margin-top:10px;
-  margin-bottom:10px;
-  color: white;
-}
-
-.p-carousel {
-  color: white;
-  font-weight: 200;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 18px;
-  margin:0px;
-  color: white;
+.carousel-inner h3{
+	color: white;
+	font-family: 'Oswald', sans-serif;
+	font-weight: 400;
   
+	font-size: 40px;
+	margin-top:10px;
+	margin-bottom:10px;
 }
 
+.carousel-inner p{
+	color: white;
+	font-weight: 200;
+	font-family: Georgia, "Times New Roman", serif;
+	font-size: 18px;
+	margin:0px;
+}
 
+.carousel-caption h3{
+	text-align:left;
+}
+.carousel-caption p{
+	text-align:left;
+}
 /*carousel*/
 
 
@@ -143,7 +143,7 @@ body .modal {
 
   /* Bump up size of carousel content */
   .carousel-caption p {
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     font-size: 21px;
     line-height: 1.4;
   }
@@ -151,12 +151,34 @@ body .modal {
   .featurette-heading {
     font-size: 50px;
   }
+  .navbar-form .form-control {
+	width: 130px;
+	}
+}
+
+@media (min-width: 1200px) {
+  .featurette-heading {
+    margin-top: 120px;
+  }
+  .form-control{
+  	padding-right: 0px;
+  }
+  .navbar-form .form-control {
+	width: 560px;
+	}
 }
 
 @media (min-width: 992px) {
   .featurette-heading {
     margin-top: 120px;
   }
+  .form-control{
+  	padding-right: 0px;
+  }
+  
+  .navbar-form .form-control {
+	width: 350px;
+	}
 }
 
 .navbar-right {float: right !important;}
@@ -172,6 +194,21 @@ body .modal {
 	.drowmenu-size{
 		min-width: 700px  !important;
 	}
+	.form-control{
+		width: 560px  !important;
+		display:initial !important;
+	}
+	.navbar-brand{
+		float:none;
+		line-height: 50px;
+	}
+	.navbar-form{
+		margin-top:0px;
+		margin-bottom: 0px;
+	}
+	.navbar-fixed-top .navbar-collapse {
+		max-height: 500px;
+	}
 
 }
 @media(max-width:700px)
@@ -184,6 +221,14 @@ body .modal {
     .navbar-right {float: left !important;}
 	.drowmenu-size{
 		min-width: 650px  !important;
+	}
+	.form-control{
+		width: 500px  !important;
+		display:initial !important;
+	}
+	.navbar-brand{
+		float:none;
+		line-height: 50px;
 	}
 
 }
@@ -198,6 +243,14 @@ body .modal {
 	.drowmenu-size{
 		min-width: 600px  !important;
 	}
+	.form-control{
+		width: 450px  !important;
+		display:initial !important;
+	}
+	.navbar-brand{
+		float:none;
+		line-height: 50px;
+	}
 
 }
 @media(max-width:600px)
@@ -210,6 +263,14 @@ body .modal {
     .navbar-right {float: left !important;}
 	.drowmenu-size{
 		min-width: 500px  !important;
+	}
+	.form-control{
+		width: 400px  !important;
+		display:initial !important;
+	}
+	.navbar-brand{
+		float:none;
+		line-height: 50px;
 	}
 
 }
@@ -224,6 +285,14 @@ body .modal {
 	.drowmenu-size{
 		min-width: 450px  !important;
 	}
+	.form-control{
+		width: 300px  !important;
+		display:initial !important;
+	}
+	.navbar-brand{
+		float:none;
+		line-height: 50px;
+	}
 
 }
 @media(max-width:450px)
@@ -236,6 +305,14 @@ body .modal {
     .navbar-right {float: left !important;}
 	.drowmenu-size{
 		min-width: 400px  !important;
+	}
+	.form-control{
+		width: 250px  !important;
+		display:initial !important;
+	}
+	.navbar-brand{
+		float:none;
+		line-height: 50px;
 	}
 
 }
@@ -250,6 +327,14 @@ body .modal {
 	.drowmenu-size{
 		min-width: 350px  !important;
 	}
+	.form-control{
+		width: 250px  !important;
+		display:initial !important;
+	}
+	.navbar-brand{
+		float:none;
+		line-height: 50px;
+	}
 
 }
 @media(max-width:350px)
@@ -262,6 +347,14 @@ body .modal {
     .navbar-right {float: left !important;}
 	.drowmenu-size{
 		min-width: 300px  !important;
+	}
+	.form-control{
+		width: 200px  !important;
+		display:initial !important;
+	}
+	.navbar-brand{
+		float:none;
+		line-height: 50px;
 	}
 
 }
@@ -276,6 +369,14 @@ body .modal {
 	.drowmenu-size{
 		min-width: 250px  !important;
 	}
+	.form-control{
+		width: 100px  !important;
+		display:initial !important;
+	}
+	.navbar-brand{
+		float:none;
+		line-height: 50px;
+	}
 
 }
 @media(max-width:250px)
@@ -288,6 +389,14 @@ body .modal {
     .navbar-right {float: left !important;}
 	.drowmenu-size{
 		min-width: 200px  !important;
+	}
+	.form-control{
+		width: 150px  !important;
+		display:block !important;
+	}
+	.navbar-brand{
+		float:none;
+		line-height: 50px;
 	}
 
 }
