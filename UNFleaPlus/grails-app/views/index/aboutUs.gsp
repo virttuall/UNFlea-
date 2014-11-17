@@ -196,11 +196,11 @@
 		<div class="container">
 			<ul>
 				<p>
-					<g:link  controlle="index" action="viewAboutUs" params="[lang:'en']">
+					<g:link  controller="index" action="viewAboutUs" params="[lang:'en']">
 						<asset:image src="USA.png" alt="UNFlea+" height="40px"
 							width="40px" />
 					</g:link>
-					<g:link  controlle="index" action="viewAboutUs" params="[lang:'es']">
+					<g:link  controller="index" action="viewAboutUs" params="[lang:'es']">
 						<asset:image src="espana.png" alt="UNFlea+" height="40px"
 							width="40px" />
 					</g:link>

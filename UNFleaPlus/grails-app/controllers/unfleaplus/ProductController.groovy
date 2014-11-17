@@ -10,6 +10,7 @@ import java.util.zip.Deflater;
 
 
 class ProductController {
+	def productRequest
 	def temp
 	def normal
 	def subasta
@@ -109,7 +110,7 @@ class ProductController {
 		byte [] buffer
 		def temp = Image.get(params.id)
 		ImageIcon a = new ImageIcon(temp.image)
-		a= new ImageIcon(a.getImage().getScaledInstance(150, 150, java.awt.Image.SCALE_DEFAULT))
+		a= new ImageIcon(a.getImage().getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH))
 		BufferedImage bi = new BufferedImage(a.getImage().getWidth(null)
 		,a.getImage().getWidth(null)
 		, BufferedImage.BITMASK)
@@ -130,7 +131,7 @@ class ProductController {
 		byte [] buffer
 		def temp = Image.get(params.id)
 		ImageIcon a = new ImageIcon(temp.image)
-		a= new ImageIcon(a.getImage().getScaledInstance(1000, 1000, java.awt.Image.SCALE_DEFAULT))
+		a= new ImageIcon(a.getImage().getScaledInstance(1000, 1000, java.awt.Image.SCALE_SMOOTH))
 		BufferedImage bi = new BufferedImage(a.getImage().getWidth(null)
 		,a.getImage().getWidth(null)
 		, BufferedImage.BITMASK)
@@ -151,7 +152,7 @@ class ProductController {
 		byte [] buffer
 		def temp = Image.get(params.id)
 		ImageIcon a = new ImageIcon(temp.image)
-		a= new ImageIcon(a.getImage().getScaledInstance(300, 300, java.awt.Image.SCALE_DEFAULT))
+		a= new ImageIcon(a.getImage().getScaledInstance(225, 225, java.awt.Image.SCALE_SMOOTH))
 		BufferedImage bi = new BufferedImage(a.getImage().getWidth(null)
 		,a.getImage().getWidth(null)
 		, BufferedImage.BITMASK)
@@ -363,9 +364,12 @@ class ProductController {
 	}
 	def request(){
 		def product = Product.get(params.product)
+		if(product!=null){
+			productRequest=product
+		}
 		def products = IndexController.recoveryProduct()
 		//print product
-		render(controller:'prodcut',view:'showRequest',model:[product:product,search:products])
+		render(controller:'prodcut',view:'showRequest',model:[product:productRequest,search:products])
 	}
 	
 	

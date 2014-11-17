@@ -314,9 +314,7 @@
 								<p>
 									${product.name}
 								</p>
-								<p>
-									${product.description}
-								</p>
+								
 								<g:form controller="product" action="request">
 									<button class="openDetails btn btn-default" name="product" value="${product.getId()}" > <g:message
 											code="details" /> &raquo;</button>
@@ -357,6 +355,26 @@
 	</div>
 	<div id="search" style="display: none;">
 		${search}
+	</div>
+	<div id="footer">
+		<div class="container">
+			<ul>
+				<p>
+					<g:link controller="product" action="searchProduct" params="[lang:'en']">
+						<asset:image src="USA.png" alt="UNFlea+" height="40px"
+							width="40px" />
+					</g:link>
+					<g:link  controller="product" action="searchProduct" params="[lang:'es']">
+						<asset:image src="espana.png" alt="UNFlea+" height="40px"
+							width="40px" />
+					</g:link>
+				</p>
+				<p>
+					&copy; 2014 UN Flea+. <a href="#">Privacy </a> &amp;<a href="#">
+						Terms</a>
+				</p>
+			</ul>
+		</div>
 	</div>
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">

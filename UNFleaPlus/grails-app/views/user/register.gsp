@@ -307,11 +307,11 @@
 					</div>
 				</g:if>
 				<p>
-					<g:link action='viewRegister',controller="user" params="[lang:'en']">
+					<g:link action='viewRegister' controller="user" params="[lang:'en']">
 						<asset:image src="USA.png" alt="UNFlea+" height="40px"
 							width="40px" />
 					</g:link>
-					<g:link  action='viewRegister',controller="user" params="[lang:'es']">
+					<g:link  action='viewRegister' controller="user" params="[lang:'es']">
 						<asset:image src="espana.png" alt="UNFlea+" height="40px"
 							width="40px" />
 					</g:link>
