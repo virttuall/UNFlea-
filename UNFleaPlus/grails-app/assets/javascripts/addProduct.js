@@ -10,29 +10,12 @@ submitForms = function() {
 	// document.getElementById('myName').value = "";
 }
 
-function checkDates() {
-	if (document.getElementById('myAuctionState').checked) {
-		var startDate = getStartDate();
-
-		var endDate = getEndDate();
-
-		var curDate = new get;
-
-		alert(startDate.getTime() + " vs " + curDate.getTime());
-
-		return endDate.getTime() > startDate.getTime()
-				&& startDate.getTime() > curDate.getTime();
-	} else
-		return true;
-
-}
-
 function getStartDate() {
-	var dayStart = document.getElementById('myDateStart_day').value;
-	var monthStart = document.getElementById('myDateStart_month').value - 1;
-	var yearStart = document.getElementById('myDateStart_year').value;
-	var hourStart = document.getElementById('myDateStart_hour').value;
-	var minuteStart = document.getElementById('myDateStart_minute').value;
+	var dayStart = document.getElementById('myDateStart_day').val();
+	var monthStart = document.getElementById('myDateStart_month').val() - 1;
+	var yearStart = document.getElementById('myDateStart_year').val();
+	var hourStart = document.getElementById('myDateStart_hour').val();
+	var minuteStart = document.getElementById('myDateStart_minute').val();
 	return new Date(yearStart, monthStart, dayStart, hourStart, minuteStart, 0,
 			0);
 }
@@ -103,30 +86,7 @@ function onChangeMinimumCost(){
 	document.getElementById('myMinimumCost').value = minCost;
 }
 
-function updateDates() {
-	document.getElementById('dateStart_day').value = document
-			.getElementById('myDateStart_day').value;
-	document.getElementById('dateStart_month').value = document
-			.getElementById('myDateStart_month').value;
-	document.getElementById('dateStart_year').value = document
-			.getElementById('myDateStart_year').value;
-	document.getElementById('dateStart_hour').value = document
-			.getElementById('myDateStart_hour').value;
-	document.getElementById('dateStart_minute').value = document
-			.getElementById('myDateStart_minute').value;
 
-	document.getElementById('dateEnd_day').value = document
-			.getElementById('myDateEnd_day').value;
-	document.getElementById('dateEnd_month').value = document
-			.getElementById('myDateEnd_month').value;
-	document.getElementById('dateEnd_year').value = document
-			.getElementById('myDateEnd_year').value;
-	document.getElementById('dateEnd_hour').value = document
-			.getElementById('myDateEnd_hour').value;
-	document.getElementById('dateEnd_minute').value = document
-			.getElementById('myDateEnd_minute').value;
-
-}
 
 $(document).ready(
 				function() {
@@ -137,8 +97,8 @@ $(document).ready(
 					$("#datesAuction").hide();
 
 					$("select[id ^= myDate]").change(function() {
-										updateDates();
-										if (!checkDates()) {
+									
+										if (!(getEndDate().getTime()>getStartDate().getTime())) {
 											$("select[id ^= myDate]").addClass(
 													"fail_data");
 											alert("Start date must be greater than actual date and end date must be greater than start date");

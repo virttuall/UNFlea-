@@ -361,6 +361,7 @@
 									<p>
 										${product.name}
 									</p>
+									<p>${product.type}</p>
 
 									<g:form controller="product" action="request">
 										<button class="openDetails btn btn-default" name="product"

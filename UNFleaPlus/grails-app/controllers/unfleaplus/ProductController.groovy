@@ -288,21 +288,7 @@ class ProductController {
 				listWhere.add(params.state.trim())
 				state=params.state
 			}
-			if(subasta!=null && params.subasta.equals("-1")){
-				subasta=null
-			}else if(!params.subsata.equals("-1") && params.subasta!=null) {
-				subasta=params.subasta
-			}
-			if(donacion!=null && params.donacion.equals("-1")){
-				donacion=null
-			}else if(!params.donacion.equals("-1") && params.donacion!=null) {
-				donacion=params.donacion
-			}
-			if(normal!=null && params.normal.equals("-1")){
-				normal=null
-			}else if(!params.normal.equals("-1") && params.normal!=null) {
-				normal=params.normal
-			}
+			
 			if(nameOrder!=null && params.nameOrder.equals("-1")){
 				nameOrder=null
 			}else if(!params.nameOrder.equals("-1") && params.nameOrder!=null){
@@ -335,6 +321,27 @@ class ProductController {
 			}else if(!params.priceOrder.equals("-1") && params.precioOrder!=null){
 				priceOrder=params.priceOrder
 				//order+=priceOrder+","
+			}
+			if(subasta!=null && params.subasta.equals("-1")){
+				subasta=null
+			}else if(!params.subsata.equals("-1") && params.subasta!=null) {
+				where+="b.type=? OR "
+				listWhere.add("AUCTION")
+				subasta="AUCTION"
+			}
+			if(donacion!=null && params.donacion.equals("-1")){
+				donacion=null
+			}else if(!params.donacion.equals("-1") && params.donacion!=null) {
+				where+="b.type=? OR "
+				listWhere.add("DONATE")
+				donacion="DONATE"
+			}
+			if(normal!=null && params.normal.equals("-1")){
+				normal=null
+			}else if(!params.normal.equals("-1") && params.normal!=null) {
+				where+="b.type=? OR "
+				listWhere.add("NORMAL")
+				normal="NORMAL"
 			}
 		}
 

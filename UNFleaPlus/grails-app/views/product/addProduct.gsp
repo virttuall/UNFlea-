@@ -94,8 +94,9 @@
 									</label>
 								</div>
 							</div>
+							<g:set var="date_now" value="${dateNow = new Date()}" />
 							<div class="myAditionalOptions" id="myAditionalOptions">
-								<g:set var="date_now" value="${dateNow = new Date()}" />
+								
 								<div class="form-group" id="myOptionMinimumCost">
 									<label class="col-md-3 control-label" for="state"><g:message
 											code="minimumCostVar" /></label>
