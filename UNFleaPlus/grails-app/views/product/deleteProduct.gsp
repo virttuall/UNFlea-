@@ -51,10 +51,20 @@
 					</form>
 					
 				</div>
-				<div class=pagination>
-					<g:paginate controller="product" action="viewDeleteProduct" max="10"
+				
+				<g:if test="${totalProduct<10}">
+					<div class=pagination style="display: none;">
+						<g:paginate controller="product" action="viewDeleteProduct" max="10"
 						total="${totalProduct?:0}" />
-				</div>
+					</div>
+				</g:if>
+				<g:else>
+					<div class=pagination>
+						<g:paginate controller="product" action="viewDeleteProduct" max="10"
+						total="${totalProduct?:0}" />
+					</div>
+				</g:else>
+				
 			</div>
 		</div>
 	</div>

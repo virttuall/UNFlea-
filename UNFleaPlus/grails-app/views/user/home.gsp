@@ -70,7 +70,7 @@
 				</p>
 				<div class="col-xs-3 sidebar-offcanvas" id="sidebar"
 					role="navigation">
-					<g:link controller="product" action="viewAddProduct">
+					<g:link controller="user" action="viewHome">
 						<h3>
 							<i class="glyphicon glyphicon-user"></i>
 							<g:message code="profile" />
@@ -114,13 +114,12 @@
 								<g:each var="image" in="${images}">
 
 
-
-									<div
-										class="margin-gallery  col-lg-3 col-md-4 col-sm-6 col-xs-6">
-										<li class="thumbnail"><img class="img-responsive"
-											src="${createLink(controller:'user', action:'product_image', id:image.getId())}">
-										</li>
-									</div>
+								<div class="margin-gallery  col-lg-3 col-md-4 col-sm-6 col-xs-12">
+									
+									<li class="img-thumbnail"><img class="img-responsive " style="width: 10em; height: 10em;"
+										src="${createLink(controller:'user', action:'product_image', id:image.getId())}">
+									</li>
+								</div>
 
 
 
