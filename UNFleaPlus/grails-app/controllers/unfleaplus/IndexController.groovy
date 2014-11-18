@@ -10,13 +10,14 @@ class IndexController {
 		return lista
 	}
     def index() {
-		println(session.user)
-		if(session.user){
-			redirect(controller:'user',action:'viewHome' , params: [name: session.user])
-		}
-		def products = recoveryProduct()
-		
-		render(controller:'index',view:'index', model:[search:products])
+		redirect(controller: 'chat', action: 'index')
+//		println(session.user)
+//		if(session.user){
+//			redirect(controller:'user',action:'viewHome' , params: [name: session.user])
+//		}
+//		def products = recoveryProduct()
+//		
+//		render(controller:'index',view:'index', model:[search:products])
 	}
 	def viewHome(){
 		if(session.user){
