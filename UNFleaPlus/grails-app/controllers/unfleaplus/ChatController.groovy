@@ -2,8 +2,7 @@ package unfleaplus
 
 class ChatController {
 
-		def index()
-	{    
+	def index() {
 		render(view: 'chat')
 	}
 	def retrieveLatestMessages() {
