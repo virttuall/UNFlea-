@@ -1,7 +1,8 @@
 package unfleaplus
 
 class ChatController {
-	def index()
+
+		def index()
 	{    
 		render(view: 'chat')
 	}
@@ -11,7 +12,7 @@ class ChatController {
 	}
 	def submitMessage(String message) {
 		//new Message(nickname: session.nickname, message:message).save()
-		new Message(nickname: "usuario", message:message).save()
+		new Message(nickname: session.user, message:message).save()
 		render "<script>retrieveLatestMessages()</script>"
 	}
 }

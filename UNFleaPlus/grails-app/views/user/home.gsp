@@ -102,6 +102,12 @@
 								</g:link></li>
 						</ul>
 					</div>
+				<g:link controller="chat" action="index">
+						<h3>
+							<i class="glyphicon glyphicon-envelope"></i>
+							<g:message code="chat" />
+						</h3>
+					</g:link>
 
 				</div>
 				<div class="col-xs-offset-2 col-xs-7 col-lg-offset-1 col-lg-8 ">
