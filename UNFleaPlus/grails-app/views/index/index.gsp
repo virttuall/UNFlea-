@@ -157,19 +157,49 @@
 				</g:if>
 				<p>
 					<g:link  controller="index" action="viewHome" params="[lang:'en']">
-						<asset:image src="USA.png" alt="UNFlea+" height="40px"
+						<asset:image src="ingles.png" alt="UNFlea+" height="40px"
 							width="40px" />
 					</g:link>
 					<g:link controller="index" action="viewHome" params="[lang:'es']">
-						<asset:image src="espana.png" alt="UNFlea+" height="40px"
+						<asset:image src="espanol.png" alt="UNFlea+" height="40px"
 							width="40px" />
 					</g:link>
 				</p>
 				<p>
-					
-					&copy; 2014 UN Flea+. <a href="#">Privacy </a> &amp;<a href="#">
-						Terms</a>
+				<asset:image src="facebook.png" alt="UNFlea+" height="40px"
+							width="40px" />
+					<asset:image src="twitter.png" alt="UNFlea+" height="40px"
+							width="40px" />
+					<asset:image src="googleplus.png" alt="UNFlea+" height="40px"
+							width="40px" />
+				    <asset:image src="youtube.png" alt="UNFlea+" height="40px"
+							width="40px" />
+				    <asset:image src="in.png" alt="UNFlea+" height="40px"
+							width="40px" />
+					<asset:image src="github.png" alt="UNFlea+" height="40px"
+							width="40px" />
+					<asset:image src="instagram.png" alt="UNFlea+" height="40px"
+							width="40px" />
+				    <asset:image src="pinterest.png" alt="UNFlea+" height="40px"
+							width="40px" />
+					<asset:image src="vimeo.png" alt="UNFlea+" height="40px"
+							width="40px" />
 				</p>
+				<p>
+					
+					&copy; 2014 UN Flea+. <a href="#">Privacy </a> &amp;<a href="#"><%--
+						Terms 
+						
+						
+					<g:each var="i" in="${ (0..<50) }">
+				   			 &nbsp;
+				  	</g:each>
+						
+						--%></a>
+					
+							
+				</p>
+				
 				
 			</ol>
 		</div>
