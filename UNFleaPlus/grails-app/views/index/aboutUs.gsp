@@ -196,34 +196,34 @@
 		<div class="container">
 			<ol>
 				<p>
-					<g:link  controller="index" action="viewAboutUs" params="[lang:'en']">
-						<asset:image src="ingles.png" alt="UNFlea+" height="40px"
+					<p>
+					<g:link  controller="index" action="viewHome" params="[lang:'en']">
+						<asset:image src="ENDEF.png" alt="UNFlea+" height="40px"
 							width="40px" />
 					</g:link>
-					<g:link  controller="index" action="viewAboutUs" params="[lang:'es']">
-						<asset:image src="espanol.png" alt="UNFlea+" height="40px"
+					<g:link controller="index" action="viewHome" params="[lang:'es']">
+						<asset:image src="ESDEF.png" alt="UNFlea+" height="40px"
+							width="40px" />
+					</g:link>
+					<g:link controller="index" action="viewHome" params="[lang:'fr']">
+						<asset:image src="FRDEF.png" alt="UNFlea+" height="40px"
 							width="40px" />
 					</g:link>
 				</p>
 				<p>
-				<asset:image src="facebook.png" alt="UNFlea+" height="40px"
-							width="40px" />
-					<asset:image src="twitter.png" alt="UNFlea+" height="40px"
-							width="40px" />
-					<asset:image src="googleplus.png" alt="UNFlea+" height="40px"
-							width="40px" />
-				    <asset:image src="youtube.png" alt="UNFlea+" height="40px"
-							width="40px" />
-				    <asset:image src="in.png" alt="UNFlea+" height="40px"
-							width="40px" />
-					<asset:image src="github.png" alt="UNFlea+" height="40px"
-							width="40px" />
-					<asset:image src="instagram.png" alt="UNFlea+" height="40px"
-							width="40px" />
-				    <asset:image src="pinterest.png" alt="UNFlea+" height="40px"
-							width="40px" />
-					<asset:image src="vimeo.png" alt="UNFlea+" height="40px"
-							width="40px" />
+					<asset:image src="facebook.png" alt="UNFlea+" height="40px" width="40px"/>
+					<a href="https://twitter.com/unfleaplus">
+						<asset:image src="twitter.png" alt="UNFlea+" height="40px" width="40px" />
+					</a>
+					<asset:image src="googleplus.png" alt="UNFlea+" height="40px" width="40px" />
+				    <asset:image src="youtube.png" alt="UNFlea+" height="40px" width="40px" />
+				    <asset:image src="in.png" alt="UNFlea+" height="40px" width="40px" /> 
+				    <a href="https://github.com/virttuall/UNFlea-">
+						<asset:image src="github.png" alt="UNFlea+" height="40px" width="40px" />
+					</a>
+					<asset:image src="instagram.png" alt="UNFlea+" height="40px" width="40px" />
+				    <asset:image src="pinterest.png" alt="UNFlea+" height="40px" width="40px" />
+					<asset:image src="vimeo.png" alt="UNFlea+" height="40px" width="40px" />
 				</p>
 				<p>
 					&copy; 2014 UN Flea+. <a href="#">Privacy </a> &amp;<a href="#">
