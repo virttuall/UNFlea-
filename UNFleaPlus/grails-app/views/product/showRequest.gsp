@@ -238,7 +238,7 @@
 			<ul>
 				<p>
 					<g:link controller="product" action="request" params="[lang:'en']">
-						<asset:image src="USA.png" alt="UNFlea+" height="40px"
+						<asset:image src="ingles.png" alt="UNFlea+" height="40px"
 							width="40px" />
 					</g:link>
 					<p>

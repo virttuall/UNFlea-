@@ -197,11 +197,11 @@
 			<ol>
 				<p>
 					<g:link  controller="index" action="viewAboutUs" params="[lang:'en']">
-						<asset:image src="USA.png" alt="UNFlea+" height="40px"
+						<asset:image src="ingles.png" alt="UNFlea+" height="40px"
 							width="40px" />
 					</g:link>
 					<g:link  controller="index" action="viewAboutUs" params="[lang:'es']">
-						<asset:image src="espana.png" alt="UNFlea+" height="40px"
+						<asset:image src="espanol.png" alt="UNFlea+" height="40px"
 							width="40px" />
 					</g:link>
 				</p>
