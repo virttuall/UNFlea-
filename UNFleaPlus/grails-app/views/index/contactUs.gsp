@@ -179,15 +179,15 @@
 		<div class="container">
 			<ol>
 				<p>
-					<g:link  controller="index" action="viewHome" params="[lang:'en']">
+					<g:link  controller="index" action="viewContactUs" params="[lang:'en']">
 						<asset:image src="ENDEF.png" alt="UNFlea+" height="40px"
 							width="40px" />
 					</g:link>
-					<g:link controller="index" action="viewHome" params="[lang:'es']">
+					<g:link controller="index" action="viewContactUs" params="[lang:'es']">
 						<asset:image src="ESDEF.png" alt="UNFlea+" height="40px"
 							width="40px" />
 					</g:link>
-					<g:link controller="index" action="viewHome" params="[lang:'fr']">
+					<g:link controller="index" action="viewContactUs" params="[lang:'fr']">
 						<asset:image src="FRDEF.png" alt="UNFlea+" height="40px"
 							width="40px" />
 					</g:link>
