@@ -13,7 +13,78 @@
 <asset:stylesheet src="dropzone.css" />
 <asset:stylesheet src="main.css" />
 <asset:javascript src="toogleMenu.js" />
-
+<asset:javascript src="jquery-1.8.3.js" />
+<asset:javascript src="jquery-ui.js" />
+<asset:javascript src="jquery.ui.chatbox.js" />
+<asset:stylesheet src="jquery.ui.chatbox.css" />
+<script type="text/javascript">
+		/*
+			document ready.
+		*/
+		$(document).ready(function()
+		{
+			/*
+				declare gloabl box variable,
+				so we can check if box is alreay open,
+				when user click toggle button
+			*/
+			var box = null;
+			
+			/*
+				we are now adding click hanlder for 
+				toggle button.
+			*/
+			
+			$("input[type='button']").click(function(event, ui)
+			{
+				/*
+					now if box is not null,
+					we are toggling chat box.
+				*/
+				if(box)
+				{
+					/*
+						below code will hide the chatbox that 
+						is active, when first clicked on toggle button
+					*/
+					box.chatbox("option", "boxManager").toggleBox();
+				}
+				else
+				{
+					/*
+						if box variable is null then we will create
+						chat-box.
+					*/
+					box = $("#chat_div").chatbox(
+					{
+						/*
+							unique id for chat box
+						*/
+						//id:"Runnable",
+						id: "${session.user}",
+                        user:
+						{
+							key : "value"
+						},
+						/*
+							Title for the chat box
+						*/
+						title : "Chat",
+						/*
+							messageSend as name suggest,
+							this will called when message sent.
+							and for demo we have appended sent message to our log div.
+						*/
+						messageSent : function(id, user, msg)
+						{
+							//$("#log").append(id + " said: " + msg + "<br/>");
+                            $("#chat_div").chatbox("option", "boxManager").addMsg(id, msg);
+                        }
+					});
+				}
+			});
+		});
+    </script>
 </head>
 <body>
 
@@ -108,6 +179,14 @@
 							<g:message code="chat" />
 						</h3>
 					</g:link>
+					
+					<h3>
+					     <i class="glyphicon glyphicon-envelope"></i>
+							<g:message code="chat" />
+						 <input type="button"/>
+				    <h3>
+					
+					
 
 				</div>
 				<div class="col-xs-offset-2 col-xs-7 col-lg-offset-1 col-lg-8 ">
@@ -355,6 +434,10 @@
 				</div>
 			</div>
 		</div>
+		<div id="chat_div"></div>
+
+		<hr />
+		<div id="log"></div>
 </body>
 </html>
 
