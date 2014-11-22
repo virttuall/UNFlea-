@@ -15,9 +15,9 @@
 <asset:javascript src="request.js" />
 <asset:javascript src="lightbox.js" />
 <asset:stylesheet src="lightbox.css" />
-<asset:stylesheet src="thumbelina.css"/>
-<asset:javascript src="thumbelina.js"/> 
-<asset:stylesheet src="showRequest.css"/>
+<asset:stylesheet src="thumbelina.css" />
+<asset:javascript src="thumbelina.js" />
+<asset:stylesheet src="showRequest.css" />
 
 
 </head>
@@ -127,105 +127,309 @@
 
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<h1>
-					${product.name}  <g:if test="${product.type == 'NORMAL' }">
-								        <span class="label label-primary center-vertical"><g:message code="normalVar"/></span>
-									</g:if>
-									<g:else>
-										<g:if test="${product.type == 'AUCTION'}">
-		    								<span class="label label-success center-vertical"><g:message code="auctionVar"/></span>
-										</g:if>
-										<g:else>
-		     								<span class="label label-warning center-vertical"><g:message code="donateVar"/></span>
-		     							</g:else>
-		     						</g:else>
+					${product.name}
+					<g:if test="${product.type == 'NORMAL' }">
+						<span class="label label-primary center-vertical"><g:message
+								code="normalVar" /></span>
+					</g:if>
+					<g:else>
+						<g:if test="${product.type == 'AUCTION'}">
+							<span class="label label-success center-vertical"><g:message
+									code="auctionVar" /></span>
+						</g:if>
+						<g:else>
+							<span class="label label-warning center-vertical"><g:message
+									code="donateVar" /></span>
+						</g:else>
+					</g:else>
 				</h1>
 			</div>
 			<div class="row">
 				<div class="col-lg-3 col-sm-4 col-md-4 col-xs-7">
-					
+
 					<g:if test="${product.image}">
-						<a href="${createLink(controller:'product', action:'large_image', id:product.image[0].getId())}"
-							data-lightbox="example-set"> <img id="img_01" class="thumbnail"
+						<a
+							href="${createLink(controller:'product', action:'large_image', id:product.image[0].getId())}"
+							data-lightbox="example-set"> <img id="img_01"
+							class="thumbnail"
 							src="${createLink(controller:'product', action:'normal_image', id:product.image[0].getId())}"
 							data-zoom-image="${createLink(controller:'product', action:'large_image', id:product.image[0].getId())}" />
 						</a>
 					</g:if>
-					
+
 					<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-					
-					<div  id="slider3">
-					<div id="gallery_01" >
-						<div class="thumbelina-but horiz left">&#706;</div>
-            			<ul>
-							<g:each var="images" in="${product.image}">
-								<g:each var="image" in="${images}">
+
+						<div id="slider3">
+							<div id="gallery_01">
+								<div class="thumbelina-but horiz left">&#706;</div>
+								<ul>
+									<g:each var="images" in="${product.image}">
+										<g:each var="image" in="${images}">
 
 									
 									
 										style="margin-bottom: 10px;">
 										<g:if test="${product.image[0].getId()==images.getId()}">
-											<li><a
-												href="${createLink(controller:'product', action:'large_image', id:image.getId())}"
-												data-image="${createLink(controller:'product', action:'normal_image', id:image.getId())}"
-												data-zoom-image="${createLink(controller:'product', action:'large_image', id:image.getId())}">
-												<img id="img_01"
-												src="${createLink(controller:'product', action:'small_image', id:image.getId())}" />
-											</a>
-											</li>
-										</g:if>
-										<g:else>
-											<li><a
-												href="${createLink(controller:'product', action:'large_image', id:image.getId())}"
-												data-lightbox="example-set"
-												data-image="${createLink(controller:'product', action:'normal_image', id:image.getId())}"
-												data-zoom-image="${createLink(controller:'product', action:'large_image', id:image.getId())}">
-												<img id="img_01"
-												src="${createLink(controller:'product', action:'small_image', id:image.getId())}" />
-											</a></li>
-										</g:else>
-										
+												<li><a
+													href="${createLink(controller:'product', action:'large_image', id:image.getId())}"
+													data-image="${createLink(controller:'product', action:'normal_image', id:image.getId())}"
+													data-zoom-image="${createLink(controller:'product', action:'large_image', id:image.getId())}">
+														<img id="img_01"
+														src="${createLink(controller:'product', action:'small_image', id:image.getId())}" />
+												</a></li>
+											</g:if>
+											<g:else>
+												<li><a
+													href="${createLink(controller:'product', action:'large_image', id:image.getId())}"
+													data-lightbox="example-set"
+													data-image="${createLink(controller:'product', action:'normal_image', id:image.getId())}"
+													data-zoom-image="${createLink(controller:'product', action:'large_image', id:image.getId())}">
+														<img id="img_01"
+														src="${createLink(controller:'product', action:'small_image', id:image.getId())}" />
+												</a></li>
+											</g:else>
 
-									
-								</g:each>
 
-							</g:each>
-							</ul>
-							 <div class="thumbelina-but horiz right">&#707;</div>
-							
+
+										</g:each>
+
+									</g:each>
+								</ul>
+								<div class="thumbelina-but horiz right">&#707;</div>
+
+							</div>
+						</div>
 					</div>
-					</div>
-				</div>
 				</div>
 				<div class="col-lg-9 col-sm-8 col-md-8  col-xs-5">
-					<h3><g:message code="descriptionVar"/></h3>
-				 	${product.description}
-				 	<g:if test="${product.type == 'AUCTION'}">
-				 		<h4><g:message code="dateStartVar"/>  </h4> ${product.openingDate}
-				 		<h4><g:message code="dateEndVar"/> </h4> ${product.closingDate}
-				 		<h4><g:message code="curPriceVar"/>  </h4> ${product.currentPrice}
-				 	
-				 	</g:if>
-				 	<g:elseif test="${product.type == 'DONATE'}">
-				 		<h4><g:message code="dateStartVar"/>  </h4> ${product.openingDate}
-				 		<h4><g:message code="dateEndVar"/> </h4> ${product.closingDate}
-				 	</g:elseif>
+					<h3>
+						<g:message code="descriptionVar" />
+					</h3>
+					${product.description}
+					<g:if test="${product.type == 'AUCTION'}">
+						<h4>
+							<g:message code="dateStartVar" />
+						</h4>
+						${product.openingDate}
+						<h4>
+							<g:message code="dateEndVar" />
+						</h4>
+						${product.closingDate}
+						<h4>
+							<g:message code="curPriceVar" />
+						</h4>
+						${product.currentPrice}
+
+					</g:if>
+					<g:elseif test="${product.type == 'DONATE'}">
+						<h4>
+							<g:message code="dateStartVar" />
+						</h4>
+						${product.openingDate}
+						<h4>
+							<g:message code="dateEndVar" />
+						</h4>
+						${product.closingDate}
+					</g:elseif>
 				</div>
-				
-				
-				
+
+
+
 			</div>
 
 
 			<br>
-			<div class="row">
-				<div class="col-xs-12">
-					<g:form>
-						<button class="btn btn-primary btn-lg"
-							style="margin-bottom: 15px;"><g:message code="request"/></button>
-					</g:form>
+			<g:if test="${session.user || 1==1}">
+				<div class="row">
+					<div class="col-xs-12">
+						<g:form>
+							<g:if test="${product.type == 'NORMAL' }">
+								<a class="openNormalSendRequest btn btn-primary"
+									data-toggle="modal" data-target="#modalNormalSendRequest">
+									<g:message code="request" />
+								</a>
+							</g:if>
+							<g:elseif test="${product.type == 'AUCTION' }">
+								<a class="openAuctionSendRequest btn btn-primary"
+									data-toggle="modal" data-target="#modalAuctionSendRequest">
+									<g:message code="request" />
+								</a>
+							</g:elseif>
+							<g:else>
+								<a class="openDonateSendRequest btn btn-primary"
+									data-toggle="modal" data-target="#modalDonateSendRequest">
+									<g:message code="request" />
+								</a>
+							</g:else>
+						</g:form>
+					</div>
+				</div>
+			</g:if>
+
+			<!-- Modal Send Normal Request-->
+			<div class="modal fade" id="modalNormalSendRequest" tabindex="-1"
+				role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+							</button>
+							<h4 class="modal-title" id="myModalLabel">
+								<g:message code="sendRequestVar" />
+							</h4>
+						</div>
+						<div class="modal-body">
+							<p>
+								<g:message code="sendRequestMessagevar" />
+							</p>
+							<g:form id="formNormalSendRequest"
+								url="[action:'deleteProduct',controller:'product']"
+								method="post">
+
+								<input type="hidden" value="${product.getId() }"
+									name="theProduct"></input>
+
+								<div class="form-group">
+									<label class="col-md-8 control-label" for="state"><g:message
+											code="sendRequestMoneyVar" /></label>
+									<div class="col-md-4">
+										<div class="input-group">
+											<span class="input-group-addon">$</span> <input type="number"
+												class="form-control" id="price" name="price" min="0.0"
+												value="0" max="1000000" step="0.1" onkeyup="onChangePrice()"
+												required>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-md-12 control-label" for="state"><g:message
+											code="sendRequestProductsVar" /></label>
+									<p>
+									<div class="col-md-9">
+										<div class="input-group">
+											<g:if test="${session.user}">
+												<g:each var="product" in="${myProducts}">
+													<g:if test="${product.type == 'NORMAL' }">
+														<div class="checkbox">
+															<label> <input type="checkbox"
+																value="${product.getId()}"> ${product.name}
+															</label>
+														</div>
+													</g:if>
+												</g:each>
+											</g:if>
+										</div>
+									</div>
+								</div>
+
+							</g:form>
+							<p>
+							<div class="col-md-12">
+								<div class="pull-right">
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">
+										<g:message code="cancelVar" />
+									</button>
+									<button type="submit" class="btn btn-primary"
+										onclick="sendNormalSendRequest()">
+										<g:message code="send" />
+									</button>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer"></div>
+					</div>
 				</div>
 			</div>
 
+			<!-- Modal Send Auction Request-->
+			<div class="modal fade" id="modalAuctionSendRequest" tabindex="-1"
+				role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+							</button>
+							<h4 class="modal-title" id="myModalLabel">
+								<g:message code="sendRequestVar" />
+							</h4>
+						</div>
+						<div class="modal-body">
+							<p>
+								<g:message code="sendRequestMessagevar" />
+							</p>
+							<g:form id="formAuctionSendRequest"
+								url="[action:'deleteProduct',controller:'product']"
+								method="post">
+
+								<input type="hidden" value="${product.getId() }"
+									name="theProduct"></input>
+
+								<div class="col-md-9">
+									<div class="input-group">
+										<span class="input-group-addon">$</span> <input type="number"
+											class="form-control" id="price" name="price"
+											value="${product.currentPrice + 0.1 }"
+											min="${product.currentPrice + 0.1 }" max="1000000"
+											step="0.01" onkeyup="onChangePrice()">
+									</div>
+								</div>
+
+							</g:form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">
+								<g:message code="cancelVar" />
+							</button>
+							<button type="submit" class="btn btn-primary"
+								onclick="sendAuctionSendRequest()">
+								<g:message code="send" />
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Modal Send Donate Request-->
+			<div class="modal fade" id="modalDonateSendRequest" tabindex="-1"
+				role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+							</button>
+							<h4 class="modal-title" id="myModalLabel">
+								<g:message code="sendRequestVar" />
+							</h4>
+						</div>
+						<div class="modal-body">
+							<g:form id="formDonateSendRequest"
+								url="[action:'deleteProduct',controller:'product']"
+								method="post">
+
+								<input type="hidden" value="${product.getId() }"
+									name="theProduct"></input>
+
+							</g:form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">
+								<g:message code="cancelVar" />
+							</button>
+							<button type="submit" class="btn btn-primary"
+								onclick="sendDonateSendRequest()">
+								<g:message code="send" />
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
 
 		</div>
 
@@ -241,7 +445,7 @@
 						<asset:image src="USA.png" alt="UNFlea+" height="40px"
 							width="40px" />
 					</g:link>
-					<g:link  controller="product" action="request" params="[lang:'es']">
+					<g:link controller="product" action="request" params="[lang:'es']">
 						<asset:image src="espana.png" alt="UNFlea+" height="40px"
 							width="40px" />
 					</g:link>

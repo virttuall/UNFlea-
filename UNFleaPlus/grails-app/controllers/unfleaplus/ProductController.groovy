@@ -378,14 +378,23 @@ class ProductController {
 
 
 	}
-	def request(){
+	def viewRequest(){
 		def product = Product.get(params.product)
 		if(product!=null){
 			productRequest=product
 		}
 		def products = IndexController.recoveryProduct()
-		//print product
-		render(controller:'prodcut',view:'showRequest',model:[product:productRequest,search:products])
+		if (session.user){
+			def user= User.findByUsername(session.user)
+			def c = Product.createCriteria()
+			def results = c.list(params){
+				createAlias("user", "c")
+				eq("c.id", user.getId())
+			}
+			render(controller:'prodcut',view:'showRequest',model:[product:productRequest,search:products, myProducts:results])
+		}else{
+			render(controller:'prodcut',view:'showRequest',model:[product:productRequest,search:products])
+		}
 	}
 
 

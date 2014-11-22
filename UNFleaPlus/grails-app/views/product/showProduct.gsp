@@ -363,7 +363,7 @@
 									</p>
 									<p>${product.type}</p>
 
-									<g:form controller="product" action="request">
+									<g:form controller="product" action="viewRequest">
 										<button class="openDetails btn btn-default" name="product"
 											value="${product.getId()}">
 											<g:message code="details" />

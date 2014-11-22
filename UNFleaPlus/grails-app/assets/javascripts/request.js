@@ -11,3 +11,28 @@ $(document).ready(function(){
         $fwdBut:$('#slider3 .right')  // Selector to bottom button.
     });
 });
+
+function onChangePrice(){
+	var minCost = document.getElementById('price').value;
+	minCost = minCost.replace("^[.0-9]","");
+	if(minCost.length==0)
+		minCost = "0";
+	document.getElementById('price').value = minCost;
+}
+
+$(document).on("click", ".openNormalSendProduct", function () {
+//    var myIdProduct = $(this).data('id');
+//    $(".modal-body #deleteProductId").val( myIdProduct );
+});
+
+function sendNormalSendRequest(){
+	$("#formNormalSendRequest").submit();
+}
+
+function sendAuctionSendRequest(){
+	$("#formNormalSendRequest").submit();
+}
+
+function sendDonateSendRequest(){
+	$("#formDonateSendRequest").submit();
+}
