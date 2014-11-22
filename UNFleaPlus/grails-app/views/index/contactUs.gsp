@@ -189,6 +189,26 @@
 					</g:link>
 				</p>
 				<p>
+				<asset:image src="facebook.png" alt="UNFlea+" height="40px"
+							width="40px" />
+					<asset:image src="twitter.png" alt="UNFlea+" height="40px"
+							width="40px" />
+					<asset:image src="googleplus.png" alt="UNFlea+" height="40px"
+							width="40px" />
+				    <asset:image src="youtube.png" alt="UNFlea+" height="40px"
+							width="40px" />
+				    <asset:image src="in.png" alt="UNFlea+" height="40px"
+							width="40px" />
+					<asset:image src="github.png" alt="UNFlea+" height="40px"
+							width="40px" />
+					<asset:image src="instagram.png" alt="UNFlea+" height="40px"
+							width="40px" />
+				    <asset:image src="pinterest.png" alt="UNFlea+" height="40px"
+							width="40px" />
+					<asset:image src="vimeo.png" alt="UNFlea+" height="40px"
+							width="40px" />
+				</p>
+				<p>
 					&copy; 2014 UN Flea+. <a href="#">Privacy </a> &amp;<a href="#">
 						Terms</a>
 				</p>

@@ -187,15 +187,7 @@
 				</p>
 				<p>
 					
-					&copy; 2014 UN Flea+. <a href="#">Privacy </a> &amp;<a href="#"><%--
-						Terms 
-						
-						
-					<g:each var="i" in="${ (0..<50) }">
-				   			 &nbsp;
-				  	</g:each>
-						
-						--%></a>
+					&copy; 2014 UN Flea+. <a href="#">Privacy </a> &amp;<a href="#">
 					
 							
 				</p>

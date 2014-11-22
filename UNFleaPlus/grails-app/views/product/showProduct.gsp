@@ -324,6 +324,26 @@
 										<asset:image src="USA.png" alt="UNFlea+" height="40px"
 											width="40px" />
 									</g:link>
+									<p>
+				<asset:image src="facebook.png" alt="UNFlea+" height="40px"
+							width="40px" />
+					<asset:image src="twitter.png" alt="UNFlea+" height="40px"
+							width="40px" />
+					<asset:image src="googleplus.png" alt="UNFlea+" height="40px"
+							width="40px" />
+				    <asset:image src="youtube.png" alt="UNFlea+" height="40px"
+							width="40px" />
+				    <asset:image src="in.png" alt="UNFlea+" height="40px"
+							width="40px" />
+					<asset:image src="github.png" alt="UNFlea+" height="40px"
+							width="40px" />
+					<asset:image src="instagram.png" alt="UNFlea+" height="40px"
+							width="40px" />
+				    <asset:image src="pinterest.png" alt="UNFlea+" height="40px"
+							width="40px" />
+					<asset:image src="vimeo.png" alt="UNFlea+" height="40px"
+							width="40px" />
+				</p>
 									<g:link controller="product" action="searchProduct"
 										params="[lang:'es']">
 										<asset:image src="espana.png" alt="UNFlea+" height="40px"
