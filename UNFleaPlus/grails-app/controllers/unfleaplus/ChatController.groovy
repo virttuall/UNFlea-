@@ -6,7 +6,7 @@ class ChatController {
 		render(view: 'chat')
 	}
 	def retrieveLatestMessages() {
-		def messages = Message.listOrderByDate(order: 'desc', max:10)
+		def messages = Message.listOrderByDate(order: 'desc', max:30)
 		[messages:messages.reverse()]
 	}
 	def submitMessage(String message) {

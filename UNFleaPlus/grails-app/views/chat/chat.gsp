@@ -4,12 +4,16 @@
 <meta name="layout" content="main" />
 <title>Simple Chat</title>
 <g:javascript library="jquery" plugin="jquery" />
+<style type="text/css">
+  #chatMessages { color: black; font-family: Verdana; width:1130px; height:600px;margin-left:   100px;}
+  #messageBox { width: 1130px; margin-left:   100px;}
+</style>
 </head>
 <body>
-	<div id="chatMessages"></div>
-	<input type="text" id="messageBox" name="message"
-		onkeypress="messageKeyPress(this,event);" />
-	<div id="temp"></div>
+		<div id="chatMessages"></div>
+		<input type="text" id="messageBox" name="message" onkeypress="messageKeyPress(this,event);"/>
+		<div id="temp"></div>
+
 	<script>
 		function messageKeyPress(field, event) {
 			var theCode = event.keyCode ? event.keyCode
