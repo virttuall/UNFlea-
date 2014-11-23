@@ -5,7 +5,7 @@ class Product {
 	String description
 	boolean state
 	String type
-	float currentPrice
+	double currentPrice
 	Date openingDate
 	Date closingDate
 	static hasMany=[image:Image,category:Category,requests:Request]

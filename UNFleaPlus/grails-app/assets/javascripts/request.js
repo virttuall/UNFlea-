@@ -30,7 +30,7 @@ function sendNormalSendRequest(){
 }
 
 function sendAuctionSendRequest(){
-	$("#formNormalSendRequest").submit();
+	$("#formAuctionSendRequest").submit();
 }
 
 function sendDonateSendRequest(){

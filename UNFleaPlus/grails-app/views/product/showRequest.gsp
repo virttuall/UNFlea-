@@ -239,7 +239,7 @@
 
 
 			<br>
-			<g:if test="${session.user || 1==1}">
+			<g:if test="${(session.user && !myProducts.find {it.getId() == product.getId()}) || 1==1}">
 				<div class="row">
 					<div class="col-xs-12">
 						<g:form>
@@ -284,11 +284,11 @@
 								<g:message code="sendRequestMessagevar" />
 							</p>
 							<g:form id="formNormalSendRequest"
-								url="[action:'deleteProduct',controller:'product']"
+								url="[action:'sendNormalRequest',controller:'product']"
 								method="post">
 
 								<input type="hidden" value="${product.getId() }"
-									name="theProduct"></input>
+									name="idTheProduct"></input>
 
 								<div class="form-group">
 									<label class="col-md-8 control-label" for="state"><g:message
@@ -313,8 +313,7 @@
 												<g:each var="product" in="${myProducts}">
 													<g:if test="${product.type == 'NORMAL' }">
 														<div class="checkbox">
-															<label> <input type="checkbox"
-																value="${product.getId()}"> ${product.name}
+															<label> <input type="checkbox" name="${product.getId()}"> ${product.name}
 															</label>
 														</div>
 													</g:if>
@@ -362,11 +361,11 @@
 								<g:message code="sendRequestMessagevar" />
 							</p>
 							<g:form id="formAuctionSendRequest"
-								url="[action:'deleteProduct',controller:'product']"
+								url="[action:'sendAuctionRequest',controller:'product']"
 								method="post">
 
 								<input type="hidden" value="${product.getId() }"
-									name="theProduct"></input>
+									name="idTheProduct"></input>
 
 								<div class="col-md-9">
 									<div class="input-group">
@@ -409,11 +408,11 @@
 						</div>
 						<div class="modal-body">
 							<g:form id="formDonateSendRequest"
-								url="[action:'deleteProduct',controller:'product']"
+								url="[action:'sendDonateRequest',controller:'product']"
 								method="post">
 
 								<input type="hidden" value="${product.getId() }"
-									name="theProduct"></input>
+									name="idTheProduct"></input>
 
 							</g:form>
 						</div>
@@ -434,8 +433,6 @@
 		</div>
 
 	</div>
-	<div id="search" style="display: none;">
-		${search}
 	</div>
 	<div id="footer">
 		<div class="container">

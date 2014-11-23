@@ -11,6 +11,7 @@ class User {
 	boolean active
 	String userCity
 	String userCountry
+	long reputation
 	static hasMany = [ roles: Role, permissions: String,products:Product,requests:Request ]
     static constraints = {
 		avatar(nullable:true,maxSize: 10024 * 10024)

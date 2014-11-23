@@ -5,6 +5,7 @@ import javax.swing.ImageIcon
 import javax.imageio.ImageIO;
 
 import java.awt.Graphics2D
+import java.awt.GraphicsConfiguration.DefaultBufferCapabilities;
 import java.awt.image.BufferedImage
 import java.lang.Thread.State;
 
@@ -397,7 +398,67 @@ class ProductController {
 		}
 	}
 
-
+	def sendNormalRequest(){
+		def toDoUser = User.findByUsername(session.user)
+		def product = Product.get(params.idTheProduct)
+		def price = params.price.toDouble()
+		def products = []
+		params.remove("idTheProduct"); params.remove("price"); 
+		params.remove("controller"); params.remove("format"); params.remove("action")
+		def productKeys = params.keySet()
+		for (Object keyProduct : productKeys) {
+			println(keyProduct.value.toString().toLong())
+			products += [Product.get(keyProduct.value.toString().toLong())]
+		}
+		def theRequest = new Request(money:price, products:products)
+		theRequest.setUser(toDoUser)
+		theRequest.save(flush:true)
+		
+		product.addToRequests(theRequest)
+		
+		product.save(flush:true)
+		
+		println (params)
+		println (theRequest)
+		redirect(controller:'index',action:'viewHome')
+	}
+	
+	def sendAuctionRequest(){
+		def toDoUser = User.findByUsername(session.user)
+		def product = Product.get(params.idTheProduct)
+		def price = params.price.toDouble()
+		def products = []
+		def today = new Date()
+		if(product.openingDate.compareTo(today)>=0 && product.closingDate.compareTo(today)<= 0){
+			def theRequest = new Request(money:price, products:products)
+			theRequest.setUser(toDoUser)
+			theRequest.save(flush:true)
+			
+			product.currentPrice = max(product.currentPrice, price)
+			product.addToRequests(theRequest)
+			product.save(flush:true)
+		}
+		redirect(controller:'index',action:'viewHome')
+	}
+	
+	def sendDonateRequest(){
+		def toDoUser = User.findByUsername(session.user)
+		def product = Product.get(params.idTheProduct)
+		def price = 0
+		def products = []
+		def today = new Date()
+		if(today.compareTo(product.openingDate)>=0 && today.compareTo(product.closingDate)<= 0){
+			def theRequest = new Request(money:price, products:products)
+			theRequest.setUser(toDoUser)
+			theRequest.save(flush:true)
+			
+			product.currentPrice = max(product.currentPrice, price)
+			product.addToRequests(theRequest)
+			product.save(flush:true)
+		}
+		
+		redirect(controller:'index',action:'viewHome')
+	}
 
 
 }
