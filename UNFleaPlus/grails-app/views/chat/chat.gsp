@@ -5,11 +5,15 @@
 <title>Simple Chat</title>
 <g:javascript library="jquery" plugin="jquery" />
 <style type="text/css">
-  #chatMessages { color: black; font-family: Verdana; width:1130px; height:600px;margin-left:   100px;}
+  #chatMessages { color: red; font-family: Verdana; width:1130px; height:600px;margin-left:   100px;}
   #messageBox { width: 1130px; margin-left:   100px;}
+  body
+  {
+  	background-image: url('${resource(dir: "images", file: "background2.jpg")}');
+  }
 </style>
 </head>
-<body>
+<body  >
 		<div id="chatMessages"></div>
 		<input type="text" id="messageBox" name="message" onkeypress="messageKeyPress(this,event);"/>
 		<div id="temp"></div>

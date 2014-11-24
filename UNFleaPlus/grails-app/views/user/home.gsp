@@ -70,7 +70,7 @@
 						messageSent : function(id, user, msg)
 						{
 							//$("#log").append(id + " said: " + msg + "<br/>");
-							
+
                             $("#chat_div").chatbox("option", "boxManager").addMsg(id, msg);
                             
                             <g:remoteFunction controller="chat" action="index" update="chatMessage" params="'chatMessage='+msg"/>
