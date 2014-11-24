@@ -34,23 +34,12 @@
 				we are now adding click hanlder for 
 				toggle button.
 			*/
-			
-			$(${"buttonMessages"}).click(function(event, ui)
-			{
+
 				/*
 					now if box is not null,
 					we are toggling chat box.
 				*/
-				if(box)
-				{
-					/*
-						below code will hide the chatbox that 
-						is active, when first clicked on toggle button
-					*/
-					box.chatbox("option", "boxManager").toggleBox();
-				}
-				else
-				{
+
 					/*
 						if box variable is null then we will create
 						chat-box.
@@ -88,8 +77,6 @@
                             
                         }
 					});
-				}
-			});
 		});
     </script>
 </head>
@@ -180,7 +167,7 @@
 								</g:link></li>
 						</ul>
 					</div>
-					<g:link controller="chat" action="printList">
+					<g:link controller="chat" action="renderV">
 						<h3>
 							<i class="glyphicon glyphicon-envelope"></i>
 							<g:message code="chat" />
@@ -188,11 +175,7 @@
 						
 					</g:link>
 					
-					<h3>
-					     <i class="glyphicon glyphicon-envelope"></i>
-							<g:message code="chat" />
-						 <input id = "buttonMessages" type="button"/>
-				    <h3>
+		
 					
 					
 

@@ -1,10 +1,7 @@
 package unfleaplus
 
 class Message {
-	String fromUser
-	String toUser
-	Date date = new Date()
-	String message
-    static constraints = {
-    }
+    String nickname
+    Date date = new Date()
+    String message
 }

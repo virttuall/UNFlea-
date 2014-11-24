@@ -38,9 +38,3 @@
 	</script>
 </body>
 </html>
-
-
-
-
-
-
