@@ -21,6 +21,7 @@ class ProductController {
 	def cityOrder
 	def priceOrder
 	def nameOrder
+	def mailService
 	def index() {
 		redirect(controller:'product',action:'viewAddProduct')
 	}
@@ -411,8 +412,8 @@ class ProductController {
 		def productKeys = params.keySet()
 		print productKeys
 		for (Object keyProduct : productKeys) {
-			//println(keyProduct.value.toString().toLong())
-			products += Product.get(keyProduct.value.toString().toLong())
+			println(keyProduct.value.toString().toLong())
+			products.add(keyProduct.value.toString().toInteger())
 		}
 		print products
 		def value = Request.findAll ("from Request as b where b.products.id=? ",[product.id])
@@ -426,7 +427,13 @@ class ProductController {
 		}
 		print a
 		if (a){// Es la primera solicitud entonces la segunda se ignora
-			def theRequest = new Request(money:price,userReciving:userReceiving)
+			mailService.sendMail {
+					to "${userReceiving.email}"
+					bcc "${toDoUser.email}"
+					subject "Solicitud a la producto "+product.name
+					html    g.render(template:'/email/request', model:[user1:userReceiving,user:toDoUser,price:price,product:product])
+			}
+			def theRequest = new Request(money:price,productsToRequest:products,userReciving:userReceiving)
 		
 			product.addToRequests(theRequest)
 			toDoUser.addToRequests(theRequest)
@@ -459,7 +466,13 @@ class ProductController {
 		}
 		if(a){
 			if(product.openingDate.compareTo(today)>=0 && product.closingDate.compareTo(today)<= 0){
-				def theRequest = new Request(money:price, userReciving:userReceiving)
+				mailService.sendMail {
+					to "${userReceiving.email}"
+					bcc "${toDoUser.email}"
+					subject "Solicitud a la producto "+product.name
+					html    g.render(template:'/email/request', model:[user1:userReceiving,user:toDoUser,price:price,product:product])
+				}
+				def theRequest = new Request(money:price, productsToRequest:products,userReciving:userReceiving)
 				product.addToRequests(theRequest)
 				toDoUser.addToRequests(theRequest)
 				theRequest.save(flush:true)
@@ -474,7 +487,7 @@ class ProductController {
 	}
 	
 	def sendDonateRequest(){
-		print "hola"
+		
 		def toDoUser = User.findByUsername(session.user)
 		def product = Product.get(params.idTheProduct)
 		def price = 0
@@ -492,8 +505,13 @@ class ProductController {
 		}
 		if(a){
 			if(product.openingDate.compareTo(today)>=0 && product.closingDate.compareTo(today)<= 0){
-				print "como vas"
-				def theRequest = new Request(money:price, userReciving:userReceiving)
+				mailService.sendMail {
+					to "${userReceiving.email}"
+					bcc "${toDoUser.email}"
+					subject "Solicitud a la producto "+product.name
+					html    g.render(template:'/email/request', model:[user1:userReceiving,user:toDoUser,price:price,product:product])
+				}
+				def theRequest = new Request(money:price,productsToRequest:products, userReciving:userReceiving)
 				product.addToRequests(theRequest)
 				toDoUser.addToRequests(theRequest)
 				theRequest.save(flush:true)

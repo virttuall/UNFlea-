@@ -189,8 +189,15 @@ class UserController {
 		print params.name
 		def requests=Request.executeQuery("select distinct b.products.name from Request b where b.userReciving.username=?" , [session.user])
 		def requests1 = Request.findAll("from Request as b where b.userReciving.username=? AND b.products.name=?",[session.user,params.name])
-		print requests
-		render(controller:'user',view:'userRequest',model:[user:User.findByUsername(session.user),requests:requests,requests1:requests1,totalRequest:requests.size()])
+		def lista = []
+		requests1.productsToRequest[0].each {
+			lista+=Long.parseLong(""+it)
+		}
+		//print lista
+		def product = Product.findAll("from Product as b where b.id in (:ids)",[ids:lista])
+		
+		//print product
+		render(controller:'user',view:'userRequest',model:[user:User.findByUsername(session.user),requests:requests,requests1:requests1,totalRequest:requests.size(),products:product])
 	}
 
 }

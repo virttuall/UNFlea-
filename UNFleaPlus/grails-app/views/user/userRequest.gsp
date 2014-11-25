@@ -79,6 +79,21 @@
 			<p>${request.user}</p>
 			<p>${request.money}</p>
 		</g:each>
+		<g:each var="product" in="${products}">
+			<h3>${product.name}]</h3>
+			<div class="row">
+				<g:each var="images" in="${product.image}">
+					<g:each var="image" in="${images}">
+						<div class="col-xs-4 col-lg-3">
+							<img class="img-responsive" style="width: 10em; height: 10em;"
+						src="${createLink(controller:'user', action:'product_image', id:image.getId())}">
+						</div>
+						
+					</g:each>
+				</g:each>
+			</div>
+			
+		</g:each>
 	</div>
 </body>
 </html>
