@@ -300,46 +300,52 @@
 								method="post">
 
 								<input type="hidden" value="${product.getId() }"
-									name="idTheProduct"></input>
+									name="idTheProduct">
+								<input type="hidden" value="${product.user.username}"
+									name="userReceiving">
 
 								<div class="form-group">
 									<label class="col-md-8 control-label" for="state"><g:message
 											code="sendRequestMoneyVar" /></label>
-									<div class="col-md-4">
+									
 										<div class="input-group">
 											<span class="input-group-addon">$</span> <input type="number"
 												class="form-control" id="price" name="price" min="0.0"
 												value="0" max="1000000" step="0.1" onkeyup="onChangePrice()"
 												required>
 										</div>
-									</div>
+									
 								</div>
 
 								<div class="form-group">
 									<label class="col-md-12 control-label" for="state"><g:message
 											code="sendRequestProductsVar" /></label>
 									<p>
-									<div class="col-md-9">
+									
 										<div class="input-group">
-											<g:if test="${session.user}">
+											
 												<g:each var="product" in="${myProducts}">
 													<g:if test="${product.type == 'NORMAL' }">
 														<div class="checkbox">
 															<label> <input type="checkbox"
-																name="${product.getId()}"> ${product.name}
+																name="${product.getId()}"> <img class="product" style="width: 5em; height: 5em;"
+											src="${createLink(controller:'user', action:'product_image', id:product.image[0].getId())}">
 															</label>
 														</div>
 													</g:if>
 												</g:each>
-											</g:if>
-										</div>
+											
+										
 									</div>
 								</div>
 
 							</g:form>
-							<p>
-							<div class="col-md-12">
-								<div class="pull-right">
+							
+								
+							
+						</div>
+						<div class="modal-footer">
+							<div class="pull-right">
 									<button type="button" class="btn btn-default"
 										data-dismiss="modal">
 										<g:message code="cancelVar" />
@@ -349,9 +355,7 @@
 										<g:message code="send" />
 									</button>
 								</div>
-							</div>
 						</div>
-						<div class="modal-footer"></div>
 					</div>
 				</div>
 			</div>
@@ -378,17 +382,19 @@
 								method="post">
 
 								<input type="hidden" value="${product.getId() }"
-									name="idTheProduct"></input>
+									name="idTheProduct">
+								<input type="hidden" value="${product.user.username}"
+									name="userReceiving">
 
-								<div class="col-md-9">
-									<div class="input-group">
-										<span class="input-group-addon">$</span> <input type="number"
-											class="form-control" id="price" name="price"
-											value="${product.currentPrice + 0.1 }"
-											min="${product.currentPrice + 0.1 }" max="1000000"
-											step="0.01" onkeyup="onChangePrice()">
-									</div>
+								
+								<div class="input-group">
+									<span class="input-group-addon">$</span> <input type="number"
+										class="form-control" id="price" name="price"
+										value="${product.currentPrice + 0.1 }"
+										min="${product.currentPrice + 0.1 }" max="1000000"
+										step="0.01" onkeyup="onChangePrice()">
 								</div>
+								
 
 							</g:form>
 						</div>
@@ -423,7 +429,7 @@
 								<g:form url="[action:'loginSearch',controller:'user']" id="formLogin"class="form-signin" role="form">
 									<h2 class="form-signin-heading"><g:message code="loginVar"/></h2>
 									<input type ="email" class="form-control-sing" name="email" placeholder="${foo}" required>
-									<input type="password" class="form-control-sing" name="password" placeholder="${foo1}" readonly>
+									<input type="password" class="form-control-sing" name="password" placeholder="${foo1}" required>
 									<p>
 										<input type="checkbox" value="remember-me">  <g:message code="rememberMe" />
 										<g:link controller="user" action="viewRegister"><span class="pull-right"><g:message code="register"></g:message></span>
@@ -484,7 +490,8 @@
 
 								<input type="hidden" value="${product.getId() }"
 									name="idTheProduct"></input>
-
+								<input type="hidden" value="${product.user.username}"
+									name="userReceiving">
 							</g:form>
 						</div>
 						<div class="modal-footer">

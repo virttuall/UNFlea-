@@ -30,7 +30,9 @@ ul li img {
 
 
 
-
+.white{
+    color: white;
+}
 body .modal {
   width: 100%; /* desired relative width */
   margin-top:150px;
@@ -129,4 +131,6 @@ body .modal {
 .remove-product:hover{
 	color: #F6CECE;
 }
-
+.margin-menu{
+	margin-top: 100px;
+}

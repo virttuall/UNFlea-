@@ -400,25 +400,44 @@ class ProductController {
 
 	def sendNormalRequest(){
 		def toDoUser = User.findByUsername(session.user)
+		def userReceiving = User.findByUsername(params.userReceiving)
 		def product = Product.get(params.idTheProduct)
 		def price = params.price.toDouble()
 		def products = []
-		params.remove("idTheProduct"); params.remove("price"); 
+		print params
+		print userReceiving
+		params.remove("idTheProduct"); params.remove("price"); params.remove("userReceiving");
 		params.remove("controller"); params.remove("format"); params.remove("action")
 		def productKeys = params.keySet()
+		print productKeys
 		for (Object keyProduct : productKeys) {
-			println(keyProduct.value.toString().toLong())
-			products += [Product.get(keyProduct.value.toString().toLong())]
+			//println(keyProduct.value.toString().toLong())
+			products += Product.get(keyProduct.value.toString().toLong())
 		}
-		def theRequest = new Request(money:price, productRequest:products)
-		theRequest.save(flush:true)
-		toDoUser.addToRequests(theRequest)
-		product.addToRequests(theRequest)
-		toDoUser.save()
-		product.save(flush:true)
+		print products
+		def value = Request.findAll ("from Request as b where b.products.id=? ",[product.id])
+		def a=true
+		if(value.size()>0){
+			 value.each {
+				 if(it.user.username==toDoUser.username){
+					 a=false //Ya hay peticion entre eso usuarios para ese producto
+				 }
+			 }
+		}
+		print a
+		if (a){// Es la primera solicitud entonces la segunda se ignora
+			def theRequest = new Request(money:price,userReciving:userReceiving)
 		
-		//println (params)
-		//println (theRequest)
+			product.addToRequests(theRequest)
+			toDoUser.addToRequests(theRequest)
+		
+			print product
+			theRequest.save(flush:true)
+			product.save(flush:true)
+			toDoUser.save(flush:true)
+		}
+		
+		
 		redirect(controller:'user',action:'index')
 	}
 	
@@ -427,36 +446,67 @@ class ProductController {
 		def product = Product.get(params.idTheProduct)
 		def price = params.price.toDouble()
 		def products = []
+		def userReceiving = User.findByUsername(params.userReceiving)
 		def today = new Date()
-		if(product.openingDate.compareTo(today)>=0 && product.closingDate.compareTo(today)<= 0){
-			def theRequest = new Request(money:price, products:products)
-			theRequest.setUser(toDoUser)
-			theRequest.save(flush:true)
-			
-			product.currentPrice = max(product.currentPrice, price)
-			product.addToRequests(theRequest)
-			product.save(flush:true)
+		def value = Request.findAll ("from Request as b where b.products.id=? ",[product.id])
+		def a=true
+		if(value.size()>0){
+			 value.each {
+				 if(it.user.username==toDoUser.username){
+					 a=false //Ya hay peticion entre eso usuarios para ese producto
+				 }
+			 }
 		}
+		if(a){
+			if(product.openingDate.compareTo(today)>=0 && product.closingDate.compareTo(today)<= 0){
+				def theRequest = new Request(money:price, userReciving:userReceiving)
+				product.addToRequests(theRequest)
+				toDoUser.addToRequests(theRequest)
+				theRequest.save(flush:true)
+				product.save(flush:true)
+				toDoUser.save(flush:true)
+				//product.currentPrice = max(product.currentPrice, price)
+				
+			}
+		}
+		
 		redirect(controller:'user',action:'index')
 	}
 	
 	def sendDonateRequest(){
+		print "hola"
 		def toDoUser = User.findByUsername(session.user)
 		def product = Product.get(params.idTheProduct)
 		def price = 0
 		def products = []
+		def userReceiving = User.findByUsername(params.userReceiving)
 		def today = new Date()
-		if(today.compareTo(product.openingDate)>=0 && today.compareTo(product.closingDate)<= 0){
-			def theRequest = new Request(money:price, products:products)
-			theRequest.setUser(toDoUser)
-			theRequest.save(flush:true)
-			
-			product.currentPrice = max(product.currentPrice, price)
-			product.addToRequests(theRequest)
-			product.save(flush:true)
+		def value = Request.findAll ("from Request as b where b.products.id=? ",[product.id])
+		def a=true
+		if(value.size()>0){
+			 value.each {
+				 if(it.user.username==toDoUser.username){
+					 a=false //Ya hay peticion entre eso usuarios para ese producto
+				 }
+			 }
+		}
+		if(a){
+			if(product.openingDate.compareTo(today)>=0 && product.closingDate.compareTo(today)<= 0){
+				print "como vas"
+				def theRequest = new Request(money:price, userReciving:userReceiving)
+				product.addToRequests(theRequest)
+				toDoUser.addToRequests(theRequest)
+				theRequest.save(flush:true)
+				product.save(flush:true)
+				toDoUser.save(flush:true)
+			}
 		}
 		
+		
 		redirect(controller:'user',action:'index')
+	}
+	def showRequest(){
+		def requests = Request.findAll("from Request as b where b.userReciving.username=? AND b.products.name",[session.user,params.name])
 	}
 
 

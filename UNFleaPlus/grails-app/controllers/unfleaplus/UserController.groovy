@@ -159,6 +159,9 @@ class UserController {
 
 		if(session.user){
 			user= User.findByUsername(session.user)
+			def requests=Request.executeQuery("select distinct b.products.name from Request b where b.userReciving.username=?" , [session.user])
+			//def requests = Request.findAll("from Request as b where b.userReciving.username=?",[session.user])
+			
 			def c = Product.createCriteria()
 			def results = c.list(params){
 				createAlias("user", "c")
@@ -166,7 +169,7 @@ class UserController {
 			}
 			user= User.findByUsername(session.user)
 			def total = Product.findAll ("from Product as b where b.user.username=? ",[session.user])
-			render(controller:'user',view:'home',model:[products:results, totalProduct:total.size(),user:user])
+			render(controller:'user',view:'home',model:[products:results, totalProduct:total.size(),user:user,totalRequest:requests.size(),requests:requests])
 		}else{
 			redirect(controller:'index',action:'viewHome')
 		}
@@ -181,6 +184,13 @@ class UserController {
 		out.write(temp.image)
 		out.close()
 
+	}
+	def userRequest(){
+		print params.name
+		def requests=Request.executeQuery("select distinct b.products.name from Request b where b.userReciving.username=?" , [session.user])
+		def requests1 = Request.findAll("from Request as b where b.userReciving.username=? AND b.products.name=?",[session.user,params.name])
+		print requests
+		render(controller:'user',view:'userRequest',model:[user:User.findByUsername(session.user),requests:requests,requests1:requests1,totalRequest:requests.size()])
 	}
 
 }
