@@ -410,17 +410,16 @@ class ProductController {
 			println(keyProduct.value.toString().toLong())
 			products += [Product.get(keyProduct.value.toString().toLong())]
 		}
-		def theRequest = new Request(money:price, products:products)
-		theRequest.setUser(toDoUser)
+		def theRequest = new Request(money:price, productRequest:products)
 		theRequest.save(flush:true)
-		
+		toDoUser.addToRequests(theRequest)
 		product.addToRequests(theRequest)
-		
+		toDoUser.save()
 		product.save(flush:true)
 		
-		println (params)
-		println (theRequest)
-		redirect(controller:'index',action:'viewHome')
+		//println (params)
+		//println (theRequest)
+		redirect(controller:'user',action:'index')
 	}
 	
 	def sendAuctionRequest(){
@@ -438,7 +437,7 @@ class ProductController {
 			product.addToRequests(theRequest)
 			product.save(flush:true)
 		}
-		redirect(controller:'index',action:'viewHome')
+		redirect(controller:'user',action:'index')
 	}
 	
 	def sendDonateRequest(){
@@ -457,7 +456,7 @@ class ProductController {
 			product.save(flush:true)
 		}
 		
-		redirect(controller:'index',action:'viewHome')
+		redirect(controller:'user',action:'index')
 	}
 
 

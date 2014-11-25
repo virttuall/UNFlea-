@@ -239,10 +239,10 @@
 
 
 			<br>
-			<g:if test="${(session.user && !myProducts.find {it.getId() == product.getId()}) || 1==1}">
+			<g:if test="${(session.user && !myProducts.find {it.getId() == product.getId()})}">
 				<div class="row">
 					<div class="col-xs-12">
-						<g:form>
+						
 							<g:if test="${product.type == 'NORMAL' }">
 								<a class="openNormalSendRequest btn btn-primary"
 									data-toggle="modal" data-target="#modalNormalSendRequest">
@@ -261,11 +261,23 @@
 									<g:message code="request" />
 								</a>
 							</g:else>
-						</g:form>
+						
 					</div>
 				</div>
 			</g:if>
-
+			<g:elseif test="${session.user && myProducts.find {it.getId() == product.getId()}}">
+				<a class="openSameUserRequest btn btn-primary"
+					data-toggle="modal" data-target="#modalSameUserRequest">
+					<g:message code="request"/>
+				</a>
+			</g:elseif>
+			<g:elseif test="${session.user==null}" >
+			
+				<a class="openLoginSendRequest btn btn-primary"
+					data-toggle="modal" data-target="#modalLoginSendRequest">
+					<g:message code="request" />
+				</a>
+			</g:elseif>
 			<!-- Modal Send Normal Request-->
 			<div class="modal fade" id="modalNormalSendRequest" tabindex="-1"
 				role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -313,7 +325,8 @@
 												<g:each var="product" in="${myProducts}">
 													<g:if test="${product.type == 'NORMAL' }">
 														<div class="checkbox">
-															<label> <input type="checkbox" name="${product.getId()}"> ${product.name}
+															<label> <input type="checkbox"
+																name="${product.getId()}"> ${product.name}
 															</label>
 														</div>
 													</g:if>
@@ -392,7 +405,65 @@
 					</div>
 				</div>
 			</div>
-
+			<!--  Modal Login Send Request -->
+			<div class="modal fade" id="modalLoginSendRequest" tabindex="-1" 
+			role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+							</button>
+							<h4 class="modal-title" id="myModalLabel">
+								<g:message code="login"/>
+							</h4>
+						</div>
+						<div class="modal-body">
+							<div class="container">
+								<g:form url="[action:'loginSearch',controller:'user']" id="formLogin"class="form-signin" role="form">
+									<h2 class="form-signin-heading"><g:message code="loginVar"/></h2>
+									<input type ="email" class="form-control-sing" name="email" placeholder="${foo}" required>
+									<input type="password" class="form-control-sing" name="password" placeholder="${foo1}" readonly>
+									<p>
+										<input type="checkbox" value="remember-me">  <g:message code="rememberMe" />
+										<g:link controller="user" action="viewRegister"><span class="pull-right"><g:message code="register"></g:message></span>
+										</g:link>
+									<p>
+								</g:form>
+							</div>
+						</div>
+						<div class="modal-footer">
+							  <button class="btn btn-lg btn-primary btn-block pull-right" type="button" onclick="sendLoginForm()"><g:message code="login" /></button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--  Confirmation Modal same user  -->
+			<div class="modal fade" id="modalSameUserRequest" tabindex="-1" 
+			role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+							</button>
+							<h4 class="modal-title" id="myModalLabel">
+								<g:message code="sameRequestVar"/>
+							</h4>
+						</div>
+						<div class="modal-body">
+							<g:message code="sameRequestMessageVar" />
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger pull-right" data-dismiss="modal">
+								Ok
+							</button>
+					
+						</div>
+					</div>
+				</div>
+			</div>
+			
 			<!-- Modal Send Donate Request-->
 			<div class="modal fade" id="modalDonateSendRequest" tabindex="-1"
 				role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -433,16 +504,16 @@
 		</div>
 
 	</div>
-	</div>
+	
 	<div id="footer">
 		<div class="container">
 			<ul>
 				<p>
-					<g:link controller="product" action="request" params="[lang:'en']">
+					<g:link controller="product" action="viewRequest" params="[lang:'en']">
 						<asset:image src="USA.png" alt="UNFlea+" height="40px"
 							width="40px" />
 					</g:link>
-					<g:link controller="product" action="request" params="[lang:'es']">
+					<g:link controller="product" action="viewRequest" params="[lang:'es']">
 						<asset:image src="espana.png" alt="UNFlea+" height="40px"
 							width="40px" />
 					</g:link>
@@ -452,6 +523,24 @@
 						Terms</a>
 				</p>
 			</ul>
+		</div>
+	</div>
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<div class="centering">
+						<h3>
+							<g:message code="tutorial" />
+						</h3>
+					</div>
+
+				</div>
+				<div class="modal-body"></div>
+			</div>
 		</div>
 	</div>
 </body>

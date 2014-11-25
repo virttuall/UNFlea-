@@ -15,7 +15,10 @@ class UserController {
 	def index() {
 		redirect(controller:'user',action:'list')
 	}
-
+	def loginSearch(){
+		print "hola"
+		redirect(controller:'user',action:'login', params:[email:params.email,password:params.password,search:true])
+	}
 	def viewRegister(){
 
 		if(session.user){
@@ -61,9 +64,13 @@ class UserController {
 			SecurityUtils.subject.login(authToken)
 			session["user"]=user.username
 			println(session.user)
-
-
-			redirect(controller:'user',action:'viewHome')
+			print params.search
+			if(params.search){
+				
+				redirect(controller:'product',action:'viewRequest')
+			}else{
+				redirect(controller:'user',action:'viewHome')
+			}
 		}
 		catch (AuthenticationException ex){
 			// Authentication failed, so display the appropriate message

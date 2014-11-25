@@ -11,7 +11,10 @@ $(document).ready(function(){
         $fwdBut:$('#slider3 .right')  // Selector to bottom button.
     });
 });
-
+function sendLoginForm(){
+	
+	$("#formLogin").submit();
+}
 function onChangePrice(){
 	var minCost = document.getElementById('price').value;
 	minCost = minCost.replace("^[.0-9]","");

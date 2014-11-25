@@ -1,7 +1,7 @@
 package unfleaplus
 
 class Request {
-	Product [] products
+	Product [] productsToRequest
 	double money
 	static belongsTo = [products:Product,user:User]
     static constraints = {
