@@ -103,11 +103,11 @@
 							<!--  <img width="100%" height="100%" alt="img" src="http://localhost:8080/CausalityAppProject/home/showImage/">-->
 							<g:if test="${user?.avatar}">
 								<img class = "avatar"
-							src="${createLink(controller:'user', action:'avatar_image', id:user.ident())}" />
+							src="${createLink(controller:'user', action:'avatar_image', id:user.ident())}" height = '500px' width = '500px' />
 						</g:if>
 						<g:else>
 						<asset:image class="img-square" src="fotoVacia.png"
-					alt="Generic placeholder imag" height="300px" width="300px" />
+					alt="Generic placeholder imag" height="500px" width="500px" />
 							</g:else>
 						</li>
 					</ul>
@@ -147,7 +147,7 @@
 							<div class="span9"></div>
 							<div class="span3">
 								<input type="submit" class="btn btn-primary" id="save"
-									name="save" value="Guardar Cambios"
+									name="save" value="Guardar"
 									onclick="this.form.action = 'updateProfile'" />
 								<!--  <a href="#"  class="btn btn-primary" onclick = "this.form.action = 'updateProfile'">Guardar Cambios</a> -->
 							</div>
