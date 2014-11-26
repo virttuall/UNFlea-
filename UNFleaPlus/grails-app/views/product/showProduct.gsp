@@ -16,11 +16,56 @@
 <asset:javascript src="slider.js" />
 <asset:stylesheet src="slider.css" />
 <asset:javascript src="modal.js" />
+<asset:javascript src="home.js" />
+<asset:stylesheet src="home.css" />
+
 
 
 </head>
 <body>
+	<g:if test="${session.user}">
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
 
+				</button>
+				<g:if test="${user.avatar}">
+					<img class="avatar"
+						src="${createLink(controller:'user', action:'avatar_image', id:user.ident())}" />
+				</g:if>
+				<a class="font-menu" href="#"> ${user.username}
+				</a>
+
+			</div>
+			<div class="collapse navbar-collapse">
+				<g:form class="navbar-form navbar-left" role="search" controller="product" action="searchProduct">
+						<div class="form-group">
+							<g:set var="search1" value="${g.message(code:'myProducts')}" scope="page"/>
+							<input class="typeahead form-control" type="search" placeholder="${search1}" name="search" autocomplete="off">
+									
+        					<button type="submit" class="btn btn-default" type="button"><g:message code="searchText" /></button>
+						</div>					
+							
+				</g:form>
+				<ul class="nav navbar-nav navbar-right">
+					
+					<li><a href="#"> Home</a></li>
+					
+					
+					<li><a href="#">Profile</a></li>
+					<li><g:link controller="user" action="logout">Logout</g:link>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	</g:if>
+	<g:else>
 	<div class="navbar-wrapper">
 		<div class="container size-menu">
 			<div class="margin-menu navbar-inverse navbar-fixed-top navbar-color"
@@ -119,7 +164,7 @@
 			</div>
 		</div>
 	</div>
-
+	</g:else>
 	<div class="container form-margin1">
 		<div class="country" style="display: none;">
 			${country}

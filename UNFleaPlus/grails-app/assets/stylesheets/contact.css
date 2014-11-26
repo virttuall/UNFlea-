@@ -8,7 +8,19 @@ body .modal {
   margin-left:auto;
   margin-right:auto; 
 }
-
+.font-menu{
+	font-size: 35px;
+	color: white;
+	font-weight: 300;
+	margin-left: 20px;
+}
+.font-menu:hover{
+	text-decoration: none;
+	color: white;
+}
+.white{
+	color:white;
+}
 .footer{
 	clear: both;
 	margin-top: -40px;

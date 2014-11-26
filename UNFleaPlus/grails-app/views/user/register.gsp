@@ -12,6 +12,7 @@
 <asset:javascript src="CountryState.js"/>
 <asset:javascript src="bootstrap-typeahead.js" />
 <asset:javascript src="search.js" />
+<asset:javascript src="home.js" />
 
 
 </head>

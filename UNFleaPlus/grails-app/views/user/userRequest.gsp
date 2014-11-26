@@ -12,6 +12,7 @@
 <asset:javascript src="home.js" />
 <asset:javascript src="search.js" />
 <asset:stylesheet src="search.css" />
+<asset:javascript src="home.js" />
 
 
 

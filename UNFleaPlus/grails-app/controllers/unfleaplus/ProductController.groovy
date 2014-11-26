@@ -375,7 +375,7 @@ class ProductController {
 		def results1 = Product.findAll("from Product as b " + "where b.name like '%"+temp.trim()+"%' "+where+order1+" "+order,listWhere)
 		//No esta implementada la de pricee
 
-		render(controller:'product',view:'showProduct',model:[products:results,totalProduct:results1.size(),search:products,subasta:subasta,normal:normal,donacion:donacion,country:country,state:state,priceMin:priceMin,priceMax:priceMax,usernameOrder:usernameOrder,countryOrder:countryOrder,cityOrder:cityOrder,priceOrder:priceOrder,nameOrder:nameOrder])
+		render(controller:'product',view:'showProduct',model:[products:results,totalProduct:results1.size(),search:products,subasta:subasta,normal:normal,donacion:donacion,country:country,state:state,priceMin:priceMin,priceMax:priceMax,usernameOrder:usernameOrder,countryOrder:countryOrder,cityOrder:cityOrder,priceOrder:priceOrder,nameOrder:nameOrder,user:User.findByUsername(session.user)])
 		//}
 
 
@@ -393,7 +393,7 @@ class ProductController {
 				createAlias("user", "c")
 				eq("c.id", user.getId())
 			}
-			render(controller:'prodcut',view:'showRequest',model:[product:productRequest,search:products, myProducts:results])
+			render(controller:'prodcut',view:'showRequest',model:[product:productRequest,search:products, myProducts:results,user:user])
 		}else{
 			render(controller:'prodcut',view:'showRequest',model:[product:productRequest,search:products])
 		}

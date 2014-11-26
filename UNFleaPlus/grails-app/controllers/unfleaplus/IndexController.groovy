@@ -16,23 +16,23 @@ class IndexController {
 //		}
 		def products = recoveryProduct()
 		
-		render(controller:'index',view:'index', model:[search:products])
+		render(controller:'index',view:'index', model:[search:products,user:User.findByUsername(session.user)])
 	}
 	def viewHome(){
 //		if(session.user){
 //			redirect(controller:'user',action:'viewHome', params: [name: session.user])
 //		}
 		def products = recoveryProduct()
-		render(controller:'index',view:'index',model:[search:products])
+		render(controller:'index',view:'index',model:[search:products,user:User.findByUsername(session.user)])
 		
 	}
 	def viewContactUs(){
 		def products = recoveryProduct()
-		render(controller:'index',view:'contactUs',model:[search:products])
+		render(controller:'index',view:'contactUs',model:[search:products,user:User.findByUsername(session.user)])
 	}
 	def viewAboutUs(){
 		def products = recoveryProduct()
-		render(controller:'index',view:'aboutUs',model:[search:products])
+		render(controller:'index',view:'aboutUs',model:[search:products,user:User.findByUsername(session.user)])
 	}
 	
 }
