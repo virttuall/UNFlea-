@@ -3,7 +3,7 @@
 /* Padding below the footer and lighter body text */
 
 body {
-  padding-bottom: 40px;
+  /* padding-bottom: 40px; */
   color: #5a5a5a;
 }
 body .modal {
@@ -13,10 +13,6 @@ body .modal {
   margin-right:auto; 
 }
 
-.footer{
-	clear: both;
-	margin-top: -40px;
-}
 .centering{
 	text-align: center;
 }
@@ -421,3 +417,12 @@ body .modal {
 	background-image: url(http://etc-mysitemyway.s3.amazonaws.com/icons/legacy-previews/icons-256/3d-transparent-glass-icons-alphanumeric/068021-3d-transparent-glass-icon-alphanumeric-information2-ps.png);
 }
 
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 70px;
+  background-color: #f5f5f5;
+  margin-top: 30px;
+}

@@ -23,3 +23,13 @@ textarea {
 	border-style: solid;
 	border-color: #ff0000;
 }
+
+.footer {
+  position: absolute;
+  bottom: auto;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 70px;
+  background-color: #f5f5f5;
+  margin-top: 30px;
+}
