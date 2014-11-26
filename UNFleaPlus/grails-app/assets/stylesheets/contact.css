@@ -1,5 +1,5 @@
 body {
-  padding-bottom: 40px;
+  /* padding-bottom: 40px; */
   color: #5a5a5a;
 }
 body .modal {
@@ -8,6 +8,7 @@ body .modal {
   margin-left:auto;
   margin-right:auto; 
 }
+
 .font-menu{
 	font-size: 35px;
 	color: white;
@@ -25,6 +26,7 @@ body .modal {
 	clear: both;
 	margin-top: -40px;
 }
+
 .centering{
 	text-align: center;
 }
@@ -358,4 +360,14 @@ body .modal {
 
 textarea {
 	resize: none;
+}
+
+.footer {
+  position: absolute;
+  bottom: auto;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 70px;
+  background-color: #f5f5f5;
+  margin-top: 30px;
 }

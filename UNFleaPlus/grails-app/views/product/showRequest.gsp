@@ -19,7 +19,7 @@
 <asset:javascript src="thumbelina.js" />
 <asset:stylesheet src="showRequest.css" />
 <asset:javascript src="home.js" />
-<asset:stylesheet src="home.css" />
+
 
 </head>
 
@@ -556,24 +556,41 @@
 
 	</div>
 	
-	<div id="footer">
+	<div class="footer">
 		<div class="container">
-			<ul>
-				<p>
-					<g:link controller="product" action="viewRequest" params="[lang:'en']">
-						<asset:image src="USA.png" alt="UNFlea+" height="40px"
+			<ol>
+				<g:if test="${flash.message}">
+						<div class="info">
+							${flash.message}
+						</div>
+				</g:if>
+				<div class="col-xs-6 pull-left">
+					<g:link  controller="index" action="viewHome" params="[lang:'en']">
+						<asset:image src="ingles.png" alt="UNFlea+" height="40px"
 							width="40px" />
 					</g:link>
-					<g:link controller="product" action="viewRequest" params="[lang:'es']">
-						<asset:image src="espana.png" alt="UNFlea+" height="40px"
+					<g:link controller="index" action="viewHome" params="[lang:'es']">
+						<asset:image src="espanol.png" alt="UNFlea+" height="40px"
 							width="40px" />
 					</g:link>
-				</p>
+				</div>
 				<p>
-					&copy; 2014 UN Flea+. <a href="#">Privacy </a> &amp;<a href="#">
+				<div class="col-xs-6 pull-right">
+					<a href="https://www.facebook.com/UNFleaPlus" class="pull-right">
+						<asset:image src="facebook.png" alt="UNFlea+" height="40px" width="40px"/>
+					</a>
+					<a href="https://twitter.com/unfleaplus"  class="pull-right">
+						<asset:image src="twitter.png" alt="UNFlea+" height="40px" width="40px" />
+					</a>
+				    <a href="https://github.com/virttuall/UNFlea-"  class="pull-right">
+						<asset:image src="github.png" alt="UNFlea+" height="40px" width="40px" />
+					</a>
+				</div>
+				<p>
+					<span class="glyphicon glyphicon-copyright-mark"></span> 2014 UN Flea+. <a href="#">Privacy </a> &amp;<a href="#">
 						Terms</a>
 				</p>
-			</ul>
+			</ol>
 		</div>
 	</div>
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"

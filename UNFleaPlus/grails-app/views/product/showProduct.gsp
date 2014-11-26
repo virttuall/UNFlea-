@@ -17,7 +17,7 @@
 <asset:stylesheet src="slider.css" />
 <asset:javascript src="modal.js" />
 <asset:javascript src="home.js" />
-<asset:stylesheet src="home.css" />
+
 
 
 
@@ -360,28 +360,6 @@
 						</div>
 
 					</g:form>
-					<div id="footer">
-						
-							<ul>
-								<p>
-									<g:link controller="product" action="searchProduct"
-										params="[lang:'en']">
-										<asset:image src="USA.png" alt="UNFlea+" height="40px"
-											width="40px" />
-									</g:link>
-									<g:link controller="product" action="searchProduct"
-										params="[lang:'es']">
-										<asset:image src="espana.png" alt="UNFlea+" height="40px"
-											width="40px" />
-									</g:link>
-								</p>
-								<p>
-									&copy; 2014 UN Flea+. <a href="#">Privacy </a> &amp;<a href="#">
-										Terms</a>
-								</p>
-							</ul>
-						
-					</div>
 				</div>
 				<div class="col-xs-offset-1 col-xs-6  col-sm-7 col-sm-offset-1 ">
 					<div class="row">
@@ -471,6 +449,43 @@
 		</div>
 	</div>
 
+	<div class="footer">
+		<div class="container">
+			<ol>
+				<g:if test="${flash.message}">
+						<div class="info">
+							${flash.message}
+						</div>
+				</g:if>
+				<div class="col-xs-6 pull-left">
+					<g:link  controller="index" action="viewHome" params="[lang:'en']">
+						<asset:image src="ingles.png" alt="UNFlea+" height="40px"
+							width="40px" />
+					</g:link>
+					<g:link controller="index" action="viewHome" params="[lang:'es']">
+						<asset:image src="espanol.png" alt="UNFlea+" height="40px"
+							width="40px" />
+					</g:link>
+				</div>
+				<p>
+				<div class="col-xs-6 pull-right">
+					<a href="https://www.facebook.com/UNFleaPlus" class="pull-right">
+						<asset:image src="facebook.png" alt="UNFlea+" height="40px" width="40px"/>
+					</a>
+					<a href="https://twitter.com/unfleaplus"  class="pull-right">
+						<asset:image src="twitter.png" alt="UNFlea+" height="40px" width="40px" />
+					</a>
+				    <a href="https://github.com/virttuall/UNFlea-"  class="pull-right">
+						<asset:image src="github.png" alt="UNFlea+" height="40px" width="40px" />
+					</a>
+				</div>
+				<p>
+					<span class="glyphicon glyphicon-copyright-mark"></span> 2014 UN Flea+. <a href="#">Privacy </a> &amp;<a href="#">
+						Terms</a>
+				</p>
+			</ol>
+		</div>
+	</div>
 
 </body>
 </html>

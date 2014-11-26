@@ -8,11 +8,15 @@
 <asset:stylesheet src="home.css" />
 <asset:stylesheet src="addProduct.css" />
 <asset:javascript src="addProduct.js" />
+<asset:stylesheet src="home.css" />
 <asset:javascript src="bootstrap.js" />
+<asset:javascript src="home.js" />
 <asset:javascript src="dropzoneAddProduct.js" />
 <asset:stylesheet src="dropzone.css" />
 <asset:javascript src="search.js" />
 <asset:stylesheet src="search.css" />
+<asset:javascript src="toogleMenu.js" />
+
 </head>
 <body>
 
@@ -55,9 +59,59 @@
 		</div>
 	</nav>
 
-	<div class="margin-menu container">
+	
+	<div class="container margin-menu">
+		<div class="row row-offcanvas row-offcanvas-left">
+
+			<div class="row">
+				<div class="col-xs-9 col-xs-offset-3 ">
+					<h1 class="page-header">
+						<g:message code="addProduct" />
+					</h1>
+				</div>
+			</div>
+			<div class="col-xs-12">
+				<p class="pull-left visible-xs">
+					<button type="button" class="btn btn-primary btn-xs"
+						data-toggle="offcanvas">
+						<g:message code="homeMenu" />
+					</button>
+				</p>
+				<div class="col-xs-3 sidebar-offcanvas" id="sidebar"
+					role="navigation">
+					<g:link controller="user" action="viewHome">
+						<h3>
+							<i class="glyphicon glyphicon-user"></i>
+							<g:message code="profile" />
+						</h3>
+					</g:link>
+					<div class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<h3>
+								<i class="glyphicon glyphicon-th-large"></i>
+								<g:message code="products" />
+								<b class="caret"></b>
+							</h3>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><g:link controller="product" action="viewAddProduct">
+									<h4>
+										<i class="glyphicon glyphicon-plus-sign"></i>
+										<g:message code="addProduct" />
+									</h4>
+								</g:link></li>
+							<li><g:link controller="product" action="viewDeleteProduct">
+									<h4>
+										<i class="glyphicon glyphicon-trash"></i>
+										<g:message code="deleteProduct" />
+									</h4>
+								</g:link></li>
+						</ul>
+					</div>
+				</div>
+	<div class="col-xs-9">
 		<div class="row">
-			<div class="col-md-6 col-md-offset-3">
+			<div class="col-md-9">
 				<div class="well well-sm">
 
 					<form class="form-horizontal" name="genDesc">
@@ -67,10 +121,6 @@
 							value="${g.message(code: 'descriptionVar')}" scope="page" />
 						<g:set var="state_input" value="${g.message(code: 'stateVar')}"
 							scope="page" />
-						<fieldset>
-							<legend class="text-center">
-								<g:message code="addProduct" />
-							</legend>
 
 							<!-- Name input-->
 							<div class="form-group">
@@ -150,8 +200,6 @@
 							<!-- Form actions -->
 
 
-						</fieldset>
-
 					</form>
 					<fieldset>
 						<div id="dropzone">
@@ -188,7 +236,51 @@
 			</div>
 		</div>
 	</div>
+
+	
+
+	</div>
+	</div>
+	</div>
 	<div id ="search" style="display: none;">${search}</div>
+	<div class="footer">
+		<div class="container">
+			<ol>
+				<g:if test="${flash.message}">
+						<div class="info">
+							${flash.message}
+						</div>
+				</g:if>
+				<div class="col-xs-6 pull-left">
+					<g:link  controller="index" action="viewHome" params="[lang:'en']">
+						<asset:image src="ingles.png" alt="UNFlea+" height="40px"
+							width="40px" />
+					</g:link>
+					<g:link controller="index" action="viewHome" params="[lang:'es']">
+						<asset:image src="espanol.png" alt="UNFlea+" height="40px"
+							width="40px" />
+					</g:link>
+				</div>
+				<p>
+				<div class="col-xs-6 pull-right">
+					<a href="https://www.facebook.com/UNFleaPlus" class="pull-right">
+						<asset:image src="facebook.png" alt="UNFlea+" height="40px" width="40px"/>
+					</a>
+					<a href="https://twitter.com/unfleaplus"  class="pull-right">
+						<asset:image src="twitter.png" alt="UNFlea+" height="40px" width="40px" />
+					</a>
+				    <a href="https://github.com/virttuall/UNFlea-"  class="pull-right">
+						<asset:image src="github.png" alt="UNFlea+" height="40px" width="40px" />
+					</a>
+				</div>
+				<p>
+					<span class="glyphicon glyphicon-copyright-mark"></span> 2014 UN Flea+. <a href="#">Privacy </a> &amp;<a href="#">
+						Terms</a>
+				</p>
+			</ol>
+		</div>
+	</div>
+
 
 </body>
 </html>

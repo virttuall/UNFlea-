@@ -10,7 +10,16 @@
   left: 0;
 
 }
-
+.font-menu{
+	font-size: 35px;
+	color: white;
+	font-weight: 300;
+	margin-left: 20px;
+}
+.font-menu:hover{
+	text-decoration: none;
+	color: white;
+}
 .navbar-brand{
 	font-size:25px;
 }
