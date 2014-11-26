@@ -128,29 +128,7 @@
 				</div>
 				<div class="col-xs-9">
 					<g:each var="request" in="${requests1}">
-						<div class="panel panel-primary">
-							<div class="panel-heading">
-								<h3 class="panel-title">
-									<g:message code="forYourProductVar" />
-								</h3>
-							</div>
-							<div class="panel-body">
-								<h3>
-									${myProduct.name}
-								</h3>
-								<div class="row">
-									<g:each var="image" in="${myProduct.image}">
-										<div
-											class="margin-gallery col-lg-3 col-md-3 col-sm-4 col-xs-6">
-											<li class="img-thumbnail"><img class="img-responsive"
-												style="width: 10em; height: 10em;"
-												src="${createLink(controller:'user', action:'product_image', id:image.getId())}">
-											</li>
-										</div>
-									</g:each>
-								</div>
-							</div>
-						</div>
+						
 						<div class="panel panel-primary">
 							<div class="panel-heading">
 								<h3 class="panel-title">
@@ -194,7 +172,9 @@
 											<h3 class="panel-title"><g:message code="products"/></h3>
 										</div>
 										<div class="panel-body">
+											
 											<g:each var="product" in="${products}">
+												<g:if test="${request.user == product.user}">
 												<h3>
 													${product.name}
 												</h3>
@@ -214,8 +194,9 @@
 														</g:each>
 													</g:each>
 												</div>
+												</g:if>
 											</g:each>
-
+										
 										</div>
 									</div>
 								</g:if>
