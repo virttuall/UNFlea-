@@ -7,6 +7,7 @@
 <title><g:message code="welcome" /></title>
 <asset:stylesheet src="bootstrap.css" />
 <asset:stylesheet src="init.css" />
+<asset:stylesheet src="sticky-footer.css" />
 <asset:javascript src="bootstrap.js" />
 <asset:javascript src="modal.js" />
 <asset:javascript src="bootstrap-typeahead.js" />
@@ -147,50 +148,7 @@
 			data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
 	</div>
 	<!-- /.carousel -->
-	<div id="footer">
-		<div class="container">
-			<ol>
-				<g:if test="${flash.message}">
-						<div class="info">
-							${flash.message}
-						</div>
-				</g:if>
-				<p>
-					<g:link  controller="index" action="viewHome" params="[lang:'en']">
-						<asset:image src="ENDEF.png" alt="UNFlea+" height="40px"
-							width="40px" />
-					</g:link>
-					<g:link controller="index" action="viewHome" params="[lang:'es']">
-						<asset:image src="ESDEF.png" alt="UNFlea+" height="40px"
-							width="40px" />
-					</g:link>
-					<g:link controller="index" action="viewHome" params="[lang:'fr']">
-						<asset:image src="FRDEF.png" alt="UNFlea+" height="40px"
-							width="40px" />
-					</g:link>
-				</p>
-				<p>
-					<asset:image src="facebook.png" alt="UNFlea+" height="40px" width="40px"/>
-					<a href="https://twitter.com/unfleaplus">
-						<asset:image src="twitter.png" alt="UNFlea+" height="40px" width="40px" />
-					</a>
-					<asset:image src="googleplus.png" alt="UNFlea+" height="40px" width="40px" />
-				    <asset:image src="youtube.png" alt="UNFlea+" height="40px" width="40px" />
-				    <asset:image src="in.png" alt="UNFlea+" height="40px" width="40px" /> 
-				    <a href="https://github.com/virttuall/UNFlea-">
-						<asset:image src="github.png" alt="UNFlea+" height="40px" width="40px" />
-					</a>
-					<asset:image src="instagram.png" alt="UNFlea+" height="40px" width="40px" />
-				    <asset:image src="pinterest.png" alt="UNFlea+" height="40px" width="40px" />
-					<asset:image src="vimeo.png" alt="UNFlea+" height="40px" width="40px" />
-				</p>
-				<p>
-					&copy; 2014 UN Flea+. <a href="#">Privacy </a> &amp;<a href="#">
-						Terms</a>
-				</p>
-			</ol>
-		</div>
-	</div>
+	
 	<div id ="search" style="display: none;">${search}</div>
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
@@ -210,6 +168,43 @@
 			</div>
 		</div>
 	</div>
-
+	<r:layoutResources/>
+	<div class="footer">
+		<div class="container">
+			<ol>
+				<g:if test="${flash.message}">
+						<div class="info">
+							${flash.message}
+						</div>
+				</g:if>
+				<div class="col-xs-6 pull-left">
+					<g:link  controller="index" action="viewHome" params="[lang:'en']">
+						<asset:image src="ingles.png" alt="UNFlea+" height="40px"
+							width="40px" />
+					</g:link>
+					<g:link controller="index" action="viewHome" params="[lang:'es']">
+						<asset:image src="espanol.png" alt="UNFlea+" height="40px"
+							width="40px" />
+					</g:link>
+				</div>
+				<p>
+				<div class="col-xs-6 pull-right">
+					<a href="https://www.facebook.com/UNFleaPlus" class="pull-right">
+						<asset:image src="facebook.png" alt="UNFlea+" height="40px" width="40px"/>
+					</a>
+					<a href="https://twitter.com/unfleaplus"  class="pull-right">
+						<asset:image src="twitter.png" alt="UNFlea+" height="40px" width="40px" />
+					</a>
+				    <a href="https://github.com/virttuall/UNFlea-"  class="pull-right">
+						<asset:image src="github.png" alt="UNFlea+" height="40px" width="40px" />
+					</a>
+				</div>
+				<p>
+					<span class="glyphicon glyphicon-copyright-mark"></span> 2014 UN Flea+. <a href="#">Privacy </a> &amp;<a href="#">
+						Terms</a>
+				</p>
+			</ol>
+		</div>
+	</div>
 </body>
 </html>
