@@ -187,21 +187,26 @@ class UserController {
 
 	}
 	def userRequest(){
-		print params.name
-		def requests=Request.executeQuery("select distinct b.products.name from Request b where b.userReciving.username=?" , [session.user])
-		def requests1 = Request.findAll("from Request as b where b.userReciving.username=? AND b.products.name=?",[session.user,params.name])
-		def lista = []
-		print requests1.productsToRequest
-		requests1.productsToRequest.each {prod ->
-			prod.each {
-				lista+=Long.parseLong(""+it)
+		if(session.user){ 
+			print params.name
+			def requests=Request.executeQuery("select distinct b.products.name from Request b where b.userReciving.username=?" , [session.user])
+			def requests1 = Request.findAll("from Request as b where b.userReciving.username=? AND b.products.name=?",[session.user,params.name])
+			def lista = []
+			print requests1.productsToRequest
+			requests1.productsToRequest.each {prod ->
+				prod.each {
+					lista+=Long.parseLong(""+it)
+				}
 			}
+			print lista
+			def product = Product.findAll("from Product as b where b.id in (:ids)",[ids:lista])
+			
+			//print product
+			render(controller:'user',view:'userRequest',model:[user:User.findByUsername(session.user),requests:requests,requests1:requests1,totalRequest:requests.size(),products:product])
+		}else{
+			redirect(controller:'index',action:'viewHome')
 		}
-		print lista
-		def product = Product.findAll("from Product as b where b.id in (:ids)",[ids:lista])
 		
-		//print product
-		render(controller:'user',view:'userRequest',model:[user:User.findByUsername(session.user),requests:requests,requests1:requests1,totalRequest:requests.size(),products:product])
 	}
 
 }

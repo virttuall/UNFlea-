@@ -12,6 +12,8 @@
 <asset:stylesheet src="main.css" />
 <asset:stylesheet src="dropzone.css" />
 <asset:javascript src="toogleMenu.js" />
+<asset:javascript src="search.js" />
+<asset:stylesheet src="search.css" />
 
 </head>
 <body>
@@ -35,6 +37,15 @@
 
 			</div>
 			<div class="collapse navbar-collapse">
+				<g:form class="navbar-form navbar-left" role="search" controller="product" action="searchProduct">
+						<div class="form-group">
+							<g:set var="search1" value="${g.message(code:'myProducts')}" scope="page"/>
+							<input class="typeahead form-control" type="search" placeholder="${search1}" name="search" autocomplete="off">
+									
+        					<button type="submit" class="btn btn-default" type="button"><g:message code="searchText" /></button>
+						</div>					
+							
+				</g:form>
 				<ul class="nav navbar-nav navbar-right">
 					
 					<li><a href="#"> Home</a></li>
@@ -461,6 +472,7 @@
 					</div>
 				</div>
 			</div>
+			<div id ="search" style="display: none;">${search}</div>
 </body>
 </html>
 

@@ -29,7 +29,7 @@ class ProductController {
 	def viewAddProduct(){
 		println(session.user)
 		if(session.user){
-			render(controller:'product',view:'addProduct')
+			render(controller:'product',view:'addProduct',model:[user:User.findByUsername(session.user)])
 		}else{
 			redirect(controller:'index',action:'viewHome')
 		}
@@ -43,7 +43,7 @@ class ProductController {
 				createAlias("user", "c")
 				eq("c.id", user.getId())
 			}
-			render(controller:'product',view:'deleteProduct',model:[products:results,totalProduct:Product.count])
+			render(controller:'product',view:'deleteProduct',model:[products:results,totalProduct:Product.count,user:user])
 		}else{
 			redirect(controller:'index',action:'viewHome')
 		}
