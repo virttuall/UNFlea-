@@ -128,78 +128,86 @@
 				</div>
 				<div class="col-xs-9">
 					<g:each var="request" in="${requests1}">
-						
-						<div class="panel panel-primary">
-							<div class="panel-heading">
-								<h3 class="panel-title">
-									<g:message code="theUserVar" />
-								</h3>
-							</div>
+						<div class="panel panel-default">
 							<div class="panel-body">
-								<!-- User To Do -->
-								<g:if test="${user.avatar}">
-									<img class="avatar"
-										src="${createLink(controller:'user', action:'avatar_image', id:user.ident())}" />
-								</g:if>
-								<h3 class="inline">
-									${request.user}
-								</h3>
-								<a> <span
-									class=" btn btn-default btn-sm glyphicon glyphicon-comment"></span>
-								</a>
-							</div>
-						</div>
-						<div class="panel panel-primary">
-							<div class="panel-heading">
-								<h3 class="panel-title">
-									<g:message code="offerVar" />
-								</h3>
-							</div>
-							<div class="panel-body">
-								<g:if test="${request.money>0}">
-									<div class="panel panel-success">
-										<div class="panel-heading">
-											<h3 class="panel-title"><g:message code="moneyVar"/></h3>
-										</div>
-										<div class="panel-body">
-											${request.money}
-										</div>
+
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+										<h3 class="panel-title">
+											<g:message code="theUserVar" />
+										</h3>
 									</div>
-								</g:if>
-								<g:if test="${products}">
-									<div class="panel panel-info">
-										<div class="panel-heading">
-											<h3 class="panel-title"><g:message code="products"/></h3>
-										</div>
-										<div class="panel-body">
-											
-											<g:each var="product" in="${products}">
-												<g:if test="${request.user == product.user}">
-												<h3>
-													${product.name}
-												</h3>
-
-												<div class="row">
-													<g:each var="images" in="${product.image.take(4)}">
-														<g:each var="image" in="${images}">
-															<div
-																class="margin-gallery col-lg-3 col-md-3 col-sm-4 col-xs-6">
-																<li class="img-thumbnail"><img
-																	class="img-responsive"
-																	style="width: 10em; height: 10em;"
-																	src="${createLink(controller:'user', action:'product_image', id:image.getId())}">
-																</li>
-															</div>
-
-														</g:each>
-													</g:each>
+									<div class="panel-body">
+										<!-- User To Do -->
+										<g:if test="${request.user.avatar}">
+											<img class="avatar"
+												src="${createLink(controller:'user', action:'avatar_image', id:request.user.ident())}" />
+										</g:if>
+										<h3 class="inline">
+											${request.user}
+										</h3>
+										<a> <span
+											class=" btn btn-default btn-sm glyphicon glyphicon-comment"></span>
+										</a>
+									</div>
+								</div>
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+										<h3 class="panel-title">
+											<g:message code="offerVar" />
+										</h3>
+									</div>
+									<div class="panel-body">
+										<g:if test="${request.money>0}">
+											<div class="panel panel-success">
+												<div class="panel-heading">
+													<h3 class="panel-title">
+														<g:message code="moneyVar" />
+													</h3>
 												</div>
-												</g:if>
-											</g:each>
-										
-										</div>
+												<div class="panel-body">
+													${request.money}
+												</div>
+											</div>
+										</g:if>
+										<g:if test="${products}">
+											<div class="panel panel-info">
+												<div class="panel-heading">
+													<h3 class="panel-title">
+														<g:message code="products" />
+													</h3>
+												</div>
+												<div class="panel-body">
+
+													<g:each var="product" in="${products}">
+														<g:if test="${request.user == product.user}">
+															<h3>
+																${product.name}
+															</h3>
+
+															<div class="row">
+																<g:each var="images" in="${product.image.take(4)}">
+																	<g:each var="image" in="${images}">
+																		<div
+																			class="margin-gallery col-lg-3 col-md-3 col-sm-4 col-xs-6">
+																			<li class="img-thumbnail"><img
+																				class="img-responsive"
+																				style="width: 10em; height: 10em;"
+																				src="${createLink(controller:'user', action:'product_image', id:image.getId())}">
+																			</li>
+																		</div>
+
+																	</g:each>
+																</g:each>
+															</div>
+														</g:if>
+													</g:each>
+
+												</div>
+											</div>
+										</g:if>
 									</div>
-								</g:if>
+								</div>
 							</div>
 						</div>
 					</g:each>
