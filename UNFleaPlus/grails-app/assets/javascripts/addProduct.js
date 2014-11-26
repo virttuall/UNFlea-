@@ -46,7 +46,7 @@ function onChangeName() {
 	var name = document.getElementById('myName').value;
 	document.getElementById('name').value = name;
 	if(name.length>5){
-		$("#myDescription").removeProp('disabled');
+		$("#myDescription").removeAttr('disabled');
 	}else{
 		$("#myDescription").attr("disabled","disabled");
 	}
@@ -56,7 +56,7 @@ function onChangeDescription() {
 	var desc = document.getElementById('myDescription').value;
 	document.getElementById('description').value = desc;
 	if(desc.length>5)
-		$("input[type = radio]").removeProp('disabled');
+		$("input[type = radio]").removeAttr('disabled');
 	else
 		$("input[type = radio]").attr("disabled","disabled");
 }
