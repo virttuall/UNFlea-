@@ -8,9 +8,8 @@
 <asset:javascript src="bootstrap.js" />
 <asset:stylesheet src="main.css" />
 <asset:stylesheet src="home.css" />
-
-
-
+<asset:stylesheet src="chat.js" />
+<asset:javascript src="chat.js" />
 
 </head>
 <body>
@@ -75,8 +74,10 @@
 
 
 	<div class="container margin-menu">
+		
+		
 		<g:each var="request" in ="${requests1}">
-			<p>${request.user}</p>
+			<a href="javascript:void(0)" onclick="javascript:chatWith('${request.user}')">${request.user}</a>
 			<p>${request.money}</p>
 		</g:each>
 		<g:each var="product" in="${products}">
