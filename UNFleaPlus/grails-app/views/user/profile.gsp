@@ -89,7 +89,7 @@
 		<div class="row-fluid">
 			<div class="span8">
 				<div class="page-header">
-					<h4>Información de Perfil</h4>
+					<h4><g:message code = 'profileInf'></g:message></h4>
 				</div>
 			</div>
 		</div>
@@ -114,32 +114,32 @@
 					
 					<input type="file" id="screenshot" name="screenshot"
 						style="display: none"> <a class="btn btn-primary"
-						onclick="$('input[id=screenshot]').click();">Cargar imagen</a>
+						onclick="$('input[id=screenshot]').click();"><g:message code = 'loadImage'></g:message></a>
 					<hr>
 					<input type="submit" class="btn btn-primary" id="save" name="save"
-						value="Guardar Imagen"
+						value=<g:message code = 'saveImage'></g:message>
 						onclick="this.form.action = 'updateProfile'" />
 				</div>
 				
 
 				<div class="span6">
 					<div class="well">
-						<label for="">Nombre de usuario</label>
+						<label for=""><g:message code = 'uservar'></g:message></label>
 						<p class="">
 							${user.username}
 						</p>
 						<br>
 
 						
-						<label for="">Nombre</label>
+						<label for=""><g:message code = 'nameVar'></g:message></label>
 						<input type="text" name="name" value='${user.firstName}'>
-						<label for="">Apellidos</label>
+						<label for=""><g:message code = 'lastname'></g:message></label>
 						<input type="text" name="lastName" value='${user.lastName}'>
-						<label for="">Email</label>
+						<label for=""><g:message code = 'emailVar'></g:message></label>
 						<input type="text" name="email" value='${user.email}'>
-						<label for="">Ciudad</label>
+						<label for=""><g:message code = 'city'></g:message></label>
 						<input type="text" name="city" value='${user.userCity}'>
-						<label for="">País</label>
+						<label for=""><g:message code = 'country'></g:message></label>
 						<input type="text" name="country" value='${user.userCountry}'>
 						
 						
@@ -147,7 +147,7 @@
 							<div class="span9"></div>
 							<div class="span3">
 								<input type="submit" class="btn btn-primary" id="save"
-									name="save" value="Guardar"
+									name="save" value=<g:message code = 'saveVar'></g:message>
 									onclick="this.form.action = 'updateProfile'" />
 								<!--  <a href="#"  class="btn btn-primary" onclick = "this.form.action = 'updateProfile'">Guardar Cambios</a> -->
 							</div>
