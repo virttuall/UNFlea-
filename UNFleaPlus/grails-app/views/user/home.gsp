@@ -94,7 +94,7 @@
 				</p>
 				<div class="col-xs-3 sidebar-offcanvas" id="sidebar"
 					role="navigation">
-					<g:link controller="user" action="viewHome">
+					<g:link controller="user" action="profileView">
 						<h3>
 							<i class="glyphicon glyphicon-user"></i>
 							<g:message code="profile" />
