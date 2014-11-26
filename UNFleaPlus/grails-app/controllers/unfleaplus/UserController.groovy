@@ -66,7 +66,7 @@ class UserController {
 			println(session.user)
 			print params.search
 			if(params.search){
-				
+
 				redirect(controller:'product',action:'viewRequest')
 			}else{
 				redirect(controller:'user',action:'viewHome')
@@ -112,7 +112,7 @@ class UserController {
 			def f = request.getFile("avatar")
 			print params.country
 			print params.state
-			
+
 			def parameters =[email:params.email,username:params.username,firstName:params.firstname,lastName:params.lastname
 				,gender:params.gender,passwordHash:shiroSecurityService.encodePassword(params.password),active:false,avatar:f.getBytes()
 				,userCity:params.state,userCountry:params.country]
@@ -159,9 +159,14 @@ class UserController {
 
 		if(session.user){
 			user= User.findByUsername(session.user)
-			def requests=Request.executeQuery("select distinct b.products.name from Request b where b.userReciving.username=?" , [session.user])
-			//def requests = Request.findAll("from Request as b where b.userReciving.username=?",[session.user])
-			
+//			def requests=Request.executeQuery("select distinct b.products.getId(), b.products.name from Request b where b.userReciving.username=?" , [session.user])
+			def requests = Request.findAll("from Request as b where b.userReciving.username=?",[session.user])
+			def myProductsRequest = []
+			for(Object r: requests)
+				if(r!=null)
+					myProductsRequest+= Product.get(r.id)
+			println( myProductsRequest)
+
 			def c = Product.createCriteria()
 			def results = c.list(params){
 				createAlias("user", "c")
@@ -169,13 +174,13 @@ class UserController {
 			}
 			user= User.findByUsername(session.user)
 			def total = Product.findAll ("from Product as b where b.user.username=? ",[session.user])
-			render(controller:'user',view:'home',model:[products:results, totalProduct:total.size(),user:user,totalRequest:requests.size(),requests:requests])
+			render(controller:'user',view:'home',model:[products:results, totalProduct:total.size(),user:user,totalRequest:requests.size(),requests:myProductsRequest])
 		}else{
 			redirect(controller:'index',action:'viewHome')
 		}
 
 	}
-	
+
 	def product_image(){
 
 		def temp = Image.get(params.id)
@@ -186,18 +191,23 @@ class UserController {
 
 	}
 	def userRequest(){
-		print params.name
+		print params.requestProduct
+		def myProduct = Product.get(params.requestProduct)
 		def requests=Request.executeQuery("select distinct b.products.name from Request b where b.userReciving.username=?" , [session.user])
-		def requests1 = Request.findAll("from Request as b where b.userReciving.username=? AND b.products.name=?",[session.user,params.name])
+		//		def requests1 = Request.findAll("from Request as b where b.userReciving.username=? AND b.products.name=?",[session.user,infoMyProduct[1]])
+		def requests1 = Request.findAll("from Request as b where b.userReciving.username=? AND b.products.id=?",[
+			session.user,
+			myProduct.getId()
+		])
 		def lista = []
 		requests1.productsToRequest[0].each {
 			lista+=Long.parseLong(""+it)
 		}
 		//print lista
 		def product = Product.findAll("from Product as b where b.id in (:ids)",[ids:lista])
-		
+
 		//print product
-		render(controller:'user',view:'userRequest',model:[user:User.findByUsername(session.user),requests:requests,requests1:requests1,totalRequest:requests.size(),products:product])
+		render(controller:'user',view:'userRequest',model:[user:User.findByUsername(session.user),myProduct:myProduct,requests:requests,requests1:requests1,totalRequest:requests.size(),products:product])
 	}
 
 }

@@ -49,7 +49,7 @@
 							<g:if  test ="${requests}">
 								<g:each var="request" in="${requests}">
 									<li>
-										<g:link controller="user" action="userRequest" params="[name:request]"> ${request} </g:link>
+										<g:link controller="user" action="userRequest" params="[requestProduct:request.id]"> ${request.name} </g:link>
 									</li>
 								</g:each>
 								
