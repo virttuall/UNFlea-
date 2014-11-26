@@ -168,7 +168,6 @@
 			</div>
 		</div>
 	</div>
-	<r:layoutResources/>
 	<div class="footer">
 		<div class="container">
 			<ol>
