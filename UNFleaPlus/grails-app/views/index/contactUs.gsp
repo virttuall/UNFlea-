@@ -7,10 +7,12 @@
 <title><g:message code="contactUs" /></title>
 <asset:stylesheet src="bootstrap.css" />
 <asset:stylesheet src="contact.css" />
+<asset:stylesheet src="main.css" />
+<asset:stylesheet src="sticky-footer.css" />
 <asset:javascript src="bootstrap.js" />
 <asset:javascript src="modal.js" />
 <asset:javascript src="bootstrap-typeahead.js" />
-<asset:stylesheet src="main.css" />
+
 <asset:javascript src="search.js" />
 
 
@@ -18,6 +20,7 @@
 
 </head>
 <body>
+	<div id="wrap">
 	<g:if test="${session.user}">
 		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container">
@@ -239,41 +242,32 @@
 			</div>
 		</div>
 	</div>
+	</div>
 	<div class="footer">
 		<div class="container">
-			<ol>
-				<g:if test="${flash.message}">
-						<div class="info">
-							${flash.message}
-						</div>
-				</g:if>
-				<div class="col-xs-6 pull-left">
-					<g:link  controller="index" action="viewHome" params="[lang:'en']">
-						<asset:image src="ingles.png" alt="UNFlea+" height="40px"
-							width="40px" />
-					</g:link>
-					<g:link controller="index" action="viewHome" params="[lang:'es']">
-						<asset:image src="espanol.png" alt="UNFlea+" height="40px"
-							width="40px" />
-					</g:link>
-				</div>
-				<p>
-				<div class="col-xs-6 pull-right">
-					<a href="https://www.facebook.com/UNFleaPlus" class="pull-right">
-						<asset:image src="facebook.png" alt="UNFlea+" height="40px" width="40px"/>
-					</a>
-					<a href="https://twitter.com/unfleaplus"  class="pull-right">
-						<asset:image src="twitter.png" alt="UNFlea+" height="40px" width="40px" />
-					</a>
-				    <a href="https://github.com/virttuall/UNFlea-"  class="pull-right">
-						<asset:image src="github.png" alt="UNFlea+" height="40px" width="40px" />
+			<div class="col-xs-7 pull-left">
+				<g:link controller="index" action="viewHome" params="[lang:'en']">
+					<asset:image src="ingles.png" alt="UNFlea+" height="40px"
+						width="40px" />
+				</g:link>
+				<g:link controller="index" action="viewHome" params="[lang:'es']">
+					<asset:image src="espanol.png" alt="UNFlea+" height="40px"
+						width="40px" />
+				</g:link>
+			</div>
+			<div class="col-xs-5">
+				<div style="float: right">
+					<a href="https://www.facebook.com/UNFleaPlus" class=""> <asset:image
+							src="facebook.png" alt="UNFlea+" height="40px" width="40px" />
+					</a> <a href="https://twitter.com/unfleaplus" class=""> <asset:image
+							src="twitter.png" alt="UNFlea+" height="40px" width="40px" />
+					</a> <a href="https://github.com/virttuall/UNFlea-" class=""> <asset:image
+							src="github.png" alt="UNFlea+" height="40px" width="40px" />
 					</a>
 				</div>
-				<p>
-					<span class="glyphicon glyphicon-copyright-mark"></span> 2014 UN Flea+. <a href="#">Privacy </a> &amp;<a href="#">
-						Terms</a>
-				</p>
-			</ol>
+			</div>
+			<span class="glyphicon glyphicon-copyright-mark"></span> 2014 UN
+			Flea+. <a href="#">Privacy </a> &amp;<a href="#"> Terms</a>
 		</div>
 	</div>
 </body>

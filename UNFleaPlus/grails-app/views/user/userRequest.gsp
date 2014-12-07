@@ -8,7 +8,7 @@
 <asset:javascript src="bootstrap.js" />
 <asset:stylesheet src="home.css" />
 <asset:stylesheet src="main.css" />
-<asset:stylesheet src="home.css" />
+<asset:stylesheet src="sticky-footer.css" />
 <asset:javascript src="home.js" />
 <asset:javascript src="search.js" />
 <asset:stylesheet src="search.css" />
@@ -18,275 +18,271 @@
 
 </head>
 <body>
+	<div id="wrap">
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse"
+						data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
 
-	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target=".navbar-collapse">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
+					</button>
+					<g:if test="${user.avatar}">
+						<img class="avatar"
+							src="${createLink(controller:'user', action:'avatar_image', id:user.ident())}" />
+					</g:if>
+					<a class="font-menu" href="#"> ${user.username}
+					</a>
 
-				</button>
-				<g:if test="${user.avatar}">
-					<img class="avatar"
-						src="${createLink(controller:'user', action:'avatar_image', id:user.ident())}" />
-				</g:if>
-				<a class="font-menu" href="#"> ${user.username}
-				</a>
-
-			</div>
-			<div class="collapse navbar-collapse">
-				<g:form class="navbar-form navbar-left" role="search" controller="product" action="searchProduct">
+				</div>
+				<div class="collapse navbar-collapse">
+					<g:form class="navbar-form navbar-left" role="search"
+						controller="product" action="searchProduct">
 						<div class="form-group">
-							<g:set var="search1" value="${g.message(code:'myProducts')}" scope="page"/>
-							<input class="typeahead form-control" type="search" placeholder="${search1}" name="search" autocomplete="off">
-									
-        					<button type="submit" class="btn btn-default" type="button"><g:message code="searchText" /></button>
-						</div>					
-							
-				</g:form>
-				<ul class="nav navbar-nav navbar-right">
+							<g:set var="search1" value="${g.message(code:'myProducts')}"
+								scope="page" />
+							<input class="typeahead form-control" type="search"
+								placeholder="${search1}" name="search" autocomplete="off">
 
-					<li><a href="#"> Home</a></li>
-					<li><div class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								<h4>
-									<span class="glyphicon glyphicon-globe white"></span> <span
-										class="badge"> ${totalRequest}
-									</span>
-								</h4>
-							</a>
-							<ul class="dropdown-menu" role="menu">
-								<g:if test="${requests}">
-									<g:each var="request" in="${requests}">
-										<li><g:link controller="user" action="userRequest"
-												params="[name:request]">
-												${request}
-											</g:link></li>
-									</g:each>
+							<button type="submit" class="btn btn-default" type="button">
+								<g:message code="searchText" />
+							</button>
+						</div>
 
-								</g:if>
+					</g:form>
+					<ul class="nav navbar-nav navbar-right">
 
+						<li><a href="#"> Home</a></li>
+						<li><div class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									<h4>
+										<span class="glyphicon glyphicon-globe white"></span> <span
+											class="badge"> ${totalRequest}
+										</span>
+									</h4>
+								</a>
+								<ul class="dropdown-menu" role="menu">
+									<g:if test="${requests}">
+										<g:each var="request" in="${requests}">
+											<li><g:link controller="user" action="userRequest"
+													params="[name:request]">
+													${request}
+												</g:link></li>
+										</g:each>
 
-							</ul>
-						</div></li>
-
-					<li><a href="#">Profile</a></li>
-					<li><g:link controller="user" action="logout">Logout</g:link>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+									</g:if>
 
 
+								</ul>
+							</div></li>
 
-
-
-
-	<!-- ------------------------------------------------------------------------------------------- -->
-
-
-	<div class="container margin-menu">
-		<div class="row row-offcanvas row-offcanvas-left">
-
-			<div class="row">
-				<div class="col-xs-9 col-xs-offset-3 ">
-					<h1 class="page-header">
-						<g:message code="requestsVar" />
-					</h1>
+						<li><a href="#">Profile</a></li>
+						<li><g:link controller="user" action="logout">Logout</g:link>
+						</li>
+					</ul>
 				</div>
 			</div>
-			<div class="col-xs-12">
-				<p class="pull-left visible-xs">
-					<button type="button" class="btn btn-primary btn-xs"
-						data-toggle="offcanvas">
-						<g:message code="homeMenu" />
-					</button>
-				</p>
-				<div class="col-xs-3 sidebar-offcanvas" id="sidebar"
-					role="navigation">
-					<g:link controller="user" action="viewHome">
-						<h3>
-							<i class="glyphicon glyphicon-user"></i>
-							<g:message code="profile" />
-						</h3>
-					</g:link>
-					<div class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<h3>
-								<i class="glyphicon glyphicon-th-large"></i>
-								<g:message code="products" />
-								<b class="caret"></b>
-							</h3>
-						</a>
-						<ul class="dropdown-menu" role="menu">
-							<li><g:link controller="product" action="viewAddProduct">
-									<h4>
-										<i class="glyphicon glyphicon-plus-sign"></i>
-										<g:message code="addProduct" />
-									</h4>
-								</g:link></li>
-							<li><g:link controller="product" action="viewDeleteProduct">
-									<h4>
-										<i class="glyphicon glyphicon-trash"></i>
-										<g:message code="deleteProduct" />
-									</h4>
-								</g:link></li>
-						</ul>
+		</nav>
+
+
+
+
+
+
+		<!-- ------------------------------------------------------------------------------------------- -->
+
+
+		<div class="container margin-menu">
+			<div class="row row-offcanvas row-offcanvas-left">
+
+				<div class="row">
+					<div class="col-xs-9 col-xs-offset-3 ">
+						<h1 class="page-header">
+							<g:message code="requestsVar" />
+						</h1>
 					</div>
 				</div>
-				<div class="col-xs-9">
-					<g:each var="request" in="${requests1}">
-						<div class="panel panel-default">
-							<div class="panel-body">
+				<div class="col-xs-12">
+					<p class="pull-left visible-xs">
+						<button type="button" class="btn btn-primary btn-xs"
+							data-toggle="offcanvas">
+							<g:message code="homeMenu" />
+						</button>
+					</p>
+					<div class="col-xs-3 sidebar-offcanvas" id="sidebar"
+						role="navigation">
+						<g:link controller="user" action="viewHome">
+							<h3>
+								<i class="glyphicon glyphicon-user"></i>
+								<g:message code="profile" />
+							</h3>
+						</g:link>
+						<div class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<h3>
+									<i class="glyphicon glyphicon-th-large"></i>
+									<g:message code="products" />
+									<b class="caret"></b>
+								</h3>
+							</a>
+							<ul class="dropdown-menu" role="menu">
+								<li><g:link controller="product" action="viewAddProduct">
+										<h4>
+											<i class="glyphicon glyphicon-plus-sign"></i>
+											<g:message code="addProduct" />
+										</h4>
+									</g:link></li>
+								<li><g:link controller="product" action="viewDeleteProduct">
+										<h4>
+											<i class="glyphicon glyphicon-trash"></i>
+											<g:message code="deleteProduct" />
+										</h4>
+									</g:link></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-xs-9">
+						<g:each var="request" in="${requests1}">
+							<div class="panel panel-default">
+								<div class="panel-body">
 
-								<div class="panel panel-primary">
-									<div class="panel-heading">
-										<h3 class="panel-title">
-											<g:message code="theUserVar" />
-										</h3>
+									<div class="panel panel-primary">
+										<div class="panel-heading">
+											<h3 class="panel-title">
+												<g:message code="theUserVar" />
+											</h3>
+										</div>
+										<div class="panel-body">
+											<!-- User To Do -->
+											<g:if test="${request.user.avatar}">
+												<img class="avatar"
+													src="${createLink(controller:'user', action:'avatar_image', id:request.user.ident())}" />
+											</g:if>
+											<h3 class="inline">
+												${request.user}
+											</h3>
+											<a> <span
+												class=" btn btn-default btn-sm glyphicon glyphicon-comment"></span>
+											</a>
+										</div>
 									</div>
-									<div class="panel-body">
-										<!-- User To Do -->
-										<g:if test="${request.user.avatar}">
-											<img class="avatar"
-												src="${createLink(controller:'user', action:'avatar_image', id:request.user.ident())}" />
-										</g:if>
-										<h3 class="inline">
-											${request.user}
-										</h3>
-										<a> <span
-											class=" btn btn-default btn-sm glyphicon glyphicon-comment"></span>
-										</a>
-									</div>
-								</div>
-								<div class="panel panel-primary">
-									<div class="panel-heading">
-										<h3 class="panel-title">
-											<g:message code="offerVar" />
-										</h3>
-									</div>
-									<div class="panel-body">
-										<g:if test="${request.money>0}">
-											<div class="panel panel-success">
-												<div class="panel-heading">
-													<h3 class="panel-title">
-														<g:message code="moneyVar" />
-													</h3>
+									<div class="panel panel-primary">
+										<div class="panel-heading">
+											<h3 class="panel-title">
+												<g:message code="offerVar" />
+											</h3>
+										</div>
+										<div class="panel-body">
+											<g:if test="${request.money>0}">
+												<div class="panel panel-success">
+													<div class="panel-heading">
+														<h3 class="panel-title">
+															<g:message code="moneyVar" />
+														</h3>
+													</div>
+													<div class="panel-body">
+														${request.money}
+													</div>
 												</div>
-												<div class="panel-body">
-													${request.money}
-												</div>
-											</div>
-										</g:if>
-										<g:if test="${products}">
-											<div class="panel panel-info">
-												<div class="panel-heading">
-													<h3 class="panel-title">
-														<g:message code="products" />
-													</h3>
-												</div>
-												<div class="panel-body">
+											</g:if>
+											<g:if test="${products}">
+												<div class="panel panel-info">
+													<div class="panel-heading">
+														<h3 class="panel-title">
+															<g:message code="products" />
+														</h3>
+													</div>
+													<div class="panel-body">
 
-													<g:each var="product" in="${products}">
-														<g:if test="${request.user == product.user}">
-															<h3>
-																${product.name}
-															</h3>
+														<g:each var="product" in="${products}">
+															<g:if test="${request.user == product.user}">
+																<h3>
+																	${product.name}
+																</h3>
 
-															<div class="row">
-																<g:each var="images" in="${product.image.take(4)}">
-																	<g:each var="image" in="${images}">
-																		<div
-																			class="margin-gallery col-lg-3 col-md-3 col-sm-4 col-xs-6">
-																			<li class="img-thumbnail"><img
-																				class="img-responsive"
-																				style="width: 10em; height: 10em;"
-																				src="${createLink(controller:'user', action:'product_image', id:image.getId())}">
-																			</li>
-																		</div>
+																<div class="row">
+																	<g:each var="images" in="${product.image.take(4)}">
+																		<g:each var="image" in="${images}">
+																			<div
+																				class="margin-gallery col-lg-3 col-md-3 col-sm-4 col-xs-6">
+																				<li class="img-thumbnail"><img
+																					class="img-responsive"
+																					style="width: 10em; height: 10em;"
+																					src="${createLink(controller:'user', action:'product_image', id:image.getId())}">
+																				</li>
+																			</div>
 
+																		</g:each>
 																	</g:each>
-																</g:each>
-															</div>
-														</g:if>
-													</g:each>
+																</div>
+															</g:if>
+														</g:each>
 
+													</div>
 												</div>
-											</div>
-										</g:if>
+											</g:if>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					</g:each>
+						</g:each>
 
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<!-- Modal for show images -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">
-						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-					</button>
+		<!-- Modal for show images -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+						</button>
+					</div>
+					<div class="modal-body"></div>
 				</div>
-				<div class="modal-body"></div>
+				<!-- /.modal-content -->
 			</div>
-			<!-- /.modal-content -->
+			<!-- /.modal-dialog -->
 		</div>
-		<!-- /.modal-dialog -->
+		<!-- /.modal -->
+
+		<div id="search" style="display: none;">
+			${search}
+		</div>
+
 	</div>
-	<!-- /.modal -->
-
-	<div id ="search" style="display: none;">${search}</div>
-
-	
 	<div class="footer">
 		<div class="container">
-			<ol>
-				<g:if test="${flash.message}">
-						<div class="info">
-							${flash.message}
-						</div>
-				</g:if>
-				<div class="col-xs-6 pull-left">
-					<g:link  controller="index" action="viewHome" params="[lang:'en']">
-						<asset:image src="ingles.png" alt="UNFlea+" height="40px"
-							width="40px" />
-					</g:link>
-					<g:link controller="index" action="viewHome" params="[lang:'es']">
-						<asset:image src="espanol.png" alt="UNFlea+" height="40px"
-							width="40px" />
-					</g:link>
-				</div>
-				<p>
-				<div class="col-xs-6 pull-right">
-					<a href="https://www.facebook.com/UNFleaPlus" class="pull-right">
-						<asset:image src="facebook.png" alt="UNFlea+" height="40px" width="40px"/>
-					</a>
-					<a href="https://twitter.com/unfleaplus"  class="pull-right">
-						<asset:image src="twitter.png" alt="UNFlea+" height="40px" width="40px" />
-					</a>
-				    <a href="https://github.com/virttuall/UNFlea-"  class="pull-right">
-						<asset:image src="github.png" alt="UNFlea+" height="40px" width="40px" />
+			<div class="col-xs-5 pull-left">
+				<g:link controller="index" action="viewHome" params="[lang:'en']">
+					<asset:image src="ingles.png" alt="UNFlea+" height="40px"
+						width="40px" />
+				</g:link>
+				<g:link controller="index" action="viewHome" params="[lang:'es']">
+					<asset:image src="espanol.png" alt="UNFlea+" height="40px"
+						width="40px" />
+				</g:link>
+			</div>
+			<div class="col-xs-7">
+				<div style="float: right">
+					<a href="https://www.facebook.com/UNFleaPlus" class=""> <asset:image
+							src="facebook.png" alt="UNFlea+" height="40px" width="40px" />
+					</a> <a href="https://twitter.com/unfleaplus" class=""> <asset:image
+							src="twitter.png" alt="UNFlea+" height="40px" width="40px" />
+					</a> <a href="https://github.com/virttuall/UNFlea-" class=""> <asset:image
+							src="github.png" alt="UNFlea+" height="40px" width="40px" />
 					</a>
 				</div>
-				<p>
-					<span class="glyphicon glyphicon-copyright-mark"></span> 2014 UN Flea+. <a href="#">Privacy </a> &amp;<a href="#">
-						Terms</a>
-				</p>
-			</ol>
+			</div>
+			<span class="glyphicon glyphicon-copyright-mark"></span> 2014 UN
+			Flea+. <a href="#">Privacy </a> &amp;<a href="#"> Terms</a>
 		</div>
 	</div>
-
 </body>
 </html>

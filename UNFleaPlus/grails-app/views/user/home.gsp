@@ -493,7 +493,7 @@
 					${flash.message}
 				</div>
 			</g:if>
-			<div class="col-xs-6 pull-left">
+			<div class="col-xs-5 pull-left">
 				<g:link controller="index" action="viewHome" params="[lang:'en']">
 					<asset:image src="ingles.png" alt="UNFlea+" height="40px"
 						width="40px" />
@@ -503,7 +503,7 @@
 						width="40px" />
 				</g:link>
 			</div>
-			<div class="col-xs-6">
+			<div class="col-xs-7">
 				<div style="float: right">
 					<a href="https://www.facebook.com/UNFleaPlus" class=""> <asset:image
 							src="facebook.png" alt="UNFlea+" height="40px" width="40px" />
