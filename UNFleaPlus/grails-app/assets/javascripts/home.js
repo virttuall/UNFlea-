@@ -1,6 +1,6 @@
 $(function() {
 	
-	$('img').on('click',function(){
+	$('.img-modal').on('click',function(){
 		var src = $(this).attr('src');
         var img = '<img src="' + src + '" class="img-responsive"/>';
         $('#myModal').modal();

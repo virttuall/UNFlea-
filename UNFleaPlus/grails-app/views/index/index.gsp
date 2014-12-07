@@ -211,14 +211,15 @@
 			</div>
 		</div>
 	</div>
-	<div class="footer">
-		<div class="container">
-			<ol>
-				<g:if test="${flash.message}">
+					<g:if test="${flash.message}">
 						<div class="info">
 							${flash.message}
 						</div>
 				</g:if>
+	<div class="footer">
+		<div class="container">
+			<ol>
+
 				<div class="col-xs-6 pull-left">
 					<g:link  controller="index" action="viewHome" params="[lang:'en']">
 						<asset:image src="ingles.png" alt="UNFlea+" height="40px"
