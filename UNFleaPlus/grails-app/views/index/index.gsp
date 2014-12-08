@@ -32,7 +32,7 @@
 
 						</button>
 						<g:if test="${user.avatar}">
-							<img class="avatar"
+							<img style="height: 4.5em; width: 4.0em"
 								src="${createLink(controller:'user', action:'avatar_image', id:user.ident())}" />
 						</g:if>
 						<a class="font-menu" href="#"> ${user.username}
