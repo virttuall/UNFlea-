@@ -15,6 +15,11 @@ class UserController {
 	def index() {
 		redirect(controller:'user',action:'list')
 	}
+	
+	public def static recoveryRequest(user){
+		return Request.executeQuery("select distinct b.products.name from Request b where b.userReciving.username=?" , [user])
+	}
+	
 	def loginSearch(){
 		print "hola"
 		redirect(controller:'user',action:'login', params:[email:params.email,password:params.password,search:true])
@@ -24,12 +29,11 @@ class UserController {
 		if(session.user){
 			redirect(controller:'user',action:'viewHome')
 		}
-		def products = IndexController.recoveryProduct()
+		def products = ProductController.recoveryProduct()
 		print products
 		render(controller:'user',view:'register',model:[search:products])
 	}
 	def viewHome(){
-
 		redirect(controller:'user',action:'list')
 	}
 	def sendEmail() {
@@ -159,9 +163,8 @@ class UserController {
 
 		if(session.user){
 			user= User.findByUsername(session.user)
-			def requests=Request.executeQuery("select distinct b.products.name from Request b where b.userReciving.username=?" , [session.user])
-			//def requests = Request.findAll("from Request as b where b.userReciving.username=?",[session.user])
-			
+//			def requests=Request.executeQuery("select distinct b.products.name from Request b where b.userReciving.username=?" , [session.user])
+			def requests = recoveryRequest(session.user)
 
 			def c = Product.createCriteria()
 			def results = c.list(params){
@@ -170,7 +173,8 @@ class UserController {
 			}
 			user= User.findByUsername(session.user)
 			def total = Product.findAll ("from Product as b where b.user.username=? ",[session.user])
-			render(controller:'user',view:'home',model:[products:results, totalProduct:total.size(),user:user,totalRequest:requests.size(),requests:requests])
+			def allProducts = ProductController.recoveryProduct()
+			render(controller:'user',view:'home',model:[search:allProducts,products:results, totalProduct:total.size(),user:user,totalRequest:requests.size(),requests:requests])
 		}else{
 			redirect(controller:'index',action:'viewHome')
 		}
@@ -202,7 +206,9 @@ class UserController {
 			def product = Product.findAll("from Product as b where b.id in (:ids)",[ids:lista])
 			
 			//print product
-			render(controller:'user',view:'userRequest',model:[user:User.findByUsername(session.user),requests:requests,requests1:requests1,totalRequest:requests.size(),products:product])
+			def allProducts = ProductController.recoveryProduct()
+			def allRequests = UserController.recoveryRequest(session.user)
+			render(controller:'user',view:'userRequest',model:[search:allProducts,requests:allRequests,user:User.findByUsername(session.user),requests1:requests1,products:product])
 		}else{
 			redirect(controller:'index',action:'viewHome')
 		}

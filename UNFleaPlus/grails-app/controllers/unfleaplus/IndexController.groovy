@@ -1,37 +1,37 @@
 package unfleaplus
 
 class IndexController {
-	public def static recoveryProduct(){
-		def products = Product.all
-		def lista =[] as Set
-		products.each {it->
-			lista.add(it.getName())
+
+	
+	def goView(theController, theView){
+		def allProducts = ProductController.recoveryProduct()
+		if(session.user){
+			def allRequests = UserController.recoveryRequest(session.user)
+			render(controller:theController,view:theView, model:[search:allProducts,requests:allRequests,user:User.findByUsername(session.user)])
+		}else{
+		render(controller:theController,view:theView, model:[search:allProducts])
 		}
-		return lista
 	}
+	
     def index() {
 		println(session.user)
-//		if(session.user){
-//			redirect(controller:'user',action:'viewHome' , params: [name: session.user])
-//		}
-		def products = recoveryProduct()
-		
-		render(controller:'index',view:'index', model:[search:products,user:User.findByUsername(session.user)])
+		goView('index', 'index')
 	}
+
+	
 	def viewHome(){
-//		if(session.user){
-//			redirect(controller:'user',action:'viewHome', params: [name: session.user])
-//		}
-		def products = recoveryProduct()
-		render(controller:'index',view:'index',model:[search:products,user:User.findByUsername(session.user)])
+		goView('index', 'index')
+//		def products = ProductController.recoveryProduct()
+//		render(controller:'index',view:'index',model:[search:products,user:User.findByUsername(session.user)])
 		
 	}
 	def viewContactUs(){
-		def products = recoveryProduct()
-		render(controller:'index',view:'contactUs',model:[search:products,user:User.findByUsername(session.user)])
+		goView('index', 'contactUs')
+//		def products = ProductController.recoveryProduct()
+//		render(controller:'index',view:'contactUs',model:[search:products,user:User.findByUsername(session.user)])
 	}
 	def viewAboutUs(){
-		def products = recoveryProduct()
+		def products = ProductController.recoveryProduct()
 		render(controller:'index',view:'aboutUs',model:[search:products,user:User.findByUsername(session.user)])
 	}
 	

@@ -25,11 +25,22 @@ class ProductController {
 	def index() {
 		redirect(controller:'product',action:'viewAddProduct')
 	}
-
+	
+	public def static recoveryProduct(){
+		def products = Product.all
+		def lista =[] as Set
+		products.each {it->
+			lista.add(it.getName())
+		}
+		return lista
+	}
+	
 	def viewAddProduct(){
 		println(session.user)
 		if(session.user){
-			render(controller:'product',view:'addProduct',model:[user:User.findByUsername(session.user)])
+			def products = recoveryProduct()
+			def allRequests = UserController.recoveryRequest(session.user)
+			render(controller:'product',view:'addProduct',model:[search:products,requests:allRequests,user:User.findByUsername(session.user)])
 		}else{
 			redirect(controller:'index',action:'viewHome')
 		}
@@ -43,7 +54,9 @@ class ProductController {
 				createAlias("user", "c")
 				eq("c.id", user.getId())
 			}
-			render(controller:'product',view:'deleteProduct',model:[products:results,totalProduct:Product.count,user:user])
+			def products = recoveryProduct()
+			def allRequests = UserController.recoveryRequest(session.user)
+			render(controller:'product',view:'deleteProduct',model:[search:products,requests:allRequests,products:results,totalProduct:Product.count,user:user])
 		}else{
 			redirect(controller:'index',action:'viewHome')
 		}
@@ -243,7 +256,7 @@ class ProductController {
 		def nuevaBusqueda=false
 		def country
 		def state
-		def products = IndexController.recoveryProduct()
+		def products = recoveryProduct()
 		def max1=params.max?:10
 		def offset1=params.offset?:0
 		def price= params.price?:null
@@ -375,7 +388,11 @@ class ProductController {
 		def results1 = Product.findAll("from Product as b " + "where b.name like '%"+temp.trim()+"%' "+where+order1+" "+order,listWhere)
 		//No esta implementada la de pricee
 
-		render(controller:'product',view:'showProduct',model:[products:results,totalProduct:results1.size(),search:products,subasta:subasta,normal:normal,donacion:donacion,country:country,state:state,priceMin:priceMin,priceMax:priceMax,usernameOrder:usernameOrder,countryOrder:countryOrder,cityOrder:cityOrder,priceOrder:priceOrder,nameOrder:nameOrder,user:User.findByUsername(session.user)])
+		if(session.user){
+			def allRequests = UserController.recoveryRequest(session.user)
+			render(controller:'product',view:'showProduct',model:[products:results, requests:allRequests,totalProduct:results1.size(),search:products,subasta:subasta,normal:normal,donacion:donacion,country:country,state:state,priceMin:priceMin,priceMax:priceMax,usernameOrder:usernameOrder,countryOrder:countryOrder,cityOrder:cityOrder,priceOrder:priceOrder,nameOrder:nameOrder,user:User.findByUsername(session.user)])
+		}else
+			render(controller:'product',view:'showProduct',model:[products:results,totalProduct:results1.size(),search:products,subasta:subasta,normal:normal,donacion:donacion,country:country,state:state,priceMin:priceMin,priceMax:priceMax,usernameOrder:usernameOrder,countryOrder:countryOrder,cityOrder:cityOrder,priceOrder:priceOrder,nameOrder:nameOrder,user:User.findByUsername(session.user)])
 		//}
 
 
@@ -385,7 +402,7 @@ class ProductController {
 		if(product!=null){
 			productRequest=product
 		}
-		def products = IndexController.recoveryProduct()
+		def products = recoveryProduct()
 		if (session.user){
 			def user= User.findByUsername(session.user)
 			def c = Product.createCriteria()
@@ -393,9 +410,12 @@ class ProductController {
 				createAlias("user", "c")
 				eq("c.id", user.getId())
 			}
-			render(controller:'prodcut',view:'showRequest',model:[product:productRequest,search:products, myProducts:results,user:user])
+			def allProducts = recoveryProduct()
+			def allRequests = UserController.recoveryRequest(session.user)
+			render(controller:'prodcut',view:'showRequest',model:[search:allProducts,requests:allRequests,product:productRequest,search:products, myProducts:results,user:user])
 		}else{
 			render(controller:'prodcut',view:'showRequest',model:[product:productRequest,search:products])
+//			redirect(controller:'index',action:'viewHome')
 		}
 	}
 

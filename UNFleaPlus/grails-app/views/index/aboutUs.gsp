@@ -8,6 +8,7 @@
 <asset:stylesheet src="bootstrap.css" />
 <asset:stylesheet src="about.css" />
 <asset:stylesheet src="main.css" />
+<asset:stylesheet src="navbar.css" />
 <asset:stylesheet src="sticky-footer.css" />
 <asset:javascript src="bootstrap.js" />
 <asset:javascript src="modal.js" />
@@ -23,146 +24,198 @@
 ================================================== -->
 <body>
 	<div id="wrap">
-		<g:if test="${session.user}">
-			<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-				<div class="container">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse"
-							data-target=".navbar-collapse">
-							<span class="sr-only">Toggle navigation</span> <span
-								class="icon-bar"></span> <span class="icon-bar"></span> <span
-								class="icon-bar"></span>
+		<div id="theNavbar">
+			<g:if test="${session.user}">
+				<nav class="navbar navbar-inverse navbar-fixed-top"
+					role="navigation">
+					<div class="container">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle"
+								data-toggle="collapse" data-target=".navbar-collapse">
+								<span class="sr-only">Toggle navigation</span> <span
+									class="icon-bar"></span> <span class="icon-bar"></span> <span
+									class="icon-bar"></span>
 
-						</button>
-						<g:if test="${user.avatar}">
-							<img class="avatar"
-								src="${createLink(controller:'user', action:'avatar_image', id:user.ident())}" />
-						</g:if>
-						<a class="font-menu" href="#"> ${user.username}
-						</a>
+							</button>
 
-					</div>
-					<div class="collapse navbar-collapse">
-						<g:form class="navbar-form navbar-left" role="search"
-							controller="product" action="searchProduct">
-							<div class="form-group">
-								<g:set var="search1" value="${g.message(code:'myProducts')}"
-									scope="page" />
-								<input class="typeahead form-control" type="search"
-									placeholder="${search1}" name="search" autocomplete="off">
-
-								<button type="submit" class="btn btn-default" type="button">
-									<g:message code="searchText" />
-								</button>
-							</div>
-
-						</g:form>
-						<ul class="nav navbar-nav navbar-right">
-
-							<li><a href="#"> Home</a></li>
+							<g:if test="${user.avatar}">
+								<g:link controller="user" action="viewHome" class="font-menu">
+									<img class="avatar"
+										src="${createLink(controller:'user', action:'avatar_image', id:user.ident())}" />
+								</g:link>
+							</g:if>
+							<g:link controller="user" action="viewHome"
+								class="navbar-brand font-menu">
+								${user.username}
+							</g:link>
 
 
-							<li><a href="#">Profile</a></li>
-							<li><g:link controller="user" action="logout">Logout</g:link>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</nav>
-		</g:if>
-		<g:else>
-			<div class="navbar-wrapper">
-				<div class="container size-menu">
-					<div
-						class="margin-menu navbar-inverse navbar-color navbar-fixed-top"
-						role="navigation">
-						<div class="container">
-							<div class="navbar-header navbar-color">
-								<button type="button" class="navbar-toggle"
-									data-toggle="collapse" data-target=".navbar-collapse">
-									<span class="sr-only">Toggle navigation</span> <span
-										class="icon-bar"></span> <span class="icon-bar"></span> <span
-										class="icon-bar"></span>
-								</button>
-								<a href="/UNFleaPlus/index/viewHome" class="navbar-brand">UN
-									Flea+ <g:link controller="index" action="viewHome"></g:link>
-								</a>
-							</div>
-							<div class="navbar-collapse collapse navbar-color">
-								<g:form class="navbar-form navbar-left" role="search"
-									controller="product" action="searchProduct">
-									<div class="form-group">
-										<g:set var="search1" value="${g.message(code:'myProducts')}"
-											scope="page" />
-										<input class="typeahead form-control" type="search"
-											placeholder="${search1}" name="search" autocomplete="off">
+						</div>
+						<div class="collapse navbar-collapse">
+							<g:form class="navbar-form navbar-left" role="search"
+								controller="product" action="searchProduct">
+								<div class="form-group">
+									<g:set var="search1"
+										value="${g.message(code:'searchProducts')}" scope="page" />
+									<input class="typeahead form-control input-search"
+										type="search" placeholder="${search1}" name="search"
+										autocomplete="off">
+									<button type="submit" class="btn btn-link" type="button">
+										<span class="glyphicon glyphicon-search"></span>
+									</button>
+								</div>
 
-										<button type="submit" class="btn btn-default" type="button">
-											<g:message code="searchText" />
-										</button>
-									</div>
+							</g:form>
+							<ul class="nav navbar-nav navbar-right">
 
-								</g:form>
-								<ul class="nav navbar-nav navbar-right">
-									<li><g:link controller="user" action="viewRegister">
-											<g:message code="signUP" />
-										</g:link></li>
-									<li><a href="#" data-toggle="modal" data-target="#myModal"><g:message
-												code="howUse" /></a></li>
-									<!--Un video como el que dijo el profesor-->
-									<li class="dropdown"><a class="dropdown-toggle" href="#"
-										data-toggle="dropdown" id="navLogin"><g:message
-												code="login" /></a>
-										<ul class="dropdown-menu drowmenu-size" role="menu">
-											<g:set var="foo" value="${g.message(code: 'email')}"
-												scope="page" />
-											<g:set var="foo1" value="${g.message(code: 'password')}"
-												scope="page" />
-											<g:form role="form" controller="user" action="login"
-												method="post">
-												<div class="form-group form-margin">
-
-													<input type="email" name="email" class="form-control"
-														id="ejemplo_email_1" placeholder="${foo}" required>
-
-
-												</div>
-												<div class="form-group form-margin">
-
-													<input type="password" name="password" class="form-control"
-														id="ejemplo_password_1" placeholder="${foo1}" required>
-
-												</div>
-
-												<div class="form-margin">
-													<label> <input type="checkbox" name="rememberMe">
-														<g:message code="rememberMe" />
-													</label>
-												</div>
-												<button type="submit" class="form-margin btn btn-default">
-													<g:message code="login" />
-												</button>
-
-											</g:form>
-										</ul></li>
-									<li class="dropdown"><a href="#" class="dropdown-toggle"
-										data-toggle="dropdown"><g:message code="more" /> <b
-											class="caret"></b></a>
+								<li><g:link controller="index" action="viewHome">
+										<g:message code="default.home.label" />
+									</g:link></li>
+								<li><g:link controller="user" action="viewHome">
+										<g:message code="myProducts" />
+									</g:link></li>
+								<li><div class="dropdown">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+											<g:if test="${requests}">
+												<h4>
+													<span class="badge"> ${requests.size()}</span>
+												</h4>
+											</g:if>
+										</a>
 										<ul class="dropdown-menu" role="menu">
-											<li><g:link controller="index" action="viewContactUs">
-													<g:message code="contactUs" />
-												</g:link></li>
-											<li><g:link controller="index" action="viewAboutUs">
-													<g:message code="aboutUs" />
-												</g:link></li>
-										</ul></li>
-								</ul>
+											<g:if test="${requests}">
+												<g:each var="request" in="${requests}">
+													<li><g:link controller="user" action="userRequest"
+															params="[name:request]">
+															${request}
+														</g:link></li>
+												</g:each>
+
+											</g:if>
+										</ul>
+									</div></li>
+								<li><g:link controller="user" action="logout">
+										<g:message code="logout" />
+									</g:link></li>
+								<li class="dropdown"><a href="#" class="dropdown-toggle"
+											data-toggle="dropdown"><g:message code="more" /> <b
+												class="caret"></b></a>
+											<ul class="dropdown-menu" role="menu">
+												<li><g:link controller="index" action="viewContactUs">
+														<g:message code="contactUs" />
+													</g:link></li>
+												<li><g:link controller="index" action="viewAboutUs">
+														<g:message code="aboutUs" />
+													</g:link></li>
+											</ul></li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+			</g:if>
+			<g:else>
+				<div class="navbar-wrapper">
+					<div class="container size-menu">
+						<div
+							class="margin-menu navbar-inverse navbar-fixed-top navbar-color"
+							role="navigation">
+							<div class="container">
+								<div class="navbar-header navbar-color">
+									<button type="button" class="navbar-toggle"
+										data-toggle="collapse" data-target=".navbar-collapse">
+										<span class="sr-only">Toggle navigation</span> <span
+											class="icon-bar"></span> <span class="icon-bar"></span> <span
+											class="icon-bar"></span>
+									</button>
+									<a href="/UNFleaPlus/index/viewHome" class="navbar-brand">UN
+										Flea+ <g:link controller="index" action="viewHome"></g:link>
+									</a>
+								</div>
+								<div class="navbar-collapse collapse navbar-color">
+									<g:form class="navbar-form navbar-left" role="search"
+										controller="product" action="searchProduct">
+										<div class="form-group">
+											<g:set var="search1"
+												value="${g.message(code:'searchProducts')}" scope="page" />
+											<input class="typeahead form-control input-search"
+												type="search" placeholder="${search1}" name="search"
+												autocomplete="off">
+
+											<button type="submit" class="btn btn-link" type="button">
+												<span class="glyphicon glyphicon-search"></span>
+											</button>
+										</div>
+
+									</g:form>
+									<ul class="nav navbar-nav navbar-right">
+
+										<li><g:link controller="user" action="viewRegister">
+												<g:message code="signUP" />
+											</g:link></li>
+										<li><a href="#" data-toggle="modal"
+											data-target="#myModal"><g:message code="howUse" /></a></li>
+										<!--Un video como el que dijo el profesor-->
+										<li class="dropdown"><a class="dropdown-toggle" href="#"
+											data-toggle="dropdown" id="navLogin"><g:message
+													code="login" /></a>
+											<ul class="dropdown-menu drowmenu-size" role="menu">
+												<g:set var="foo" value="${g.message(code: 'email')}"
+													scope="page" />
+												<g:set var="foo1" value="${g.message(code: 'password')}"
+													scope="page" />
+
+												<g:form role="form" controller="user" action="login"
+													method="post">
+													<div class="form-margin">
+
+														<input type="email" class="form-control" name="email"
+															id="ejemplo_email_1" placeholder="${foo}" required>
+
+
+
+														<input type="password" class="form-control"
+															name="password" id="ejemplo_password_1"
+															placeholder="${foo1}" required>
+
+
+														<div class="checkbox">
+															<label> <input type="checkbox"
+																value="remember-me"> <g:message
+																	code="rememberMe" />
+															</label>
+														</div>
+
+														<button type="submit"
+															class="btn btn-lg btn-primary btn-block">
+															<g:message code="login" />
+														</button>
+													</div>
+												</g:form>
+											</ul></li>
+										<li class="dropdown"><a href="#" class="dropdown-toggle"
+											data-toggle="dropdown"><g:message code="more" /> <b
+												class="caret"></b></a>
+											<ul class="dropdown-menu" role="menu">
+												<li><g:link controller="index" action="viewContactUs">
+														<g:message code="contactUs" />
+													</g:link></li>
+												<li><g:link controller="index" action="viewAboutUs">
+														<g:message code="aboutUs" />
+													</g:link></li>
+											</ul></li>
+									</ul>
+
+
+								</div>
+
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</g:else>
+			</g:else>
+		</div>
+		
+		
 
 		<div class="container marketing">
 			<h1>Team Members</h1>

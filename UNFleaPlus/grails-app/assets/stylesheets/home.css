@@ -1,11 +1,7 @@
 ul li img {
 	cursor: pointer;
 }
-.avatar{
-	width: 4.0em;
-  	height: 4.5em;
-  	
-}
+
 .img-responsive{
 	width: 100%;
 }

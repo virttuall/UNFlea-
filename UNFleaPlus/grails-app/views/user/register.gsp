@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title><g:message code="signUP" /></title>
 <asset:stylesheet src="bootstrap.css" />
+<asset:stylesheet src="navbar.css" />
 <asset:stylesheet src="sticky-footer.css" />
 <asset:stylesheet src="register.css" />
 <asset:javascript src="bootstrap.js" />
@@ -20,7 +21,7 @@
 <body>
 	<div id="wrap">
 		<div class="navbar-wrapper">
-			<div class="size-menu">
+			<div class="container size-menu">
 				<div
 					class="margin-menu navbar-inverse navbar-fixed-top navbar-color"
 					role="navigation">
@@ -37,7 +38,21 @@
 							</a>
 						</div>
 						<div class="navbar-collapse collapse navbar-color">
+							<g:form class="navbar-form navbar-left" role="search"
+								controller="product" action="searchProduct">
+								<div class="form-group">
+									<g:set var="search1"
+										value="${g.message(code:'searchProducts')}" scope="page" />
+									<input class="typeahead form-control input-search"
+										type="search" placeholder="${search1}" name="search"
+										autocomplete="off">
 
+									<button type="submit" class="btn btn-link" type="button">
+										<span class="glyphicon glyphicon-search"></span>
+									</button>
+								</div>
+
+							</g:form>
 							<ul class="nav navbar-nav navbar-right">
 
 								<li><g:link controller="user" action="viewRegister">
@@ -57,34 +72,29 @@
 
 										<g:form role="form" controller="user" action="login"
 											method="post">
-											<div class="form-group form-margin">
+											<div class="form-margin">
 
-												<input type="email" name="email" class="form-control"
+												<input type="email" class="form-control" name="email"
 													id="ejemplo_email_1" placeholder="${foo}" required>
 
 
-											</div>
-											<div class="form-group form-margin">
 
-												<input type="password" name="password" class="form-control"
+												<input type="password" class="form-control" name="password"
 													id="ejemplo_password_1" placeholder="${foo1}" required>
 
-											</div>
 
-											<div class="form-margin">
-												<label> <input type="checkbox" name="rememberMe">
-													<g:message code="rememberMe" />
-												</label>
-											</div>
-											<button type="submit" class="form-margin btn btn-default">
-												<g:message code="login" />
-											</button>
+												<div class="checkbox">
+													<label> <input type="checkbox" value="remember-me">
+														<g:message code="rememberMe" />
+													</label>
+												</div>
 
+												<button type="submit"
+													class="btn btn-lg btn-primary btn-block">
+													<g:message code="login" />
+												</button>
+											</div>
 										</g:form>
-
-
-
-
 									</ul></li>
 								<li class="dropdown"><a href="#" class="dropdown-toggle"
 									data-toggle="dropdown"><g:message code="more" /> <b
@@ -106,6 +116,7 @@
 				</div>
 			</div>
 		</div>
+		
 		<div class="container ">
 			<form class="form-horizontal" id="msform" role="form"
 				controller="user" action="register" method="post"
