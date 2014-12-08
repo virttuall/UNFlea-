@@ -163,8 +163,14 @@ class UserController {
 
 		if(session.user){
 			user= User.findByUsername(session.user)
-//			def requests=Request.executeQuery("select distinct b.products.name from Request b where b.userReciving.username=?" , [session.user])
-			def requests = recoveryRequest(session.user)
+
+			def requests=Request.executeQuery("select distinct b.products.name from Request b where b.userReciving.username=?" , [session.user])
+			//def requests = Request.findAll("from Request as b where b.userReciving.username=?",[session.user])
+			def messages=Message.executeQuery("select distinct user1 from Message  where username=?",[session.user] )
+			def messages1=Message.executeQuery("select distinct username from Message  where user1=?",[session.user] ) 
+			def allMessages=messages+messages1
+			print 	allMessages 
+			allMessages= allMessages as Set
 
 			def c = Product.createCriteria()
 			def results = c.list(params){
@@ -173,8 +179,9 @@ class UserController {
 			}
 			user= User.findByUsername(session.user)
 			def total = Product.findAll ("from Product as b where b.user.username=? ",[session.user])
-			def allProducts = ProductController.recoveryProduct()
-			render(controller:'user',view:'home',model:[search:allProducts,products:results, totalProduct:total.size(),user:user,totalRequest:requests.size(),requests:requests])
+
+			render(controller:'user',view:'home',model:[products:results, totalProduct:total.size(),user:user,totalRequest:requests.size(),requests:requests,messages:allMessages,totalMessages:allMessages.size()])
+
 		}else{
 			redirect(controller:'index',action:'viewHome')
 		}

@@ -60,6 +60,7 @@
 								<input class="typeahead form-control input-search" type="search"
 									placeholder="${search1}" name="search" autocomplete="off">
 
+
 								<button type="submit" class="btn btn-link" type="button">
 									<span class="glyphicon glyphicon-search"></span>
 								</button>
@@ -74,32 +75,63 @@
 							<li><g:link controller="user" action="viewHome">
 									<g:message code="myProducts" />
 								</g:link></li>
-							<li><div class="dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-										<g:if test="${requests}">
-											<h4>
-												<span class="badge"> ${requests.size()}</span>
-											</h4>
-										</g:if>
-									</a>
-									<ul class="dropdown-menu" role="menu">
-										<g:if test="${requests}">
-											<g:each var="request" in="${requests}">
-												<li><g:link controller="user" action="userRequest"
-														params="[name:request]">
-														${request}
-													</g:link></li>
-											</g:each>
+							<li>
+							<div class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									<h4>
+										<span class="glyphicon glyphicon-comment white"></span> <span
+										class="badge">${totalMessages}</span>
+									</h4>
+										<ul class="dropdown-menu" role="menu">
+											<g:if test="${messages}">
+												<g:each var="message" in="${messages}">
+													<li><a href="#" class="open-AddBookDialog" data-toggle="modal" data-target="#myModalChat" data-id="${message}">
+													${message}
+													
+													</a></li>
+												</g:each>
+											</g:if>
+										</ul>
+										
+									
+								</a>
+							</div>
+						</li>
+							
+								<li><div class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									<h4>
+										<span class="glyphicon glyphicon-globe white"></span> <span
+											class="badge"> ${totalRequest}
+										</span>
+									</h4>
+								</a>
+								<ul class="dropdown-menu" role="menu">
+									<g:if test="${requests}">
+										<g:each var="request" in="${requests}">
+											<li><g:link controller="user" action="userRequest"
+													params="[name:request]">
+													${request}
+												</g:link></li>
+										</g:each>
 
-										</g:if>
-									</ul>
-								</div></li>
+									</g:if>
+
+
+								</ul>
+							</div></li>
+							
 							<li><g:link controller="user" action="logout">
 									<g:message code="logout" />
 								</g:link></li>
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown"><g:message code="more" /> <b
 									class="caret"></b></a>
+
+						
+						
+						
+
 								<ul class="dropdown-menu" role="menu">
 									<li><g:link controller="index" action="viewContactUs">
 											<g:message code="contactUs" />
@@ -544,6 +576,73 @@
 			Flea+. <a href="#">Privacy </a> &amp;<a href="#"> Terms</a>
 		</div>
 	</div>
+	<div class="modal fade" id="myModalChat" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3 class="user"></h3>
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div id="chatMessages" style="overflow: scroll; height: 400px;">
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<textarea cols="90" rows="3" id="messageBox" name="message" onkeypress="messageKeyPress(this,event);" style="resize:none;"></textarea>
+								
+							</div>
+							
+						</div>
+						
+						
+						<div id="temp"></div>
+					</div>
+				</div>
+			</div>	
+		</div>
+<script>
+	var myUser=""
+    function messageKeyPress(field,event) {
+        var theCode = event.keyCode ? event.keyCode : event.which ? event.which : event.charCode;
+        var message = $('#messageBox').val();
+        if (theCode == 13){
+        	
+        	//alert(myUser)
+            <g:remoteFunction action="submitMessage" controller="chat" params="\'message=\'+message+'///////////////'+myUser" update="temp"/>
+             
+             $("textarea[name='message']").val('');
+            return false;
+        } else {
+            return true;
+        }
+    }
+    user();
+    function user(){
+		$('.open-AddBookDialog').on('click',function(){
+			myUser = $(this).data('id');
+			$('.user').text(myUser);
+			var message=" ";
+			$('#myModalChat .modal-body #chatMessages').text('');
+			<g:remoteFunction action="submitMessage" controller="chat" params="\'message=\'+message+'///////////////'+myUser" update="temp"/>
+		 
+			
+			$('#myModalChat').on('hidden.bs.modal', function(){
+		    	$('#myModalChat .modal-body #chatMessages').text('');
+		    });
+		});
+    }
+    function retrieveLatestMessages() {
+        <g:remoteFunction action="retrieveLatestMessages" controller="chat" update="chatMessages"/>
+    }
+    function pollMessages() {
+        retrieveLatestMessages();
+        setTimeout('pollMessages()', 5000);
+    }
+    pollMessages();
+</script>
 </body>
 </html>
 

@@ -6,4 +6,6 @@ $(function() {
     $('#myModal').on('hidden.bs.modal', function(){
     	$('#myModal .modal-body').html('');
     });
-});
+    
+})(jQuery);
+

@@ -39,14 +39,15 @@
 									class="icon-bar"></span> <span class="icon-bar"></span> <span
 									class="icon-bar"></span>
 
-							</button>
 
-							<g:if test="${user.avatar}">
-								<g:link controller="user" action="viewHome" class="font-menu">
-									<img class="avatar"
-										src="${createLink(controller:'user', action:'avatar_image', id:user.ident())}" />
-								</g:link>
-							</g:if>
+						</button>
+						<g:if test="${user.avatar}">
+						<g:link controller="user" action="viewHome" class="font-menu">
+							<img style="height: 4.5em; width: 4.0em"
+								src="${createLink(controller:'user', action:'avatar_image', id:user.ident())}" />
+						</g:link>
+						</g:if>
+					
 							<g:link controller="user" action="viewHome"
 								class="navbar-brand font-menu">
 								${user.username}
