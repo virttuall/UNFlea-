@@ -66,6 +66,12 @@ body .modal {
 	width: 100%;
 }
 
+/* MARKETING CONTENT
+-------------------------------------------------- */
+
+.video{
+	margin-top:60px;
+}
 
 /* MARKETING CONTENT
 -------------------------------------------------- */
@@ -77,7 +83,7 @@ body .modal {
 }
 
 .marketing h1{
-	margin-top:70px;
+	margin-top:10px;
 	margin-bottom:40px;
 }
 
