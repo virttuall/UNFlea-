@@ -1,0 +1,1 @@
+function submitForm(e){$(e).attr("value","-1")}$(document).ready(function(){var e=$("#search").text();e=e.trim();var t=e.substring(1,e.length-1).split(",");$(".typeahead").typeahead({name:"products",source:t,limit:10})})

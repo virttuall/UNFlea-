@@ -1,4 +1,6 @@
 package unfleaplus
+import java.security.AllPermission;
+
 import org.apache.shiro.SecurityUtils
 import org.apache.shiro.authc.AuthenticationException
 import org.apache.shiro.authc.UsernamePasswordToken
@@ -163,7 +165,7 @@ class UserController {
 
 		if(session.user){
 			user= User.findByUsername(session.user)
-
+			def allProducts = ProductController.recoveryProduct()
 			def requests=Request.executeQuery("select distinct b.products.name from Request b where b.userReciving.username=?" , [session.user])
 			//def requests = Request.findAll("from Request as b where b.userReciving.username=?",[session.user])
 			def messages=Message.executeQuery("select distinct user1 from Message  where username=?",[session.user] )
@@ -180,7 +182,7 @@ class UserController {
 			user= User.findByUsername(session.user)
 			def total = Product.findAll ("from Product as b where b.user.username=? ",[session.user])
 
-			render(controller:'user',view:'home',model:[products:results, totalProduct:total.size(),user:user,totalRequest:requests.size(),requests:requests,messages:allMessages,totalMessages:allMessages.size()])
+			render(controller:'user',view:'home',model:[search:allProducts,products:results, totalProduct:total.size(),user:user,totalRequest:requests.size(),requests:requests,totalMessages:allMessages.size(),messages:allMessages])
 
 		}else{
 			redirect(controller:'index',action:'viewHome')
@@ -220,6 +222,22 @@ class UserController {
 			redirect(controller:'index',action:'viewHome')
 		}
 		
+	}
+	def chatMessages(){
+		def messages=Message.executeQuery("select distinct user1 from Message  where username=?",[session.user] )
+		def messages1=Message.executeQuery("select distinct username from Message  where user1=?",[session.user] )
+		def allMessages=messages+messages1
+		print 	allMessages
+		allMessages= allMessages as Set
+		render ""+allMessages.size()
+	}
+	def chatMessagesList(){
+		def messages=Message.executeQuery("select distinct user1 from Message  where username=?",[session.user] )
+		def messages1=Message.executeQuery("select distinct username from Message  where user1=?",[session.user] )
+		def allMessages=messages+messages1
+		print 	allMessages
+		allMessages= allMessages as Set
+		[messages:allMessages]
 	}
 
 }

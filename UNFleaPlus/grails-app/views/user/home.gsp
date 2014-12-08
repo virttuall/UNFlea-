@@ -22,7 +22,7 @@
 
 
 
-
+<script>setTimeout(&#39;document.location.reload()&#39;,60000); </script>
 </head>
 <body>
 	<div id="wrap">
@@ -80,8 +80,9 @@
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 									<h4>
 										<span class="glyphicon glyphicon-comment white"></span> <span
-										class="badge">${totalMessages}</span>
+										class="badge" id="chat" ></span>
 									</h4>
+									
 										<ul class="dropdown-menu" role="menu">
 											<g:if test="${messages}">
 												<g:each var="message" in="${messages}">
@@ -102,10 +103,11 @@
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 									<h4>
 										<span class="glyphicon glyphicon-globe white"></span> <span
-											class="badge"> ${totalRequest}
+											class="badge" > ${totalRequest}
 										</span>
 									</h4>
 								</a>
+								
 								<ul class="dropdown-menu" role="menu">
 									<g:if test="${requests}">
 										<g:each var="request" in="${requests}">
@@ -603,6 +605,9 @@
 				</div>
 			</div>	
 		</div>
+		<div id="search" style="display: none;">
+			${search}
+		</div>
 <script>
 	var myUser=""
     function messageKeyPress(field,event) {
@@ -634,6 +639,8 @@
 		    });
 		});
     }
+    <g:remoteFunction action="chatMessages" controller="user" update="chat"/>
+    <g:remoteFunction action="chatMessagesList" controller="user" upadate="algo"/>
     function retrieveLatestMessages() {
         <g:remoteFunction action="retrieveLatestMessages" controller="chat" update="chatMessages"/>
     }

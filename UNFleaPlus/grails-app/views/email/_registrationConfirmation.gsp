@@ -3,5 +3,5 @@
 	<p><g:message code="usernameVar" />: ${user.username}</p>
 	<p><g:message code="password" />: ${password}</p>
 	<p><g:message code="toValidateAccount" /></p>
-	<g:createLink controller="user" action="confirmEmail" base="http://localhost:8080/UNFleaPlus" params="[email: user.email, password:password]" />								
+	<g:createLink controller="user" action="confirmEmail" base="http://unfleaplus-unfleaplus.rhcloud.com/" params="[email: user.email, password:password]" />								
 </center>
