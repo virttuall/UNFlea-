@@ -288,11 +288,15 @@
 		<div class="container">
 			<div class="col-xs-7 pull-left">
 				<g:link controller="index" action="viewHome" params="[lang:'en']">
-					<asset:image src="ingles.png" alt="UNFlea+" height="40px"
+					<asset:image src="USA_ROUND.png" alt="UNFlea+" height="40px"
 						width="40px" />
 				</g:link>
 				<g:link controller="index" action="viewHome" params="[lang:'es']">
-					<asset:image src="espanol.png" alt="UNFlea+" height="40px"
+					<asset:image src="SPAIN_ROUND.png" alt="UNFlea+" height="40px"
+						width="40px" />
+				</g:link>
+				<g:link controller="index" action="viewHome" params="[lang:'fr']">
+					<asset:image src="FRANCE_ROUND.png" alt="UNFlea+" height="40px"
 						width="40px" />
 				</g:link>
 			</div>
