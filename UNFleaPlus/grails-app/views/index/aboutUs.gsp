@@ -217,9 +217,12 @@
 		</div>
 		
 		
-
+		<div class = "container video">
+			<h1><g:message code="appDevelopment" /></h1>
+			<iframe width="1140" height="640" src="//www.youtube.com/embed/bT5rMZmzudM" frameborder="0" allowfullscreen></iframe>
+		</div>
 		<div class="container marketing">
-			<h1>Team Members</h1>
+			<h1><g:message code="teamMembers" /></h1>
 			<div class="row">
 				<div class="col-lg-4">
 					<asset:image class="img-circle" src="UNFlea.png"
@@ -345,12 +348,16 @@
 	<div class="footer">
 		<div class="container">
 			<div class="col-xs-5 pull-left">
-				<g:link controller="index" action="viewHome" params="[lang:'en']">
-					<asset:image src="ingles.png" alt="UNFlea+" height="40px"
+				<g:link controller="index" action="viewAboutUs" params="[lang:'en']">
+					<asset:image src="USA_ROUND.png" alt="UNFlea+" height="40px"
 						width="40px" />
 				</g:link>
-				<g:link controller="index" action="viewHome" params="[lang:'es']">
-					<asset:image src="espanol.png" alt="UNFlea+" height="40px"
+				<g:link controller="index" action="viewAboutUs" params="[lang:'es']">
+					<asset:image src="SPAIN_ROUND.png" alt="UNFlea+" height="40px"
+						width="40px" />
+				</g:link>
+				<g:link controller="index" action="viewAboutUs" params="[lang:'fr']">
+					<asset:image src="FRANCE_ROUND.png" alt="UNFlea+" height="40px"
 						width="40px" />
 				</g:link>
 			</div>
