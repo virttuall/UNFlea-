@@ -4,6 +4,8 @@ class Message {
 	String username
 	Date date
 	String message
-    static constraints = {
+	String user1
+	    
+	static constraints = {
     }
 }

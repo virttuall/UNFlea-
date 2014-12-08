@@ -12,6 +12,7 @@
 <asset:javascript src="home.js" />
 <asset:javascript src="search.js" />
 <asset:stylesheet src="search.css" />
+<asset:javascript src="modal.js" />
 
 
 
@@ -313,11 +314,14 @@
 		</div>
 	</div>
 <script>
+	var myUser=""
     function messageKeyPress(field,event) {
         var theCode = event.keyCode ? event.keyCode : event.which ? event.which : event.charCode;
         var message = $('#messageBox').val();
         if (theCode == 13){
-            <g:remoteFunction action="submitMessage" controller="chat" params="\'message=\'+message" update="temp"/>
+        	
+        	//alert(myUser)
+            <g:remoteFunction action="submitMessage" controller="chat" params="\'message=\'+message+'///////////////'+myUser" update="temp"/>
              
              $("textarea[name='message']").val('');
             return false;
@@ -328,8 +332,16 @@
     user();
     function user(){
 		$('.open-AddBookDialog').on('click',function(){
-			var myUser = $(this).data('id');
+			myUser = $(this).data('id');
 			$('.user').text(myUser);
+			var message=" ";
+			$('#myModalChat .modal-body #chatMessages').text('');
+			<g:remoteFunction action="submitMessage" controller="chat" params="\'message=\'+message+'///////////////'+myUser" update="temp"/>
+		 
+			
+			$('#myModalChat').on('hidden.bs.modal', function(){
+		    	$('#myModalChat .modal-body #chatMessages').text('');
+		    });
 		});
     }
     function retrieveLatestMessages() {
