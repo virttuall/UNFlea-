@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title><g:message code="default.home.label" /> - ${user.username}</title>
 <asset:stylesheet src="bootstrap.css" />
+<asset:stylesheet src="chat.css" />
 <asset:stylesheet src="dropzone.css" />
 <asset:stylesheet src="init.css" />
 <asset:stylesheet src="home.css" />
@@ -14,6 +15,7 @@
 <asset:stylesheet src="sticky-footer.css" />
 <asset:javascript src="bootstrap.js" />
 <asset:javascript src="bootstrap-typeahead.js" />
+<asset:javascript src="chat.js" />
 <asset:javascript src="home.js" />
 <asset:javascript src="img-modal.js" />
 <asset:javascript src="dropzoneUpdateProduct.js" />
@@ -23,6 +25,7 @@
 
 
 <script>setTimeout(&#39;document.location.reload()&#39;,60000); </script>
+
 </head>
 <body>
 	<div id="wrap">
@@ -585,19 +588,19 @@
 	<div class="modal fade" id="myModalChat" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
-				<div class="modal-content">
+				<div class="modal-content"  style="background: #ECECEC">
 					<div class="modal-header">
-						<h3 class="user"></h3>
 						<button type="button" class="close" data-dismiss="modal">
 							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 						</button>
+						<h4>Chat</h4>
 					</div>
-					<div class="modal-body">
-						<div id="chatMessages" style="overflow: scroll; height: 400px;">
+					<div class="modal-body" >
+						<div id="chatMessages" style="overflow: scroll; height: 400px;background: #ECECEC">
 						</div>
 						<div class="row">
 							<div class="col-xs-12">
-								<textarea cols="90" rows="3" id="messageBox" name="message" onkeypress="messageKeyPress(this,event);" style="resize:none;"></textarea>
+								<textarea cols="90" rows="3" id="messageBox" name="message" onkeypress="messageKeyPress(this,event);" style="resize:none;width:100%"></textarea>
 								
 							</div>
 							
@@ -651,8 +654,14 @@
     function pollMessages() {
         retrieveLatestMessages();
         setTimeout('pollMessages()', 5000);
+        updateBar();
     }
     pollMessages();
+
+    function updateBar(){
+    	$("#chatMessages").animate({ scrollTop: $(document).height() }, "slow");
+  	  return false;
+    }
 </script>
 </body>
 </html>

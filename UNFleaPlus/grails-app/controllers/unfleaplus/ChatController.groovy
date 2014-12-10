@@ -8,7 +8,6 @@ class ChatController {
     def index() { }
 	def retrieveLatestMessages() {
 		def messages = Message.findAll("from Message as b where (username=? or username=?) and (user1=? or user1=?)",[userSendMessage,userReciveMessage,userSendMessage,userReciveMessage])
-//		
 		[messages:messages]
 	}
 	def submitMessage(String message) {
