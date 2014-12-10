@@ -239,6 +239,36 @@ class UserController {
 		allMessages= allMessages as Set
 		[messages:allMessages]
 	}
+	
+	def profileView(){
+		if(session.user){
+			def user_temp = User.findByUsername(session.user )
+			render(controller:"user",view:"profile", model:[user:user_temp])
+		}
+		else{
+			redirect(controller:'index',action:'viewHome')
+		}
+		
+	}
+	
+	
+	def updateProfile(){
+		def currentUser = User.findByUsername(session.user )
+		currentUser.firstName=params.name
+		currentUser.lastName=params.lastName
+		currentUser.email=params.email
+		currentUser.userCity=params.city
+		currentUser.userCountry=params.country
+		
+		if(params.screenshot!=null &&  params.screenshot.getBytes().size()>0)
+			currentUser.avatar =params.screenshot.getBytes()
+		
+		if(currentUser.save(flush:true)){
+			render(controller: 'user', view: 'home', model:[user:currentUser])
+		}else{
+			render(controller: 'index', view: 'index' )
+		}
+	}
 
 }
 
