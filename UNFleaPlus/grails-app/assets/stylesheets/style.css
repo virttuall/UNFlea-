@@ -11,7 +11,7 @@ body {
   height: auto;
   background: #f2f2f2;
   margin: 60px auto 0;
-  padding: 0;
+  padding:0px;
   border-radius: 3px;
   position: relative;
   overflow: hidden;
@@ -23,7 +23,7 @@ header {
   border-bottom: 2px solid #222;
   position: relative;
   padding: 40px 0 0;
-  background: url(http://imagebase.net/var/resizes/Nature/grass_003.jpg?m=1300159225);
+  background: url(http://imagebase.net/var/albums/Nature/imagebase7_03.jpg);
   background-size: cover;
   text-align: center;
 }
@@ -74,12 +74,16 @@ header {
   padding-right: 5px;
 }
 
-h2 {
-  text-align: center;
+h4 {
+  text-align: left;
   color: #111;
-  text-transform: uppercase;
+  font: bold;
 }
 
+h5{
+	text-align: left;
+  color: #111;
+}
 .avatar {
   display: block;
   width: 100px;
@@ -101,7 +105,7 @@ h2 {
 
 .about {
   width: 460px;
-  height: auto;
+  height: 500px;
   padding: 30px 20px;
   position: relative;
   background: #f2f2f2;
@@ -109,6 +113,15 @@ h2 {
   color: rgba(0,0,0,.4);
   font-size: 13px;
 }
+
+.well {
+	width: 450px;
+	height: 480px;
+	padding: 0px;
+	
+}
+
+
 
 .birthday {
   width: 460px;
