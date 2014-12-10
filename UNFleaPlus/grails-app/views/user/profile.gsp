@@ -20,7 +20,11 @@
 <asset:javascript src="search.js" />
 <asset:javascript src="toogleMenu.js" />
 
-
+<asset:stylesheet src="style.css"/>
+<asset:javascript src="modal.js" />
+<g:javascript src="jquery-1.11.1.min.js" />
+<g:javascript src="bootstrap.min.js" />
+<g:javascript src="bootstrap.file-input.js" />
 
 <script>setTimeout(&#39;document.location.reload()&#39;,60000); </script>
 </head>
@@ -157,160 +161,44 @@
 		<!-- ------------------------------------------------------------------------------------------- -->
 
 
-		<div class="container margin-menu">
-			<div class="row row-offcanvas row-offcanvas-left">
-
-				<div class="row">
-					<div class="col-xs-9 col-xs-offset-3 ">
-						<h1 class="page-header">
-							<g:message code="myProducts" />
-						</h1>
-					</div>
-				</div>
-				<div class="col-xs-12">
-					<p class="pull-left visible-xs">
-						<button type="button" class="btn btn-primary btn-xs"
-							data-toggle="offcanvas">
-							<g:message code="homeMenu" />
-						</button>
-					</p>
-					<div class="col-xs-3 sidebar-offcanvas" id="sidebar"
-						role="navigation">
-						<g:link controller="user" action="profileView">
-							<h3>
-								<i class="glyphicon glyphicon-user"></i>
-								<g:message code="profile" />
-							</h3>
-						</g:link>
-						<div class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								<h3>
-									<i class="glyphicon glyphicon-th-large"></i>
-									<g:message code="products" />
-									<b class="caret"></b>
-								</h3>
-							</a>
-							<ul class="dropdown-menu" role="menu">
-								<li><g:link controller="product" action="viewAddProduct">
-										<h4>
-											<i class="glyphicon glyphicon-plus-sign"></i>
-											<g:message code="addProduct" />
-										</h4>
-									</g:link></li>
-								<li><g:link controller="product" action="viewDeleteProduct">
-										<h4>
-											<i class="glyphicon glyphicon-trash"></i>
-											<g:message code="deleteProduct" />
-										</h4>
-									</g:link></li>
-							</ul>
-						</div>
-
-					</div>
-					<div class="col-xs-offset-2 col-xs-7 col-lg-offset-1 col-lg-8">
-						<div id="filterMyProducts">
-							<g:message code="type" />
-							<div class="checkbox-inline">
-								<label><input type="checkbox" id="filterNormal" checked>
-									<g:message code="normalVar" /></label>
-							</div>
-							<div class="checkbox-inline">
-								<label><input type="checkbox" id="filterAuction" checked>
-									<g:message code="auctionVar" /></label>
-							</div>
-							<div class="checkbox-inline">
-								<label><input type="checkbox" id="filterDonate" checked>
-									<g:message code="donateVar" /></label>
-							</div>
-							<g:each var="product" in="${products}">
-								<div class="${product.type+'_TYPE' }">
-									<div class="headerProduct">
-										<h3 style="display: inline">
-											${product.name}
-										</h3>
-										<h4 style="display: inline;">
-											<g:if test="${product.type == 'NORMAL' }">
-												<span class="label label-primary center-vertical"><g:message
-														code="normalVar" /></span>
-											</g:if>
-											<g:else>
-												<g:if test="${product.type == 'AUCTION'}">
-													<span class="label label-success center-vertical"><g:message
-															code="auctionVar" /></span>
-												</g:if>
-												<g:else>
-													<span class="label label-warning center-vertical"><g:message
-															code="donateVar" /></span>
-												</g:else>
-												<a class="openAdditionalInfo" data-toggle="modal"
-													data-target="#modalAdditionalInformation"
-													data-type="${product.type }"
-													data-cur-price="${product.currentPrice }"
-													data-open-date="${product.openingDate.format('M-d-yyyy h:mm a')}"
-													data-close-date="${product.closingDate.format('M-d-yyyy h:mm a')}"
-													id="additionalInfo"> <span
-													class="glyphicon glyphicon-time"></span>
-												</a>
-											</g:else>
-										</h4>
-										<a class="openDeleteProduct btn btn-default btn-sm pull-right"
-											data-toggle="modal" data-target="#modalConfirmDeleteProduct"
-											data-id="${product.getId()}"> <span
-											class='glyphicon glyphicon-trash'> </span>
-										</a> <a class="openUpdateImages btn btn-default btn-sm pull-right"
-											data-toggle="modal" data-target="#modalUpdateImages"
-											data-id="${product.getId()}"
-											data-nimages="${product.image.size()}" id="updateImages">
-											<span class='glyphicon glyphicon-plus-sign'> </span>
-										</a> <a class="openUpdateInfo btn btn-default btn-sm pull-right"
-											data-toggle="modal" data-target="#modalUpdateInformation"
-											data-id="${product.getId()}" data-name="${product.getName()}"
-											data-desc="${product.getDescription() }"
-											id="updateInformation"> <span
-											class='glyphicon glyphicon-pencil'> </span>
-										</a>
-									</div>
-									<div class="row">
-										<g:each var="images" in="${product.image}">
-											<g:each var="image" in="${images}">
-
-												<div
-													class="margin-gallery col-lg-3 col-md-3 col-sm-4 col-xs-6">
-													<li class="img-thumbnail"><a class="openDeleteImage"
-														data-toggle="modal" data-target="#modalConfirmDeleteImage"
-														data-id="${product.getId()}"
-														data-idimage="${image.getId()}"> <span
-															class='remove-product glyphicon glyphicon-remove pull-right'></span>
-													</a><img class="img-responsive img-modal"
-														style="width: 10em; height: 10em;"
-														src="${createLink(controller:'user', action:'product_image', id:image.getId())}">
-													</li>
-												</div>
-
-											</g:each>
-										</g:each>
-									</div>
-								</div>
-							</g:each>
-							<g:if test="${totalProduct<10}">
-								<div class="pagination" style="display: none">
-									<g:paginate controller="user" action="list" max="10"
-										total="${totalProduct?:0}" />
-								</div>
-							</g:if>
-							<g:else>
-								<div class="pagination">
-									<g:paginate controller="user" action="list" max="10"
-										total="${totalProduct?:0}" />
-								</div>
-							</g:else>
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
+		<div id="profile">
+  <header>
+  
+    <div class="avatar">
+    <g:if test="${user.avatar}">
+    <asset:image src="${createLink(controller:'user', action:'avatar_image', id:user.ident())}" width = "100" />
+	</g:if>
+	<g:else>	
+	<asset:image src="notUser.png" width="100" />
+	</g:else>
+    </div>
+      
+      <a class="addfriend" href="#"><span class="glyphicon glyphicon-envelope"></span></a>
+  </header>
+  <div class="about">
+    <h2>Notes</h2>
+    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam volu.
+  </div>
+  <div class="birthday">
+    <h2>Birthday</h2>
+    <span class="day">01</span>
+    <span class="month">DEC</span>
+    <span class="year">1978</span>
+  </div>
+  <div class="address">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193572.0037917105!2d-73.97800349999999!3d40.7056308!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York+City%2C+New+York!5e0!3m2!1sde!2sde!4v1403005957250" width="500" height="200" frameborder="0" style="border:0"></iframe>
+  </div>
+  <div class="contact">
+    My Street 15 / 12345 New York / USA
+    <p> </p>
+    <a href="tel:0123456789">Mobile</a>
+    <a href="tel:0123456789">Work</a>
+    <a href="mailto:your@mail.de">E-Mail</a>
+  </div>
+  <div class="social">
+    <a href="#">Facebook</a><a href="#">Twitter</a><a href="#">Pinterest</a><a href="#">Wordpress</a><a href="#">CodePen</a>
+  </div>
+</div>
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
